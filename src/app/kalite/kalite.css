@@ -1,0 +1,377 @@
+/* Kalite — Quality.html mockup'ı (indigo palet). Scope: .quality-page
+   Not: genel "section{padding}" kuralı YOK; her bölüm kendi padding'ini taşır. */
+.quality-page {
+  --primary: #4f3d8c;
+  --dark: #1b1640;
+  --accent: #7e6dc2;
+  --tint: #efedf7;
+  --bg: #f4f4f4;
+  --brd: #dddddd;
+  --txt: #333333;
+  --txt-dim: #777777;
+  background: #fff;
+  color: var(--txt);
+}
+
+/* Ortak başlık bloğu */
+.ql-h {
+  margin-bottom: 28px;
+}
+.ql-h__title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.ql-h__rule {
+  height: 2px;
+  background: var(--primary);
+  max-width: 100%;
+}
+.ql-h__sub {
+  font-size: 13px;
+  color: var(--txt-dim);
+  line-height: 1.65;
+  max-width: 620px;
+  margin-top: 14px;
+}
+.ql-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ql-eyebrow--accent {
+  color: var(--accent);
+}
+
+/* ── Banner ── */
+.ql-banner {
+  position: relative;
+  background: var(--dark);
+  border-bottom: 4px solid var(--primary);
+  overflow: hidden;
+}
+.ql-banner__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: repeating-linear-gradient(90deg, #fff 0, #fff 0.5px, transparent 0.5px, transparent 32px),
+    repeating-linear-gradient(0deg, #fff 0, #fff 0.5px, transparent 0.5px, transparent 32px);
+}
+.ql-banner__inner {
+  position: relative;
+  z-index: 1;
+  padding: 44px clamp(20px, 5vw, 80px) 36px;
+}
+.ql-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 18px;
+}
+.ql-crumb a {
+  color: rgba(255, 255, 255, 0.55);
+}
+.ql-crumb a:hover {
+  color: #fff;
+}
+.ql-crumb__cur {
+  color: #fff;
+  font-weight: 600;
+}
+.ql-banner__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.ql-banner__title {
+  font-size: clamp(30px, 4.2vw, 42px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.ql-banner__sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 620px;
+}
+.ql-banner__stats {
+  display: flex;
+  gap: 32px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.ql-bstat {
+  text-align: right;
+}
+.ql-bstat__v {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.ql-bstat__l {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 6px;
+}
+
+/* ── Kalite misyonu ── */
+.ql-mission {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: flex-start;
+  padding: 60px clamp(20px, 5vw, 80px) 40px;
+  background: #fff;
+}
+.ql-lead {
+  font-size: 15px;
+  color: var(--txt);
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+.ql-lead b {
+  color: var(--dark);
+}
+.ql-body {
+  font-size: 14px;
+  color: var(--txt-dim);
+  line-height: 1.75;
+}
+.ql-body b {
+  color: var(--txt);
+}
+.ql-mission__media {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  background: var(--bg);
+  border: 1px solid var(--brd);
+}
+
+/* ── Sertifikalar ── */
+.ql-certs {
+  padding: 60px clamp(20px, 5vw, 80px);
+  background: #fff;
+  border-top: 1px solid var(--brd);
+}
+.ql-certs__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.ql-cert {
+  border: 1px solid var(--brd);
+  padding: 24px 26px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: #fff;
+}
+.ql-seal {
+  flex-shrink: 0;
+}
+.ql-cert__body {
+  flex: 1;
+  min-width: 0;
+}
+.ql-cert__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.ql-cert__code {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--dark);
+  letter-spacing: -0.2px;
+}
+.ql-cert__year {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.ql-cert__org {
+  font-size: 11.5px;
+  color: var(--txt);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.ql-cert__scope {
+  font-size: 11px;
+  color: var(--txt-dim);
+  line-height: 1.55;
+}
+
+/* ── Belgeler ── */
+.ql-docs {
+  padding: 60px clamp(20px, 5vw, 80px);
+  background: var(--bg);
+  border-top: 1px solid var(--brd);
+}
+.ql-docs__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.ql-docs__head .ql-h {
+  margin-bottom: 0;
+}
+.ql-docs__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.ql-doc {
+  background: #fff;
+  border: 1px solid var(--brd);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ql-doc__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.ql-doc__icon {
+  position: relative;
+  width: 56px;
+  height: 68px;
+  flex-shrink: 0;
+  background: var(--tint);
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--primary);
+}
+.ql-doc__icon--pdf {
+  background: #fbe9e9;
+  border-color: #e8b8b8;
+  color: #c62828;
+}
+.ql-doc__fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-left: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+.ql-doc__icon--pdf .ql-doc__fold {
+  border-color: #e8b8b8;
+}
+.ql-doc__meta {
+  flex: 1;
+  min-width: 0;
+}
+.ql-doc__flag {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+.ql-doc__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.ql-doc__lang {
+  font-size: 10.5px;
+  color: var(--txt-dim);
+}
+.ql-doc__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--brd);
+  margin-top: auto;
+}
+.ql-doc__size {
+  font-size: 10.5px;
+  color: var(--txt-dim);
+  font-variant-numeric: tabular-nums;
+}
+.ql-doc__soon {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 2px 8px;
+  letter-spacing: 0.04em;
+}
+.ql-doc__dl {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 4px 12px;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.ql-doc__dl:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .ql-mission {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ql-certs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ql-docs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .ql-banner__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .ql-banner__stats {
+    gap: 28px;
+  }
+  .ql-docs__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 480px) {
+  .ql-certs__grid,
+  .ql-docs__grid {
+    grid-template-columns: 1fr;
+  }
+}

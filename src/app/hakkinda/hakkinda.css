@@ -1,0 +1,368 @@
+/* Hakkımızda — About.html mockup'ından, indigo marka paletiyle. Scope: .about-page */
+.about-page {
+  --primary: #4f3d8c;
+  --dark: #1b1640;
+  --accent: #7e6dc2;
+  --tint: #efedf7;
+  --bg: #f4f4f4;
+  --brd: #dddddd;
+  --txt: #333333;
+  --txt-dim: #777777;
+  background: #fff;
+  color: var(--txt);
+  font-family: inherit;
+}
+.about-page section {
+  padding: 56px clamp(20px, 5vw, 80px);
+  border-bottom: 1px solid var(--brd);
+}
+.about-page h1,
+.about-page h2,
+.about-page h3 {
+  letter-spacing: -0.3px;
+}
+
+.ab-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ab-eyebrow--accent {
+  color: var(--accent);
+}
+.ab-sechead {
+  margin-bottom: 34px;
+}
+.ab-sechead h2 {
+  font-size: clamp(24px, 3.4vw, 32px);
+  font-weight: 700;
+  color: var(--dark);
+}
+
+/* ── Breadcrumb barı (Kariyer stili) ── */
+.ab-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  padding: 14px clamp(20px, 5vw, 80px);
+  border-bottom: 1px solid var(--brd);
+  font-size: 12px;
+  color: var(--txt-dim);
+}
+.ab-crumb a {
+  color: var(--txt-dim);
+}
+.ab-crumb a:hover {
+  color: var(--dark);
+}
+.ab-crumb__cur {
+  color: var(--dark);
+  font-weight: 600;
+}
+
+/* ── Tesis bandı ── */
+.ab-facility {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  padding: 0 !important;
+  min-height: 520px;
+}
+.ab-facility__media {
+  position: relative;
+  background: var(--bg);
+  min-height: 320px;
+}
+.ab-facility__caption {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  background: rgba(27, 22, 64, 0.85);
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+.ab-facility__dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+.ab-facility__text {
+  padding: 60px clamp(24px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--tint);
+}
+.ab-facility__text h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.18;
+  margin: 0 0 18px;
+}
+.ab-facility__text p {
+  font-size: 14px;
+  color: var(--txt-dim);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.ab-facility__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding-top: 22px;
+  border-top: 1px solid var(--brd);
+}
+.ab-facility__statv {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.ab-facility__statl {
+  font-size: 10px;
+  color: var(--txt-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+}
+
+/* ── Misyon & Vizyon ── */
+.ab-mv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.ab-mv__col h3 {
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+.ab-mv__col p {
+  font-size: 14px;
+  color: var(--txt-dim);
+  line-height: 1.75;
+}
+
+/* ── Zaman çizelgesi ── */
+.ab-timeline {
+  background: var(--tint);
+}
+.ab-timeline__track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.ab-timeline__spine {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--brd);
+}
+.ab-tl {
+  position: relative;
+  padding: 36px 16px 0 0;
+}
+.ab-tl__dot {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background: var(--primary);
+  border: 3px solid var(--tint);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+.ab-tl__year {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.ab-tl__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.ab-tl__body {
+  font-size: 11px;
+  color: var(--txt-dim);
+  line-height: 1.6;
+}
+
+/* ── Sertifikalar ── */
+.ab-certs__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.ab-cert {
+  background: #fff;
+  border: 1px solid var(--brd);
+  padding: 22px 20px;
+}
+.ab-cert__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.ab-cert__check {
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ab-cert__code {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.ab-cert p {
+  font-size: 12px;
+  color: var(--txt-dim);
+  line-height: 1.65;
+}
+
+/* ── İletişim CTA ── */
+.ab-cta {
+  background: var(--dark);
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 64px;
+}
+.ab-cta__lead {
+  flex: 1;
+}
+.ab-cta__lead h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+  margin: 0 0 16px;
+  max-width: 560px;
+}
+.ab-cta__lead p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+.ab-cta__btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ab-btn {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 28px;
+  cursor: pointer;
+  display: inline-block;
+}
+.ab-btn--primary {
+  background: var(--primary);
+  color: #fff;
+}
+.ab-btn--primary:hover {
+  background: var(--accent);
+}
+.ab-btn--ghost {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+.ab-btn--ghost:hover {
+  border-color: #fff;
+}
+.ab-cta__contacts {
+  display: flex;
+  gap: 32px;
+  flex-shrink: 0;
+}
+.ab-cta__contact {
+  text-align: center;
+}
+.ab-cta__icon {
+  font-size: 22px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.ab-cta__clabel {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.ab-cta__cvalue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .ab-facility {
+    grid-template-columns: 1fr;
+  }
+  .ab-timeline__track {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 0;
+  }
+  .ab-timeline__spine {
+    display: none;
+  }
+  .ab-certs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ab-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .ab-cta__contacts {
+    gap: 24px;
+  }
+}
+@media (max-width: 720px) {
+  .ab-mv {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ab-timeline__track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 460px) {
+  .ab-certs__grid,
+  .ab-timeline__track {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,740 @@
+// Moniva — Otomotiv Yedek Parça B2B SaaS
+// PostgreSQL + Prisma 7 + NextAuth v5 (Prisma Adapter)
+// PLAN.md hizalı: 4 dil çeviri tablosu, çoklu currency, R2 storage, CUSTOMER/ADMIN+isVerified
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum Locale {
+  TR
+  EN
+  RU
+  AR
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum QuoteStatus {
+  NEW
+  QUOTED
+  CLOSED
+}
+
+enum Currency {
+  TRY
+  USD
+  EUR
+}
+
+enum NewsStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+
+enum PartType {
+  OEM
+  AFTERMARKET
+}
+
+// ============================================================================
+// AUTH (NextAuth v5 + Credentials + Google + 2 rol + isVerified flag)
+// ============================================================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?   // bcrypt hash — Credentials için. Google ile gelende null.
+  name          String?
+  image         String?
+
+  role       Role    @default(CUSTOMER)
+  isVerified Boolean @default(false) // Doğrulanmış B2B hesabı → indirim
+
+  // B2B firma bilgileri
+  companyName String?
+  taxNumber   String? // VKN (10 hane)
+  taxOffice   String?
+  phone       String?
+  country     String?
+  city        String?
+  address     String?
+
+  isActive  Boolean   @default(true)
+  lastLogin DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  accounts       Account[]
+  sessions       Session[]
+  quoteLists     QuoteList[]
+  quoteRequests  QuoteRequest[]
+
+  @@index([email])
+  @@index([role, isVerified])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ============================================================================
+// KATALOG — KATEGORİ (i18n)
+// ============================================================================
+
+model Category {
+  id       String  @id @default(cuid())
+  slug     String  @unique
+  code     String  @unique // AS / BD / CK / SE format
+  parentId String?
+  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryTree")
+
+  image    String? // R2 URL
+  order    Int     @default(0)
+  isActive Boolean @default(true) // "Katalogda göster"
+
+  // Görünürlük (Admin kategori editörü)
+  showInMenu Boolean @default(true)  // sol menü/sidebar'da listelensin mi
+  isFeatured Boolean @default(false) // öne çıkan kategori
+
+  translations   CategoryTranslation[]
+  products       Product[]
+  specAttributes CategorySpecAttribute[] // kategoriye özel teknik özellik şeması
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([code])
+  @@index([parentId])
+}
+
+// Teknik özellik alan tipi (kategori şeması)
+enum SpecType {
+  TEXT
+  SELECT
+  NUMBER
+  DIMENSION
+  RANGE
+}
+
+// Kategori bazlı teknik özellik ŞEMASI — o kategorideki ürünlerin hangi
+// teknik özellik alanlarına sahip olacağını tanımlar (değerler ProductSpec'te).
+model CategorySpecAttribute {
+  id         String   @id @default(cuid())
+  categoryId String
+  name       String // "Ağırlık", "Malzeme" (şimdilik tek dil — TR)
+  type       SpecType @default(TEXT)
+  unit       String? // "kg", "mm"
+  required   Boolean  @default(false)
+  order      Int      @default(0)
+
+  category     Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  productSpecs ProductSpec[]
+
+  @@index([categoryId])
+}
+
+model CategoryTranslation {
+  id         String @id @default(cuid())
+  categoryId String
+  locale     Locale
+  name       String
+  metaTitle  String?
+  metaDesc   String?
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, locale])
+  @@index([locale])
+}
+
+// ============================================================================
+// KATALOG — MARKA (lokalize değil — marka adı evrensel)
+// ============================================================================
+
+model Brand {
+  id       String  @id @default(cuid())
+  name     String  @unique
+  slug     String  @unique
+  logoUrl  String? // R2 URL
+  website  String?
+  isActive Boolean @default(true)
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+}
+
+// ============================================================================
+// KATALOG — ÜRÜN (i18n çeviri tablosu, fiyat YOK)
+// ============================================================================
+
+model Product {
+  id   String @id @default(cuid())
+  sku  String @unique // MNV-XX-NNNN format (Zod ile validate)
+  slug String @unique // tek slug — locale-agnostic
+
+  material String? // Örn. "Steel", "Aluminum"
+  partType PartType @default(AFTERMARKET) // Sepet Özeti OEM/Aftermarket oranı için
+  isActive Boolean @default(true)
+  isFeatured Boolean @default(false)
+  sortOrder Int @default(0) // Katalogda elle sıralama (admin); küçük = önce
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  brandId String?
+  brand   Brand?  @relation(fields: [brandId], references: [id])
+
+  translations    ProductTranslation[]
+  specs           ProductSpec[]
+  images          ProductImage[]
+  oemReferences   OemReference[]
+  datasheets      Datasheet[]
+  quoteItems      QuoteItem[]
+  quoteRequestItems QuoteRequestItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([sku])
+  @@index([categoryId])
+  @@index([brandId])
+  @@index([isActive, isFeatured])
+  @@index([sortOrder])
+}
+
+model ProductTranslation {
+  id          String @id @default(cuid())
+  productId   String
+  locale      Locale
+  name        String
+  description String @db.Text
+  shortDesc   String?
+  metaTitle   String?
+  metaDesc    String?
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, locale])
+  @@index([locale])
+  @@index([name])
+}
+
+model ProductSpec {
+  id          String  @id @default(cuid())
+  productId   String
+  attributeId String? // Kategori şema attribute'una bağ (şema-sürücü); legacy serbest satırlarda null
+  key         String  // Örn. "diameter", "length", "weight" (attribute adı snapshot'ı)
+  value       String  // Örn. "120", "Çelik"
+  unit        String? // Örn. "mm", "kg"
+  order       Int     @default(0)
+
+  product   Product                @relation(fields: [productId], references: [id], onDelete: Cascade)
+  attribute CategorySpecAttribute? @relation(fields: [attributeId], references: [id], onDelete: SetNull)
+
+  @@index([productId])
+  @@index([key])
+  @@index([attributeId])
+}
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  productId String
+  url       String   // R2 URL
+  alt       String?
+  order     Int      @default(0)
+  isMain    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+// ============================================================================
+// OEM ÇAPRAZ REFERANS (bir ürünün birden çok OEM numarası)
+// ============================================================================
+
+model OemReference {
+  id                  String  @id @default(cuid())
+  productId           String
+  oemNumber           String  // pg_trgm GIN index migration'da
+  oemNumberNormalized String  @default("") // ayraçsız + küçük harf, ayraçtan bağımsız arama
+  manufacturer        String? // Hangi orijinal markaya ait (Mercedes, MAN, vs.)
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([productId, oemNumber])
+  @@index([oemNumber])
+  @@index([oemNumberNormalized])
+  @@index([productId])
+}
+
+// ============================================================================
+// DATASHEET (PDF — locale başına farklı dosya)
+// ============================================================================
+
+model Datasheet {
+  id        String   @id @default(cuid())
+  productId String
+  locale    Locale
+  fileUrl   String   // R2 URL
+  fileName  String?
+  fileSize  Int?     // bytes
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, locale])
+  @@index([productId])
+}
+
+// İndirilebilir PDF kataloglar (Katalog İndirme sayfası + admin yönetimi).
+// Tek başlık + languages[] etiketi; çeviri tablosu yok (TR/EN ayrı kayıt).
+// Yönetilebilir katalog türü (admin'den ekle/düzenle/sil/sırala).
+model CatalogueType {
+  id    String @id @default(cuid())
+  slug  String @unique // kararlı anahtar, örn. "full"
+  name  String // düzenlenebilir etiket, örn. "Genel Katalog"
+  color String @default("#4F3D8C") // kart/rozet rengi (hex)
+  order Int    @default(0)
+
+  catalogues Catalogue[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+model Catalogue {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  title         String
+  typeId        String
+  type          CatalogueType @relation(fields: [typeId], references: [id])
+  description   String?       @db.Text
+  version       String? // "v2026.1"
+  languages     String[]      @default([]) // ["EN","TR"]
+  pageCount     Int?
+  fileUrl       String? // PDF R2 URL — yayınlamak için gerekli, taslakta boş olabilir
+  fileName      String?
+  fileSize      Int? // bytes
+  coverImage    String? // R2 URL; boşsa markalı otomatik kapak üretilir
+  status        NewsStatus    @default(DRAFT)
+  featured      Boolean       @default(false)
+  downloadCount Int           @default(0)
+  order         Int           @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([typeId])
+  @@index([order])
+}
+
+// ============================================================================
+// TEKLİF SİSTEMİ (sepet → talep, snapshot pattern ile)
+// ============================================================================
+
+// Sepet — anonim (sessionId) veya kullanıcı (userId) için
+model QuoteList {
+  id        String  @id @default(cuid())
+  userId    String? // Giriş yapılmışsa
+  sessionId String? // Anonim sepet için
+
+  items QuoteItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+  @@unique([sessionId])
+  @@index([userId])
+  @@index([sessionId])
+}
+
+model QuoteItem {
+  id          String @id @default(cuid())
+  quoteListId String
+  productId   String
+  quantity    Int    @default(1)
+
+  createdAt DateTime @default(now())
+
+  quoteList QuoteList @relation(fields: [quoteListId], references: [id], onDelete: Cascade)
+  product   Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([quoteListId, productId])
+  @@index([quoteListId])
+}
+
+// Talep — form gönderildiğinde sepet bu modele "snapshot" ile aktarılır
+model QuoteRequest {
+  id String @id @default(cuid())
+
+  userId String? // Opsiyonel — anonim talep mümkün
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  // Müşteri bilgileri (her zaman dolu)
+  fullName    String
+  email       String
+  phone       String
+  companyName String
+  country     String  // Tasarımda zorunlu (Ülke select'i)
+  city        String?
+  taxNumber   String? // VKN (10 hane) — tasarımda opsiyonel
+  taxOffice   String?
+  address     String  // Teslimat Adresi — tasarımda zorunlu
+  notes       String? @db.Text
+
+  // KVKK / pazarlama onayları (tasarımdaki checkbox'lar)
+  kvkkConsent      Boolean // Zorunlu — yasal onay
+  marketingConsent Boolean @default(false)
+
+  // Para birimi + kur snapshot (admin teklif verirken doldurur)
+  currency              Currency  @default(TRY)
+  exchangeRateSnapshot  Json?     // {"USD": 32.5, "EUR": 35.1} — quotedAt anındaki kurlar
+  quotedAt              DateTime?
+  quotedBy              String?   // Admin user ID (audit)
+
+  // Fiyatlandırma — SADECE teklif cevabında (katalogda/üründe fiyat YOK)
+  // Toplamlar saklanmaz; item.unitPrice + bu alanlardan türetilir.
+  discountPct  Decimal?  @db.Decimal(5, 2)  @default(0)  // tek genel iskonto %
+  shippingCost Decimal?  @db.Decimal(12, 2) @default(0)  // navlun
+  shippingMode String?                                    // Incoterm: DAP / FCA / EXW
+  vatRate      Decimal?  @db.Decimal(5, 2)  @default(0)  // KDV % (ihracat 0, yurtiçi 20)
+  validUntil   DateTime?                                  // teklif geçerlilik tarihi (PDF)
+  paymentTerms String?                                    // "Net 60" vb.
+
+  status     QuoteStatus @default(NEW)
+  isArchived Boolean     @default(false) // kapanan talepler arşive alınabilir
+  notes_admin String?  @db.Text @map("admin_notes")
+
+  items QuoteRequestItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([isArchived])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([email])
+}
+
+// Talep kaleminin snapshot'ı — ürün/sku/ad değişse bile talep bozulmaz
+model QuoteRequestItem {
+  id             String @id @default(cuid())
+  quoteRequestId String
+  productId      String
+
+  quantity Int
+
+  // Admin teklif verirken doldurur (talep anında boş) — birim fiyat snapshot'ı
+  unitPrice Decimal? @db.Decimal(12, 2)
+
+  // Snapshot — talep anındaki hal (locale bazlı isim de dahil)
+  snapshotSku     String
+  snapshotName    String  // Talep anındaki locale'deki ürün adı
+  snapshotLocale  Locale  // Talebin yapıldığı dil
+
+  createdAt DateTime @default(now())
+
+  quoteRequest QuoteRequest @relation(fields: [quoteRequestId], references: [id], onDelete: Cascade)
+  product      Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([quoteRequestId])
+  @@index([productId])
+}
+
+// ============================================================================
+// NEWSROOM (i18n)
+// ============================================================================
+
+model NewsPost {
+  id          String     @id @default(cuid())
+  slug        String     @unique // tek slug, locale-agnostic
+  coverImage  String?    // R2 URL
+  publishedAt DateTime?
+  status      NewsStatus @default(DRAFT)
+  authorId    String?    // İleride author tablosu eklenirse
+
+  translations NewsPostTranslation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([status, publishedAt])
+}
+
+model NewsPostTranslation {
+  id         String @id @default(cuid())
+  newsPostId String
+  locale     Locale
+  title      String
+  body       String @db.Text
+  excerpt    String?
+  metaTitle  String?
+  metaDesc   String?
+
+  newsPost NewsPost @relation(fields: [newsPostId], references: [id], onDelete: Cascade)
+
+  @@unique([newsPostId, locale])
+  @@index([locale])
+}
+
+// ============================================================================
+// İÇERİK SAYFALARI (CMS — yasal/bilgi sayfaları: KVKK, garanti, vb.)
+// ============================================================================
+
+model Page {
+  id           String     @id @default(cuid())
+  slug         String     @unique // locale-agnostic, örn. "kvkk"
+  status       NewsStatus @default(DRAFT) // DRAFT/PUBLISHED/ARCHIVED — genel içerik durumu
+  showInFooter Boolean    @default(false) // footer "Kurumsal" sütununda görünsün mü
+  order        Int        @default(0) // footer sıralaması
+
+  translations PageTranslation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+}
+
+model PageTranslation {
+  id        String  @id @default(cuid())
+  pageId    String
+  locale    Locale
+  title     String
+  body      String  @db.Text // paragraflar \n\n ile ayrılır
+  metaTitle String?
+  metaDesc  String?
+
+  page Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@unique([pageId, locale])
+  @@index([locale])
+}
+
+// ============================================================================
+// KURUMSAL FORMLAR (Kariyer başvurusu + İletişim mesajı)
+// ============================================================================
+
+enum SubmissionStatus {
+  NEW
+  REVIEWED
+  ARCHIVED
+}
+
+model JobApplication {
+  id          String           @id @default(cuid())
+  fullName    String
+  email       String
+  phone       String
+  location    String?
+  position    String // başvurulan departman
+  experience  String? // deneyim aralığı
+  linkedinUrl String?
+  coverNote   String           @db.Text
+  cvKey       String? // R2 object key — ADMIN erişimli, public DEĞİL
+  cvFileName  String?
+  kvkkConsent Boolean
+  status      SubmissionStatus @default(NEW)
+
+  createdAt DateTime @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model ContactMessage {
+  id          String           @id @default(cuid())
+  fullName    String
+  email       String
+  phone       String?
+  company     String?
+  subject     String?
+  message     String           @db.Text
+  kvkkConsent Boolean
+  status      SubmissionStatus @default(NEW)
+
+  createdAt DateTime @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ============================================================================
+// SİTE AYARLARI (tek satır / singleton — id sabit "singleton")
+// ============================================================================
+
+model SiteSetting {
+  id String @id @default("singleton")
+
+  // Firma
+  companyName String @default("MONIVA Otomotiv ve Gıda San. Tic. A.Ş.")
+  addressLine String @default("Selçuklu / Konya, Türkiye")
+
+  // İletişim
+  phone    String  @default("+90 332 239 03 05")
+  email    String  @default("export@moniva.com.tr")
+  whatsapp String?
+
+  // Sosyal medya
+  linkedinUrl  String?
+  xUrl         String?
+  youtubeUrl   String?
+  instagramUrl String?
+
+  // SEO varsayılanları
+  metaTitleBase String  @default("Moniva")
+  metaDescBase  String?
+
+  // Bildirim (teklif/form e-postaları buraya gider)
+  notifyEmail String?
+
+  // Kariyer başvuru formundaki pozisyon/departman seçenekleri (yönetilebilir)
+  careerPositions String[] @default(["Satış & İhracat", "Operasyon & Depo", "Mühendislik & Ar-Ge", "BT & Dijital", "Finans & İdari", "Açık başvuru"])
+
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================================================
+// YÖNETİLEN SAYFALAR (Bölüm-tabanlı page-builder — mockup PAGE_SECTIONS)
+// ============================================================================
+
+enum SectionType {
+  HERO
+  CATEGORY_GRID
+  FEATURE_COLUMNS
+  REGION_GRID
+  FEATURED_PRODUCTS
+  NEWSROOM
+  PARTNER_MARQUEE
+  CONTACT_CTA
+  // Hakkımızda
+  ABOUT_HERO
+  ABOUT_FACILITY
+  ABOUT_MV
+  ABOUT_TIMELINE
+  ABOUT_CERTS
+  ABOUT_CTA
+  // Kalite
+  QUALITY_BANNER
+  QUALITY_MISSION
+  QUALITY_STANDARDS
+  QUALITY_DOCS
+  // Kariyer
+  CAREERS_INFO
+  // İletişim
+  CONTACT_HERO
+  CONTACT_INFO
+  CONTACT_QUICK
+  CONTACT_LOC
+  CONTACT_DEPTS
+  // Katalog (Ürünler + Ürün Detay metinleri)
+  CATALOG_BANNER
+  CATALOG_CARD
+  PRODUCT_DETAIL
+}
+
+model ManagedPage {
+  id        String     @id @default(cuid())
+  key       String     @unique // "home" (ileride about/contact...)
+  title     String // admin etiketi, örn. "Anasayfa"
+  path      String // public yol, örn. "/"
+  status    NewsStatus @default(PUBLISHED)
+
+  // Sayfa SEO
+  seoTitle  String?
+  seoDesc   String?
+  canonical String?
+
+  sections PageSection[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PageSection {
+  id      String      @id @default(cuid())
+  pageId  String
+  page    ManagedPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  key     String // "hero","categories",... (sayfa içinde stabil)
+  type    SectionType
+  name    String // admin etiketi "Hero"
+  kind    String // açıklayıcı "Hero Carousel"
+  sub     String? // admin alt açıklama
+  order   Int
+  visible Boolean     @default(true)
+  data    Json        @default("{}") // tip başına yapısal içerik
+
+  updatedAt DateTime @updatedAt
+
+  @@unique([pageId, key])
+  @@index([pageId, order])
+}

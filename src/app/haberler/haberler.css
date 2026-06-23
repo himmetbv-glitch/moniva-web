@@ -1,0 +1,418 @@
+/* Haberler — Newsroom.html mockup'ı (indigo palet). Scope: .news-page */
+.news-page {
+  --primary: #4f3d8c;
+  --dark: #1b1640;
+  --accent: #7e6dc2;
+  --tint: #efedf7;
+  --bg: #f4f4f4;
+  --brd: #dddddd;
+  --txt: #333333;
+  --txt-dim: #777777;
+  background: #fff;
+  color: var(--txt);
+}
+
+/* Son bölüm her zaman footer'la arasında düzgün boşluk bıraksın
+   (tek haber olduğunda sayfa nw-featsec ile bitiyor; onun alt padding'i 0). */
+.news-page > section:last-child {
+  padding-bottom: 64px;
+}
+
+.nw-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.nw-eyebrow--accent {
+  color: var(--accent);
+}
+.nw-h {
+  margin-bottom: 24px;
+}
+.nw-h__title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.nw-h__rule {
+  height: 2px;
+  width: 150px;
+  background: var(--primary);
+}
+
+/* ── Banner ── */
+.nw-banner {
+  position: relative;
+  background: var(--dark);
+  border-bottom: 4px solid var(--primary);
+  overflow: hidden;
+}
+.nw-banner__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: repeating-linear-gradient(90deg, #fff 0, #fff 0.5px, transparent 0.5px, transparent 32px),
+    repeating-linear-gradient(0deg, #fff 0, #fff 0.5px, transparent 0.5px, transparent 32px);
+}
+.nw-banner__inner {
+  position: relative;
+  z-index: 1;
+  padding: 44px clamp(20px, 5vw, 80px) 36px;
+}
+.nw-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 16px;
+}
+.nw-crumb a {
+  color: rgba(255, 255, 255, 0.55);
+}
+.nw-crumb a:hover {
+  color: #fff;
+}
+.nw-crumb__cur {
+  color: #fff;
+  font-weight: 600;
+}
+.nw-banner__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.nw-banner__title {
+  font-size: clamp(30px, 4.2vw, 42px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.nw-banner__sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 620px;
+}
+.nw-banner__stats {
+  display: flex;
+  gap: 32px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.nw-bstat {
+  text-align: right;
+}
+.nw-bstat__v {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.nw-bstat__l {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 6px;
+}
+
+/* Kapaksız görsel placeholder */
+.nw-noimg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nw-noimg__mark {
+  font-size: 28px;
+  font-weight: 800;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: -0.02em;
+}
+
+/* ── Öne çıkan ── */
+.nw-featsec {
+  padding: 44px clamp(20px, 5vw, 80px) 0;
+  background: #fff;
+}
+.nw-feat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--brd);
+  background: var(--bg);
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.nw-feat:hover {
+  border-color: var(--primary);
+}
+.nw-feat__media {
+  position: relative;
+  min-height: 380px;
+  background: var(--dark);
+}
+.nw-feat__badge {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 10px;
+  letter-spacing: 0.1em;
+}
+.nw-feat__date {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.nw-feat__copy {
+  padding: 40px clamp(24px, 4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.nw-feat__title {
+  font-size: clamp(22px, 2.8vw, 30px);
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  margin-bottom: 18px;
+}
+.nw-feat__excerpt {
+  font-size: 14px;
+  color: var(--txt-dim);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.nw-feat__cta {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+}
+
+/* ── Grid ── */
+.nw-gridsec {
+  padding: 44px clamp(20px, 5vw, 80px) 56px;
+  background: #fff;
+}
+.nw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.nw-card {
+  background: #fff;
+  border: 1px solid var(--brd);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.nw-card:hover {
+  border-color: var(--primary);
+}
+.nw-card__media {
+  position: relative;
+  height: 200px;
+  background: var(--dark);
+}
+.nw-card__date {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #fff;
+  padding: 8px 12px;
+  text-align: center;
+  line-height: 1;
+  min-width: 50px;
+}
+.nw-card__day {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+.nw-card__mon {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+.nw-card__body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.nw-card__year {
+  font-size: 10px;
+  color: var(--txt-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.nw-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+  margin-bottom: 10px;
+}
+.nw-card:hover .nw-card__title {
+  color: var(--primary);
+}
+.nw-card__excerpt {
+  font-size: 12.5px;
+  color: var(--txt-dim);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  flex: 1;
+}
+.nw-card__cta {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  padding-top: 12px;
+  border-top: 1px solid var(--brd);
+}
+
+/* ── Boş durum ── */
+.nw-empty {
+  padding: 80px clamp(20px, 5vw, 80px);
+  text-align: center;
+}
+.nw-empty__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.nw-empty p {
+  font-size: 14px;
+  color: var(--txt-dim);
+}
+
+/* ── Detay ── */
+.nw-article {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 5vw, 40px) 64px;
+}
+.nw-acrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--txt-dim);
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.nw-acrumb a {
+  color: var(--txt-dim);
+}
+.nw-acrumb a:hover {
+  color: var(--primary);
+}
+.nw-acrumb__cur {
+  color: var(--dark);
+  font-weight: 600;
+}
+.nw-adate {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.nw-atitle {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.nw-aexcerpt {
+  font-size: 17px;
+  color: var(--txt-dim);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.nw-acover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg);
+  border: 1px solid var(--brd);
+  margin-bottom: 32px;
+}
+.nw-abody p {
+  font-size: 15.5px;
+  color: var(--txt);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.nw-amuted {
+  color: var(--txt-dim) !important;
+  font-style: italic;
+}
+.nw-aback {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--brd);
+}
+.nw-backlink {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .nw-feat {
+    grid-template-columns: 1fr;
+  }
+  .nw-feat__media {
+    min-height: 240px;
+  }
+  .nw-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .nw-banner__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .nw-grid {
+    grid-template-columns: 1fr;
+  }
+}

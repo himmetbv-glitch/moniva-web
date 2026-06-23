@@ -1,0 +1,188 @@
+/* Müşteri giriş/kayıt — indigo palet. Scope: .auth-page */
+.auth-page {
+  --primary: #4f3d8c;
+  --dark: #1b1640;
+  --accent: #7e6dc2;
+  --tint: #efedf7;
+  --brd: #dddddd;
+  --txt: #333333;
+  --txt-dim: #777777;
+  --err: #c0392b;
+  background: #f6f2fb;
+  color: var(--txt);
+}
+
+.au-wrap {
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  padding: 56px clamp(16px, 5vw, 40px) 72px;
+}
+.au-card {
+  width: 100%;
+  max-width: 460px;
+  background: #fff;
+  border: 1px solid var(--brd);
+  border-top: 4px solid var(--primary);
+  padding: 36px clamp(22px, 4vw, 40px) 32px;
+  align-self: flex-start;
+}
+.au-head {
+  margin-bottom: 24px;
+}
+.au-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.4px;
+  margin-bottom: 6px;
+}
+.au-sub {
+  font-size: 13.5px;
+  color: var(--txt-dim);
+  line-height: 1.55;
+}
+
+.au-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.au-grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.au-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.au-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dark);
+}
+.au-label i {
+  color: var(--txt-dim);
+  font-weight: 400;
+  font-style: normal;
+}
+.au-field input,
+.au-field textarea,
+.au-field select {
+  width: 100%;
+  border: 1px solid var(--brd);
+  background: #fff;
+  padding: 11px 13px;
+  font-size: 14px;
+  color: var(--txt);
+  border-radius: 2px;
+  font-family: inherit;
+}
+.au-field textarea {
+  min-height: 78px;
+  resize: vertical;
+}
+.au-field select {
+  height: 43px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 10 10' fill='none'%3E%3Cpath d='M2 3.5L5 6.5L8 3.5' stroke='%234f3d8c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 34px;
+}
+.au-field input:focus,
+.au-field textarea:focus,
+.au-field select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 61, 140, 0.12);
+}
+.au-field input.au-input--err,
+.au-field textarea.au-input--err,
+.au-field select.au-input--err {
+  border-color: var(--err);
+}
+.au-errtext {
+  font-size: 11.5px;
+  color: var(--err);
+  font-style: normal;
+}
+
+.au-alert {
+  background: #f9e7e5;
+  border: 1px solid #e7b7b1;
+  color: var(--err);
+  font-size: 13px;
+  padding: 11px 13px;
+  border-radius: 2px;
+}
+
+.au-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 12.5px;
+  color: var(--txt-dim);
+  line-height: 1.5;
+  cursor: pointer;
+}
+.au-check input {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.au-check a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.au-btn {
+  width: 100%;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.au-btn:hover {
+  background: var(--dark);
+}
+.au-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.au-foot {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--brd);
+  font-size: 13px;
+  color: var(--txt-dim);
+  text-align: center;
+}
+.au-foot a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.au-note {
+  font-size: 12px;
+  color: var(--txt-dim);
+  line-height: 1.6;
+  background: var(--tint);
+  border-left: 3px solid var(--accent);
+  padding: 11px 13px;
+}
+
+@media (max-width: 520px) {
+  .au-grid2 {
+    grid-template-columns: 1fr;
+  }
+}

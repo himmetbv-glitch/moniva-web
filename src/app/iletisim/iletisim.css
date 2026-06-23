@@ -1,0 +1,646 @@
+/* İletişim — Contact.html mockup'ı (indigo palet). Scope: .contact-page */
+.contact-page {
+  --primary: #4f3d8c;
+  --dark: #1b1640;
+  --accent: #7e6dc2;
+  --tint: #efedf7;
+  --bg: #f4f4f4;
+  --brd: #dddddd;
+  --txt: #333333;
+  --txt-dim: #777777;
+  background: #fff;
+  color: var(--txt);
+}
+
+.ct-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ct-eyebrow--accent {
+  color: var(--accent);
+}
+.ct-sechead {
+  margin-bottom: 28px;
+}
+.ct-sechead h2 {
+  font-size: clamp(24px, 3.2vw, 32px);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.3px;
+}
+
+/* ── Hero (kompakt) ── */
+.ct-hero {
+  position: relative;
+  background: var(--dark);
+  border-bottom: 4px solid var(--primary);
+  overflow: hidden;
+}
+.ct-hero__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: repeating-linear-gradient(90deg, #fff 0, #fff 0.5px, transparent 0.5px, transparent 32px);
+}
+.ct-hero__inner {
+  position: relative;
+  z-index: 1;
+  padding: 44px clamp(20px, 5vw, 80px) 36px;
+}
+.ct-hero .ct-eyebrow {
+  color: var(--accent);
+}
+.ct-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 16px;
+}
+.ct-crumb a {
+  color: rgba(255, 255, 255, 0.55);
+}
+.ct-crumb a:hover {
+  color: #fff;
+}
+.ct-crumb__cur {
+  color: #fff;
+  font-weight: 600;
+}
+.ct-hero__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+}
+.ct-hero__lead h1 {
+  font-size: clamp(30px, 4.4vw, 44px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+.ct-hero__lead p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 560px;
+}
+.ct-hero__stats {
+  display: flex;
+  gap: 28px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.ct-hstat {
+  text-align: right;
+}
+.ct-hstat__v {
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.ct-hstat__l {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 5px;
+}
+
+/* ── Form + Bilgi ── */
+.ct-formsec {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 56px;
+  align-items: flex-start;
+  padding: 48px clamp(20px, 5vw, 80px) 64px;
+  border-bottom: 1px solid var(--brd);
+}
+.ct-form__title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+.ct-form__sub {
+  font-size: 13px;
+  color: var(--txt-dim);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+.ct-field {
+  display: block;
+  margin-bottom: 18px;
+}
+.ct-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ct-label i {
+  color: var(--primary);
+  font-style: normal;
+}
+.ct-field input,
+.ct-field select,
+.ct-field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 13px;
+  color: var(--txt);
+  border: 1px solid var(--brd);
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+}
+.ct-field input:focus,
+.ct-field select:focus,
+.ct-field textarea:focus {
+  border-color: var(--primary);
+}
+.ct-field textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+}
+.ct-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.ct-row {
+  display: flex;
+  gap: 14px;
+}
+.ct-row .ct-field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.ct-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ct-chip {
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--brd);
+  background: #fff;
+  color: var(--txt);
+  cursor: pointer;
+  font-family: inherit;
+}
+.ct-chip--on {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+.ct-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 22px;
+  cursor: pointer;
+}
+.ct-consent input {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.ct-consent span {
+  font-size: 12px;
+  color: var(--txt-dim);
+  line-height: 1.6;
+}
+.ct-consent b {
+  color: var(--primary);
+}
+.ct-error {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: #fdecec;
+  border: 1px solid #f1b9b9;
+  color: #b3261e;
+  font-size: 13px;
+}
+.ct-foot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ct-submit {
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 32px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+.ct-submit:hover:not(:disabled) {
+  background: var(--dark);
+}
+.ct-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.ct-resp {
+  font-size: 12px;
+  color: var(--txt-dim);
+}
+.ct-resp b {
+  color: var(--dark);
+}
+.ct-done {
+  text-align: center;
+  padding: 60px 30px;
+}
+.ct-done__check {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ct-done__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.ct-done__body {
+  font-size: 14px;
+  color: var(--txt-dim);
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* Bilgi kartı (dark) */
+.ct-info {
+  background: var(--dark);
+  padding: 32px 30px;
+  color: #fff;
+}
+.ct-info__co {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+  margin-bottom: 24px;
+}
+.ct-info__block {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.ct-info__ico {
+  width: 32px;
+  height: 32px;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.ct-info__label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.ct-info__line {
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.6;
+}
+.ct-info__line--strong {
+  font-weight: 600;
+}
+.ct-info__follow {
+  margin-top: 8px;
+}
+.ct-social {
+  display: flex;
+  gap: 8px;
+}
+.ct-social__i {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ── Hızlı iletişim ── */
+.ct-quick {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  padding: 32px clamp(20px, 5vw, 80px);
+  background: #fff;
+}
+.ct-qtile {
+  background: #fff;
+  border: 1px solid var(--brd);
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ct-qtile__ico {
+  width: 44px;
+  height: 44px;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.ct-qtile__meta {
+  min-width: 0;
+}
+.ct-qtile__label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--txt-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.ct-qtile__value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ct-qtile__sub {
+  font-size: 11px;
+  color: var(--txt-dim);
+}
+
+/* ── Konum / harita ── */
+.ct-loc {
+  background: var(--tint);
+  border-bottom: 1px solid var(--brd);
+}
+.ct-loc__head {
+  padding: 48px clamp(20px, 5vw, 80px) 32px;
+}
+.ct-loc__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+.ct-loc__row h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.18;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+.ct-loc__row p {
+  font-size: 14px;
+  color: var(--txt-dim);
+  line-height: 1.6;
+  max-width: 560px;
+}
+.ct-loc__btns {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.ct-btn {
+  padding: 12px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+}
+.ct-btn--primary {
+  background: var(--primary);
+  color: #fff;
+}
+.ct-btn--primary:hover {
+  background: var(--dark);
+}
+.ct-btn--ghost {
+  border: 1px solid var(--brd);
+  color: var(--txt);
+  background: #fff;
+  font-weight: 500;
+}
+.ct-map {
+  position: relative;
+  height: 460px;
+  background: var(--dark);
+}
+.ct-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  filter: saturate(0.9);
+}
+.ct-mapcard {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  background: #fff;
+  border: 1px solid var(--brd);
+  padding: 20px 22px;
+  width: 320px;
+  max-width: calc(100% - 56px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+.ct-mapcard__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.ct-mapcard__pin {
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.ct-mapcard__k {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--txt-dim);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ct-mapcard__v {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.ct-mapcard__addr {
+  font-size: 12px;
+  color: var(--txt);
+  line-height: 1.7;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--brd);
+  margin-bottom: 14px;
+}
+.ct-mapcard__coords {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-size: 11px;
+}
+.ct-mapcard__coords span {
+  display: block;
+  color: var(--txt-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+.ct-mapcard__coords b {
+  color: var(--dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Departmanlar ── */
+.ct-depts {
+  padding: 56px clamp(20px, 5vw, 80px);
+  background: #fff;
+  border-bottom: 1px solid var(--brd);
+}
+.ct-depts__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.ct-dept {
+  border: 1px solid var(--brd);
+  padding: 22px 22px 20px;
+}
+.ct-dept__rule {
+  width: 24px;
+  height: 2px;
+  background: var(--primary);
+  margin-bottom: 14px;
+}
+.ct-dept__name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.ct-dept__contact {
+  font-size: 12px;
+  color: var(--txt-dim);
+  margin-bottom: 16px;
+}
+.ct-dept__rows {
+  padding-top: 14px;
+  border-top: 1px solid var(--brd);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ct-dept__rows > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--txt);
+  font-weight: 500;
+}
+.ct-dept__rows span {
+  color: var(--primary);
+  width: 12px;
+  flex-shrink: 0;
+}
+.ct-dept__hours {
+  font-size: 11px !important;
+  color: var(--txt-dim) !important;
+  font-weight: 400 !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .ct-formsec {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ct-quick {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ct-depts__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ct-loc__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+@media (max-width: 640px) {
+  .ct-hero__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .ct-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .ct-row .ct-field {
+    margin-bottom: 18px;
+  }
+  .ct-quick,
+  .ct-depts__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,1207 @@
+/* Quote System — "Quote System Mockup.html" Ekran 2 & 3'ten birebir.
+   Tüm kurallar .qsys altında scope'lanmıştır; global sızma yoktur. */
+
+.qsys {
+  --primary: #4f3d8c;
+  --primary-dk: #1b1640;
+  --accent: #7e6dc2;
+  --info: #5da3b8;
+  --bg: #ffffff;
+  --bg-2: #f5f5f5;
+  --bg-3: #efeaf6;
+  --text: #333333;
+  --text-2: #6b6b6b;
+  --text-3: #a0a0a0;
+  --line: #e2e2e6;
+  --success: #4caf50;
+  --warning: #ff9800;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  background: var(--bg-2);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.qsys *,
+.qsys *::before,
+.qsys *::after {
+  box-sizing: border-box;
+}
+.qsys img {
+  display: block;
+  max-width: 100%;
+}
+.qsys button,
+.qsys input,
+.qsys select,
+.qsys textarea {
+  font-family: inherit;
+}
+
+/* ───────────── HEADER ───────────── */
+.qsys .mh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+.qsys .mh .logo-text {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+.qsys .mh .logo-text small {
+  display: block;
+  font-style: normal;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: 0.12em;
+  margin-top: -2px;
+}
+.qsys .mh .navbar {
+  display: flex;
+  gap: 28px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.qsys .mh .navbar span.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 4px;
+}
+.qsys .mh .cart {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  font-weight: 600;
+}
+.qsys .mh .cart-count {
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+/* ───────────── BREADCRUMB ───────────── */
+.qsys .crumb {
+  padding: 18px 32px;
+  font-size: 12px;
+  color: var(--text-2);
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+}
+.qsys .crumb a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+.qsys .crumb b {
+  color: var(--text);
+  margin-left: 4px;
+}
+.qsys .crumb .sep {
+  margin: 0 8px;
+  color: var(--text-3);
+}
+
+/* ───────────── HERO ───────────── */
+.qsys .s2-hero {
+  padding: 36px 32px 32px;
+  background: linear-gradient(180deg, #efedf7 0%, #fff 100%);
+  border-bottom: 1px solid var(--line);
+}
+.qsys .s2-hero h1 {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0 0 10px;
+}
+.qsys .s2-hero h1 small {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-3);
+  letter-spacing: 0;
+  margin-left: 10px;
+}
+.qsys .s2-hero p {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0;
+}
+.qsys .s2-hero .badges {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.qsys .s2-hero .badges .b {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+.qsys .s2-hero .badges .b svg {
+  width: 12px;
+  height: 12px;
+  color: var(--info);
+}
+
+/* ───────────── BODY GRID ───────────── */
+.qsys .s2-body {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 28px;
+  padding: 32px;
+  background: var(--bg-2);
+}
+
+/* ───────────── ITEM LIST ───────────── */
+.qsys .s2-list {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  align-self: start;
+}
+.qsys .s2-list .lhead {
+  display: grid;
+  grid-template-columns: 72px 1fr 140px 60px;
+  gap: 16px;
+  padding: 14px 20px;
+  background: #fafafa;
+  border-bottom: 1px solid var(--line);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.qsys .s2-list .lrow {
+  display: grid;
+  grid-template-columns: 72px 1fr 140px 60px;
+  gap: 16px;
+  padding: 18px 20px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.qsys .s2-list .lrow:last-of-type {
+  border-bottom: none;
+}
+.qsys .s2-list .pimg {
+  width: 72px;
+  height: 72px;
+  background: var(--bg-2);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.qsys .s2-list .pimg .illust {
+  width: 60%;
+  height: 60%;
+  opacity: 0.4;
+  color: var(--primary);
+}
+.qsys .s2-list .pimg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.qsys .s2-list .pinfo .cat {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.qsys .s2-list .pinfo .pn {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.qsys .s2-list .pinfo .poem {
+  font-size: 11px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+.qsys .s2-list .pinfo .poem b {
+  color: var(--text);
+  font-weight: 600;
+}
+.qsys .s2-list .pinfo .meta-chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.qsys .s2-list .pinfo .meta-chips .chip {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--info);
+  background: #eef6f8;
+  border: 1px solid #d4e8ee;
+  padding: 2px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.qsys .s2-list .pinfo .meta-chips .chip.am {
+  color: var(--text-2);
+  background: #f3f3f5;
+  border-color: var(--line);
+}
+
+/* qty stepper (Ekran 1'den) */
+.qsys .qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  height: 38px;
+  overflow: hidden;
+  width: max-content;
+}
+.qsys .qty button {
+  width: 30px;
+  height: 100%;
+  background: var(--bg-2);
+  border: none;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.qsys .qty button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.qsys .qty input {
+  width: 40px;
+  height: 100%;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: #fff;
+  -moz-appearance: textfield;
+}
+.qsys .qty input::-webkit-outer-spin-button,
+.qsys .qty input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.qsys .s2-list .del {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-sm);
+  color: var(--text-3);
+  transition: all 0.15s;
+}
+.qsys .s2-list .del:hover {
+  color: #c62828;
+  border-color: #f0d0d0;
+  background: #fff5f5;
+}
+.qsys .s2-list .lfoot {
+  padding: 14px 20px;
+  background: #fafafa;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.qsys .s2-list .lfoot .cont {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.qsys .s2-list .lfoot .clear {
+  font-size: 11px;
+  color: var(--text-3);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.qsys .s2-list .lfoot .clear:hover {
+  color: #c62828;
+}
+
+/* ───────────── SUMMARY ───────────── */
+.qsys .s2-sum {
+  align-self: start;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  position: sticky;
+  top: 24px;
+}
+.qsys .s2-sum .head {
+  padding: 18px 20px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--r-md) var(--r-md) 0 0;
+}
+.qsys .s2-sum .head h3 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  margin: 0 0 4px;
+}
+.qsys .s2-sum .head p {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+.qsys .s2-sum .stats {
+  padding: 6px 20px;
+}
+.qsys .s2-sum .stats .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.qsys .s2-sum .stats .row:last-child {
+  border-bottom: none;
+}
+.qsys .s2-sum .stats .label {
+  font-size: 12px;
+  color: var(--text-2);
+  font-weight: 500;
+}
+.qsys .s2-sum .stats .val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.qsys .s2-sum .stats .val b {
+  color: var(--primary);
+  font-weight: 700;
+}
+.qsys .s2-sum .priceline {
+  padding: 12px 20px;
+  background: #fff8ef;
+  border-top: 1px solid #f3d5a0;
+  border-bottom: 1px solid #f3d5a0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.qsys .s2-sum .priceline svg {
+  width: 18px;
+  height: 18px;
+  color: var(--warning);
+  flex-shrink: 0;
+}
+.qsys .s2-sum .priceline span {
+  font-size: 11px;
+  color: #7a4f1a;
+  line-height: 1.45;
+}
+.qsys .s2-sum .priceline b {
+  font-weight: 700;
+}
+.qsys .s2-sum .cta-wrap {
+  padding: 18px 20px;
+}
+.qsys .btn-quote {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+  padding: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.15s;
+}
+.qsys .btn-quote:hover {
+  background: var(--primary-dk);
+}
+.qsys .btn-quote:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.qsys .btn-quote svg {
+  width: 16px;
+  height: 16px;
+}
+.qsys .s2-sum .promise {
+  font-size: 11px;
+  color: var(--text-2);
+  text-align: center;
+  line-height: 1.55;
+  padding: 10px 20px 0;
+  margin: 0;
+}
+.qsys .s2-sum .promise b {
+  color: var(--success);
+}
+.qsys .s2-sum .trust {
+  padding: 16px 20px 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  margin-top: 6px;
+}
+.qsys .s2-sum .trust .t {
+  font-size: 10px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+.qsys .s2-sum .trust .t svg {
+  width: 16px;
+  height: 16px;
+  color: var(--info);
+  margin: 0 auto 6px;
+  display: block;
+}
+.qsys .s2-sum .trust .t b {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ───────────── EMPTY STATE ───────────── */
+.qsys .empty {
+  margin: 56px 32px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 64px 32px;
+  text-align: center;
+}
+.qsys .empty svg {
+  width: 56px;
+  height: 56px;
+  color: var(--accent);
+  opacity: 0.5;
+  margin: 0 auto 20px;
+}
+.qsys .empty h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 8px;
+}
+.qsys .empty p {
+  font-size: 13px;
+  color: var(--text-2);
+  margin: 0 0 24px;
+}
+.qsys .empty .btn-quote {
+  width: max-content;
+  margin: 0 auto;
+  text-decoration: none;
+  padding: 14px 28px;
+}
+
+/* ───────────── MODAL ───────────── */
+.qsys-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(135deg, #1b1640 0%, #4f3d8c 100%);
+  background-size: 24px 24px, 48px 48px, 100% 100%;
+  background-position: 0 0, 12px 12px, 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 24px;
+  overflow-y: auto;
+}
+.qsys .modal {
+  position: relative;
+  width: 880px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: var(--r-lg);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.qsys .modal-head {
+  padding: 26px 32px 22px;
+  background: linear-gradient(180deg, #faf9fd 0%, #fff 100%);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.qsys .modal-head .left .kicker {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.qsys .modal-head .left h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin: 0 0 6px;
+}
+.qsys .modal-head .left p {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0;
+}
+.qsys .modal-head .close {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.qsys .steps {
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  background: #fafafa;
+  border-bottom: 1px solid var(--line);
+}
+.qsys .steps .step {
+  flex: 1;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  position: relative;
+}
+.qsys .steps .step .n {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  color: var(--text-3);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+.qsys .steps .step.done .n {
+  background: var(--success);
+  color: #fff;
+  border-color: var(--success);
+}
+.qsys .steps .step.done {
+  color: var(--text);
+}
+.qsys .steps .step.act .n {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.qsys .steps .step.act {
+  color: var(--primary);
+}
+.qsys .steps .step::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 1px;
+  height: 18px;
+  background: var(--line);
+  transform: translateY(-50%);
+}
+.qsys .steps .step:last-child::after {
+  display: none;
+}
+.qsys .modal-body {
+  padding: 26px 32px 24px;
+}
+.qsys .modal-body .summary {
+  background: var(--bg-3);
+  border-left: 3px solid var(--primary);
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.qsys .modal-body .summary svg {
+  width: 22px;
+  height: 22px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.qsys .modal-body .summary .text {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.qsys .modal-body .summary .text b {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* form */
+.qsys .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+}
+.qsys .field {
+  display: flex;
+  flex-direction: column;
+}
+.qsys .field.span2 {
+  grid-column: span 2;
+}
+.qsys .field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.qsys .field label .req {
+  color: #c62828;
+  margin-left: 2px;
+}
+.qsys .field label .opt {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--text-3);
+  margin-left: 4px;
+  font-style: italic;
+}
+.qsys .field input,
+.qsys .field select,
+.qsys .field textarea {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+.qsys .field input:focus,
+.qsys .field select:focus,
+.qsys .field textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(74, 20, 140, 0.1);
+}
+.qsys .field textarea {
+  resize: none;
+  min-height: 70px;
+}
+.qsys .field.has-error input,
+.qsys .field.has-error select,
+.qsys .field.has-error textarea {
+  border-color: #c62828;
+}
+.qsys .field .err {
+  font-size: 10px;
+  color: #c62828;
+  margin-top: 4px;
+}
+.qsys .field .with-flag {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: #fff;
+}
+.qsys .field .with-flag .ccode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-2);
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  border-right: 1px solid var(--line);
+}
+.qsys .field .with-flag .ccode .flag {
+  width: 18px;
+  height: 13px;
+  background: #e30a17;
+  position: relative;
+  border-radius: 1px;
+}
+.qsys .field .with-flag .ccode .flag::after {
+  content: "★";
+  position: absolute;
+  left: 9px;
+  top: -1px;
+  color: #fff;
+  font-size: 9px;
+}
+.qsys .field .with-flag input {
+  border: none;
+  flex: 1;
+}
+.qsys .field .select-wrap {
+  position: relative;
+}
+.qsys .field .select-wrap select {
+  appearance: none;
+  padding-right: 32px;
+}
+.qsys .field .select-wrap::after {
+  content: "▾";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-3);
+  font-size: 11px;
+  pointer-events: none;
+}
+.qsys .checks {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.qsys .check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.55;
+  cursor: pointer;
+}
+.qsys .check input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.qsys .check .box {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 3px;
+  background: #fff;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qsys .check .box svg {
+  width: 12px;
+  height: 12px;
+  color: #fff;
+  opacity: 0;
+}
+.qsys .check input:checked + .box {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.qsys .check input:checked + .box svg {
+  opacity: 1;
+}
+.qsys .check input:focus-visible + .box {
+  box-shadow: 0 0 0 3px rgba(74, 20, 140, 0.2);
+}
+.qsys .check a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.qsys .form-error {
+  margin-top: 16px;
+  background: #fff5f5;
+  border: 1px solid #f0d0d0;
+  color: #c62828;
+  font-size: 12px;
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+}
+.qsys .modal-foot {
+  padding: 18px 32px 22px;
+  border-top: 1px solid var(--line);
+  background: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.qsys .modal-foot .note {
+  font-size: 11px;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.qsys .modal-foot .note svg {
+  width: 14px;
+  height: 14px;
+  color: var(--success);
+}
+.qsys .modal-foot .actions {
+  display: flex;
+  gap: 10px;
+}
+.qsys .btn-ghost {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 12px 22px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.qsys .btn-primary {
+  border: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 28px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--r-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.qsys .btn-primary svg {
+  width: 14px;
+  height: 14px;
+}
+.qsys .btn-primary:hover {
+  background: var(--primary-dk);
+}
+.qsys .btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* success */
+.qsys .modal-success {
+  padding: 48px 40px 44px;
+  text-align: center;
+}
+.qsys .modal-success .ok {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #eaf6eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+}
+.qsys .modal-success .ok svg {
+  width: 32px;
+  height: 32px;
+  color: var(--success);
+}
+.qsys .modal-success h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0 0 10px;
+}
+.qsys .modal-success p {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto 8px;
+}
+.qsys .modal-success .ref {
+  font-size: 12px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 28px;
+}
+.qsys .modal-success .ref b {
+  color: var(--primary);
+}
+
+/* ───────────── RTL (Arapça) ───────────── */
+.qsys[dir="rtl"] .s2-sum .stats .row,
+.qsys[dir="rtl"] .modal-foot {
+  direction: rtl;
+}
+.qsys[dir="rtl"] .modal-body .summary {
+  border-left: none;
+  border-right: 3px solid var(--primary);
+  border-radius: var(--r-sm) 0 0 var(--r-sm);
+}
+
+/* ───────────── PENDING (mutasyon sırasında) ───────────── */
+.qsys .s2-body[data-pending="true"] .s2-list {
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+/* ───────────── CART ERROR BANNER ───────────── */
+.qsys .cart-error {
+  margin: 24px 32px 0;
+  background: #fff5f5;
+  border: 1px solid #f0d0d0;
+  color: #c62828;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ───────────── SKELETON (loading.tsx) ───────────── */
+.qsys .skel {
+  background: linear-gradient(90deg, #ececf1 25%, #f5f5f8 37%, #ececf1 63%);
+  background-size: 400% 100%;
+  border-radius: var(--r-sm);
+  animation: qsys-shimmer 1.3s ease-in-out infinite;
+}
+@keyframes qsys-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qsys .skel {
+    animation: none;
+  }
+}
+
+/* ───────────── ERROR BOUNDARY (error.tsx) ───────────── */
+.qsys .boundary {
+  margin: 56px 32px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 56px 32px;
+  text-align: center;
+}
+.qsys .boundary svg {
+  width: 52px;
+  height: 52px;
+  color: #c62828;
+  opacity: 0.6;
+  margin: 0 auto 18px;
+}
+.qsys .boundary h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary-dk);
+  margin: 0 0 8px;
+}
+.qsys .boundary p {
+  font-size: 13px;
+  color: var(--text-2);
+  margin: 0 0 24px;
+}
+.qsys .boundary .btn-quote {
+  width: max-content;
+  margin: 0 auto;
+}
+
+/* ───────────── RESPONSIVE ───────────── */
+@media (max-width: 900px) {
+  .qsys .s2-body {
+    grid-template-columns: 1fr;
+  }
+  .qsys .s2-sum {
+    position: static;
+  }
+  .qsys .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .qsys .field.span2 {
+    grid-column: span 1;
+  }
+  .qsys .mh .navbar {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .qsys .mh {
+    padding: 12px 16px;
+  }
+  .qsys .mh .logo-text {
+    font-size: 18px;
+  }
+  .qsys .crumb,
+  .qsys .s2-hero,
+  .qsys .s2-body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .qsys .s2-hero {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .qsys .s2-hero h1 {
+    font-size: 22px;
+  }
+  .qsys .s2-hero h1 small {
+    display: block;
+    margin: 6px 0 0;
+  }
+  .qsys .cart-error,
+  .qsys .empty,
+  .qsys .boundary {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  /* Liste satırı: görsel+bilgi üstte, adet+sil altta */
+  .qsys .s2-list .lhead {
+    display: none;
+  }
+  .qsys .s2-list .lrow {
+    grid-template-columns: 64px 1fr;
+    grid-template-areas:
+      "img info"
+      "qty del";
+    row-gap: 14px;
+  }
+  .qsys .s2-list .pimg {
+    grid-area: img;
+    width: 64px;
+    height: 64px;
+  }
+  .qsys .s2-list .pinfo {
+    grid-area: info;
+  }
+  .qsys .qty {
+    grid-area: qty;
+  }
+  .qsys .s2-list .del {
+    grid-area: del;
+    justify-self: end;
+  }
+
+  /* Modal mobil */
+  .qsys-modal-overlay {
+    padding: 16px 10px;
+  }
+  .qsys .modal-head,
+  .qsys .modal-body,
+  .qsys .modal-foot,
+  .qsys .steps {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .qsys .modal-head h2 {
+    font-size: 20px;
+  }
+  .qsys .steps .step {
+    font-size: 0;
+    gap: 0;
+    justify-content: center;
+  }
+  .qsys .steps .step .n {
+    font-size: 11px;
+  }
+  .qsys .modal-foot {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .qsys .modal-foot .actions {
+    justify-content: flex-end;
+  }
+}

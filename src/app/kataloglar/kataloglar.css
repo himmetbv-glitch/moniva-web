@@ -1,0 +1,379 @@
+/* Kataloglar — Catalogues.html mockup'ı. Scope: .cat-page */
+.cat-page {
+  --primary: #4f3d8c;
+  --dark: #1b1640;
+  --accent: #7e6dc2;
+  --blue: #0065a3;
+  --tint: #efedf7;
+  --bg: #f4f4f4;
+  --brd: #dddddd;
+  --txt: #333333;
+  --txt-dim: #777777;
+
+  font-family: var(--font-inter), "Inter", -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--txt);
+}
+.cat-page * {
+  box-sizing: border-box;
+}
+
+/* ── Banner ── */
+.cat-banner {
+  position: relative;
+  background: linear-gradient(120deg, #1b1640 0%, #2a1e55 60%, #4f3d8c 140%);
+  overflow: hidden;
+}
+.cat-banner__grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+.cat-banner__inner {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px clamp(20px, 5vw, 80px) 48px;
+}
+.cat-crumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 28px;
+}
+.cat-crumb a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+.cat-crumb a:hover {
+  color: #fff;
+}
+.cat-crumb__cur {
+  color: #fff;
+}
+.cat-banner__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+.cat-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.cat-banner__title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 0 0 12px;
+}
+.cat-banner__sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0;
+}
+.cat-banner__stats {
+  display: flex;
+  gap: 32px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.cat-bstat {
+  text-align: right;
+}
+.cat-bstat__v {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.cat-bstat__l {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 6px;
+}
+
+/* ── Body / groups ── */
+.cat-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 5vw, 80px) 64px;
+}
+.cat-group {
+  margin-bottom: 44px;
+}
+.cat-grouphead {
+  margin-bottom: 22px;
+}
+.cat-grouphead__t {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 10px;
+}
+.cat-grouphead__rule {
+  display: block;
+  width: 120px;
+  height: 3px;
+  background: var(--primary);
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── Card ── */
+.cat-card {
+  display: flex;
+  background: #fff;
+  border: 1px solid var(--brd);
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.cat-card:hover {
+  box-shadow: 0 10px 28px rgba(27, 22, 64, 0.12);
+}
+.cat-card__cover {
+  position: relative;
+  flex-shrink: 0;
+  width: 200px;
+  min-height: 240px;
+}
+.cat-card__coverimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cat-card__brand {
+  position: relative;
+  height: 100%;
+  min-height: 240px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  overflow: hidden;
+}
+.cat-card__grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.cat-card__feat {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--accent);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  letter-spacing: 0.08em;
+  z-index: 2;
+}
+.cat-card__brandtop {
+  position: relative;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.cat-card__brandtitle {
+  position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 12px;
+}
+.cat-card__brandbar {
+  position: relative;
+  margin: auto -18px 0;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 8px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+.cat-card__ver {
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 400;
+}
+.cat-card__body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.cat-card__tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.cat-card__type {
+  background: var(--tint);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 9px;
+  letter-spacing: 0.02em;
+}
+.cat-card__lang {
+  border: 1px solid var(--brd);
+  color: var(--txt-dim);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+}
+.cat-card__desc {
+  font-size: 13px;
+  color: var(--txt);
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+.cat-card__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+.cat-card__dl {
+  flex: 1;
+  background: var(--blue);
+  color: #fff;
+  padding: 11px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s;
+}
+.cat-card:hover .cat-card__dl {
+  background: var(--dark);
+}
+.cat-card__preview {
+  border: 1px solid var(--brd);
+  color: var(--txt-dim);
+  padding: 11px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.cat-card__preview:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ── Printed copy CTA ── */
+.cat-printcta {
+  background: #fff;
+  border: 1px solid var(--brd);
+  border-left: 4px solid var(--blue);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.cat-printcta__t {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+.cat-printcta p {
+  font-size: 13px;
+  color: var(--txt);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0;
+}
+.cat-printcta__btn {
+  background: var(--blue);
+  color: #fff;
+  padding: 13px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.cat-printcta__btn:hover {
+  background: var(--dark);
+}
+
+/* ── Empty ── */
+.cat-empty {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px clamp(20px, 5vw, 80px);
+  text-align: center;
+}
+.cat-empty__t {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.cat-empty p {
+  font-size: 14px;
+  color: var(--txt-dim);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .cat-grid {
+    grid-template-columns: 1fr;
+  }
+  .cat-banner__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .cat-banner__stats {
+    gap: 24px;
+  }
+}
+@media (max-width: 560px) {
+  .cat-card {
+    flex-direction: column;
+  }
+  .cat-card__cover {
+    width: 100%;
+    min-height: 200px;
+  }
+  .cat-printcta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
