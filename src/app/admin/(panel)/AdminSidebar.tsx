@@ -70,35 +70,35 @@ export function AdminSidebar({
   ];
 
   return (
-    <aside className="ad-sidebar">
-      <div className="ad-sidebar__brand">
+    <aside className="mv-sidebar">
+      <div className="mv-sidebar__brand">
         <Image
           src="/brand/moniva-logo.png"
           alt="Moniva"
           width={104}
           height={32}
-          className="ad-sidebar__logo"
+          className="mv-sidebar__logo"
         />
-        <div className="ad-sidebar__brandmeta">
-          <span className="ad-sidebar__brandtop">YÖNETİM</span>
-          <span className="ad-sidebar__brandsub">BACKEND v3.2</span>
+        <div className="mv-sidebar__brandmeta">
+          <span className="mv-sidebar__brandtop">YÖNETİM</span>
+          <span className="mv-sidebar__brandsub">BACKEND v3.2</span>
         </div>
       </div>
 
-      <nav className="ad-sidebar__nav">
+      <nav className="mv-sidebar__nav">
         {groups.map((g) => (
-          <div className="ad-sidebar__group" key={g.label}>
-            <div className="ad-sidebar__grouplabel">{g.label}</div>
+          <div className="mv-sidebar__group" key={g.label}>
+            <div className="mv-sidebar__grouplabel">{g.label}</div>
             {g.items.map((it) => {
               const active = pathname === it.href;
               const inner = (
                 <>
-                  <span className="ad-nav__icon">{it.icon}</span>
-                  <span className="ad-nav__label">{it.label}</span>
+                  <span className="mv-nav__icon">{it.icon}</span>
+                  <span className="mv-nav__label">{it.label}</span>
                   {it.count !== undefined && (
                     <span
                       className={
-                        "ad-nav__count" + (it.badge ? " ad-nav__count--badge" : "")
+                        "mv-nav__count" + (it.badge ? " mv-nav__count--badge" : "")
                       }
                     >
                       {it.count}
@@ -111,7 +111,7 @@ export function AdminSidebar({
                   <Link
                     key={it.href}
                     href={it.href}
-                    className={"ad-nav" + (active ? " ad-nav--active" : "")}
+                    className={"mv-nav" + (active ? " mv-nav--active" : "")}
                     aria-current={active ? "page" : undefined}
                   >
                     {inner}
@@ -121,7 +121,7 @@ export function AdminSidebar({
               return (
                 <span
                   key={it.href}
-                  className="ad-nav ad-nav--soon"
+                  className="mv-nav mv-nav--soon"
                   title="Yakında"
                   aria-disabled="true"
                 >
@@ -133,16 +133,16 @@ export function AdminSidebar({
         ))}
       </nav>
 
-      <div className="ad-sidebar__user">
-        <div className="ad-usercard">
-          <div className="ad-usercard__avatar">{initials}</div>
-          <div className="ad-usercard__meta">
-            <span className="ad-usercard__name">{name}</span>
-            <span className="ad-usercard__role">Süper Yönetici</span>
+      <div className="mv-sidebar__user">
+        <div className="mv-usercard">
+          <div className="mv-usercard__avatar">{initials}</div>
+          <div className="mv-usercard__meta">
+            <span className="mv-usercard__name">{name}</span>
+            <span className="mv-usercard__role">Süper Yönetici</span>
           </div>
           <button
             type="button"
-            className="ad-usercard__logout"
+            className="mv-usercard__logout"
             title="Çıkış yap"
             disabled={pending}
             onClick={() => startTransition(() => logoutAction())}

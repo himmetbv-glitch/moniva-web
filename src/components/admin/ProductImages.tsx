@@ -68,7 +68,7 @@ export function ProductImages({
   }
 
   return (
-    <div className="ad-card iq-pad">
+    <div className="mv-card iq-pad">
       <div className="pe-sectitle">Görseller</div>
 
       <div

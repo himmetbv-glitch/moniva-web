@@ -50,7 +50,7 @@ export function BrandEditor({
   };
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       <div className="iq-head">
         <div>
           <div className="iq-head__crumb">
@@ -61,8 +61,8 @@ export function BrandEditor({
           </div>
         </div>
         <div className="iq-head__actions">
-          <Link href="/admin/brands" className="ad-btn ad-btn--ghost">İptal</Link>
-          <button className="ad-btn ad-btn--primary" onClick={submit} disabled={pending}>
+          <Link href="/admin/brands" className="mv-btn mv-btn--ghost">İptal</Link>
+          <button className="mv-btn mv-btn--primary" onClick={submit} disabled={pending}>
             {pending ? "Kaydediliyor…" : mode === "new" ? "Oluştur" : "Kaydet"}
           </button>
         </div>
@@ -71,7 +71,7 @@ export function BrandEditor({
       {error && <div className="pe-error">{error}</div>}
 
       <div className="br-editgrid">
-        <div className="ad-card iq-pad">
+        <div className="mv-card iq-pad">
           <div className="pe-sectitle">Marka bilgileri</div>
           <label className="pe-field">
             <span className="pe-label">Marka adı <b className="pe-req">*</b></span>
@@ -80,7 +80,7 @@ export function BrandEditor({
           <label className="pe-field">
             <span className="pe-label">Slug</span>
             <input
-              className="ad-mono"
+              className="mv-mono"
               value={b.slug}
               onChange={(e) => { setSlugTouched(true); set("slug", e.target.value); }}
               placeholder="knorr-bremse"
@@ -107,7 +107,7 @@ export function BrandEditor({
           </div>
         </div>
 
-        <div className="ad-card iq-pad">
+        <div className="mv-card iq-pad">
           <div className="pe-sectitle">Önizleme</div>
           <div className="br-preview">
             <div className="br-preview__head" style={{ background: "#4F3D8C" }}>
@@ -120,7 +120,7 @@ export function BrandEditor({
             </div>
             <div className="br-preview__body">
               <b>{b.name || "Marka adı"}</b>
-              <span className={"ad-pill ad-pill--" + (b.isActive ? "ok" : "mute")}>
+              <span className={"mv-pill mv-pill--" + (b.isActive ? "ok" : "mute")}>
                 {b.isActive ? "Aktif" : "Pasif"}
               </span>
             </div>

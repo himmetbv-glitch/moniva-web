@@ -42,7 +42,7 @@ export function InquiryDangerActions({
     <div className="iq-danger">
       <button
         type="button"
-        className="ad-btn ad-btn--ghost ad-btn--sm"
+        className="mv-btn mv-btn--ghost mv-btn--sm"
         disabled={pending}
         onClick={toggleArchive}
       >
@@ -50,7 +50,7 @@ export function InquiryDangerActions({
       </button>
       <button
         type="button"
-        className="ad-btn ad-btn--sm iq-danger__del"
+        className="mv-btn mv-btn--sm iq-danger__del"
         disabled={pending}
         onClick={remove}
       >

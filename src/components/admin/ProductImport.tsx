@@ -120,7 +120,7 @@ export function ProductImport({
   };
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       <div className="iq-head">
         <div>
           <div className="iq-head__crumb">
@@ -134,7 +134,7 @@ export function ProductImport({
           </div>
         </div>
         <div className="iq-head__actions">
-          <button className="ad-btn ad-btn--ghost" onClick={downloadTemplate}>
+          <button className="mv-btn mv-btn--ghost" onClick={downloadTemplate}>
             ⬇ Şablon indir (.xlsx)
           </button>
         </div>
@@ -166,7 +166,7 @@ export function ProductImport({
 
       {/* ── ADIM 1: YÜKLE ── */}
       {step === "upload" && (
-        <div className="ad-card iq-pad">
+        <div className="mv-card iq-pad">
           <div className="im-drop" onClick={() => inputRef.current?.click()}>
             <div className="im-drop__icon">⬆</div>
             <div className="im-drop__title">Dosyayı seçmek için tıklayın</div>
@@ -215,14 +215,14 @@ export function ProductImport({
             </div>
           </div>
 
-          <div className="ad-card ad-card--flush">
-            <div className="ad-card__head">
+          <div className="mv-card mv-card--flush">
+            <div className="mv-card__head">
               <div className="iq-cardhead__ttl">Önizleme (ilk 10 satır)</div>
-              <span className="ad-card__link" onClick={reset} style={{ cursor: "pointer" }}>
+              <span className="mv-card__link" onClick={reset} style={{ cursor: "pointer" }}>
                 Başka dosya seç
               </span>
             </div>
-            <table className="ad-table">
+            <table className="mv-table">
               <thead>
                 <tr>
                   <th>Durum</th>
@@ -238,16 +238,16 @@ export function ProductImport({
                   return (
                     <tr key={i}>
                       <td>
-                        <span className={"ad-pill ad-pill--" + (v.ok ? "ok" : "err")}>
+                        <span className={"mv-pill mv-pill--" + (v.ok ? "ok" : "err")}>
                           {v.ok ? "Geçerli" : "Hata"}
                         </span>
                       </td>
                       <td>
-                        <span className="ad-mono ad-ref">{r.sku || "—"}</span>
+                        <span className="mv-mono mv-ref">{r.sku || "—"}</span>
                       </td>
                       <td>{r.name_tr || r.name_en || "—"}</td>
-                      <td className="ad-muted">{r.category || "—"}</td>
-                      <td className="ad-dim">{v.ok ? "—" : v.errors.join("; ")}</td>
+                      <td className="mv-muted">{r.category || "—"}</td>
+                      <td className="mv-dim">{v.ok ? "—" : v.errors.join("; ")}</td>
                     </tr>
                   );
                 })}
@@ -255,7 +255,7 @@ export function ProductImport({
             </table>
           </div>
 
-          <div className="ad-card iq-pad im-mt">
+          <div className="mv-card iq-pad im-mt">
             <div className="iq-cardhead__ttl">İçe aktarma seçeneği</div>
             <div className="im-modes">
               <label className={"im-mode" + (mode === "skip" ? " im-mode--on" : "")}>
@@ -280,7 +280,7 @@ export function ProductImport({
                   : `${validCount} satır işlenecek.`}
               </span>
               <button
-                className="ad-btn ad-btn--primary"
+                className="mv-btn mv-btn--primary"
                 onClick={runImport}
                 disabled={pending || validCount === 0}
               >
@@ -314,14 +314,14 @@ export function ProductImport({
           </div>
 
           {result.errors.length > 0 && (
-            <div className="ad-card ad-card--flush im-mt">
-              <div className="ad-card__head">
+            <div className="mv-card mv-card--flush im-mt">
+              <div className="mv-card__head">
                 <div className="iq-cardhead__ttl">Hatalı satırlar ({result.errors.length})</div>
-                <span className="ad-card__link" onClick={downloadErrors} style={{ cursor: "pointer" }}>
+                <span className="mv-card__link" onClick={downloadErrors} style={{ cursor: "pointer" }}>
                   ⬇ Hata logunu indir
                 </span>
               </div>
-              <table className="ad-table">
+              <table className="mv-table">
                 <thead>
                   <tr>
                     <th>Satır</th>
@@ -332,11 +332,11 @@ export function ProductImport({
                 <tbody>
                   {result.errors.slice(0, 50).map((e, i) => (
                     <tr key={i}>
-                      <td className="ad-num">{e.row}</td>
+                      <td className="mv-num">{e.row}</td>
                       <td>
-                        <span className="ad-mono ad-ref">{e.sku || "—"}</span>
+                        <span className="mv-mono mv-ref">{e.sku || "—"}</span>
                       </td>
-                      <td className="ad-dim">{e.message}</td>
+                      <td className="mv-dim">{e.message}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -345,10 +345,10 @@ export function ProductImport({
           )}
 
           <div className="im-actions im-mt">
-            <button className="ad-btn ad-btn--ghost" onClick={reset}>
+            <button className="mv-btn mv-btn--ghost" onClick={reset}>
               Yeni import
             </button>
-            <Link href="/admin/products" className="ad-btn ad-btn--primary">
+            <Link href="/admin/products" className="mv-btn mv-btn--primary">
               Ürünlere git ▶
             </Link>
           </div>

@@ -15,33 +15,33 @@ export default async function AdminCategoriesPage() {
   return (
     <>
       <AdminTopbar title="Kategoriler" crumbs={["Moniva Yönetim", "Katalog"]} />
-      <div className="ad-page">
-        <div className="ad-welcome">
+      <div className="mv-page">
+        <div className="mv-welcome">
           <div>
-            <h1 className="ad-welcome__hi">Kategoriler</h1>
-            <div className="ad-welcome__sub">
+            <h1 className="mv-welcome__hi">Kategoriler</h1>
+            <div className="mv-welcome__sub">
               Ürünler sayfasındaki kategori menüsünü buradan yönetin.
             </div>
           </div>
-          <div className="ad-welcome__actions">
-            <Link href="/admin/categories/new" className="ad-btn ad-btn--primary">
+          <div className="mv-welcome__actions">
+            <Link href="/admin/categories/new" className="mv-btn mv-btn--primary">
               <Icons.plus /> Yeni Kategori
             </Link>
           </div>
         </div>
 
-        <div className="ad-card ad-card--flush">
+        <div className="mv-card mv-card--flush">
           {rows.length === 0 ? (
-            <div className="ad-empty">Henüz kategori yok.</div>
+            <div className="mv-empty">Henüz kategori yok.</div>
           ) : (
-            <table className="ad-table pl-table">
+            <table className="mv-table pl-table">
               <thead>
                 <tr>
                   <th className="pl-ordcol">Sıra</th>
                   <th>Kategori</th>
                   <th>Slug</th>
-                  <th className="ad-num">Ürün</th>
-                  <th className="ad-num">Alt</th>
+                  <th className="mv-num">Ürün</th>
+                  <th className="mv-num">Alt</th>
                   <th>Durum</th>
                   <th />
                 </tr>
@@ -89,12 +89,12 @@ export default async function AdminCategoriesPage() {
                       </Link>
                     </td>
                     <td>
-                      <span className="ad-mono ad-muted">/c/{c.slug}</span>
+                      <span className="mv-mono mv-muted">/c/{c.slug}</span>
                     </td>
-                    <td className="ad-num ad-muted">{c.productCount}</td>
-                    <td className="ad-num ad-dim">{c.childCount || "—"}</td>
+                    <td className="mv-num mv-muted">{c.productCount}</td>
+                    <td className="mv-num mv-dim">{c.childCount || "—"}</td>
                     <td>
-                      <span className={"ad-pill ad-pill--" + (c.isActive ? "ok" : "mute")}>
+                      <span className={"mv-pill mv-pill--" + (c.isActive ? "ok" : "mute")}>
                         {c.isActive ? "Aktif" : "Pasif"}
                       </span>
                     </td>

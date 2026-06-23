@@ -72,7 +72,7 @@ export function ImageUploadField({
           <div className="mp-imgbtns">
             <button
               type="button"
-              className="ad-btn ad-btn--ghost ad-btn--sm"
+              className="mv-btn mv-btn--ghost mv-btn--sm"
               disabled={uploading}
               onClick={() => inputRef.current?.click()}
             >
@@ -81,7 +81,7 @@ export function ImageUploadField({
             {value && (
               <button
                 type="button"
-                className="ad-linkbtn ad-linkbtn--danger"
+                className="mv-linkbtn mv-linkbtn--danger"
                 disabled={uploading}
                 onClick={() => onChange("")}
               >
@@ -90,7 +90,7 @@ export function ImageUploadField({
             )}
             <button
               type="button"
-              className="ad-linkbtn"
+              className="mv-linkbtn"
               onClick={() => setManual((m) => !m)}
             >
               {manual ? "Gizle" : "URL gir"}

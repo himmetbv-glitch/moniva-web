@@ -42,16 +42,16 @@ export function CatalogueRowActions({
   }
 
   return (
-    <div className="ad-rowact" style={{ justifyContent: "flex-end" }}>
-      <Link href={`/admin/catalogues/${id}`} className="ad-linkbtn">Düzenle</Link>
+    <div className="mv-rowact" style={{ justifyContent: "flex-end" }}>
+      <Link href={`/admin/catalogues/${id}`} className="mv-linkbtn">Düzenle</Link>
       {status === "PUBLISHED" ? (
-        <button type="button" className="ad-linkbtn" disabled={pending} onClick={() => changeStatus("DRAFT")}>
+        <button type="button" className="mv-linkbtn" disabled={pending} onClick={() => changeStatus("DRAFT")}>
           Taslağa al
         </button>
       ) : (
         <button
           type="button"
-          className="ad-linkbtn"
+          className="mv-linkbtn"
           disabled={pending || !hasFile}
           title={hasFile ? undefined : "Yayınlamak için önce PDF yükleyin"}
           onClick={() => changeStatus("PUBLISHED")}
@@ -59,7 +59,7 @@ export function CatalogueRowActions({
           Yayınla
         </button>
       )}
-      <button type="button" className="ad-linkbtn ad-linkbtn--danger" disabled={pending} onClick={remove}>
+      <button type="button" className="mv-linkbtn mv-linkbtn--danger" disabled={pending} onClick={remove}>
         Sil
       </button>
     </div>

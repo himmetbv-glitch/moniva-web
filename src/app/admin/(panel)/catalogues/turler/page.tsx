@@ -13,7 +13,7 @@ export default async function CatalogueTypesPage() {
   return (
     <>
       <AdminTopbar title="Katalog Türleri" crumbs={["Moniva Yönetim", "İçerik", "Kataloglar"]} />
-      <div className="ad-page">
+      <div className="mv-page">
         <div className="iq-head">
           <div>
             <div className="iq-head__crumb">
@@ -28,7 +28,7 @@ export default async function CatalogueTypesPage() {
             </div>
           </div>
           <div className="iq-head__actions">
-            <Link href="/admin/catalogues" className="ad-btn ad-btn--ghost">← Kataloglar</Link>
+            <Link href="/admin/catalogues" className="mv-btn mv-btn--ghost">← Kataloglar</Link>
           </div>
         </div>
 

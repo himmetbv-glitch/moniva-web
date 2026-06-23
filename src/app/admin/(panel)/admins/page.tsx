@@ -63,16 +63,16 @@ export default async function AdminUsersPage({
     <>
       <AdminTopbar title="Kullanıcılar & Roller" crumbs={["Moniva Yönetim", "Sistem"]} />
 
-      <div className="ad-page">
-        <div className="ad-welcome">
+      <div className="mv-page">
+        <div className="mv-welcome">
           <div>
-            <h1 className="ad-welcome__hi">Kullanıcılar & Roller</h1>
-            <div className="ad-welcome__sub">
+            <h1 className="mv-welcome__hi">Kullanıcılar & Roller</h1>
+            <div className="mv-welcome__sub">
               Yönetici ve B2B müşteri hesapları; rol ve doğrulama yönetimi.
             </div>
           </div>
-          <div className="ad-welcome__actions">
-            <Link href="/admin/admins/new" className="ad-btn ad-btn--primary">
+          <div className="mv-welcome__actions">
+            <Link href="/admin/admins/new" className="mv-btn mv-btn--primary">
               + Yeni kullanıcı
             </Link>
           </div>
@@ -112,18 +112,18 @@ export default async function AdminUsersPage({
           </div>
         </div>
 
-        <div className="ad-card ad-card--flush">
+        <div className="mv-card mv-card--flush">
           {rows.length === 0 ? (
-            <div className="ad-empty">Bu filtreye uygun kullanıcı yok.</div>
+            <div className="mv-empty">Bu filtreye uygun kullanıcı yok.</div>
           ) : (
-            <table className="ad-table usr-table">
+            <table className="mv-table usr-table">
               <thead>
                 <tr>
                   <th>Kullanıcı</th>
                   <th>Firma</th>
                   <th>Rol</th>
                   <th>Durum</th>
-                  <th className="ad-num">Teklif</th>
+                  <th className="mv-num">Teklif</th>
                   <th>Son giriş</th>
                   <th />
                 </tr>
@@ -139,18 +139,18 @@ export default async function AdminUsersPage({
                             {initialsOf(u.name, u.email)}
                           </div>
                           <div className="usr-id__meta">
-                            <Link href={`/admin/admins/${u.id}`} className="ad-co ad-ref">
+                            <Link href={`/admin/admins/${u.id}`} className="mv-co mv-ref">
                               {u.name ?? u.email}
                               {isSelf && <span className="usr-self">siz</span>}
                             </Link>
-                            <div className="ad-co__sub">{u.email}</div>
+                            <div className="mv-co__sub">{u.email}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="ad-muted">{u.company ?? "—"}</td>
+                      <td className="mv-muted">{u.company ?? "—"}</td>
                       <td>
                         <span
-                          className={`ad-pill ad-pill--${
+                          className={`mv-pill mv-pill--${
                             u.role === Role.ADMIN ? "info" : "mute"
                           }`}
                         >
@@ -160,18 +160,18 @@ export default async function AdminUsersPage({
                       <td>
                         <div className="usr-badges">
                           {!u.isActive && (
-                            <span className="ad-pill ad-pill--mute">Pasif</span>
+                            <span className="mv-pill mv-pill--mute">Pasif</span>
                           )}
                           {u.role === Role.CUSTOMER &&
                             (u.isVerified ? (
-                              <span className="ad-pill ad-pill--ok">Doğrulandı</span>
+                              <span className="mv-pill mv-pill--ok">Doğrulandı</span>
                             ) : (
-                              <span className="ad-pill ad-pill--warn">Bekliyor</span>
+                              <span className="mv-pill mv-pill--warn">Bekliyor</span>
                             ))}
                         </div>
                       </td>
-                      <td className="ad-num ad-muted">{u.quoteCount}</td>
-                      <td className="ad-dim">{u.lastLoginLabel}</td>
+                      <td className="mv-num mv-muted">{u.quoteCount}</td>
+                      <td className="mv-dim">{u.lastLoginLabel}</td>
                       <td>
                         <UserRowActions
                           id={u.id}

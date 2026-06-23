@@ -132,7 +132,7 @@ export function CatalogueEditor({
   }
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       <div className="iq-head">
         <div>
           <div className="iq-head__crumb">
@@ -142,16 +142,16 @@ export function CatalogueEditor({
             <span>{mode === "new" ? "Yeni katalog" : c.title || "Katalog"}</span>
           </div>
           <div className="iq-head__meta">
-            <span className="ad-mono ad-ref">{c.slug ? `/kataloglar#${c.slug}` : "/kataloglar"}</span>
+            <span className="mv-mono mv-ref">{c.slug ? `/kataloglar#${c.slug}` : "/kataloglar"}</span>
             <span>·</span>
-            <span className={"ad-pill ad-pill--" + (c.status === "PUBLISHED" ? "ok" : c.status === "DRAFT" ? "warn" : "mute")}>
+            <span className={"mv-pill mv-pill--" + (c.status === "PUBLISHED" ? "ok" : c.status === "DRAFT" ? "warn" : "mute")}>
               {CAT_STATUS_LABELS[c.status]}
             </span>
           </div>
         </div>
         <div className="iq-head__actions">
-          <Link href="/admin/catalogues" className="ad-btn ad-btn--ghost">İptal</Link>
-          <button className="ad-btn ad-btn--primary" onClick={submit} disabled={pending}>
+          <Link href="/admin/catalogues" className="mv-btn mv-btn--ghost">İptal</Link>
+          <button className="mv-btn mv-btn--primary" onClick={submit} disabled={pending}>
             {pending ? "Kaydediliyor…" : mode === "new" ? "Oluştur" : "Kaydet"}
           </button>
         </div>
@@ -161,7 +161,7 @@ export function CatalogueEditor({
 
       <div className="pe-grid">
         <div className="pe-main">
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="pe-sectitle">Katalog bilgileri</div>
             <label className="pe-field">
               <span className="pe-label">Başlık</span>
@@ -178,7 +178,7 @@ export function CatalogueEditor({
             </label>
           </div>
 
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="pe-sectitle">Katalog dosyası (PDF)</div>
             {mode === "edit" && c.id ? (
               <>
@@ -189,7 +189,7 @@ export function CatalogueEditor({
                       <b>{c.fileName || "Katalog.pdf"}</b>
                       <small>{formatFileSize(c.fileSize)}</small>
                     </div>
-                    <a className="ad-linkbtn" href={c.fileUrl} target="_blank" rel="noreferrer">Görüntüle ↗</a>
+                    <a className="mv-linkbtn" href={c.fileUrl} target="_blank" rel="noreferrer">Görüntüle ↗</a>
                   </div>
                 ) : (
                   <div className="pe-ph">Henüz PDF yüklenmedi. Yayınlamak için gerekli.</div>
@@ -203,7 +203,7 @@ export function CatalogueEditor({
                 />
                 <button
                   type="button"
-                  className="ad-btn ad-btn--ghost ad-btn--sm"
+                  className="mv-btn mv-btn--ghost mv-btn--sm"
                   style={{ marginTop: 12 }}
                   disabled={fileBusy}
                   onClick={() => fileRef.current?.click()}
@@ -219,7 +219,7 @@ export function CatalogueEditor({
         </div>
 
         <div className="pe-side">
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Yayın</div>
             <label className="pe-field">
               <span className="pe-label">Durum</span>
@@ -236,7 +236,7 @@ export function CatalogueEditor({
             <label className="pe-field">
               <span className="pe-label">Slug</span>
               <input
-                className="ad-mono"
+                className="mv-mono"
                 value={c.slug}
                 onChange={(e) => { setSlugTouched(true); set("slug", e.target.value); }}
                 placeholder="master-catalogue-2026"
@@ -244,12 +244,12 @@ export function CatalogueEditor({
             </label>
           </div>
 
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Özellikler</div>
             <label className="pe-field">
               <span className="pe-label">
                 Tip
-                <Link href="/admin/catalogues/turler" className="ad-linkbtn" style={{ marginLeft: 8, fontSize: 11 }}>
+                <Link href="/admin/catalogues/turler" className="mv-linkbtn" style={{ marginLeft: 8, fontSize: 11 }}>
                   Türleri yönet
                 </Link>
               </span>
@@ -286,7 +286,7 @@ export function CatalogueEditor({
             </label>
           </div>
 
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Kapak görseli</div>
             {mode === "edit" && c.id ? (
               <>
@@ -307,7 +307,7 @@ export function CatalogueEditor({
                 />
                 <button
                   type="button"
-                  className="ad-btn ad-btn--ghost ad-btn--sm"
+                  className="mv-btn mv-btn--ghost mv-btn--sm"
                   style={{ marginTop: 12 }}
                   disabled={coverBusy}
                   onClick={() => coverRef.current?.click()}

@@ -72,7 +72,7 @@ export function ProductDatasheets({
   }
 
   return (
-    <div className="ad-card iq-pad">
+    <div className="mv-card iq-pad">
       <div className="pe-sectitle">Dokümanlar (Datasheet)</div>
       <div className="pe-ph pe-ph--info">
         Her dil için bir PDF datasheet yükleyebilirsiniz. Aynı dile yeni dosya
@@ -113,7 +113,7 @@ export function ProductDatasheets({
                 />
                 <button
                   type="button"
-                  className="ad-btn ad-btn--ghost ad-btn--sm"
+                  className="mv-btn mv-btn--ghost mv-btn--sm"
                   disabled={busy}
                   onClick={() => inputs.current[L.code]?.click()}
                 >
@@ -122,7 +122,7 @@ export function ProductDatasheets({
                 {ds && (
                   <button
                     type="button"
-                    className="ad-btn ad-btn--ghost ad-btn--sm pe-dsdel"
+                    className="mv-btn mv-btn--ghost mv-btn--sm pe-dsdel"
                     disabled={busy}
                     onClick={() => remove(ds.id)}
                   >

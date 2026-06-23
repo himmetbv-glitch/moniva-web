@@ -44,16 +44,16 @@ export default async function InquiriesPage({
     <>
       <AdminTopbar title="Teklif Talepleri" crumbs={["Moniva Yönetim", "Satış"]} />
 
-      <div className="ad-page">
-        <div className="ad-welcome">
+      <div className="mv-page">
+        <div className="mv-welcome">
           <div>
-            <h1 className="ad-welcome__hi">Teklif Talepleri</h1>
-            <div className="ad-welcome__sub">
+            <h1 className="mv-welcome__hi">Teklif Talepleri</h1>
+            <div className="mv-welcome__sub">
               Katalogdan ve iletişim formlarından gelen teklif talepleri.
             </div>
           </div>
-          <div className="ad-welcome__actions">
-            <a className="ad-btn ad-btn--ghost" href="/api/admin/reports/quotes" title="Tüm teklif taleplerini CSV indir">
+          <div className="mv-welcome__actions">
+            <a className="mv-btn mv-btn--ghost" href="/api/admin/reports/quotes" title="Tüm teklif taleplerini CSV indir">
               <Icons.exp /> CSV indir
             </a>
           </div>
@@ -111,17 +111,17 @@ export default async function InquiriesPage({
         </div>
 
         {/* Tablo */}
-        <div className="ad-card ad-card--flush">
+        <div className="mv-card mv-card--flush">
           {rows.length === 0 ? (
-            <div className="ad-empty">Bu filtreye uygun teklif talebi yok.</div>
+            <div className="mv-empty">Bu filtreye uygun teklif talebi yok.</div>
           ) : (
-            <table className="ad-table iq-table">
+            <table className="mv-table iq-table">
               <thead>
                 <tr>
                   <th>Referans</th>
                   <th>Firma / İletişim</th>
                   <th>Ülke</th>
-                  <th className="ad-num">Parça</th>
+                  <th className="mv-num">Parça</th>
                   <th>Öncelik</th>
                   <th>Durum</th>
                   <th>Geliş</th>
@@ -132,27 +132,27 @@ export default async function InquiriesPage({
                 {rows.map((r) => (
                   <tr key={r.id}>
                     <td>
-                      <Link href={`/admin/inquiries/${r.id}`} className="ad-mono ad-ref">
+                      <Link href={`/admin/inquiries/${r.id}`} className="mv-mono mv-ref">
                         {r.ref}
                       </Link>
                     </td>
                     <td>
-                      <div className="ad-co">{r.companyName}</div>
-                      <div className="ad-co__sub">{r.email}</div>
+                      <div className="mv-co">{r.companyName}</div>
+                      <div className="mv-co__sub">{r.email}</div>
                     </td>
-                    <td className="ad-muted">{r.country}</td>
-                    <td className="ad-num ad-muted">{r.itemCount}</td>
+                    <td className="mv-muted">{r.country}</td>
+                    <td className="mv-num mv-muted">{r.itemCount}</td>
                     <td>
                       <span className={`iq-prio iq-prio--${r.priority}`}>
                         ● {PRIORITY[r.priority]}
                       </span>
                     </td>
                     <td>
-                      <span className={`ad-pill ad-pill--${STATUS_PILL[r.status].kind}`}>
+                      <span className={`mv-pill mv-pill--${STATUS_PILL[r.status].kind}`}>
                         {STATUS_PILL[r.status].label}
                       </span>
                     </td>
-                    <td className="ad-dim">{r.timeLabel}</td>
+                    <td className="mv-dim">{r.timeLabel}</td>
                     <td>
                       <Link href={`/admin/inquiries/${r.id}`} className="iq-open">
                         Aç ▶

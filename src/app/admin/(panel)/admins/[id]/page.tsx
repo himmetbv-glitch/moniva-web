@@ -48,7 +48,7 @@ export default async function UserDetailPage({
     <>
       <AdminTopbar title={u.name ?? u.email} crumbs={["Moniva Yönetim", "Sistem"]} />
 
-      <div className="ad-page">
+      <div className="mv-page">
         <div className="iq-head">
           <div>
             <div className="iq-head__crumb">
@@ -56,15 +56,15 @@ export default async function UserDetailPage({
             </div>
             <div className="iq-head__title">
               <span>{u.name ?? "—"}</span>
-              <span className={`ad-pill ad-pill--${u.role === Role.ADMIN ? "info" : "mute"}`}>
+              <span className={`mv-pill mv-pill--${u.role === Role.ADMIN ? "info" : "mute"}`}>
                 {u.role === Role.ADMIN ? "Yönetici" : "Müşteri"}
               </span>
-              {!u.isActive && <span className="ad-pill ad-pill--mute">Pasif</span>}
+              {!u.isActive && <span className="mv-pill mv-pill--mute">Pasif</span>}
               {u.role === Role.CUSTOMER &&
                 (u.isVerified ? (
-                  <span className="ad-pill ad-pill--ok">Doğrulandı</span>
+                  <span className="mv-pill mv-pill--ok">Doğrulandı</span>
                 ) : (
-                  <span className="ad-pill ad-pill--warn">Bekliyor</span>
+                  <span className="mv-pill mv-pill--warn">Bekliyor</span>
                 ))}
               {isSelf && <span className="usr-self">siz</span>}
             </div>
@@ -86,20 +86,20 @@ export default async function UserDetailPage({
 
         <div className="iq-grid">
           <div className="iq-main">
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead">
                 <span className="iq-cardhead__ttl">Teklif talepleri</span>
                 <span className="iq-cardhead__sub">{u.quotes.length} kayıt</span>
               </div>
               {u.quotes.length === 0 ? (
-                <div className="ad-empty">Bu kullanıcının teklif talebi yok.</div>
+                <div className="mv-empty">Bu kullanıcının teklif talebi yok.</div>
               ) : (
-                <table className="ad-table">
+                <table className="mv-table">
                   <thead>
                     <tr>
                       <th>Referans</th>
                       <th>Tarih</th>
-                      <th className="ad-num">Kalem</th>
+                      <th className="mv-num">Kalem</th>
                       <th>Durum</th>
                       <th />
                     </tr>
@@ -110,14 +110,14 @@ export default async function UserDetailPage({
                       return (
                         <tr key={q.id}>
                           <td>
-                            <Link href={`/admin/inquiries/${q.id}`} className="ad-ref ad-mono">
+                            <Link href={`/admin/inquiries/${q.id}`} className="mv-ref mv-mono">
                               {q.ref}
                             </Link>
                           </td>
-                          <td className="ad-dim">{q.createdAtLabel}</td>
-                          <td className="ad-num ad-muted">{q.itemCount}</td>
+                          <td className="mv-dim">{q.createdAtLabel}</td>
+                          <td className="mv-num mv-muted">{q.itemCount}</td>
                           <td>
-                            <span className={`ad-pill ad-pill--${st.kind}`}>{st.label}</span>
+                            <span className={`mv-pill mv-pill--${st.kind}`}>{st.label}</span>
                           </td>
                           <td>
                             <Link href={`/admin/inquiries/${q.id}`} className="iq-open">
@@ -134,7 +134,7 @@ export default async function UserDetailPage({
           </div>
 
           <div className="iq-side">
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead__ttl iq-side__ttl">Hesap bilgileri</div>
               <div className="iq-customer">
                 <div className="iq-customer__avatar">{initialsOf(u.name, u.email)}</div>
@@ -151,7 +151,7 @@ export default async function UserDetailPage({
                   </div>
                 ))}
               </div>
-              <a href={`mailto:${u.email}`} className="ad-btn ad-btn--ghost iq-side__btn">
+              <a href={`mailto:${u.email}`} className="mv-btn mv-btn--ghost iq-side__btn">
                 E-posta gönder ↗
               </a>
             </div>

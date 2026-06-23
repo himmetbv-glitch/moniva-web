@@ -29,7 +29,7 @@ export default async function AdminPagesPage() {
     <>
       <AdminTopbar title="Sayfalar" crumbs={["Moniva Yönetim", "İçerik", "Sayfalar"]} />
 
-      <div className="ad-page">
+      <div className="mv-page">
         <div className="iq-head">
           <div>
             <div className="iq-head__title">
@@ -40,20 +40,20 @@ export default async function AdminPagesPage() {
             </div>
           </div>
           <div className="iq-head__actions">
-            <Link href="/admin/pages/new" className="ad-btn ad-btn--primary">
+            <Link href="/admin/pages/new" className="mv-btn mv-btn--primary">
               + Yeni içerik sayfası
             </Link>
           </div>
         </div>
 
         {/* ── Site sayfaları (bölüm-tabanlı) ── */}
-        <div className="ad-card ad-card--flush mp-listcard">
-          <table className="ad-table">
+        <div className="mv-card mv-card--flush mp-listcard">
+          <table className="mv-table">
             <thead>
               <tr>
                 <th>Sayfa</th>
                 <th>URL</th>
-                <th className="ad-num">Bölüm</th>
+                <th className="mv-num">Bölüm</th>
                 <th>Durum</th>
                 <th>Güncelleme</th>
                 <th style={{ textAlign: "right" }}>İşlemler</th>
@@ -67,26 +67,26 @@ export default async function AdminPagesPage() {
                       {p.title}
                     </Link>
                   </td>
-                  <td className="ad-mono ad-muted">{p.path}</td>
-                  <td className="ad-num ad-muted">{p.sectionCount}</td>
+                  <td className="mv-mono mv-muted">{p.path}</td>
+                  <td className="mv-num mv-muted">{p.sectionCount}</td>
                   <td>
-                    <span className={"ad-pill ad-pill--" + SECTION_STATUS_PILL[p.status]}>
+                    <span className={"mv-pill mv-pill--" + SECTION_STATUS_PILL[p.status]}>
                       {SECTION_STATUS_LABELS[p.status]}
                     </span>
                   </td>
-                  <td className="ad-muted">{p.updatedLabel}</td>
+                  <td className="mv-muted">{p.updatedLabel}</td>
                   <td>
-                    <div className="ad-rowact" style={{ justifyContent: "flex-end" }}>
-                      <a href={p.path} target="_blank" rel="noreferrer" className="ad-linkbtn">Önizle ↗</a>
-                      <Link href={`/admin/pages/site/${p.key}`} className="ad-linkbtn">Düzenle</Link>
+                    <div className="mv-rowact" style={{ justifyContent: "flex-end" }}>
+                      <a href={p.path} target="_blank" rel="noreferrer" className="mv-linkbtn">Önizle ↗</a>
+                      <Link href={`/admin/pages/site/${p.key}`} className="mv-linkbtn">Düzenle</Link>
                     </div>
                   </td>
                 </tr>
               ))}
               {managed.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="ad-empty" style={{ padding: 28, textAlign: "center" }}>
-                    Yönetilen sayfa yok. Seed çalıştırın: <span className="ad-mono">tsx prisma/seed-managed-pages.ts</span>
+                  <td colSpan={6} className="mv-empty" style={{ padding: 28, textAlign: "center" }}>
+                    Yönetilen sayfa yok. Seed çalıştırın: <span className="mv-mono">tsx prisma/seed-managed-pages.ts</span>
                   </td>
                 </tr>
               )}
@@ -100,25 +100,25 @@ export default async function AdminPagesPage() {
           <span className="mp-secttitle__meta">
             {stats.map(([l, v], i) => (
               <span key={l}>
-                {i > 0 && <span className="ad-sep"> · </span>}
+                {i > 0 && <span className="mv-sep"> · </span>}
                 <b>{v}</b> {l}
               </span>
             ))}
           </span>
         </div>
 
-        <div className="ad-card ad-card--flush">
+        <div className="mv-card mv-card--flush">
           {rows.length === 0 ? (
-            <div className="ad-empty" style={{ padding: 40, textAlign: "center" }}>
+            <div className="mv-empty" style={{ padding: 40, textAlign: "center" }}>
               Henüz içerik sayfası yok. <Link href="/admin/pages/new">İlk sayfayı oluşturun.</Link>{" "}
               KVKK, Gizlilik, Garanti gibi yasal/bilgi sayfaları için.
             </div>
           ) : (
-            <table className="ad-table">
+            <table className="mv-table">
               <thead>
                 <tr>
                   <th>Başlık</th>
-                  <th className="ad-num">Diller</th>
+                  <th className="mv-num">Diller</th>
                   <th>Durum</th>
                   <th>Footer</th>
                   <th>Güncelleme</th>
@@ -132,24 +132,24 @@ export default async function AdminPagesPage() {
                       <Link href={`/admin/pages/${r.id}`} style={{ fontWeight: 600 }}>
                         {r.title}
                       </Link>
-                      <div className="ad-mono ad-muted" style={{ fontSize: 11, marginTop: 2 }}>
+                      <div className="mv-mono mv-muted" style={{ fontSize: 11, marginTop: 2 }}>
                         /sayfa/{r.slug}
                       </div>
                     </td>
-                    <td className="ad-num ad-muted">{r.localeCount}/4</td>
+                    <td className="mv-num mv-muted">{r.localeCount}/4</td>
                     <td>
-                      <span className={"ad-pill ad-pill--" + PAGE_STATUS_PILL[r.status]}>
+                      <span className={"mv-pill mv-pill--" + PAGE_STATUS_PILL[r.status]}>
                         {PAGE_STATUS_LABELS[r.status]}
                       </span>
                     </td>
                     <td>
                       {r.showInFooter ? (
-                        <span className="ad-pill ad-pill--info">Evet</span>
+                        <span className="mv-pill mv-pill--info">Evet</span>
                       ) : (
-                        <span className="ad-muted">—</span>
+                        <span className="mv-muted">—</span>
                       )}
                     </td>
-                    <td className="ad-muted">{r.updatedLabel}</td>
+                    <td className="mv-muted">{r.updatedLabel}</td>
                     <td>
                       <PageRowActions id={r.id} status={r.status} title={r.title} />
                     </td>

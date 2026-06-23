@@ -13,7 +13,7 @@ export function MessageStatusFlow({
   status: SubmissionStatus;
 }) {
   return (
-    <div className="ad-card iq-flow">
+    <div className="mv-card iq-flow">
       {SUBMISSION_FLOW.map((s) => {
         const cur = s.key === status;
         return (

@@ -76,7 +76,7 @@ export function PageEditor({
   };
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       <div className="iq-head">
         <div>
           <div className="iq-head__crumb">
@@ -86,16 +86,16 @@ export function PageEditor({
             <span>{mode === "new" ? "Yeni sayfa" : n.translations.TR.title || "Sayfa"}</span>
           </div>
           <div className="iq-head__meta">
-            <span className="ad-mono ad-ref">{n.slug ? `/sayfa/${n.slug}` : "/sayfa/..."}</span>
+            <span className="mv-mono mv-ref">{n.slug ? `/sayfa/${n.slug}` : "/sayfa/..."}</span>
             <span>·</span>
-            <span className={"ad-pill ad-pill--" + (n.status === "PUBLISHED" ? "ok" : n.status === "DRAFT" ? "warn" : "mute")}>
+            <span className={"mv-pill mv-pill--" + (n.status === "PUBLISHED" ? "ok" : n.status === "DRAFT" ? "warn" : "mute")}>
               {PAGE_STATUS_LABELS[n.status]}
             </span>
           </div>
         </div>
         <div className="iq-head__actions">
-          <Link href="/admin/pages" className="ad-btn ad-btn--ghost">İptal</Link>
-          <button className="ad-btn ad-btn--primary" onClick={submit} disabled={pending}>
+          <Link href="/admin/pages" className="mv-btn mv-btn--ghost">İptal</Link>
+          <button className="mv-btn mv-btn--primary" onClick={submit} disabled={pending}>
             {pending ? "Kaydediliyor…" : mode === "new" ? "Oluştur" : "Kaydet"}
           </button>
         </div>
@@ -105,7 +105,7 @@ export function PageEditor({
 
       <div className="pe-grid">
         <div className="pe-main">
-          <div className="ad-card ad-card--flush">
+          <div className="mv-card mv-card--flush">
             <div className="pe-langs">
               {EDITOR_LOCALES.map((L) => (
                 <button
@@ -131,7 +131,7 @@ export function PageEditor({
             </div>
           </div>
 
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="pe-sectitle">SEO · <b>{lang}</b></div>
             <label className="pe-field">
               <span className="pe-label">Meta başlık <i>{lang}</i></span>
@@ -145,7 +145,7 @@ export function PageEditor({
         </div>
 
         <div className="pe-side">
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Yayın</div>
             <label className="pe-field">
               <span className="pe-label">Durum</span>
@@ -158,7 +158,7 @@ export function PageEditor({
             <label className="pe-field">
               <span className="pe-label">Slug</span>
               <input
-                className="ad-mono"
+                className="mv-mono"
                 value={n.slug}
                 onChange={(e) => { setSlugTouched(true); setField("slug", e.target.value); }}
                 placeholder="kvkk"
@@ -166,7 +166,7 @@ export function PageEditor({
             </label>
           </div>
 
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Footer</div>
             <label className="pe-check">
               <input

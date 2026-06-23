@@ -79,17 +79,17 @@ function TypeRow({
       </td>
       <td>
         <input value={name} onChange={(e) => setName(e.target.value)} className="ct-name" />
-        <div className="ad-mono ad-muted" style={{ fontSize: 11, marginTop: 2 }}>/{t.slug}</div>
+        <div className="mv-mono mv-muted" style={{ fontSize: 11, marginTop: 2 }}>/{t.slug}</div>
       </td>
-      <td className="ad-num ad-muted">{t.catalogueCount}</td>
+      <td className="mv-num mv-muted">{t.catalogueCount}</td>
       <td style={{ textAlign: "right" }}>
-        <div className="ad-rowact" style={{ justifyContent: "flex-end" }}>
-          <button type="button" className="ad-linkbtn" disabled={pending || !dirty} onClick={save}>
+        <div className="mv-rowact" style={{ justifyContent: "flex-end" }}>
+          <button type="button" className="mv-linkbtn" disabled={pending || !dirty} onClick={save}>
             {pending ? "…" : "Kaydet"}
           </button>
           <button
             type="button"
-            className="ad-linkbtn ad-linkbtn--danger"
+            className="mv-linkbtn mv-linkbtn--danger"
             disabled={pending || t.catalogueCount > 0}
             title={t.catalogueCount > 0 ? "Bu türde katalog var" : undefined}
             onClick={remove}
@@ -122,15 +122,15 @@ export function CatalogueTypeManager({ types }: { types: AdminCatalogueTypeRow[]
     });
 
   return (
-    <div className="ad-card ad-card--flush">
+    <div className="mv-card mv-card--flush">
       {error && <div className="pe-error" style={{ margin: 16 }}>{error}</div>}
-      <table className="ad-table">
+      <table className="mv-table">
         <thead>
           <tr>
             <th style={{ width: 48 }}>Sıra</th>
             <th style={{ width: 64 }}>Renk</th>
             <th>Tür adı</th>
-            <th className="ad-num">Katalog</th>
+            <th className="mv-num">Katalog</th>
             <th style={{ textAlign: "right" }}>İşlemler</th>
           </tr>
         </thead>
@@ -158,9 +158,9 @@ export function CatalogueTypeManager({ types }: { types: AdminCatalogueTypeRow[]
                 onKeyDown={(e) => { if (e.key === "Enter" && newName.trim()) add(); }}
               />
             </td>
-            <td className="ad-num ad-muted">—</td>
+            <td className="mv-num mv-muted">—</td>
             <td style={{ textAlign: "right" }}>
-              <button type="button" className="ad-btn ad-btn--primary ad-btn--sm" disabled={pending || newName.trim().length < 2} onClick={add}>
+              <button type="button" className="mv-btn mv-btn--primary mv-btn--sm" disabled={pending || newName.trim().length < 2} onClick={add}>
                 + Ekle
               </button>
             </td>

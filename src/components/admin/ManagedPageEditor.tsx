@@ -93,24 +93,24 @@ export function ManagedPageEditor({
   }
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       <div className="iq-head">
         <div>
           <div className="iq-head__crumb">PAGES / EDIT</div>
           <div className="iq-head__title">
             <span>{initial.title}</span>
-            <span className={`ad-pill ad-pill--${status === "PUBLISHED" ? "ok" : status === "DRAFT" ? "warn" : "mute"}`}>
+            <span className={`mv-pill mv-pill--${status === "PUBLISHED" ? "ok" : status === "DRAFT" ? "warn" : "mute"}`}>
               {SECTION_STATUS_LABELS[status]}
             </span>
           </div>
           <div className="iq-head__meta">
-            <span className="ad-mono">{initial.path}</span>
-            <span className="ad-sep"> · </span>
+            <span className="mv-mono">{initial.path}</span>
+            <span className="mv-sep"> · </span>
             <span>{sections.length} bölüm</span>
           </div>
         </div>
         <div className="iq-head__actions mp-actions">
-          <a href={initial.path} target="_blank" rel="noreferrer" className="ad-btn ad-btn--ghost">
+          <a href={initial.path} target="_blank" rel="noreferrer" className="mv-btn mv-btn--ghost">
             Önizle ↗
           </a>
           <select
@@ -127,7 +127,7 @@ export function ManagedPageEditor({
           </select>
           <button
             type="button"
-            className="ad-btn ad-btn--primary"
+            className="mv-btn mv-btn--primary"
             disabled={pending || !dirty}
             onClick={save}
           >
@@ -142,7 +142,7 @@ export function ManagedPageEditor({
 
       <div className="mp-grid">
         {/* Sol: bölüm listesi */}
-        <div className="ad-card mp-seclist">
+        <div className="mv-card mp-seclist">
           <div className="mp-seclist__head">PAGE SECTIONS</div>
           {sections.map((s, i) => {
             const on = s.key === activeKey;
@@ -197,7 +197,7 @@ export function ManagedPageEditor({
         {/* Sağ: içerik alanları + SEO */}
         <div className="mp-secedit">
           {active && (
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="mp-edhead">
                 <div>
                   <div className="mp-edhead__kind">{active.kind}</div>
@@ -232,7 +232,7 @@ export function ManagedPageEditor({
             </div>
           )}
 
-          <div className="ad-card iq-pad mp-seo">
+          <div className="mv-card iq-pad mp-seo">
             <div className="mp-edhead__kind">PAGE SEO</div>
             <Field label="SEO başlığı">
               <input value={seoTitle} onChange={(e) => { setSeoTitle(e.target.value); touch(); }} maxLength={200} />

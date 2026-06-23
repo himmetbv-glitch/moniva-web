@@ -14,21 +14,21 @@ export default async function AdminBrandsPage() {
   return (
     <>
       <AdminTopbar title="Markalar" crumbs={["Moniva Yönetim", "Katalog"]} />
-      <div className="ad-page">
-        <div className="ad-welcome">
+      <div className="mv-page">
+        <div className="mv-welcome">
           <div>
-            <h1 className="ad-welcome__hi">Markalar</h1>
-            <div className="ad-welcome__sub">Katalogdaki OEM ve aftermarket tedarikçi markaları.</div>
+            <h1 className="mv-welcome__hi">Markalar</h1>
+            <div className="mv-welcome__sub">Katalogdaki OEM ve aftermarket tedarikçi markaları.</div>
           </div>
-          <div className="ad-welcome__actions">
-            <Link href="/admin/brands/new" className="ad-btn ad-btn--primary">
+          <div className="mv-welcome__actions">
+            <Link href="/admin/brands/new" className="mv-btn mv-btn--primary">
               <Icons.plus /> Yeni Marka
             </Link>
           </div>
         </div>
 
         {brands.length === 0 ? (
-          <div className="ad-card ad-empty">Henüz marka yok.</div>
+          <div className="mv-card mv-empty">Henüz marka yok.</div>
         ) : (
           <div className="br-grid">
             {brands.map((b) => (
@@ -45,9 +45,9 @@ export default async function AdminBrandsPage() {
                   <div className="br-card__top">
                     <div>
                       <div className="br-card__name">{b.name}</div>
-                      <div className="br-card__slug ad-mono">/{b.slug}</div>
+                      <div className="br-card__slug mv-mono">/{b.slug}</div>
                     </div>
-                    <span className={"ad-pill ad-pill--" + (b.isActive ? "ok" : "mute")}>
+                    <span className={"mv-pill mv-pill--" + (b.isActive ? "ok" : "mute")}>
                       {b.isActive ? "Aktif" : "Pasif"}
                     </span>
                   </div>

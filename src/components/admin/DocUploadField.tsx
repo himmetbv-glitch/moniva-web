@@ -77,7 +77,7 @@ export function DocUploadField({
         <div className="mp-docbtns">
           <button
             type="button"
-            className="ad-btn ad-btn--ghost ad-btn--sm"
+            className="mv-btn mv-btn--ghost mv-btn--sm"
             disabled={uploading}
             onClick={() => inputRef.current?.click()}
           >
@@ -86,14 +86,14 @@ export function DocUploadField({
           {value && (
             <button
               type="button"
-              className="ad-linkbtn ad-linkbtn--danger"
+              className="mv-linkbtn mv-linkbtn--danger"
               disabled={uploading}
               onClick={onClear}
             >
               Kaldır
             </button>
           )}
-          <button type="button" className="ad-linkbtn" onClick={() => setManual((m) => !m)}>
+          <button type="button" className="mv-linkbtn" onClick={() => setManual((m) => !m)}>
             {manual ? "Gizle" : "URL gir"}
           </button>
         </div>

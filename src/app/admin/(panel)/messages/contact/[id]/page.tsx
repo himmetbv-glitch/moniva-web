@@ -30,7 +30,7 @@ export default async function ContactDetailPage({
     <>
       <AdminTopbar title="İletişim Mesajı" crumbs={["Moniva Yönetim", "Mesajlar"]} />
 
-      <div className="ad-page">
+      <div className="mv-page">
         <div className="iq-head">
           <div>
             <div className="iq-head__crumb">
@@ -38,7 +38,7 @@ export default async function ContactDetailPage({
             </div>
             <div className="iq-head__title">
               <span>{d.fullName}</span>
-              <span className={`ad-pill ad-pill--${pill.kind}`}>{pill.label}</span>
+              <span className={`mv-pill mv-pill--${pill.kind}`}>{pill.label}</span>
             </div>
             <div className="iq-head__meta">
               {d.subject && (
@@ -56,7 +56,7 @@ export default async function ContactDetailPage({
 
         <div className="iq-grid">
           <div className="iq-main">
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead">
                 <span className="iq-cardhead__ttl">Mesaj</span>
                 <span className="iq-cardhead__sub">
@@ -68,7 +68,7 @@ export default async function ContactDetailPage({
           </div>
 
           <div className="iq-side">
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead__ttl iq-side__ttl">Gönderen bilgileri</div>
               <div className="iq-rows">
                 {rows.map(([k, v]) => (
@@ -80,7 +80,7 @@ export default async function ContactDetailPage({
               </div>
               <a
                 href={`mailto:${d.email}`}
-                className="ad-btn ad-btn--ghost iq-side__btn"
+                className="mv-btn mv-btn--ghost iq-side__btn"
               >
                 E-posta gönder ↗
               </a>

@@ -174,7 +174,7 @@ export function ProductEditor({
   ];
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       {/* Header */}
       <div className="iq-head">
         <div>
@@ -186,18 +186,18 @@ export function ProductEditor({
             {mode === "new" && <span className="pe-tag">KAYDEDİLMEDİ</span>}
           </div>
           <div className="iq-head__meta">
-            <span className="ad-mono ad-ref">{p.sku || "MNV-XX-0000"}</span>
+            <span className="mv-mono mv-ref">{p.sku || "MNV-XX-0000"}</span>
             <span>·</span>
-            <span className={"ad-pill ad-pill--" + (p.isActive ? "ok" : "warn")}>
+            <span className={"mv-pill mv-pill--" + (p.isActive ? "ok" : "warn")}>
               {p.isActive ? "Yayında" : "Taslak"}
             </span>
           </div>
         </div>
         <div className="iq-head__actions">
-          <Link href="/admin/products" className="ad-btn ad-btn--ghost">
+          <Link href="/admin/products" className="mv-btn mv-btn--ghost">
             İptal
           </Link>
-          <button className="ad-btn ad-btn--primary" onClick={submit} disabled={pending}>
+          <button className="mv-btn mv-btn--primary" onClick={submit} disabled={pending}>
             {pending ? "Kaydediliyor…" : mode === "new" ? "Ürünü yayımla" : "Değişiklikleri kaydet"}
           </button>
         </div>
@@ -228,7 +228,7 @@ export function ProductEditor({
           {/* ── TEMEL ── */}
           {tab === "overview" && (
             <>
-              <div className="ad-card ad-card--flush">
+              <div className="mv-card mv-card--flush">
                 <div className="pe-langs">
                   {EDITOR_LOCALES.map((L) => {
                     const st = localeStatus(L.code);
@@ -292,13 +292,13 @@ export function ProductEditor({
                 </div>
               </div>
 
-              <div className="ad-card iq-pad">
+              <div className="mv-card iq-pad">
                 <div className="pe-sectitle">Kimlik & sınıflandırma</div>
                 <div className="pe-row3">
                   <label className="pe-field">
                     <span className="pe-label">MNV Referansı (SKU) <b className="pe-req">*</b></span>
                     <input
-                      className="ad-mono"
+                      className="mv-mono"
                       value={p.sku}
                       onChange={(e) => onSkuChange(e.target.value)}
                       placeholder="MNV-XX-0000"
@@ -357,7 +357,7 @@ export function ProductEditor({
 
           {/* ── TEKNİK ÖZELLİKLER (kategori şeması sürücü) ── */}
           {tab === "specs" && (
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="pe-sectitle">Teknik özellikler</div>
 
               {schema.length > 0 ? (
@@ -413,7 +413,7 @@ export function ProductEditor({
                     ))}
                     {legacyRows.length === 0 && <div className="pe-empty">Henüz özellik yok.</div>}
                   </div>
-                  <button type="button" className="ad-btn ad-btn--ghost pe-add" onClick={addSpec}>
+                  <button type="button" className="mv-btn mv-btn--ghost pe-add" onClick={addSpec}>
                     + Satır ekle
                   </button>
                 </>
@@ -438,7 +438,7 @@ export function ProductEditor({
 
           {/* ── OEM ── */}
           {tab === "cross" && (
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="pe-sectitle">OEM çapraz referanslar</div>
               <div className="pe-rows">
                 <div className="pe-rows__head pe-oemrow">
@@ -449,13 +449,13 @@ export function ProductEditor({
                 {p.oem.map((o, i) => (
                   <div className="pe-oemrow" key={i}>
                     <input value={o.manufacturer} onChange={(e) => setOem(i, "manufacturer", e.target.value)} placeholder="Örn. Mercedes-Benz" />
-                    <input className="ad-mono" value={o.oemNumber} onChange={(e) => setOem(i, "oemNumber", e.target.value)} placeholder="0024297732" />
+                    <input className="mv-mono" value={o.oemNumber} onChange={(e) => setOem(i, "oemNumber", e.target.value)} placeholder="0024297732" />
                     <button type="button" className="pe-del" onClick={() => delOem(i)} aria-label="Sil">×</button>
                   </div>
                 ))}
                 {p.oem.length === 0 && <div className="pe-empty">Henüz OEM referansı yok.</div>}
               </div>
-              <button type="button" className="ad-btn ad-btn--ghost pe-add" onClick={addOem}>
+              <button type="button" className="mv-btn mv-btn--ghost pe-add" onClick={addOem}>
                 + Referans ekle
               </button>
             </div>
@@ -466,7 +466,7 @@ export function ProductEditor({
             (mode === "edit" && p.id ? (
               <ProductImages productId={p.id} images={images} />
             ) : (
-              <div className="ad-card iq-pad">
+              <div className="mv-card iq-pad">
                 <div className="pe-sectitle">Görseller</div>
                 <div className="pe-ph">
                   Görsel eklemek için önce ürünü kaydedin. Kaydettikten sonra bu
@@ -478,7 +478,7 @@ export function ProductEditor({
             (mode === "edit" && p.id ? (
               <ProductDatasheets productId={p.id} datasheets={datasheets} />
             ) : (
-              <div className="ad-card iq-pad">
+              <div className="mv-card iq-pad">
                 <div className="pe-sectitle">Dokümanlar (Datasheet)</div>
                 <div className="pe-ph">
                   Datasheet eklemek için önce ürünü kaydedin. Kaydettikten sonra bu
@@ -489,7 +489,7 @@ export function ProductEditor({
 
           {/* ── SEO ── */}
           {tab === "seo" && (
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="pe-sectitle">
                 Arama & sosyal · <b>{lang}</b>
               </div>
@@ -539,7 +539,7 @@ export function ProductEditor({
 
         {/* ── SIDEBAR ── */}
         <div className="pe-side">
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Durum</div>
             <div className="pe-statusrow">
               <span>Yayında (görünür)</span>
@@ -552,7 +552,7 @@ export function ProductEditor({
             {mode === "edit" && p.slug && (
               <div className="pe-liveurl">
                 <div className="pe-liveurl__k">Canlı URL</div>
-                <Link href={`/urunler/${p.slug}`} target="_blank" className="ad-mono">
+                <Link href={`/urunler/${p.slug}`} target="_blank" className="mv-mono">
                   /urunler/{p.slug}
                 </Link>
               </div>
@@ -560,7 +560,7 @@ export function ProductEditor({
             <label className="pe-field pe-slugfield">
               <span className="pe-label">Slug</span>
               <input
-                className="ad-mono"
+                className="mv-mono"
                 value={p.slug}
                 onChange={(e) => {
                   setSlugTouched(true);
@@ -572,7 +572,7 @@ export function ProductEditor({
           </div>
 
           {mode === "new" && (
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead__ttl iq-side__ttl">Oluşturma kontrol listesi</div>
               {[
                 ["Temel bilgi (ad + kategori)", Boolean(p.translations.TR.name && p.categoryId)],

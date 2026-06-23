@@ -62,11 +62,11 @@ export default async function MessagesPage({
     <>
       <AdminTopbar title="Mesajlar" crumbs={["Moniva Yönetim", "Satış"]} />
 
-      <div className="ad-page">
-        <div className="ad-welcome">
+      <div className="mv-page">
+        <div className="mv-welcome">
           <div>
-            <h1 className="ad-welcome__hi">Mesajlar & Başvurular</h1>
-            <div className="ad-welcome__sub">
+            <h1 className="mv-welcome__hi">Mesajlar & Başvurular</h1>
+            <div className="mv-welcome__sub">
               İletişim formundan gelen mesajlar ve kariyer başvuruları.
             </div>
           </div>
@@ -130,11 +130,11 @@ export default async function MessagesPage({
         </div>
 
         {/* Tablo */}
-        <div className="ad-card ad-card--flush">
+        <div className="mv-card mv-card--flush">
           {rows.length === 0 ? (
-            <div className="ad-empty">Bu filtreye uygun mesaj yok.</div>
+            <div className="mv-empty">Bu filtreye uygun mesaj yok.</div>
           ) : (
-            <table className="ad-table msg-table">
+            <table className="mv-table msg-table">
               <thead>
                 <tr>
                   <th>Tür</th>
@@ -160,21 +160,21 @@ export default async function MessagesPage({
                         </span>
                       </td>
                       <td>
-                        <Link href={href} className="ad-co ad-ref">
+                        <Link href={href} className="mv-co mv-ref">
                           {r.name}
                         </Link>
-                        <div className="ad-co__sub">{r.email}</div>
+                        <div className="mv-co__sub">{r.email}</div>
                       </td>
-                      <td className="ad-muted">
+                      <td className="mv-muted">
                         {r.subtitle}
                         {r.hasCv && <span className="msg-cvtag">CV</span>}
                       </td>
                       <td>
-                        <span className={`ad-pill ad-pill--${pill.kind}`}>
+                        <span className={`mv-pill mv-pill--${pill.kind}`}>
                           {pill.label}
                         </span>
                       </td>
-                      <td className="ad-dim">{r.timeLabel}</td>
+                      <td className="mv-dim">{r.timeLabel}</td>
                       <td>
                         <Link href={href} className="iq-open">
                           Aç ▶

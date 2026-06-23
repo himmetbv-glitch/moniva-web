@@ -44,7 +44,7 @@ export default async function InquiryDetailPage({
     <>
       <AdminTopbar title={d.ref} crumbs={["Moniva Yönetim", "Teklif Talepleri"]} />
 
-      <div className="ad-page">
+      <div className="mv-page">
         {/* Header */}
         <div className="iq-head">
           <div>
@@ -52,11 +52,11 @@ export default async function InquiryDetailPage({
               <Link href="/admin/inquiries">TEKLİF TALEPLERİ</Link> / DETAY
             </div>
             <div className="iq-head__title">
-              <span className="ad-mono">{d.ref}</span>
-              <span className={`ad-pill ad-pill--${STATUS_PILL[d.status].kind}`}>
+              <span className="mv-mono">{d.ref}</span>
+              <span className={`mv-pill mv-pill--${STATUS_PILL[d.status].kind}`}>
                 {STATUS_PILL[d.status].label}
               </span>
-              {d.isArchived && <span className="ad-pill ad-pill--mute">Arşiv</span>}
+              {d.isArchived && <span className="mv-pill mv-pill--mute">Arşiv</span>}
             </div>
             <div className="iq-head__meta">
               <b>{d.companyName}</b>
@@ -75,7 +75,7 @@ export default async function InquiryDetailPage({
         </div>
 
         {/* Durum akışı (stepper) */}
-        <div className="ad-card iq-flow">
+        <div className="mv-card iq-flow">
           {STATUS_FLOW.map((s, i) => {
             const done = i < stepIdx;
             const cur = i === stepIdx;
@@ -103,7 +103,7 @@ export default async function InquiryDetailPage({
           {/* ── Ana sütun ── */}
           <div className="iq-main">
             {/* Müşteri sorgusu */}
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead">
                 <span className="iq-cardhead__ttl">Müşteri mesajı</span>
                 <span className="iq-cardhead__sub">Ürün Detay · Teklif Listesi üzerinden</span>
@@ -144,7 +144,7 @@ export default async function InquiryDetailPage({
             />
 
             {/* Dahili not */}
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead">
                 <span className="iq-cardhead__ttl">Dahili not</span>
                 <span className="iq-cardhead__sub">Müşteriye görünmez</span>
@@ -158,7 +158,7 @@ export default async function InquiryDetailPage({
                   placeholder="Ekip için not ekleyin…"
                 />
                 <div className="iq-note__actions">
-                  <button type="submit" className="ad-btn ad-btn--primary">
+                  <button type="submit" className="mv-btn mv-btn--primary">
                     Notu kaydet
                   </button>
                 </div>
@@ -168,7 +168,7 @@ export default async function InquiryDetailPage({
 
           {/* ── Sağ sütun ── */}
           <div className="iq-side">
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead__ttl iq-side__ttl">Müşteri</div>
               <div className="iq-customer">
                 <div className="iq-customer__avatar">{initialsOf(d.companyName)}</div>
@@ -185,12 +185,12 @@ export default async function InquiryDetailPage({
                   </div>
                 ))}
               </div>
-              <a href={`mailto:${d.email}`} className="ad-btn ad-btn--ghost iq-side__btn">
+              <a href={`mailto:${d.email}`} className="mv-btn mv-btn--ghost iq-side__btn">
                 E-posta gönder ↗
               </a>
             </div>
 
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead__ttl iq-side__ttl">Teslimat & lojistik</div>
               <div className="iq-ship">
                 <b>{d.companyName}</b>
@@ -207,14 +207,14 @@ export default async function InquiryDetailPage({
               </div>
             </div>
 
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead__ttl iq-side__ttl">Dosyalar</div>
-              <div className="ad-empty iq-side__empty">
+              <div className="mv-empty iq-side__empty">
                 Dosya ekleme yakında.
               </div>
             </div>
 
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="iq-cardhead__ttl iq-side__ttl">Hareketler</div>
               <div className="iq-activity">
                 <div className="iq-act">

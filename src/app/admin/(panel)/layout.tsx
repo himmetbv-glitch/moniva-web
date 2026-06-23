@@ -27,9 +27,9 @@ export default async function AdminPanelLayout({
   const initials = initialsOf(admin.name ?? "", admin.email ?? "");
 
   return (
-    <div className="ad-shell">
+    <div className="mv-shell">
       <AdminSidebar name={name} initials={initials} counts={counts} />
-      <div className="ad-main">{children}</div>
+      <div className="mv-main">{children}</div>
     </div>
   );
 }

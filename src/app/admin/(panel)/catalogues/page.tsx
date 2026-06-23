@@ -26,7 +26,7 @@ export default async function AdminCataloguesPage() {
     <>
       <AdminTopbar title="Kataloglar" crumbs={["Moniva Yönetim", "İçerik", "Kataloglar"]} />
 
-      <div className="ad-page">
+      <div className="mv-page">
         <div className="iq-head">
           <div>
             <div className="iq-head__title">
@@ -38,10 +38,10 @@ export default async function AdminCataloguesPage() {
             </div>
           </div>
           <div className="iq-head__actions">
-            <Link href="/admin/catalogues/turler" className="ad-btn ad-btn--ghost">
+            <Link href="/admin/catalogues/turler" className="mv-btn mv-btn--ghost">
               Türleri yönet
             </Link>
-            <Link href="/admin/catalogues/new" className="ad-btn ad-btn--primary">
+            <Link href="/admin/catalogues/new" className="mv-btn mv-btn--primary">
               + Katalog yükle
             </Link>
           </div>
@@ -57,21 +57,21 @@ export default async function AdminCataloguesPage() {
           ))}
         </div>
 
-        <div className="ad-card ad-card--flush">
+        <div className="mv-card mv-card--flush">
           {rows.length === 0 ? (
-            <div className="ad-empty" style={{ padding: 40, textAlign: "center" }}>
+            <div className="mv-empty" style={{ padding: 40, textAlign: "center" }}>
               Henüz katalog yok. <Link href="/admin/catalogues/new">İlk kataloğu yükleyin.</Link>
             </div>
           ) : (
-            <table className="ad-table">
+            <table className="mv-table">
               <thead>
                 <tr>
                   <th>Başlık</th>
                   <th>Tip</th>
-                  <th className="ad-num">Diller</th>
-                  <th className="ad-num">Sürüm / Sayfa</th>
-                  <th className="ad-num">Boyut</th>
-                  <th className="ad-num">İndirme</th>
+                  <th className="mv-num">Diller</th>
+                  <th className="mv-num">Sürüm / Sayfa</th>
+                  <th className="mv-num">Boyut</th>
+                  <th className="mv-num">İndirme</th>
                   <th>Durum</th>
                   <th style={{ textAlign: "right" }}>İşlemler</th>
                 </tr>
@@ -83,29 +83,29 @@ export default async function AdminCataloguesPage() {
                       <Link href={`/admin/catalogues/${r.id}`} style={{ fontWeight: 600 }}>
                         {r.title}
                       </Link>
-                      {r.featured && <span className="ad-pill ad-pill--info" style={{ marginLeft: 8 }}>Öne çıkan</span>}
-                      <div className="ad-mono ad-muted" style={{ fontSize: 11, marginTop: 2 }}>
+                      {r.featured && <span className="mv-pill mv-pill--info" style={{ marginLeft: 8 }}>Öne çıkan</span>}
+                      <div className="mv-mono mv-muted" style={{ fontSize: 11, marginTop: 2 }}>
                         /kataloglar/{r.slug}
                         {!r.hasFile && <span style={{ color: "var(--warn, #b8860b)" }}> · PDF yok</span>}
                       </div>
                     </td>
                     <td>
                       <span
-                        className="ad-pill"
+                        className="mv-pill"
                         style={{ background: `${r.typeColor}22`, color: r.typeColor }}
                       >
                         {r.typeName}
                       </span>
                     </td>
-                    <td className="ad-num ad-muted">{r.languages.join(" · ") || "—"}</td>
-                    <td className="ad-num ad-muted">
+                    <td className="mv-num mv-muted">{r.languages.join(" · ") || "—"}</td>
+                    <td className="mv-num mv-muted">
                       {r.version ?? "—"}
                       {r.pageCount ? ` · ${r.pageCount}s` : ""}
                     </td>
-                    <td className="ad-num ad-muted">{formatFileSize(r.fileSize)}</td>
-                    <td className="ad-num ad-muted">{r.downloadCount.toLocaleString("tr-TR")}</td>
+                    <td className="mv-num mv-muted">{formatFileSize(r.fileSize)}</td>
+                    <td className="mv-num mv-muted">{r.downloadCount.toLocaleString("tr-TR")}</td>
                     <td>
-                      <span className={"ad-pill ad-pill--" + CAT_STATUS_PILL[r.status]}>
+                      <span className={"mv-pill mv-pill--" + CAT_STATUS_PILL[r.status]}>
                         {CAT_STATUS_LABELS[r.status]}
                       </span>
                     </td>

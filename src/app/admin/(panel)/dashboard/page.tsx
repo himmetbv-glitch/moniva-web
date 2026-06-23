@@ -17,7 +17,7 @@ const STATUS_PILL: Record<QuoteStatus, { kind: string; label: string }> = {
 };
 
 function Pill({ kind, children }: { kind: string; children: React.ReactNode }) {
-  return <span className={`ad-pill ad-pill--${kind}`}>{children}</span>;
+  return <span className={`mv-pill mv-pill--${kind}`}>{children}</span>;
 }
 
 // Area chart — ports the mockup's SVG geometry, fed by real daily counts.
@@ -47,12 +47,12 @@ function QuoteChart({ daily, max }: { daily: number[]; max: number }) {
         </text>
       ))}
       <defs>
-        <linearGradient id="ad-grad" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="mv-grad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#4F3D8C" stopOpacity="0.25" />
           <stop offset="100%" stopColor="#4F3D8C" stopOpacity="0" />
         </linearGradient>
       </defs>
-      <path d={area} fill="url(#ad-grad)" />
+      <path d={area} fill="url(#mv-grad)" />
       <path d={line} fill="none" stroke="#4F3D8C" strokeWidth="2" />
       {pts.map(([x, y], i) =>
         i % 5 === 0 ? (
@@ -111,12 +111,12 @@ export default async function AdminDashboardPage() {
     <>
       <AdminTopbar title="Panel" crumbs={["Moniva Yönetim", "Genel Bakış"]} />
 
-      <div className="ad-page">
+      <div className="mv-page">
         {/* Karşılama */}
-        <div className="ad-welcome">
+        <div className="mv-welcome">
           <div>
-            <div className="ad-welcome__hi">{d.greeting}.</div>
-            <div className="ad-welcome__sub">
+            <div className="mv-welcome__hi">{d.greeting}.</div>
+            <div className="mv-welcome__sub">
               {d.newQuotes > 0 ? (
                 <>
                   <b>{d.newQuotes} teklif talebi</b> incelenmeyi bekliyor.
@@ -126,80 +126,80 @@ export default async function AdminDashboardPage() {
               )}
             </div>
           </div>
-          <div className="ad-welcome__actions">
+          <div className="mv-welcome__actions">
             <a
-              className="ad-btn ad-btn--ghost"
+              className="mv-btn mv-btn--ghost"
               href="/api/admin/reports/quotes"
               title="Teklif taleplerini CSV olarak indir"
             >
               <Icons.exp /> Rapor al
             </a>
-            <Link className="ad-btn ad-btn--primary" href="/admin/products/new">
+            <Link className="mv-btn mv-btn--primary" href="/admin/products/new">
               <Icons.plus /> Yeni ürün
             </Link>
           </div>
         </div>
 
         {/* İstatistik kartları */}
-        <div className="ad-stats">
+        <div className="mv-stats">
           {statCards.map((s) => (
-            <div className="ad-stat" key={s.label}>
-              <div className="ad-stat__label">{s.label}</div>
-              <div className="ad-stat__row">
-                <div className="ad-stat__val">{s.val}</div>
+            <div className="mv-stat" key={s.label}>
+              <div className="mv-stat__label">{s.label}</div>
+              <div className="mv-stat__row">
+                <div className="mv-stat__val">{s.val}</div>
                 {s.delta && (
-                  <span className={"ad-stat__delta" + (s.up ? "" : " ad-stat__delta--dn")}>
+                  <span className={"mv-stat__delta" + (s.up ? "" : " mv-stat__delta--dn")}>
                     {s.up ? <Icons.arrowUp /> : <Icons.arrowDn />} {s.delta}
                   </span>
                 )}
               </div>
-              <div className="ad-stat__sub">{s.sub}</div>
+              <div className="mv-stat__sub">{s.sub}</div>
             </div>
           ))}
         </div>
 
         {/* Grafik + Action items */}
-        <div className="ad-grid ad-grid--chart">
-          <div className="ad-card ad-card--flush">
-            <div className="ad-card__head">
+        <div className="mv-grid mv-grid--chart">
+          <div className="mv-card mv-card--flush">
+            <div className="mv-card__head">
               <div>
-                <div className="ad-card__title">Teklif talepleri — son 30 gün</div>
-                <div className="ad-card__sub">Gönderim tarihine göre günlük hacim</div>
+                <div className="mv-card__title">Teklif talepleri — son 30 gün</div>
+                <div className="mv-card__sub">Gönderim tarihine göre günlük hacim</div>
               </div>
-              <div className="ad-seg">
+              <div className="mv-seg">
                 {["7G", "30G", "90G", "1Y"].map((p, i) => (
-                  <span key={p} className={"ad-seg__btn" + (i === 1 ? " ad-seg__btn--on" : "")}>
+                  <span key={p} className={"mv-seg__btn" + (i === 1 ? " mv-seg__btn--on" : "")}>
                     {p}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="ad-card__body">
+            <div className="mv-card__body">
               <QuoteChart daily={d.chart.daily} max={d.chart.max} />
-              <div className="ad-legend">
+              <div className="mv-legend">
                 {legend.map(([k, v]) => (
                   <div key={k}>
-                    <div className="ad-legend__k">{k}</div>
-                    <div className="ad-legend__v">{v}</div>
+                    <div className="mv-legend__k">{k}</div>
+                    <div className="mv-legend__v">{v}</div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="ad-card ad-card--flush">
-            <div className="ad-card__head">
-              <div className="ad-card__title">Yapılacaklar</div>
-              <span className="ad-card__link">Tümü ▶</span>
+          <div className="mv-card mv-card--flush">
+            <div className="mv-card__head">
+              <div className="mv-card__title">Yapılacaklar</div>
+              <span className="mv-card__link">Tümü ▶</span>
             </div>
             {d.tasks.length === 0 ? (
-              <div className="ad-empty">Bekleyen iş yok.</div>
+              <div className="mv-empty">Bekleyen iş yok.</div>
             ) : (
               d.tasks.map((t: DashTask, i) => (
-                <div className="ad-task" key={i}>
-                  <span className="ad-task__box" />
-                  <div className="ad-task__body">
-                    <div className="ad-task__text">{t.text}</div>
+                <div className="mv-task" key={i}>
+                  <span className="mv-task__box" />
+                  <div className="mv-task__body">
+                    <div className="mv-task__text">{t.text}</div>
                     <Pill kind={t.kind}>{t.due}</Pill>
                   </div>
                 </div>
@@ -209,21 +209,21 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Son teklifler + Top ürünler */}
-        <div className="ad-grid ad-grid--lower">
-          <div className="ad-card ad-card--flush">
-            <div className="ad-card__head">
-              <div className="ad-card__title">Son teklif talepleri</div>
-              <span className="ad-card__link">Gelen kutusu ▶</span>
+        <div className="mv-grid mv-grid--lower">
+          <div className="mv-card mv-card--flush">
+            <div className="mv-card__head">
+              <div className="mv-card__title">Son teklif talepleri</div>
+              <span className="mv-card__link">Gelen kutusu ▶</span>
             </div>
             {d.recentQuotes.length === 0 ? (
-              <div className="ad-empty">Henüz teklif talebi yok.</div>
+              <div className="mv-empty">Henüz teklif talebi yok.</div>
             ) : (
-              <table className="ad-table">
+              <table className="mv-table">
                 <thead>
                   <tr>
                     <th>Referans</th>
                     <th>Firma</th>
-                    <th className="ad-num">Parça</th>
+                    <th className="mv-num">Parça</th>
                     <th>Durum</th>
                     <th>Geliş</th>
                     <th />
@@ -233,20 +233,20 @@ export default async function AdminDashboardPage() {
                   {d.recentQuotes.map((q) => (
                     <tr key={q.id}>
                       <td>
-                        <span className="ad-mono ad-ref">{q.ref}</span>
+                        <span className="mv-mono mv-ref">{q.ref}</span>
                       </td>
                       <td>
-                        <div className="ad-co">{q.companyName}</div>
-                        <div className="ad-co__sub">{q.country}</div>
+                        <div className="mv-co">{q.companyName}</div>
+                        <div className="mv-co__sub">{q.country}</div>
                       </td>
-                      <td className="ad-num ad-muted">{q.itemCount}</td>
+                      <td className="mv-num mv-muted">{q.itemCount}</td>
                       <td>
                         <Pill kind={STATUS_PILL[q.status].kind}>
                           {STATUS_PILL[q.status].label}
                         </Pill>
                       </td>
-                      <td className="ad-dim">{q.timeLabel}</td>
-                      <td className="ad-dim ad-more">
+                      <td className="mv-dim">{q.timeLabel}</td>
+                      <td className="mv-dim mv-more">
                         <Icons.more />
                       </td>
                     </tr>
@@ -256,24 +256,24 @@ export default async function AdminDashboardPage() {
             )}
           </div>
 
-          <div className="ad-card ad-card--flush">
-            <div className="ad-card__head">
-              <div className="ad-card__title">Bu ayın öne çıkan ürünleri</div>
-              <span className="ad-card__link">Tümü ▶</span>
+          <div className="mv-card mv-card--flush">
+            <div className="mv-card__head">
+              <div className="mv-card__title">Bu ayın öne çıkan ürünleri</div>
+              <span className="mv-card__link">Tümü ▶</span>
             </div>
             {d.topProducts.length === 0 ? (
-              <div className="ad-empty">Henüz teklife konu ürün yok.</div>
+              <div className="mv-empty">Henüz teklife konu ürün yok.</div>
             ) : (
               d.topProducts.map((p, i) => (
-                <div className="ad-top" key={p.productId}>
-                  <div className="ad-top__rank">{i + 1}</div>
-                  <div className="ad-top__meta">
-                    <div className="ad-top__name">{p.name}</div>
-                    <div className="ad-top__sku ad-mono">{p.sku}</div>
+                <div className="mv-top" key={p.productId}>
+                  <div className="mv-top__rank">{i + 1}</div>
+                  <div className="mv-top__meta">
+                    <div className="mv-top__name">{p.name}</div>
+                    <div className="mv-top__sku mv-mono">{p.sku}</div>
                   </div>
-                  <div className="ad-top__num">
-                    <div className="ad-top__val">{nf.format(p.quotes)}</div>
-                    <div className="ad-top__lbl">teklif</div>
+                  <div className="mv-top__num">
+                    <div className="mv-top__val">{nf.format(p.quotes)}</div>
+                    <div className="mv-top__lbl">teklif</div>
                   </div>
                 </div>
               ))
@@ -281,7 +281,7 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
 
-        <p className="ad-note">
+        <p className="mv-note">
           Not: B2B kataloğunda ürünlerde stok/fiyat alanı yoktur. Katalog
           görüntüleme ve mesaj metrikleri analitik/mesaj modülü eklendiğinde
           canlanacak. <Link href="/admin/dashboard">Yenile</Link>

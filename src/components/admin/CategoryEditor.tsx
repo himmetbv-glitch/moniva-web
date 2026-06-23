@@ -132,7 +132,7 @@ export function CategoryEditor({
   };
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       <div className="iq-head">
         <div>
           <div className="iq-head__crumb">
@@ -142,9 +142,9 @@ export function CategoryEditor({
             <span>{mode === "new" ? "Yeni kategori" : c.translations.TR.name || c.code}</span>
           </div>
           <div className="iq-head__meta">
-            <span className="ad-mono ad-ref">{c.slug ? `/c/${c.slug}` : "/c/..."}</span>
+            <span className="mv-mono mv-ref">{c.slug ? `/c/${c.slug}` : "/c/..."}</span>
             <span>·</span>
-            <span className={"ad-pill ad-pill--" + (c.isActive ? "ok" : "mute")}>
+            <span className={"mv-pill mv-pill--" + (c.isActive ? "ok" : "mute")}>
               {c.isActive ? "Aktif" : "Pasif"}
             </span>
             <span>·</span>
@@ -152,8 +152,8 @@ export function CategoryEditor({
           </div>
         </div>
         <div className="iq-head__actions">
-          <Link href="/admin/categories" className="ad-btn ad-btn--ghost">İptal</Link>
-          <button className="ad-btn ad-btn--primary" onClick={submit} disabled={pending}>
+          <Link href="/admin/categories" className="mv-btn mv-btn--ghost">İptal</Link>
+          <button className="mv-btn mv-btn--primary" onClick={submit} disabled={pending}>
             {pending ? "Kaydediliyor…" : mode === "new" ? "Oluştur" : "Kaydet"}
           </button>
         </div>
@@ -164,7 +164,7 @@ export function CategoryEditor({
       <div className="pe-grid">
         <div className="pe-main">
           {/* Temel bilgi (çok dilli) */}
-          <div className="ad-card ad-card--flush">
+          <div className="mv-card mv-card--flush">
             <div className="pe-langs">
               {EDITOR_LOCALES.map((L) => (
                 <button
@@ -198,7 +198,7 @@ export function CategoryEditor({
           </div>
 
           {/* Teknik Özellik Şeması */}
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="cse-head">
               <div>
                 <div className="pe-sectitle" style={{ marginBottom: 4 }}>Teknik Özellik Şeması</div>
@@ -218,7 +218,7 @@ export function CategoryEditor({
                     </select>
                     <button
                       type="button"
-                      className="ad-btn ad-btn--ghost ad-btn--sm"
+                      className="mv-btn mv-btn--ghost mv-btn--sm"
                       disabled={!copyFrom || copyPending}
                       onClick={copySchema}
                     >
@@ -226,7 +226,7 @@ export function CategoryEditor({
                     </button>
                   </div>
                 )}
-                <button type="button" className="ad-btn ad-btn--primary ad-btn--sm" onClick={addAttr}>
+                <button type="button" className="mv-btn mv-btn--primary mv-btn--sm" onClick={addAttr}>
                   + Özellik ekle
                 </button>
               </div>
@@ -236,7 +236,7 @@ export function CategoryEditor({
               <div className="cse-empty">
                 <div className="cse-empty__t">Henüz teknik özellik tanımlı değil</div>
                 <p>Bu kategorinin şemasını tanımlamak için ilk özelliği ekleyin.</p>
-                <button type="button" className="ad-btn ad-btn--primary ad-btn--sm" onClick={addAttr}>
+                <button type="button" className="mv-btn mv-btn--primary mv-btn--sm" onClick={addAttr}>
                   + İlk özelliği ekle
                 </button>
               </div>
@@ -264,7 +264,7 @@ export function CategoryEditor({
                       placeholder="Örn. Ağırlık"
                     />
                     <select
-                      className={"cse-type ad-pill--" + SPEC_TYPE_PILL[a.type]}
+                      className={"cse-type mv-pill--" + SPEC_TYPE_PILL[a.type]}
                       value={a.type}
                       onChange={(e) => updateAttr(i, { type: e.target.value as EditorSpecAttr["type"] })}
                     >
@@ -298,7 +298,7 @@ export function CategoryEditor({
 
           {/* Canlı önizleme */}
           {attrs.length > 0 && (
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="pe-sectitle">Canlı önizleme</div>
               <div className="cse-hint" style={{ marginBottom: 12 }}>
                 Bu kategorideki ürün sayfasında &quot;Teknik Özellikler&quot; bölümü böyle görünür.
@@ -323,16 +323,16 @@ export function CategoryEditor({
 
         <div className="pe-side">
           {/* Ayarlar */}
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Ayarlar</div>
             <label className="pe-field">
               <span className="pe-label">Kod <b className="pe-req">*</b></span>
-              <input className="ad-mono" value={c.code} onChange={(e) => setField("code", e.target.value.toUpperCase())} placeholder="AS" />
+              <input className="mv-mono" value={c.code} onChange={(e) => setField("code", e.target.value.toUpperCase())} placeholder="AS" />
             </label>
             <label className="pe-field">
               <span className="pe-label">Slug</span>
               <input
-                className="ad-mono"
+                className="mv-mono"
                 value={c.slug}
                 onChange={(e) => { setSlugTouched(true); setField("slug", e.target.value); }}
                 placeholder="hava-suspansiyon"
@@ -358,7 +358,7 @@ export function CategoryEditor({
           </div>
 
           {/* Görünürlük */}
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Görünürlük</div>
             <div className="pe-statusrow">
               <span>Katalogda göster</span>
@@ -381,7 +381,7 @@ export function CategoryEditor({
           </div>
 
           {/* Şema istatistiği */}
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Şema istatistiği</div>
             <div className="cse-stat">
               <span>Toplam özellik</span>

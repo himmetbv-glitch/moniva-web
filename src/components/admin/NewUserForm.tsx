@@ -41,7 +41,7 @@ export function NewUserForm() {
     });
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       <div className="iq-head">
         <div>
           <div className="iq-head__crumb">
@@ -55,9 +55,9 @@ export function NewUserForm() {
           </div>
         </div>
         <div className="iq-head__actions">
-          <Link href="/admin/admins" className="ad-btn ad-btn--ghost">İptal</Link>
+          <Link href="/admin/admins" className="mv-btn mv-btn--ghost">İptal</Link>
           <button
-            className="ad-btn ad-btn--primary"
+            className="mv-btn mv-btn--primary"
             onClick={submit}
             disabled={pending || !name.trim() || !email.trim() || password.length < 8}
           >
@@ -70,7 +70,7 @@ export function NewUserForm() {
 
       <div className="pe-grid">
         <div className="pe-main">
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="pe-sectitle">Hesap bilgileri</div>
             <label className="pe-field">
               <span className="pe-label">Ad soyad</span>
@@ -88,7 +88,7 @@ export function NewUserForm() {
           </div>
 
           {isCustomer && (
-            <div className="ad-card iq-pad">
+            <div className="mv-card iq-pad">
               <div className="pe-sectitle">Firma bilgileri <i>(müşteri)</i></div>
               <label className="pe-field">
                 <span className="pe-label">Firma adı</span>
@@ -107,7 +107,7 @@ export function NewUserForm() {
         </div>
 
         <div className="pe-side">
-          <div className="ad-card iq-pad">
+          <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Rol</div>
             <label className="pe-field">
               <span className="pe-label">Kullanıcı rolü</span>

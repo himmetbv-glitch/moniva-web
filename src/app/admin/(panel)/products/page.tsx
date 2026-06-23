@@ -80,24 +80,24 @@ export default async function AdminProductsPage({
     <>
       <AdminTopbar title="Ürünler" crumbs={["Moniva Yönetim", "Katalog"]} />
 
-      <div className="ad-page">
+      <div className="mv-page">
         {/* Header */}
-        <div className="ad-welcome">
+        <div className="mv-welcome">
           <div>
-            <h1 className="ad-welcome__hi">Ürün Kataloğu</h1>
-            <div className="ad-welcome__sub">
+            <h1 className="mv-welcome__hi">Ürün Kataloğu</h1>
+            <div className="mv-welcome__sub">
               <b>{nf.format(counts.products)}</b> ürün · <b>{nf.format(counts.categories)}</b> kategori ·{" "}
               <b>{nf.format(counts.brands)}</b> marka · <b>{nf.format(counts.rfq30d)}</b> teklif (30g)
             </div>
           </div>
-          <div className="ad-welcome__actions">
-            <Link href="/admin/products/import" className="ad-btn ad-btn--ghost">
+          <div className="mv-welcome__actions">
+            <Link href="/admin/products/import" className="mv-btn mv-btn--ghost">
               <Icons.exp /> Toplu Import
             </Link>
-            <a href={exportHref} className="ad-btn ad-btn--ghost">
+            <a href={exportHref} className="mv-btn mv-btn--ghost">
               <Icons.exp /> Dışa Aktar
             </a>
-            <Link href="/admin/products/new" className="ad-btn ad-btn--primary">
+            <Link href="/admin/products/new" className="mv-btn mv-btn--primary">
               <Icons.plus /> Yeni Ürün
             </Link>
           </div>
@@ -152,7 +152,7 @@ export default async function AdminProductsPage({
                 </option>
               ))}
             </select>
-            <button type="submit" className="ad-btn ad-btn--ghost pl-catfilter__btn">
+            <button type="submit" className="mv-btn mv-btn--ghost pl-catfilter__btn">
               Göster
             </button>
           </form>
@@ -182,11 +182,11 @@ export default async function AdminProductsPage({
         )}
 
         {/* Tablo */}
-        <div className="ad-card ad-card--flush">
+        <div className="mv-card mv-card--flush">
           {rows.length === 0 ? (
-            <div className="ad-empty">Bu filtreye uygun ürün yok.</div>
+            <div className="mv-empty">Bu filtreye uygun ürün yok.</div>
           ) : (
-            <table className="ad-table pl-table">
+            <table className="mv-table pl-table">
               <thead>
                 <tr>
                   {reorderable && <th className="pl-ordcol">Sıra</th>}
@@ -268,18 +268,18 @@ export default async function AdminProductsPage({
                       </div>
                     </td>
                     <td>
-                      <span className="ad-mono ad-ref">{p.sku}</span>
+                      <span className="mv-mono mv-ref">{p.sku}</span>
                     </td>
-                    <td className="ad-muted">{p.category}</td>
+                    <td className="mv-muted">{p.category}</td>
                     <td>
                       <span className="pl-brand">{p.brand ?? "—"}</span>
                     </td>
                     <td>
-                      <span className={"ad-pill ad-pill--" + (p.isActive ? "ok" : "mute")}>
+                      <span className={"mv-pill mv-pill--" + (p.isActive ? "ok" : "mute")}>
                         {p.isActive ? "Aktif" : "Pasif"}
                       </span>
                     </td>
-                    <td className="ad-dim">{p.updatedLabel}</td>
+                    <td className="mv-dim">{p.updatedLabel}</td>
                     <td>
                       <RowActions
                         id={p.id}

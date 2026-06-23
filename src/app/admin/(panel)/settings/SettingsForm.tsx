@@ -37,14 +37,14 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
   );
 
   return (
-    <div className="ad-page">
+    <div className="mv-page">
       <div className="iq-head">
         <div>
           <div className="iq-head__title"><span>Ayarlar</span></div>
           <div className="iq-head__meta">Site geneli firma, iletişim, sosyal ve SEO ayarları.</div>
         </div>
         <div className="iq-head__actions">
-          <button className="ad-btn ad-btn--primary" onClick={submit} disabled={pending}>
+          <button className="mv-btn mv-btn--primary" onClick={submit} disabled={pending}>
             {pending ? "Kaydediliyor…" : "Kaydet"}
           </button>
         </div>
@@ -55,7 +55,7 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
       )}
 
       <div className="st-grid">
-        <div className="ad-card iq-pad">
+        <div className="mv-card iq-pad">
           <div className="pe-sectitle">Firma & İletişim</div>
           <div className="st-fields">
             {field("Firma adı", "companyName", { full: true })}
@@ -66,7 +66,7 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
           </div>
         </div>
 
-        <div className="ad-card iq-pad">
+        <div className="mv-card iq-pad">
           <div className="pe-sectitle">Sosyal Medya</div>
           <div className="st-fields">
             {field("LinkedIn", "linkedinUrl", { full: true, placeholder: "https://linkedin.com/company/..." })}
@@ -76,7 +76,7 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
           </div>
         </div>
 
-        <div className="ad-card iq-pad">
+        <div className="mv-card iq-pad">
           <div className="pe-sectitle">SEO Varsayılanları</div>
           <div className="st-fields">
             {field("Başlık tabanı", "metaTitleBase", { full: true, placeholder: "Moniva" })}
@@ -92,7 +92,7 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
           </div>
         </div>
 
-        <div className="ad-card iq-pad">
+        <div className="mv-card iq-pad">
           <div className="pe-sectitle">Kariyer Pozisyonları</div>
           <div className="st-fields">
             <label className="pe-field st-full">
@@ -111,7 +111,7 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
           </div>
         </div>
 
-        <div className="ad-card iq-pad">
+        <div className="mv-card iq-pad">
           <div className="pe-sectitle">Bildirim</div>
           <div className="st-fields">
             {field("Bildirim e-postası", "notifyEmail", { full: true, placeholder: "Teklif/form bildirimleri buraya gider" })}

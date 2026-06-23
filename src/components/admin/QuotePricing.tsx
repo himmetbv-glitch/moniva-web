@@ -113,11 +113,11 @@ export function QuotePricing({
   }
 
   return (
-    <div className="ad-card ad-card--flush">
-      <div className="ad-card__head">
+    <div className="mv-card mv-card--flush">
+      <div className="mv-card__head">
         <div>
           <div className="iq-cardhead__ttl">Talep edilen parçalar &amp; fiyatlandırma</div>
-          <div className="ad-card__sub">
+          <div className="mv-card__sub">
             {rows.length} kalem · {totalQty} adet · birim fiyatlar düzenlenebilir
           </div>
         </div>
@@ -126,7 +126,7 @@ export function QuotePricing({
             href={pdfHref}
             target="_blank"
             rel="noopener noreferrer"
-            className={"ad-btn ad-btn--ghost" + (allPriced ? "" : " ad-btn--disabled")}
+            className={"mv-btn mv-btn--ghost" + (allPriced ? "" : " mv-btn--disabled")}
             aria-disabled={!allPriced}
             onClick={(e) => {
               if (!allPriced) e.preventDefault();
@@ -137,27 +137,27 @@ export function QuotePricing({
         </div>
       </div>
 
-      <table className="ad-table qp-table">
+      <table className="mv-table qp-table">
         <thead>
           <tr>
             <th>Parça (SKU)</th>
             <th>Açıklama / OEM</th>
-            <th className="ad-num">Adet</th>
-            <th className="ad-num">Birim ({currency})</th>
-            <th className="ad-num">Tutar</th>
+            <th className="mv-num">Adet</th>
+            <th className="mv-num">Birim ({currency})</th>
+            <th className="mv-num">Tutar</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((r) => (
             <tr key={r.id}>
               <td>
-                <span className="ad-mono ad-ref">{r.sku}</span>
+                <span className="mv-mono mv-ref">{r.sku}</span>
               </td>
               <td>
                 <div className="qp-name">{r.name}</div>
-                {r.oem && <div className="qp-oem ad-mono">{r.oem}</div>}
+                {r.oem && <div className="qp-oem mv-mono">{r.oem}</div>}
               </td>
-              <td className="ad-num">
+              <td className="mv-num">
                 <input
                   className="qp-input qp-input--qty"
                   inputMode="numeric"
@@ -165,7 +165,7 @@ export function QuotePricing({
                   onChange={(e) => setRow(r.id, "qty", e.target.value)}
                 />
               </td>
-              <td className="ad-num">
+              <td className="mv-num">
                 <input
                   className="qp-input qp-input--unit"
                   inputMode="decimal"
@@ -174,7 +174,7 @@ export function QuotePricing({
                   onChange={(e) => setRow(r.id, "unit", e.target.value)}
                 />
               </td>
-              <td className="ad-num qp-line">
+              <td className="mv-num qp-line">
                 {formatMoney(num(r.qty) * num(r.unit), currency)}
               </td>
             </tr>
@@ -278,7 +278,7 @@ export function QuotePricing({
         )}
         <button
           type="button"
-          className="ad-btn ad-btn--ghost"
+          className="mv-btn mv-btn--ghost"
           disabled={pending}
           onClick={() => persist(false)}
         >
@@ -286,7 +286,7 @@ export function QuotePricing({
         </button>
         <button
           type="button"
-          className="ad-btn ad-btn--primary"
+          className="mv-btn mv-btn--primary"
           disabled={pending || !allPriced}
           title={allPriced ? undefined : "Tüm kalemlere birim fiyat girin"}
           onClick={() => persist(true)}
