@@ -166,13 +166,6 @@ export default async function AdminDashboardPage() {
                 <div className="mv-card__title">Teklif talepleri — son 30 gün</div>
                 <div className="mv-card__sub">Gönderim tarihine göre günlük hacim</div>
               </div>
-              <div className="mv-seg">
-                {["7G", "30G", "90G", "1Y"].map((p, i) => (
-                  <span key={p} className={"mv-seg__btn" + (i === 1 ? " mv-seg__btn--on" : "")}>
-                    {p}
-                  </span>
-                ))}
-              </div>
             </div>
             <div className="mv-card__body">
               <QuoteChart daily={d.chart.daily} max={d.chart.max} />
@@ -190,7 +183,6 @@ export default async function AdminDashboardPage() {
           <div className="mv-card mv-card--flush">
             <div className="mv-card__head">
               <div className="mv-card__title">Yapılacaklar</div>
-              <span className="mv-card__link">Tümü ▶</span>
             </div>
             {d.tasks.length === 0 ? (
               <div className="mv-empty">Bekleyen iş yok.</div>
@@ -213,7 +205,9 @@ export default async function AdminDashboardPage() {
           <div className="mv-card mv-card--flush">
             <div className="mv-card__head">
               <div className="mv-card__title">Son teklif talepleri</div>
-              <span className="mv-card__link">Gelen kutusu ▶</span>
+              <Link className="mv-card__link" href="/admin/inquiries">
+                Gelen kutusu ▶
+              </Link>
             </div>
             {d.recentQuotes.length === 0 ? (
               <div className="mv-empty">Henüz teklif talebi yok.</div>
@@ -259,7 +253,9 @@ export default async function AdminDashboardPage() {
           <div className="mv-card mv-card--flush">
             <div className="mv-card__head">
               <div className="mv-card__title">Bu ayın öne çıkan ürünleri</div>
-              <span className="mv-card__link">Tümü ▶</span>
+              <Link className="mv-card__link" href="/admin/products">
+                Tümü ▶
+              </Link>
             </div>
             {d.topProducts.length === 0 ? (
               <div className="mv-empty">Henüz teklife konu ürün yok.</div>
