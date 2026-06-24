@@ -5,7 +5,7 @@ import { getQuotePrefill } from "@/lib/customer/quotes";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { QuoteCart } from "./QuoteCart";
-import { CartIcon, CheckIcon, ClockIcon, ShieldIcon } from "./icons";
+import { CartIcon, ClockIcon, ShieldIcon } from "./icons";
 
 export const dynamic = "force-dynamic";
 
@@ -41,9 +41,6 @@ export default async function QuoteListPage() {
               </div>
               <div className="b">
                 <ClockIcon /> 24 saat içinde dönüş
-              </div>
-              <div className="b">
-                <CheckIcon /> Toptan indirim (50+ kalem)
               </div>
             </div>
           </section>
