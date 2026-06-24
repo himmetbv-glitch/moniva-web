@@ -4,8 +4,7 @@ import { prisma } from "@/lib/prisma";
 
 export type LoginActivity = {
   id: string;
-  initials: string;
-  company: string;
+  avatar: string; // anonim — referanstan türetilir, müşteri adı/firması taşımaz
   ref: string;
   timeLabel: string;
 };
@@ -26,14 +25,6 @@ function relativeLabel(date: Date, now: number): string {
   return `${Math.round(hr / 24)}g`;
 }
 
-function initialsOf(name: string): string {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return "MN";
-  const first = parts[0][0] ?? "";
-  const last = parts.length > 1 ? parts[parts.length - 1][0] : (parts[0][1] ?? "");
-  return (first + last).toUpperCase();
-}
-
 /**
  * Brand-panel aggregates for the login screen. Real catalogue/quote numbers
  * where the schema allows; the activity feed is fed by the latest quote
@@ -50,7 +41,8 @@ export async function getLoginPanelData(): Promise<LoginPanelData> {
     prisma.quoteRequest.findMany({
       orderBy: { createdAt: "desc" },
       take: 3,
-      select: { id: true, fullName: true, companyName: true, createdAt: true },
+      // Müşteri adı/firması ÇEKİLMEZ — giriş ekranı herkese açık (gizlilik).
+      select: { id: true, createdAt: true },
     }),
   ]);
 
@@ -58,12 +50,14 @@ export async function getLoginPanelData(): Promise<LoginPanelData> {
     rfq30d,
     productsLive,
     brands,
-    activity: recent.map((q) => ({
-      id: q.id,
-      initials: initialsOf(q.fullName),
-      company: q.companyName,
-      ref: `QR-${q.id.slice(-6).toUpperCase()}`,
-      timeLabel: relativeLabel(q.createdAt, now),
-    })),
+    activity: recent.map((q) => {
+      const ref = `QR-${q.id.slice(-6).toUpperCase()}`;
+      return {
+        id: q.id,
+        avatar: ref.slice(3, 5), // referansın ilk 2 anonim karakteri
+        ref,
+        timeLabel: relativeLabel(q.createdAt, now),
+      };
+    }),
   };
 }

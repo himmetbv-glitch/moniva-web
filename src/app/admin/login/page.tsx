@@ -81,9 +81,9 @@ export default async function AdminLoginPage() {
             ) : (
               activity.map((a) => (
                 <div className="al-act-row" key={a.id}>
-                  <div className="al-act-row__avatar">{a.initials}</div>
+                  <div className="al-act-row__avatar">{a.avatar}</div>
                   <div className="al-act-row__txt">
-                    <b>{a.company}</b> firmasından teklif talebi · {a.ref}
+                    <b>Yeni teklif talebi</b> · {a.ref}
                   </div>
                   <div className="al-act-row__time">{a.timeLabel}</div>
                 </div>
