@@ -88,7 +88,15 @@ function relativeLabel(date: Date, now: number): string {
 }
 
 function greetingFor(now: number): string {
-  const hour = new Date(now).getHours();
+  // Selamlama Türkiye saatine göre (sunucu UTC olabilir — örn. Vercel).
+  const hour =
+    Number(
+      new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Europe/Istanbul",
+        hour: "2-digit",
+        hour12: false,
+      }).format(now),
+    ) % 24;
   if (hour < 6) return "İyi geceler";
   if (hour < 12) return "Günaydın";
   if (hour < 18) return "İyi günler";
