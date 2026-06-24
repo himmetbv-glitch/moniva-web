@@ -48,6 +48,7 @@ export function AdminSidebar({
     {
       label: "Satış",
       items: [
+        { label: "Hızlı Teklif", href: "/admin/quotes/new", icon: <Icons.quoteNew />, ready: true },
         { label: "Teklif Talepleri", href: "/admin/inquiries", icon: <Icons.order />, ready: true, count: counts.newQuotes, badge: counts.newQuotes > 0 },
         { label: "Mesajlar", href: "/admin/messages", icon: <Icons.msg />, ready: true, count: counts.newMessages, badge: counts.newMessages > 0 },
       ],

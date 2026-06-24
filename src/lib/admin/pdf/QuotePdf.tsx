@@ -11,8 +11,52 @@ import {
   renderToBuffer,
 } from "@react-pdf/renderer";
 
-import type { InquiryDetail } from "@/lib/admin/inquiries";
-import { formatMoney } from "@/lib/admin/quote-pricing";
+import { QuoteStatus } from "@prisma/client";
+
+import {
+  formatMoney,
+  type Currency,
+  type QuoteTotals,
+} from "@/lib/admin/quote-pricing";
+
+/** Minimal data the quote PDF actually renders. `InquiryDetail` (DB-backed
+ *  quote requests) is a superset of this, so it stays assignable; admin-built
+ *  Hızlı Teklif documents construct it directly without a DB record. */
+export type QuotePdfItem = {
+  id: string;
+  sku: string;
+  name: string;
+  oem: string | null;
+  quantity: number;
+  unitPrice: number | null;
+};
+
+export type QuotePdfData = {
+  ref: string;
+  status: QuoteStatus;
+  currency: Currency;
+  createdAtLabel: string;
+  quotedAtLabel: string | null;
+  companyName: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string | null;
+  taxNumber: string | null;
+  taxOffice: string | null;
+  address: string;
+  shippingMode: string | null;
+  paymentTerms: string | null;
+  validUntil: string | null;
+  discountPct: number;
+  vatRate: number;
+  /** Optional free-text note printed in the terms block. Hızlı Teklif sets it;
+   *  DB-backed inquiry PDFs leave it undefined (no behaviour change). */
+  pdfNote?: string;
+  items: QuotePdfItem[];
+  totals: QuoteTotals;
+};
 
 const FONT_DIR = path.join(process.cwd(), "src/lib/admin/pdf-fonts");
 const LOGO = path.join(process.cwd(), "public/brand/moniva-logo.png");
@@ -123,6 +167,7 @@ const s = StyleSheet.create({
     borderLeftColor: C.accent,
   },
   termsTtl: { fontSize: 8, color: C.primary, letterSpacing: 1, marginBottom: 4 },
+  termsNote: { fontSize: 8.5, color: C.txt, lineHeight: 1.5, marginBottom: 6 },
   termsTxt: { fontSize: 8, color: C.mid, lineHeight: 1.5 },
 
   footer: {
@@ -145,7 +190,7 @@ const STATUS_TR: Record<string, string> = {
   CLOSED: "Kapatıldı",
 };
 
-function QuoteDocument({ d }: { d: InquiryDetail }) {
+function QuoteDocument({ d }: { d: QuotePdfData }) {
   const cur = d.currency;
   const money = (n: number) => formatMoney(n, cur);
 
@@ -268,6 +313,13 @@ function QuoteDocument({ d }: { d: InquiryDetail }) {
         {/* Şartlar */}
         <View style={s.terms}>
           <Text style={s.termsTtl}>ŞARTLAR & NOTLAR</Text>
+          {d.pdfNote
+            ? d.pdfNote.split("\n").map((line, i) => (
+                <Text key={i} style={s.termsNote}>
+                  {line || " "}
+                </Text>
+              ))
+            : null}
           <Text style={s.termsTxt}>
             Fiyatlar {cur} cinsindendir
             {d.vatRate === 0 ? " ve KDV hariçtir (ihracat / reverse charge)." : "."}
@@ -292,7 +344,7 @@ function QuoteDocument({ d }: { d: InquiryDetail }) {
   );
 }
 
-export async function renderQuotePdf(d: InquiryDetail): Promise<Buffer> {
+export async function renderQuotePdf(d: QuotePdfData): Promise<Buffer> {
   ensureFont();
   return renderToBuffer(<QuoteDocument d={d} />);
 }

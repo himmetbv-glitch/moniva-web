@@ -35,6 +35,13 @@ export const Icons = {
       <path d="M6 7H12M6 10H12M6 13H10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   ),
+  quoteNew: ({ size = 18 }: IconProps = {}) => (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
+      <path d="M4 2H10L14 6V16H4V2Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+      <path d="M10 2V6H14" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M9 9V13M7 11H11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  ),
   page: ({ size = 18 }: IconProps = {}) => (
     <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
       <path d="M4 2H11L14 5V16H4V2Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
