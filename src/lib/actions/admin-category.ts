@@ -7,6 +7,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { getCategoryAttributes } from "@/lib/admin/categories";
+import { suggestCategoryCode } from "@/lib/admin/category-code";
 import type { EditorSpecAttr } from "@/lib/admin/category-editor-types";
 import {
   categoryEditorSchema,
@@ -15,6 +16,30 @@ import {
 
 export type CatUpsertResult = { ok: true; id: string } | { ok: false; error: string };
 export type CatDeleteResult = { ok: boolean; reason?: "has-products" | "has-children" };
+
+/** Boş kod → addan türetilmiş benzersiz bir kod üretir (çakışmada sonuna sayı ekler). */
+async function ensureUniqueCode(
+  baseName: string,
+  excludeId: string | undefined,
+): Promise<string> {
+  const isFree = async (code: string) => {
+    const hit = await prisma.category.findFirst({
+      where: { code, ...(excludeId ? { id: { not: excludeId } } : {}) },
+      select: { id: true },
+    });
+    return !hit;
+  };
+
+  const base = suggestCategoryCode(baseName) || "CAT";
+  if (await isFree(base)) return base;
+
+  const stem = base.slice(0, 6); // sona 2 haneli sayı için yer bırak
+  for (let n = 2; n < 100; n++) {
+    const cand = `${stem}${n}`.slice(0, 8);
+    if (await isFree(cand)) return cand;
+  }
+  return `${stem}${Date.now().toString(36).toUpperCase()}`.slice(0, 8);
+}
 
 export async function upsertCategory(
   raw: CategoryEditorPayload,
@@ -41,8 +66,13 @@ export async function upsertCategory(
   if (d.parentId && d.parentId === d.id)
     return { ok: false, error: "Kategori kendisinin alt kategorisi olamaz." };
 
+  // Kod boşsa addan benzersiz kod üret (kullanıcı elle girmek zorunda değil).
+  const baseName =
+    translations.find((t) => t.locale === "TR")?.name ?? translations[0].name;
+  const code = d.code || (await ensureUniqueCode(baseName, d.id));
+
   const core = {
-    code: d.code,
+    code,
     slug: d.slug,
     parentId: d.parentId || null,
     order: d.order,

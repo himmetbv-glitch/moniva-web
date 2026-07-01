@@ -6,6 +6,7 @@ import { useState, useTransition } from "react";
 import type { Locale } from "@prisma/client";
 
 import { upsertCategory, copyCategorySchema } from "@/lib/actions/admin-category";
+import { suggestCategoryCode } from "@/lib/admin/category-code";
 import { EDITOR_LOCALES } from "@/lib/admin/product-editor-types";
 import {
   SPEC_TYPES,
@@ -19,27 +20,6 @@ import {
 
 function slugify(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-}
-
-// Türkçe karakterleri ASCII'ye indirger — kod (A-Z0-9) türetmek için.
-const TR_ASCII: Record<string, string> = {
-  İ: "I", I: "I", ı: "I", Ş: "S", ş: "S", Ğ: "G", ğ: "G",
-  Ü: "U", ü: "U", Ö: "O", ö: "O", Ç: "C", ç: "C",
-};
-
-/** Kategori adından 2-8 harf/rakam kod önerir (kelime baş harfleri; tek
- *  kelimede ilk 4 harf). Slug gibi otomatik — kullanıcı üzerine yazabilir. */
-function suggestCode(name: string): string {
-  const ascii = name
-    .replace(/[İIıŞşĞğÜüÖöÇç]/g, (ch) => TR_ASCII[ch] ?? ch)
-    .toUpperCase()
-    .replace(/[^A-Z0-9\s]+/g, " ")
-    .trim();
-  if (!ascii) return "";
-  const words = ascii.split(/\s+/).filter(Boolean);
-  let code = words.map((w) => w[0]).join("");
-  if (code.length < 2) code = words[0].slice(0, 4);
-  return code.slice(0, 8);
 }
 
 let newAttrSeq = 0;
@@ -87,7 +67,7 @@ export function CategoryEditor({
         next.slug = slugify(value);
       }
       if (field === "name" && lang === "TR" && !codeTouched) {
-        next.code = suggestCode(value);
+        next.code = suggestCategoryCode(value);
       }
       return next;
     });
@@ -351,7 +331,7 @@ export function CategoryEditor({
           <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Ayarlar</div>
             <label className="pe-field">
-              <span className="pe-label">Kod <b className="pe-req">*</b></span>
+              <span className="pe-label">Kod</span>
               <input
                 className="mv-mono"
                 value={c.code}
@@ -359,7 +339,7 @@ export function CategoryEditor({
                   setCodeTouched(true);
                   setField("code", e.target.value.toUpperCase());
                 }}
-                placeholder="AS"
+                placeholder="Otomatik — ör. AS"
               />
             </label>
             <label className="pe-field">

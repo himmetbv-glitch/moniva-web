@@ -13,10 +13,14 @@ const specAttrSchema = z.object({
 
 export const categoryEditorSchema = z.object({
   id: z.string().optional(),
+  // Boş bırakılabilir → server benzersiz kod üretir. Elle girilirse format zorunlu.
   code: z
     .string()
     .trim()
-    .regex(/^[A-Z0-9]{2,8}$/, { error: "Kod 2-8 büyük harf/rakam olmalı (örn. AS)." }),
+    .refine((v) => v === "" || /^[A-Z0-9]{2,8}$/.test(v), {
+      error: "Kod 2-8 büyük harf/rakam olmalı (örn. AS).",
+    })
+    .default(""),
   slug: z
     .string()
     .trim()
