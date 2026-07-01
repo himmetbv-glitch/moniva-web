@@ -17,28 +17,48 @@ import {
 export type CatUpsertResult = { ok: true; id: string } | { ok: false; error: string };
 export type CatDeleteResult = { ok: boolean; reason?: "has-products" | "has-children" };
 
-/** Boş kod → addan türetilmiş benzersiz bir kod üretir (çakışmada sonuna sayı ekler). */
+/** İstenen kodu benzersizleştirir (çakışmada sonuna sayı ekler). Aynı ad farklı
+ *  üst kategoriler altında tekrar kullanılabilsin diye. */
 async function ensureUniqueCode(
-  baseName: string,
+  desired: string,
   excludeId: string | undefined,
 ): Promise<string> {
-  const isFree = async (code: string) => {
-    const hit = await prisma.category.findFirst({
+  const isFree = async (code: string) =>
+    !(await prisma.category.findFirst({
       where: { code, ...(excludeId ? { id: { not: excludeId } } : {}) },
       select: { id: true },
-    });
-    return !hit;
-  };
+    }));
 
-  const base = suggestCategoryCode(baseName) || "CAT";
+  const base = (desired || "CAT").slice(0, 8);
   if (await isFree(base)) return base;
 
   const stem = base.slice(0, 6); // sona 2 haneli sayı için yer bırak
-  for (let n = 2; n < 100; n++) {
+  for (let n = 2; n < 1000; n++) {
     const cand = `${stem}${n}`.slice(0, 8);
     if (await isFree(cand)) return cand;
   }
   return `${stem}${Date.now().toString(36).toUpperCase()}`.slice(0, 8);
+}
+
+/** İstenen slug'ı benzersizleştirir (çakışmada `-2`, `-3` ekler). */
+async function ensureUniqueSlug(
+  desired: string,
+  excludeId: string | undefined,
+): Promise<string> {
+  const isFree = async (slug: string) =>
+    !(await prisma.category.findFirst({
+      where: { slug, ...(excludeId ? { id: { not: excludeId } } : {}) },
+      select: { id: true },
+    }));
+
+  const base = desired || "kategori";
+  if (await isFree(base)) return base;
+
+  for (let n = 2; n < 1000; n++) {
+    const cand = `${base}-${n}`;
+    if (await isFree(cand)) return cand;
+  }
+  return `${base}-${Date.now().toString(36)}`;
 }
 
 export async function upsertCategory(
@@ -66,14 +86,17 @@ export async function upsertCategory(
   if (d.parentId && d.parentId === d.id)
     return { ok: false, error: "Kategori kendisinin alt kategorisi olamaz." };
 
-  // Kod boşsa addan benzersiz kod üret (kullanıcı elle girmek zorunda değil).
+  // Kod + slug benzersizleştirilir → aynı ad farklı üst kategoriler altında
+  // tekrar kullanılabilir. Kod boşsa addan türetilir.
   const baseName =
     translations.find((t) => t.locale === "TR")?.name ?? translations[0].name;
-  const code = d.code || (await ensureUniqueCode(baseName, d.id));
+  const desiredCode = d.code || suggestCategoryCode(baseName);
+  const code = await ensureUniqueCode(desiredCode, d.id);
+  const slug = await ensureUniqueSlug(d.slug, d.id);
 
   const core = {
     code,
-    slug: d.slug,
+    slug,
     parentId: d.parentId || null,
     order: d.order,
     isActive: d.isActive,
