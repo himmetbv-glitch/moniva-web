@@ -13,7 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr">
+    // suppressHydrationWarning: tarayıcı eklentileri (ör. Yandex Browser'ın
+    // data-yd-* attribute'ları) <html>'e React yüklenmeden önce nitelik ekler;
+    // bu, uygulama hatası değil — yalnızca bu etiketin nitelik uyuşmazlığını sustur.
+    <html lang="tr" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );
