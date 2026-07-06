@@ -34,6 +34,7 @@ export type SidebarCounts = {
   categories: number;
   newQuotes: number;
   newMessages: number;
+  followUps: number;
 };
 
 export type DashboardData = {
@@ -57,23 +58,29 @@ export type DashboardData = {
   tasks: DashTask[];
   recentQuotes: RecentQuote[];
   topProducts: TopProduct[];
-  sidebar: SidebarCounts;
 };
 
 export async function getAdminSidebarCounts(): Promise<SidebarCounts> {
-  const [products, categories, newQuotes, newContacts, newApplications] =
+  const [products, categories, newQuotes, newContacts, newApplications, followUps] =
     await Promise.all([
       prisma.product.count({ where: { isActive: true } }),
       prisma.category.count(),
       prisma.quoteRequest.count({ where: { status: QuoteStatus.NEW } }),
       prisma.contactMessage.count({ where: { status: SubmissionStatus.NEW } }),
       prisma.jobApplication.count({ where: { status: SubmissionStatus.NEW } }),
+      prisma.quoteRequest.count({
+        where: {
+          isArchived: false,
+          status: { in: [QuoteStatus.VIEWED, QuoteStatus.REVISION_REQUESTED] },
+        },
+      }),
     ]);
   return {
     products,
     categories,
     newQuotes,
     newMessages: newContacts + newApplications,
+    followUps,
   };
 }
 
@@ -111,7 +118,6 @@ export async function getDashboardData(): Promise<DashboardData> {
   const [
     activeProducts,
     addedThisMonth,
-    totalCategories,
     rfq30d,
     rfqPrev30d,
     newQuotes,
@@ -126,7 +132,6 @@ export async function getDashboardData(): Promise<DashboardData> {
   ] = await Promise.all([
     prisma.product.count({ where: { isActive: true } }),
     prisma.product.count({ where: { createdAt: { gte: monthAgo } } }),
-    prisma.category.count(),
     prisma.quoteRequest.count({ where: { createdAt: { gte: monthAgo } } }),
     prisma.quoteRequest.count({
       where: { createdAt: { gte: prevMonthStart, lt: monthAgo } },
@@ -254,11 +259,5 @@ export async function getDashboardData(): Promise<DashboardData> {
       timeLabel: relativeLabel(q.createdAt, now),
     })),
     topProducts,
-    sidebar: {
-      products: activeProducts,
-      categories: totalCategories,
-      newQuotes,
-      newMessages,
-    },
   };
 }

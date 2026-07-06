@@ -5,15 +5,29 @@ import { QuoteStatus } from "@prisma/client";
 import { getInquiryList } from "@/lib/admin/inquiries";
 import { AdminTopbar } from "../AdminTopbar";
 import { Icons } from "../icons";
-import { STATUS_PILL, PRIORITY } from "./status";
+import { STATUS_PILL } from "./status";
+import { CopyLinkButton } from "./CopyLinkButton";
 
 export const metadata: Metadata = { title: "Teklif Talepleri" };
 
-const STATUS_TABS: { key: string; label: string; value?: QuoteStatus }[] = [
+// Filtre anahtarı → durum kümesi. Takip odaklı sekmeler (açılmadı / sıcak / revizyon).
+const FILTERS: Record<string, QuoteStatus[]> = {
+  new: [QuoteStatus.NEW],
+  unopened: [QuoteStatus.QUOTED],
+  hot: [QuoteStatus.VIEWED],
+  revision: [QuoteStatus.REVISION_REQUESTED],
+  approved: [QuoteStatus.APPROVED],
+  closed: [QuoteStatus.CLOSED, QuoteStatus.DECLINED, QuoteStatus.EXPIRED],
+};
+
+const STATUS_TABS: { key: string; label: string }[] = [
   { key: "all", label: "Tümü" },
-  { key: "new", label: "Yeni", value: QuoteStatus.NEW },
-  { key: "quoted", label: "Teklif Verildi", value: QuoteStatus.QUOTED },
-  { key: "closed", label: "Kapandı", value: QuoteStatus.CLOSED },
+  { key: "new", label: "Yeni" },
+  { key: "unopened", label: "Açılmadı" },
+  { key: "hot", label: "Sıcak" },
+  { key: "revision", label: "Revizyon" },
+  { key: "approved", label: "Onaylandı" },
+  { key: "closed", label: "Kapandı" },
   { key: "archived", label: "Arşiv" },
 ];
 
@@ -23,11 +37,16 @@ export default async function InquiriesPage({
   searchParams: Promise<{ status?: string; q?: string }>;
 }) {
   const sp = await searchParams;
-  const archivedView = sp.status === "archived";
-  const statusFilter =
-    !archivedView && sp.status && sp.status in QuoteStatus
-      ? (sp.status as QuoteStatus)
-      : undefined;
+  const key = sp.status ?? "all";
+  const archivedView = key === "archived";
+  const statusFilter: QuoteStatus[] | undefined = archivedView
+    ? undefined
+    : key in FILTERS
+      ? FILTERS[key]
+      : key in QuoteStatus
+        ? [key as QuoteStatus]
+        : undefined;
+  const currentKey = statusFilter || archivedView ? key : "all";
   const q = sp.q ?? "";
 
   const { rows, summary } = await getInquiryList(statusFilter, q, archivedView);
@@ -72,8 +91,9 @@ export default async function InquiriesPage({
         {/* Filtre */}
         <div className="iq-filter">
           <form className="iq-search" action="/admin/inquiries" method="get">
-            {statusFilter && <input type="hidden" name="status" value={statusFilter} />}
-            {archivedView && <input type="hidden" name="status" value="archived" />}
+            {currentKey !== "all" && (
+              <input type="hidden" name="status" value={currentKey} />
+            )}
             <span className="iq-search__ico">
               <Icons.search />
             </span>
@@ -85,18 +105,11 @@ export default async function InquiriesPage({
           </form>
           <div className="iq-tabs">
             {STATUS_TABS.map((t) => {
-              const active =
-                t.key === "archived"
-                  ? archivedView
-                  : t.key === "all"
-                    ? !statusFilter && !archivedView
-                    : (t.value ?? undefined) === statusFilter && !archivedView;
+              const active = currentKey === t.key;
               const href =
                 t.key === "all"
                   ? "/admin/inquiries"
-                  : t.key === "archived"
-                    ? "/admin/inquiries?status=archived"
-                    : `/admin/inquiries?status=${t.value}`;
+                  : `/admin/inquiries?status=${t.key}`;
               return (
                 <Link
                   key={t.key}
@@ -122,9 +135,10 @@ export default async function InquiriesPage({
                   <th>Firma / İletişim</th>
                   <th>Ülke</th>
                   <th className="mv-num">Parça</th>
-                  <th>Öncelik</th>
                   <th>Durum</th>
-                  <th>Geliş</th>
+                  <th className="mv-num">Görüntülenme</th>
+                  <th>Son Hareket</th>
+                  <th>Link</th>
                   <th />
                 </tr>
               </thead>
@@ -143,16 +157,30 @@ export default async function InquiriesPage({
                     <td className="mv-muted">{r.country}</td>
                     <td className="mv-num mv-muted">{r.itemCount}</td>
                     <td>
-                      <span className={`iq-prio iq-prio--${r.priority}`}>
-                        ● {PRIORITY[r.priority]}
-                      </span>
-                    </td>
-                    <td>
                       <span className={`mv-pill mv-pill--${STATUS_PILL[r.status].kind}`}>
                         {STATUS_PILL[r.status].label}
                       </span>
                     </td>
-                    <td className="mv-dim">{r.timeLabel}</td>
+                    <td className="mv-num">
+                      {r.viewCount > 0 ? (
+                        <span className="iq-views" title="Toplam görüntülenme">
+                          <span className="iq-views__ico" aria-hidden>
+                            👁
+                          </span>
+                          {r.viewCount}
+                        </span>
+                      ) : (
+                        <span className="mv-dim">—</span>
+                      )}
+                    </td>
+                    <td className="mv-dim">{r.lastActivityLabel}</td>
+                    <td>
+                      {r.publicToken ? (
+                        <CopyLinkButton token={r.publicToken} />
+                      ) : (
+                        <span className="mv-dim">—</span>
+                      )}
+                    </td>
                     <td>
                       <Link href={`/admin/inquiries/${r.id}`} className="iq-open">
                         Aç ▶

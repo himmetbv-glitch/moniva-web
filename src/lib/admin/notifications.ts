@@ -1,6 +1,6 @@
 import "server-only";
 
-import { QuoteStatus, SubmissionStatus } from "@prisma/client";
+import { QuoteEventType, QuoteStatus, SubmissionStatus } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 
@@ -11,6 +11,15 @@ export type AdminNotification = {
   sub: string;
   timeLabel: string;
   href: string;
+};
+
+// Müşteri takip olaylarının panel bildirim metinleri.
+const EVENT_SUB: Record<QuoteEventType, string> = {
+  LINK_OPENED: "Teklifini görüntüledi",
+  DECISION_APPROVE: "Teklifi onayladı ✓",
+  DECISION_REVISION: "Revizyon istedi",
+  DECISION_CONTACT: "Görüşmek istiyor",
+  DECISION_DECLINE: "Teklifi uygun bulmadı",
 };
 
 function relative(date: Date, now: number): string {
@@ -26,8 +35,9 @@ function relative(date: Date, now: number): string {
 
 export async function getNotifications(limit = 8): Promise<AdminNotification[]> {
   const now = Date.now();
+  const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
 
-  const [quotes, contacts, apps] = await Promise.all([
+  const [quotes, contacts, apps, events] = await Promise.all([
     prisma.quoteRequest.findMany({
       where: { status: QuoteStatus.NEW, isArchived: false },
       orderBy: { createdAt: "desc" },
@@ -46,7 +56,38 @@ export async function getNotifications(limit = 8): Promise<AdminNotification[]> 
       take: limit,
       select: { id: true, fullName: true, position: true, createdAt: true },
     }),
+    prisma.quoteEvent.findMany({
+      where: { createdAt: { gte: weekAgo } },
+      orderBy: { createdAt: "desc" },
+      take: limit * 3,
+      select: {
+        id: true,
+        type: true,
+        createdAt: true,
+        quoteRequestId: true,
+        quoteRequest: { select: { companyName: true } },
+      },
+    }),
   ]);
+
+  // Aynı teklifin tekrarlanan görüntülemelerini teke indir (kararlar aynen kalır).
+  const seenOpen = new Set<string>();
+  const eventItems: (AdminNotification & { ts: number })[] = [];
+  for (const e of events) {
+    if (e.type === QuoteEventType.LINK_OPENED) {
+      if (seenOpen.has(e.quoteRequestId)) continue;
+      seenOpen.add(e.quoteRequestId);
+    }
+    eventItems.push({
+      id: e.id,
+      type: "quote" as const,
+      title: e.quoteRequest.companyName,
+      sub: EVENT_SUB[e.type],
+      timeLabel: relative(e.createdAt, now),
+      href: `/admin/inquiries/${e.quoteRequestId}`,
+      ts: e.createdAt.getTime(),
+    });
+  }
 
   const items: (AdminNotification & { ts: number })[] = [
     ...quotes.map((q) => ({
@@ -76,6 +117,7 @@ export async function getNotifications(limit = 8): Promise<AdminNotification[]> 
       href: `/admin/messages/application/${a.id}`,
       ts: a.createdAt.getTime(),
     })),
+    ...eventItems,
   ];
 
   return items

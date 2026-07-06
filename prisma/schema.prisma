@@ -31,9 +31,22 @@ enum Role {
 }
 
 enum QuoteStatus {
-  NEW
-  QUOTED
-  CLOSED
+  NEW                // müşteri gönderdi, fiyatlanmadı
+  QUOTED             // admin fiyatladı & gönderdi (izlenebilir link üretilir) — "SENT"
+  VIEWED             // müşteri linki açtı
+  APPROVED           // müşteri onayladı
+  REVISION_REQUESTED // müşteri revizyon istedi
+  DECLINED           // müşteri "şu an uygun değil"
+  EXPIRED            // geçerlilik tarihi doldu
+  CLOSED             // elle kapatma (geriye uyum)
+}
+
+enum QuoteEventType {
+  LINK_OPENED
+  DECISION_APPROVE
+  DECISION_REVISION
+  DECISION_CONTACT
+  DECISION_DECLINE
 }
 
 enum Currency {
@@ -475,7 +488,15 @@ model QuoteRequest {
   isArchived Boolean     @default(false) // kapanan talepler arşive alınabilir
   notes_admin String?  @db.Text @map("admin_notes")
 
-  items QuoteRequestItem[]
+  // Teklif takip katmanı — müşteriye özel izlenebilir link + görüntülenme
+  publicToken   String?   @unique // tahmin edilemez token; QUOTED'a geçince üretilir
+  sentAt        DateTime?          // teklifin gönderildiği (link üretildiği) an
+  firstViewedAt DateTime?
+  lastViewedAt  DateTime?
+  viewCount     Int       @default(0)
+
+  items  QuoteRequestItem[]
+  events QuoteEvent[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -510,6 +531,24 @@ model QuoteRequestItem {
 
   @@index([quoteRequestId])
   @@index([productId])
+}
+
+// Teklif takip günlüğü — link açılışları + müşteri kararları
+model QuoteEvent {
+  id             String         @id @default(cuid())
+  quoteRequestId String
+  type           QuoteEventType
+  device         String?        // "mobile" / "desktop"
+  ipHash         String?        // ham IP DEĞİL — hash'lenmiş
+  note           String?        @db.Text // revizyon / "uygun değil" müşteri notu
+
+  createdAt DateTime @default(now())
+
+  quoteRequest QuoteRequest @relation(fields: [quoteRequestId], references: [id], onDelete: Cascade)
+
+  @@index([quoteRequestId])
+  @@index([type])
+  @@index([createdAt])
 }
 
 // ============================================================================

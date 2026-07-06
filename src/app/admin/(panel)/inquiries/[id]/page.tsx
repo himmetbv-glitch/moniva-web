@@ -7,8 +7,10 @@ import { getInquiryDetail } from "@/lib/admin/inquiries";
 import { updateInquiryStatus, saveInquiryNote } from "@/lib/actions/admin-inquiry";
 import { InquiryDangerActions } from "./InquiryDangerActions";
 import { AdminTopbar } from "../../AdminTopbar";
+import { WhatsAppButton } from "../../WhatsAppButton";
 import { STATUS_PILL, STATUS_FLOW } from "../status";
 import { QuotePricing } from "@/components/admin/QuotePricing";
+import { scenarioForStatus } from "@/lib/quotes/whatsapp";
 
 export const metadata: Metadata = { title: "Teklif Talebi" };
 
@@ -185,9 +187,20 @@ export default async function InquiryDetailPage({
                   </div>
                 ))}
               </div>
-              <a href={`mailto:${d.email}`} className="mv-btn mv-btn--ghost iq-side__btn">
-                E-posta gönder ↗
-              </a>
+              <div className="iq-side__contact">
+                <WhatsAppButton
+                  phone={d.phone}
+                  token={d.publicToken}
+                  scenario={scenarioForStatus(d.status, d.isExpiringSoon)}
+                  greetName={d.fullName || d.companyName}
+                  refLabel={d.ref}
+                  validUntilLabel={d.validUntil}
+                  variant="full"
+                />
+                <a href={`mailto:${d.email}`} className="mv-btn mv-btn--ghost iq-side__btn">
+                  E-posta gönder ↗
+                </a>
+              </div>
             </div>
 
             <div className="mv-card iq-pad">
@@ -215,26 +228,25 @@ export default async function InquiryDetailPage({
             </div>
 
             <div className="mv-card iq-pad">
-              <div className="iq-cardhead__ttl iq-side__ttl">Hareketler</div>
+              <div className="iq-cardhead__ttl iq-side__ttl">
+                Müşteri hareketleri
+                {d.viewCount > 0 && (
+                  <span className="iq-act__views">{d.viewCount} görüntülenme</span>
+                )}
+              </div>
               <div className="iq-activity">
-                <div className="iq-act">
-                  <span className="iq-act__dot">—</span>
-                  <div>
-                    <div className="iq-act__body">Teklif talebi oluşturuldu</div>
-                    <div className="iq-act__time">{d.timeLabel}</div>
-                  </div>
-                </div>
-                {d.status !== QuoteStatus.NEW && (
-                  <div className="iq-act">
-                    <span className="iq-act__dot">—</span>
+                {d.activity.map((a) => (
+                  <div className="iq-act" key={a.key}>
+                    <span className={`iq-act__dot iq-act__dot--${a.tone}`} />
                     <div>
-                      <div className="iq-act__body">
-                        Durum → {STATUS_PILL[d.status].label}
+                      <div className="iq-act__body">{a.label}</div>
+                      {a.note && <div className="iq-act__note">“{a.note}”</div>}
+                      <div className="iq-act__time" title={a.absLabel}>
+                        {a.timeLabel}
                       </div>
-                      <div className="iq-act__time">güncellendi</div>
                     </div>
                   </div>
-                )}
+                ))}
               </div>
             </div>
           </div>

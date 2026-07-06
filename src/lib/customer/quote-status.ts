@@ -7,5 +7,10 @@ export const MY_QUOTE_STATUS: Record<
 > = {
   NEW: { label: "İnceleniyor", kind: "new" },
   QUOTED: { label: "Teklif hazır", kind: "ready" },
+  VIEWED: { label: "Teklif hazır", kind: "ready" },
+  APPROVED: { label: "Onaylandı", kind: "ready" },
+  REVISION_REQUESTED: { label: "Revizyon istendi", kind: "new" },
+  DECLINED: { label: "Kapandı", kind: "closed" },
+  EXPIRED: { label: "Süresi doldu", kind: "closed" },
   CLOSED: { label: "Kapandı", kind: "closed" },
 };

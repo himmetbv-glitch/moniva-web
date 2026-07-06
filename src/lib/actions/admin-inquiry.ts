@@ -7,6 +7,7 @@ import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
+import { generateQuoteToken } from "@/lib/quotes/token";
 
 const statusSchema = z.object({
   id: z.string().min(1),
@@ -143,6 +144,15 @@ export async function saveQuotePricing(
           data: { quantity: it.quantity, unitPrice: it.unitPrice },
         });
       }
+      // "Teklif gönder" → izlenebilir link için publicToken + sentAt üret
+      // (varsa yeniden üretme; re-send'de token sabit kalsın).
+      const cur = d.markQuoted
+        ? await tx.quoteRequest.findUnique({
+            where: { id: d.id },
+            select: { publicToken: true, sentAt: true },
+          })
+        : null;
+
       await tx.quoteRequest.update({
         where: { id: d.id },
         data: {
@@ -153,7 +163,13 @@ export async function saveQuotePricing(
           validUntil,
           paymentTerms: d.paymentTerms || null,
           ...(d.markQuoted
-            ? { status: QuoteStatus.QUOTED, quotedAt: new Date(), quotedBy: admin.id }
+            ? {
+                status: QuoteStatus.QUOTED,
+                quotedAt: new Date(),
+                quotedBy: admin.id,
+                publicToken: cur?.publicToken ?? generateQuoteToken(),
+                sentAt: cur?.sentAt ?? new Date(),
+              }
             : {}),
         },
       });

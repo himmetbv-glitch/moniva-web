@@ -909,6 +909,7 @@
 }
 .iq-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
 }
 .iq-tab {
@@ -955,6 +956,229 @@
 }
 .iq-table tbody tr:hover {
   background: #faf8fe;
+}
+
+/* Görüntülenme sayacı */
+.iq-views {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+.iq-views__ico {
+  font-size: 12px;
+  filter: grayscale(0.2);
+}
+
+/* Link kopyala */
+.iq-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--primary);
+  background: #fff;
+  border: 1px solid var(--brd);
+  padding: 5px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.iq-copy:hover {
+  background: var(--tint);
+  border-color: var(--primary);
+}
+.iq-copy svg {
+  display: block;
+}
+.iq-copy--done {
+  color: var(--ok);
+  border-color: var(--ok);
+  background: #e6f2ec;
+}
+.iq-copy--done:hover {
+  background: #e6f2ec;
+}
+
+/* ───────── TAKİP GEREKENLER ───────── */
+.fu-card {
+  margin-bottom: 16px;
+}
+.fu-card .mv-card__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.fu-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+.fu-dot--hot {
+  background: var(--primary);
+}
+.fu-dot--revision {
+  background: var(--warn);
+}
+.fu-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--tint);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.fu-what {
+  font-size: 12.5px;
+  color: var(--txt);
+}
+.fu-note {
+  color: var(--txt-mid);
+  font-style: italic;
+}
+.fu-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ───────── WHATSAPP BUTONU ───────── */
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: #25d366;
+  border: 1px solid #1eb457;
+  padding: 5px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: filter 0.12s;
+}
+.wa-btn:hover {
+  filter: brightness(1.05);
+}
+.wa-btn--full {
+  width: 100%;
+  padding: 9px 14px;
+  font-size: 13px;
+}
+.wa-btn--off {
+  background: #eef0f2;
+  border-color: var(--brd);
+  color: var(--txt-dim);
+  cursor: not-allowed;
+}
+.wa-btn--off:hover {
+  filter: none;
+}
+.iq-side__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+.iq-side__contact .iq-side__btn {
+  margin-top: 0;
+}
+
+/* ───────── AYLIK ÖZET (RAPOR) ───────── */
+.rp-monthnav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.rp-monthnav__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--brd);
+  background: var(--panel);
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+}
+.rp-monthnav__btn:hover {
+  background: var(--tint);
+}
+.rp-monthnav__btn--off {
+  color: var(--txt-dim);
+  background: var(--bg);
+  cursor: not-allowed;
+}
+.rp-monthnav__label {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  min-width: 150px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.rp-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.rp-card {
+  border-top: 3px solid var(--brd);
+}
+.rp-card--sent {
+  border-top-color: var(--primary);
+}
+.rp-card--open {
+  border-top-color: var(--accent, #7e6dc2);
+}
+.rp-card--ok {
+  border-top-color: var(--ok);
+}
+.rp-card--wait {
+  border-top-color: var(--warn);
+}
+.rp-card--lost {
+  border-top-color: var(--err);
+}
+.rp-card__amount {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+  font-variant-numeric: tabular-nums;
+}
+.rp-amount {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+@media (max-width: 1100px) {
+  .rp-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rp-monthnav__label {
+    min-width: 120px;
+  }
 }
 
 /* Detay */
@@ -1383,27 +1607,56 @@
   align-items: flex-start;
 }
 .iq-act__dot {
-  width: 24px;
-  height: 24px;
-  background: var(--bg);
-  color: var(--txt-dim);
-  border: 1px solid var(--brd);
-  font-size: 10px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 3px;
+  background: var(--txt-dim);
+  box-shadow: 0 0 0 3px var(--panel), 0 0 0 4px var(--brd);
   flex-shrink: 0;
+}
+.iq-act__dot--open {
+  background: var(--accent);
+}
+.iq-act__dot--ok {
+  background: var(--ok);
+}
+.iq-act__dot--warn {
+  background: var(--warn);
+}
+.iq-act__dot--err {
+  background: var(--err);
+}
+.iq-act__dot--info {
+  background: var(--primary);
 }
 .iq-act__body {
   font-size: 11.5px;
   color: var(--txt);
   line-height: 1.45;
 }
+.iq-act__note {
+  font-size: 11px;
+  color: var(--txt-mid);
+  font-style: italic;
+  margin-top: 3px;
+  line-height: 1.5;
+}
 .iq-act__time {
   font-size: 10.5px;
   color: var(--txt-dim);
   margin-top: 2px;
+}
+.iq-act__views {
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--tint);
+  padding: 2px 7px;
+  border-radius: 9px;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 @media (max-width: 1100px) {

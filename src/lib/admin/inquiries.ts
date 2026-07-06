@@ -1,6 +1,6 @@
 import "server-only";
 
-import { QuoteStatus, type Prisma } from "@prisma/client";
+import { QuoteEventType, QuoteStatus, type Prisma } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 import {
@@ -22,6 +22,9 @@ export type InquiryRow = {
   status: QuoteStatus;
   timeLabel: string;
   priority: InquiryPriority;
+  publicToken: string | null;
+  viewCount: number;
+  lastActivityLabel: string;
 };
 
 export type InquirySummary = {
@@ -45,6 +48,17 @@ export type InquiryItem = {
   oem: string | null;
   quantity: number;
   unitPrice: number | null;
+};
+
+export type ActivityTone = "base" | "open" | "ok" | "warn" | "err" | "info";
+
+export type ActivityItem = {
+  key: string;
+  label: string;
+  note: string | null;
+  timeLabel: string; // "3 sa önce"
+  absLabel: string; // "06 Temmuz 2026 10:03"
+  tone: ActivityTone;
 };
 
 export type InquiryDetail = {
@@ -81,6 +95,10 @@ export type InquiryDetail = {
   quotedAtLabel: string | null;
   totals: QuoteTotals;
   hasPricing: boolean; // en az bir kalemde birim fiyat girilmiş mi
+  publicToken: string | null; // izlenebilir müşteri linki (gönderildiyse)
+  isExpiringSoon: boolean; // geçerlilik ≤5 gün veya doldu
+  viewCount: number;
+  activity: ActivityItem[]; // gerçek müşteri hareketleri (yeni→eski)
 };
 
 const REF_PREFIX = "QR-";
@@ -121,6 +139,16 @@ function isoDateOnly(d: Date): string {
   return `${y}-${m}-${day}`;
 }
 
+const EVENT_LABEL: Record<QuoteEventType, { label: string; tone: ActivityTone }> = {
+  LINK_OPENED: { label: "Bağlantı açıldı", tone: "open" },
+  DECISION_APPROVE: { label: "Müşteri teklifi onayladı", tone: "ok" },
+  DECISION_REVISION: { label: "Müşteri revizyon istedi", tone: "warn" },
+  DECISION_CONTACT: { label: "Müşteri görüşmek istiyor", tone: "info" },
+  DECISION_DECLINE: { label: "Müşteri teklifi uygun bulmadı", tone: "err" },
+};
+
+const DEVICE_TR: Record<string, string> = { mobile: "mobil", desktop: "masaüstü" };
+
 // Şemada öncelik alanı yok — yenilik + büyüklükten türetilir (heuristik).
 function derivePriority(status: QuoteStatus, itemCount: number): InquiryPriority {
   if (status === QuoteStatus.NEW && itemCount >= 10) return "high";
@@ -128,8 +156,23 @@ function derivePriority(status: QuoteStatus, itemCount: number): InquiryPriority
   return "low";
 }
 
+// Son hareket = kaydın en güncel anlamlı zaman damgası (talep/gönderim/görüntülenme/karar).
+function lastActivityAt(r: {
+  createdAt: Date;
+  sentAt: Date | null;
+  quotedAt: Date | null;
+  lastViewedAt: Date | null;
+  events: { createdAt: Date }[];
+}): Date {
+  let latest = r.createdAt;
+  for (const d of [r.sentAt, r.quotedAt, r.lastViewedAt, r.events[0]?.createdAt]) {
+    if (d && d.getTime() > latest.getTime()) latest = d;
+  }
+  return latest;
+}
+
 export async function getInquiryList(
-  statusFilter?: QuoteStatus,
+  statusFilter?: QuoteStatus | QuoteStatus[],
   q?: string,
   archived = false,
 ): Promise<InquiryListResult> {
@@ -137,7 +180,9 @@ export async function getInquiryList(
   const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
 
   const where: Prisma.QuoteRequestWhereInput = { isArchived: archived };
-  if (!archived && statusFilter) where.status = statusFilter;
+  if (!archived && statusFilter) {
+    where.status = Array.isArray(statusFilter) ? { in: statusFilter } : statusFilter;
+  }
   if (q && q.trim()) {
     const term = q.trim();
     where.OR = [
@@ -164,7 +209,17 @@ export async function getInquiryList(
           country: true,
           status: true,
           createdAt: true,
+          publicToken: true,
+          viewCount: true,
+          sentAt: true,
+          quotedAt: true,
+          lastViewedAt: true,
           _count: { select: { items: true } },
+          events: {
+            orderBy: { createdAt: "desc" },
+            take: 1,
+            select: { createdAt: true },
+          },
         },
       }),
       prisma.quoteRequest.count({ where: active }),
@@ -187,6 +242,9 @@ export async function getInquiryList(
       status: r.status,
       timeLabel: relativeLabel(r.createdAt, now),
       priority: derivePriority(r.status, r._count.items),
+      publicToken: r.publicToken,
+      viewCount: r.viewCount,
+      lastActivityLabel: relativeLabel(lastActivityAt(r), now),
     })),
     summary: { total, newCount, quoted, closed, weekCount, archived: archivedCount },
   };
@@ -221,6 +279,20 @@ export async function getInquiryDetail(id: string): Promise<InquiryDetail | null
       validUntil: true,
       paymentTerms: true,
       quotedAt: true,
+      publicToken: true,
+      sentAt: true,
+      viewCount: true,
+      events: {
+        orderBy: { createdAt: "desc" },
+        take: 30,
+        select: {
+          id: true,
+          type: true,
+          device: true,
+          note: true,
+          createdAt: true,
+        },
+      },
       items: {
         orderBy: { createdAt: "asc" },
         select: {
@@ -256,6 +328,54 @@ export async function getInquiryDetail(id: string): Promise<InquiryDetail | null
       unitPrice: it.unitPrice == null ? null : it.unitPrice.toNumber(),
     };
   });
+
+  // Gerçek hareket akışı: olaylar + sentetik "gönderildi"/"oluşturuldu" (yeni→eski).
+  const rawActivity: (ActivityItem & { ts: number })[] = r.events.map((e) => {
+    const meta = EVENT_LABEL[e.type];
+    const dev = e.device ? (DEVICE_TR[e.device] ?? e.device) : null;
+    return {
+      key: e.id,
+      label:
+        e.type === QuoteEventType.LINK_OPENED && dev
+          ? `${meta.label} · ${dev}`
+          : meta.label,
+      note: e.note ?? null,
+      timeLabel: relativeLabel(e.createdAt, now),
+      absLabel: dateFmt.format(e.createdAt),
+      tone: meta.tone,
+      ts: e.createdAt.getTime(),
+    };
+  });
+  if (r.sentAt) {
+    rawActivity.push({
+      key: "sent",
+      label: "Teklif gönderildi · izlenebilir link",
+      note: null,
+      timeLabel: relativeLabel(r.sentAt, now),
+      absLabel: dateFmt.format(r.sentAt),
+      tone: "info",
+      ts: r.sentAt.getTime(),
+    });
+  }
+  rawActivity.push({
+    key: "created",
+    label: "Teklif talebi oluşturuldu",
+    note: null,
+    timeLabel: relativeLabel(r.createdAt, now),
+    absLabel: dateFmt.format(r.createdAt),
+    tone: "base",
+    ts: r.createdAt.getTime(),
+  });
+  const activity: ActivityItem[] = rawActivity
+    .sort((a, b) => b.ts - a.ts)
+    .map((a) => ({
+      key: a.key,
+      label: a.label,
+      note: a.note,
+      timeLabel: a.timeLabel,
+      absLabel: a.absLabel,
+      tone: a.tone,
+    }));
 
   const currency = r.currency as Currency;
   const discountPct = r.discountPct?.toNumber() ?? 0;
@@ -298,5 +418,11 @@ export async function getInquiryDetail(id: string): Promise<InquiryDetail | null
     quotedAtLabel: r.quotedAt ? dateFmt.format(r.quotedAt) : null,
     totals,
     hasPricing: items.some((it) => it.unitPrice != null && it.unitPrice > 0),
+    publicToken: r.publicToken,
+    isExpiringSoon: r.validUntil
+      ? r.validUntil.getTime() - now < 5 * 24 * 60 * 60 * 1000
+      : false,
+    viewCount: r.viewCount,
+    activity,
   };
 }

@@ -1,9 +1,19 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { QuoteStatus } from "@prisma/client";
 
 import { requireUser } from "@/lib/customer/dal";
 import { getMyQuoteDetail } from "@/lib/customer/quotes";
 import { MY_QUOTE_STATUS } from "@/lib/customer/quote-status";
+import { MyQuoteDecisions } from "./MyQuoteDecisions";
+
+// Karar verilmiş tekliflerde müşteriye gösterilecek kısa bilgilendirme.
+const DECIDED_HINT: Partial<Record<QuoteStatus, string>> = {
+  APPROVED: "Sipariş sürecini başlatmak için sizinle iletişime geçeceğiz.",
+  REVISION_REQUESTED: "Güncellenmiş teklif en kısa sürede tarafınıza ulaştırılacak.",
+  DECLINED: "İhtiyaç halinde bize her zaman ulaşabilirsiniz.",
+  CLOSED: "Bu teklif kapatıldı.",
+};
 
 export default async function MyQuoteDetailPage({
   params,
@@ -130,6 +140,22 @@ export default async function MyQuoteDetailPage({
           </div>
         </div>
       )}
+
+      {q.canDecide ? (
+        <div className="ac-section">
+          <MyQuoteDecisions quoteRequestId={q.id} />
+        </div>
+      ) : q.isExpired && q.priced ? (
+        <div className="ac-note ac-note--warn">
+          Bu teklifin geçerlilik süresi doldu. Güncel fiyat için lütfen bizimle
+          iletişime geçin.
+        </div>
+      ) : q.priced ? (
+        <div className={`ac-decided ac-decided--${st.kind}`}>
+          <b>{st.label}.</b>
+          {DECIDED_HINT[q.status] ? ` ${DECIDED_HINT[q.status]}` : ""}
+        </div>
+      ) : null}
 
       <div className="ac-section">
         <h2 className="ac-section__title">Teslimat</h2>

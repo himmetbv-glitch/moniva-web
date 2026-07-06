@@ -5,6 +5,11 @@ import type { InquiryPriority } from "@/lib/admin/inquiries";
 export const STATUS_PILL: Record<QuoteStatus, { kind: string; label: string }> = {
   NEW: { kind: "info", label: "Yeni" },
   QUOTED: { kind: "mute", label: "Teklif verildi" },
+  VIEWED: { kind: "info", label: "Görüntülendi" },
+  APPROVED: { kind: "ok", label: "Onaylandı" },
+  REVISION_REQUESTED: { kind: "warn", label: "Revizyon istendi" },
+  DECLINED: { kind: "err", label: "Uygun değil" },
+  EXPIRED: { kind: "mute", label: "Süresi doldu" },
   CLOSED: { kind: "ok", label: "Kapandı" },
 };
 

@@ -80,6 +80,8 @@ export type MyQuoteDetail = {
   shippingMode: string | null;
   validUntilLabel: string | null;
   paymentTerms: string | null;
+  isExpired: boolean;
+  canDecide: boolean; // fiyatlı + QUOTED/VIEWED + süresi dolmamış → karar butonları
 };
 
 const REF_PREFIX = "QR-";
@@ -117,7 +119,7 @@ export async function getMyQuotes(userId: string): Promise<MyQuoteRow[]> {
 
   return rows.map((r) => {
     const priced =
-      r.status === QuoteStatus.QUOTED &&
+      r.status !== QuoteStatus.NEW &&
       r.items.some((it) => it.unitPrice != null);
     let totalLabel: string | null = null;
     if (priced) {
@@ -185,7 +187,12 @@ export async function getMyQuoteDetail(
 
   const currency = r.currency as Currency;
   const priced =
-    r.status === QuoteStatus.QUOTED && r.items.some((it) => it.unitPrice != null);
+    r.status !== QuoteStatus.NEW && r.items.some((it) => it.unitPrice != null);
+  const isExpired = r.validUntil ? r.validUntil.getTime() < Date.now() : false;
+  const canDecide =
+    priced &&
+    !isExpired &&
+    (r.status === QuoteStatus.QUOTED || r.status === QuoteStatus.VIEWED);
 
   const totals = computeQuoteTotals(
     r.items.map((it) => ({
@@ -240,16 +247,19 @@ export async function getMyQuoteDetail(
     shippingMode: r.shippingMode,
     validUntilLabel: r.validUntil ? dateFmt.format(r.validUntil) : null,
     paymentTerms: r.paymentTerms,
+    isExpired,
+    canDecide,
   };
 }
 
 // PDF route için hafif sahiplik + fiyatlandırma kontrolü.
+// NEW hariç tüm durumlar (QUOTED sonrası karar verilse de fiyat görünür kalır).
 export async function isMyQuotePriced(
   userId: string,
   id: string,
 ): Promise<boolean> {
   const r = await prisma.quoteRequest.findFirst({
-    where: { id, userId, status: QuoteStatus.QUOTED },
+    where: { id, userId, status: { not: QuoteStatus.NEW } },
     select: { id: true },
   });
   return Boolean(r);

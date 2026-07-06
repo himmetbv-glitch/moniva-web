@@ -115,4 +115,10 @@ export const Icons = {
       <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
+  report: ({ size = 18 }: IconProps = {}) => (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
+      <path d="M3 15V8M7 15V4M11 15V10M15 15V6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M2 16.2H16" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  ),
 };
