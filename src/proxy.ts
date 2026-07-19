@@ -1,22 +1,32 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
 import NextAuth from "next-auth";
+import createIntlMiddleware from "next-intl/middleware";
 
 import { authConfig } from "@/auth.config";
+import { routing } from "@/i18n/routing";
 
-// Next 16 renamed Middleware to Proxy. The edge-safe authConfig (no Prisma /
-// bcrypt) drives the `authorized` callback, which redirects non-admins to
-// /admin/login. Real authorization is re-checked server-side in the panel DAL.
+// Next 16 renamed Middleware to Proxy. Two responsibilities compose here:
+//   1. /admin/*      → NextAuth (redirects non-admins to /admin/login).
+//   2. public site   → next-intl locale routing (/tr, /en, /ru, /ar).
+// The edge-safe authConfig (no Prisma / bcrypt) drives Auth.js's authorized
+// callback; real authorization is re-checked server-side in the panel DAL.
 const { auth } = NextAuth(authConfig);
+const intlMiddleware = createIntlMiddleware(routing);
 
-// Next 16 needs a statically detectable function export named `proxy`, so we
-// delegate to the Auth.js middleware explicitly rather than re-exporting it.
+const authProxy = auth as unknown as (
+  req: NextRequest,
+  ev: NextFetchEvent,
+) => ReturnType<typeof auth>;
+
 export default function proxy(request: NextRequest, event: NextFetchEvent) {
-  return (auth as unknown as (
-    req: NextRequest,
-    ev: NextFetchEvent,
-  ) => ReturnType<typeof auth>)(request, event);
+  if (request.nextUrl.pathname.startsWith("/admin")) {
+    return authProxy(request, event);
+  }
+  return intlMiddleware(request);
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  // Cover /admin/* (auth) plus every public site path. Excluded: /api/*,
+  // Next internals, and static asset requests (any URL with a file extension).
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };

@@ -1,11 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+
+import { useRouter } from "@/i18n/navigation";
 
 export function SiteSearch() {
   const router = useRouter();
   const sp = useSearchParams();
+  const t = useTranslations();
   const [value, setValue] = useState(sp.get("q") ?? "");
 
   const submit = (e: React.FormEvent) => {
@@ -25,12 +29,12 @@ export function SiteSearch() {
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="Parça, marka, OEM ara…"
-          aria-label="Ara"
+          placeholder={t("header.search.placeholder")}
+          aria-label={t("header.search.ariaLabel")}
         />
       </span>
       <button type="submit" className="sh-search__btn">
-        Bul
+        {t("header.search.submit")}
       </button>
     </form>
   );

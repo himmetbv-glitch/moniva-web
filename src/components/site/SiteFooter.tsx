@@ -1,54 +1,37 @@
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 import { getFooterPages } from "@/lib/pages/queries";
 import { getSettings } from "@/lib/settings";
+import { Link } from "@/i18n/navigation";
 import "./footer.css";
 
-type FooterCol = { title: string; links: { label: string; href: string }[] };
-
-const COLS: FooterCol[] = [
+// Sütun yapısı: label metinleri messages/*.json'da; href'ler kod tabanında sabit
+// (çünkü hepsi aynı rotalara işaret ediyor — kategori dallanma yok).
+type ColKey = "products" | "corporate" | "support";
+const COLS: readonly { key: ColKey; hrefs: readonly string[] }[] = [
   {
-    title: "Ürünler",
-    links: [
-      { label: "Fren Sistemleri", href: "/urunler" },
-      { label: "Hava Süspansiyon", href: "/urunler" },
-      { label: "Aks ve Tekerlek", href: "/urunler" },
-      { label: "Şanzıman Parçaları", href: "/urunler" },
-      { label: "Elektrik Sistemleri", href: "/urunler" },
-      { label: "Kabin & Gövde", href: "/urunler" },
-    ],
+    key: "products",
+    hrefs: ["/urunler", "/urunler", "/urunler", "/urunler", "/urunler", "/urunler"],
   },
   {
-    title: "Kurumsal",
-    links: [
-      { label: "Hakkımızda", href: "#" },
-      { label: "Kalite & Sertifikalar", href: "#" },
-      { label: "Sürdürülebilirlik", href: "#" },
-      { label: "Fuarlar", href: "#" },
-      { label: "Haberler", href: "#" },
-      { label: "Kariyer", href: "#" },
-    ],
+    key: "corporate",
+    hrefs: ["#", "#", "#", "#", "#", "#"],
   },
   {
-    title: "Destek",
-    links: [
-      { label: "Teknik Destek", href: "#" },
-      { label: "Katalog İndir", href: "/kataloglar" },
-      { label: "OEM Çapraz Referans", href: "/urunler" },
-      { label: "Garanti Politikası", href: "#" },
-      { label: "İadeler", href: "#" },
-      { label: "SSS", href: "#" },
-    ],
+    key: "support",
+    hrefs: ["#", "/kataloglar", "/urunler", "#", "#", "#"],
   },
 ];
 
 const CERTS = ["ISO 9001:2015", "ECE R90", "CE Marked", "TS EN ISO 9001"];
-// CMS'te footer sayfası tanımlı değilse gösterilecek statik yedek.
-const LEGAL_FALLBACK = ["Künye", "Gizlilik Politikası", "Çerez Ayarları", "Site Haritası"];
 
 export async function SiteFooter() {
-  const [footerPages, settings] = await Promise.all([getFooterPages(), getSettings()]);
+  const [footerPages, settings, t] = await Promise.all([
+    getFooterPages(),
+    getSettings(),
+    getTranslations(),
+  ]);
 
   const socials = [
     { label: "in", href: settings.linkedinUrl },
@@ -56,6 +39,8 @@ export async function SiteFooter() {
     { label: "yt", href: settings.youtubeUrl },
     { label: "ig", href: settings.instagramUrl },
   ].filter((s) => s.href);
+
+  const legalFallback = t.raw("footer.legal.fallback") as string[];
 
   return (
     <footer className="site-footer">
@@ -100,21 +85,30 @@ export async function SiteFooter() {
             </div>
           </div>
 
-          {COLS.map((col) => (
-            <nav className="sf-col" key={col.title}>
-              <div className="sf-col__title">{col.title}</div>
-              <div className="sf-col__rule" />
-              {col.links.map((l) => (
-                <Link key={l.label} href={l.href} className="sf-col__link">
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          ))}
+          {COLS.map((col) => {
+            const items = t.raw(`footer.columns.${col.key}.items`) as string[];
+            return (
+              <nav className="sf-col" key={col.key}>
+                <div className="sf-col__title">
+                  {t(`footer.columns.${col.key}.title`)}
+                </div>
+                <div className="sf-col__rule" />
+                {items.map((label, i) => (
+                  <Link
+                    key={label}
+                    href={col.hrefs[i] ?? "#"}
+                    className="sf-col__link"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </nav>
+            );
+          })}
         </div>
 
         <div className="sf-certs">
-          <span className="sf-certs__label">Sertifikalar</span>
+          <span className="sf-certs__label">{t("footer.certsLabel")}</span>
           {CERTS.map((c) => (
             <span key={c} className="sf-cert">
               {c}
@@ -124,19 +118,21 @@ export async function SiteFooter() {
       </div>
 
       <div className="sf-legal">
-        <span className="sf-legal__copy">
-          © 2026 MONIVA Otomotiv ve Gıda San. Tic. A.Ş. Tüm hakları saklıdır.
-        </span>
+        <span className="sf-legal__copy">{t("footer.legal.copy")}</span>
         <div className="sf-legal__links">
           {footerPages.length > 0
             ? footerPages.map((p) => (
-                <Link key={p.slug} href={`/sayfa/${p.slug}`} className="sf-legal__link">
+                <Link
+                  key={p.slug}
+                  href={`/sayfa/${p.slug}`}
+                  className="sf-legal__link"
+                >
                   {p.title}
                 </Link>
               ))
-            : LEGAL_FALLBACK.map((t) => (
-                <Link key={t} href="#" className="sf-legal__link">
-                  {t}
+            : legalFallback.map((label) => (
+                <Link key={label} href="#" className="sf-legal__link">
+                  {label}
                 </Link>
               ))}
         </div>

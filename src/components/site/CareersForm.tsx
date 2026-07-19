@@ -1,10 +1,22 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { EXPERIENCES } from "@/lib/validation/job-application";
 
+// DB'ye TR string yazılır (mevcut şema/enum). UI'da bu key ile locale-aware label alınır.
+type ExpKey = "student" | "junior" | "mid" | "senior" | "expert";
+const EXP_KEY: Record<string, ExpKey> = {
+  "Öğrenci / Yeni mezun": "student",
+  "0–2 yıl": "junior",
+  "3–5 yıl": "mid",
+  "6–10 yıl": "senior",
+  "10+ yıl": "expert",
+};
+
 export function CareersForm({ positions }: { positions: string[] }) {
+  const t = useTranslations();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
@@ -22,10 +34,10 @@ export function CareersForm({ positions }: { positions: string[] }) {
         setDone(true);
       } else {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setError(j.error ?? "Başvuru gönderilemedi.");
+        setError(j.error ?? t("careers.form.sendError"));
       }
     } catch {
-      setError("Bağlantı hatası. Tekrar deneyin.");
+      setError(t("form.connectionError"));
     } finally {
       setSubmitting(false);
     }
@@ -35,11 +47,8 @@ export function CareersForm({ positions }: { positions: string[] }) {
     return (
       <div className="cf-card cf-done">
         <div className="cf-done__check">✓</div>
-        <div className="cf-done__title">Başvurunuz alındı.</div>
-        <p className="cf-done__body">
-          İlginiz için teşekkürler. Her başvuruyu değerlendiriyor ve iki hafta
-          içinde size dönüş yapıyoruz.
-        </p>
+        <div className="cf-done__title">{t("careers.done.title")}</div>
+        <p className="cf-done__body">{t("careers.done.body")}</p>
       </div>
     );
   }
@@ -47,39 +56,62 @@ export function CareersForm({ positions }: { positions: string[] }) {
   return (
     <form className="cf-card" onSubmit={onSubmit}>
       <div className="cf-head">
-        <div className="cf-head__title">Başvuru formu</div>
-        <div className="cf-head__code">FORM · CRR-001</div>
+        <div className="cf-head__title">{t("careers.form.title")}</div>
+        <div className="cf-head__code">{t("careers.form.code")}</div>
       </div>
       <div className="cf-rule" />
 
       <div className="cf-grid2">
         <label className="cf-field">
-          <span>Ad soyad <i>*</i></span>
-          <input name="fullName" required placeholder="örn. Ayşe Yıldız" maxLength={120} />
+          <span>
+            {t("careers.form.fullName")} <i>{t("form.required")}</i>
+          </span>
+          <input
+            name="fullName"
+            required
+            placeholder={t("careers.form.fullNamePlaceholder")}
+            maxLength={120}
+          />
         </label>
         <label className="cf-field">
-          <span>E-posta <i>*</i></span>
-          <input name="email" type="email" required placeholder="siz@ornek.com" maxLength={160} />
+          <span>
+            {t("careers.form.email")} <i>{t("form.required")}</i>
+          </span>
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder={t("careers.form.emailPlaceholder")}
+            maxLength={160}
+          />
         </label>
       </div>
 
       <div className="cf-grid2">
         <label className="cf-field">
-          <span>Telefon <i>*</i></span>
+          <span>
+            {t("careers.form.phone")} <i>{t("form.required")}</i>
+          </span>
           <input name="phone" required placeholder="+90 …" maxLength={40} />
         </label>
         <label className="cf-field">
-          <span>Konum</span>
-          <input name="location" placeholder="Şehir, Ülke" maxLength={120} />
+          <span>{t("careers.form.location")}</span>
+          <input
+            name="location"
+            placeholder={t("careers.form.locationPlaceholder")}
+            maxLength={120}
+          />
         </label>
       </div>
 
       <div className="cf-grid2">
         <label className="cf-field">
-          <span>Başvurulan pozisyon <i>*</i></span>
+          <span>
+            {t("careers.form.position")} <i>{t("form.required")}</i>
+          </span>
           <select name="position" required defaultValue="" className="cf-select">
             <option value="" disabled>
-              — Departman seçin —
+              {t("careers.form.positionPlaceholder")}
             </option>
             {positions.map((p) => (
               <option key={p} value={p}>
@@ -89,12 +121,12 @@ export function CareersForm({ positions }: { positions: string[] }) {
           </select>
         </label>
         <label className="cf-field">
-          <span>Deneyim süresi</span>
+          <span>{t("careers.form.experience")}</span>
           <select name="experience" defaultValue="" className="cf-select">
-            <option value="">— Seçin —</option>
+            <option value="">{t("careers.form.experiencePlaceholder")}</option>
             {EXPERIENCES.map((x) => (
               <option key={x} value={x}>
-                {x}
+                {t(`careers.form.experiences.${EXP_KEY[x] ?? "junior"}`)}
               </option>
             ))}
           </select>
@@ -102,34 +134,36 @@ export function CareersForm({ positions }: { positions: string[] }) {
       </div>
 
       <label className="cf-field">
-        <span>LinkedIn veya portfolyo bağlantısı</span>
+        <span>{t("careers.form.linkedin")}</span>
         <input name="linkedinUrl" placeholder="https://" maxLength={300} />
       </label>
 
       <label className="cf-field">
-        <span>Ön yazı <i>*</i></span>
+        <span>
+          {t("careers.form.coverNote")} <i>{t("form.required")}</i>
+        </span>
         <textarea
           name="coverNote"
           rows={5}
           required
           minLength={10}
           maxLength={4000}
-          placeholder="Moniva'ya neden katılmak istediğinize dair kısa bir not…"
+          placeholder={t("careers.form.coverNotePlaceholder")}
         />
       </label>
 
       <div className="cf-field">
-        <span className="cf-label">CV / Özgeçmiş <i>*</i></span>
+        <span className="cf-label">
+          {t("careers.form.cv")} <i>{t("form.required")}</i>
+        </span>
         <button
           type="button"
           className="cf-drop"
           onClick={() => fileRef.current?.click()}
         >
           <div className="cf-drop__icon">↑</div>
-          <div className="cf-drop__title">
-            {cvName ?? "CV'nizi seçmek için tıklayın"}
-          </div>
-          <div className="cf-drop__hint">PDF, DOC, DOCX · Maks. 5 MB</div>
+          <div className="cf-drop__title">{cvName ?? t("careers.form.cvSelect")}</div>
+          <div className="cf-drop__hint">{t("careers.form.cvHint")}</div>
         </button>
         <input
           ref={fileRef}
@@ -144,8 +178,9 @@ export function CareersForm({ positions }: { positions: string[] }) {
       <label className="cf-consent">
         <input type="checkbox" name="kvkkConsent" value="true" required />
         <span>
-          Kişisel verilerimin işe alım amacıyla <b>KVKK / gizlilik politikası</b>{" "}
-          kapsamında işlenmesini kabul ediyorum.
+          {t.rich("careers.form.consent", {
+            b: (chunks) => <b>{chunks}</b>,
+          })}
         </span>
       </label>
 
@@ -153,10 +188,10 @@ export function CareersForm({ positions }: { positions: string[] }) {
 
       <div className="cf-foot">
         <span className="cf-req">
-          <i>*</i> ile işaretli alanlar zorunludur
+          <i>{t("form.required")}</i> {t("form.requiredNote")}
         </span>
         <button type="submit" className="cf-submit" disabled={submitting}>
-          {submitting ? "Gönderiliyor…" : "Başvuruyu gönder ▶"}
+          {submitting ? t("careers.form.submitting") : t("careers.form.submit")}
         </button>
       </div>
     </form>

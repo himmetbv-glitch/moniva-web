@@ -5,7 +5,7 @@ import { DEFAULT_LOCALE, pickTranslation } from "@/lib/i18n";
 import { normalizeOem } from "@/lib/products/normalize-oem";
 import type { ProductFilters } from "@/lib/validation/product-filters";
 
-export const PER_PAGE = 12;
+export const PER_PAGE = 24;
 
 export type ProductCardView = {
   id: string;
@@ -43,6 +43,22 @@ export type DocFile = {
   fileSize: number | null;
 };
 
+export type KitComponentRow = {
+  sku: string;
+  slug: string;
+  name: string;
+  qty: number;
+  dimension: string | null;
+  sortOrder: number;
+};
+
+export type UsedInKitRow = {
+  sku: string;
+  slug: string;
+  name: string;
+  qty: number;
+};
+
 export type ProductDetailView = {
   id: string;
   sku: string;
@@ -61,6 +77,8 @@ export type ProductDetailView = {
   specs: SpecRow[];
   crossRefs: CrossRef[];
   documents: DocFile[];
+  kitComponents: KitComponentRow[]; // Bu ürün kit ise: içindeki bileşenler
+  usedInKits:    UsedInKitRow[];    // Bu ürün başka kitlerde bileşense: hangileri
 };
 
 export type ProductListResult = {
@@ -274,6 +292,18 @@ export async function getProductDetail(
       images: { orderBy: [{ isMain: "desc" }, { order: "asc" }] },
       category: { include: { translations: true } },
       brand: true,
+      kitComponents: {
+        orderBy: { sortOrder: "asc" },
+        include: {
+          component: { include: { translations: true } },
+        },
+      },
+      usedInKits: {
+        orderBy: { parent: { sku: "asc" } },
+        include: {
+          parent: { include: { translations: true } },
+        },
+      },
     },
   });
   if (!p) return null;
@@ -306,6 +336,20 @@ export async function getProductDetail(
       fileUrl: d.fileUrl,
       fileName: d.fileName,
       fileSize: d.fileSize,
+    })),
+    kitComponents: p.kitComponents.map((kc) => ({
+      sku:       kc.component.sku,
+      slug:      kc.component.slug,
+      name:      pickTranslation(kc.component.translations, locale)?.name ?? kc.component.sku,
+      qty:       kc.qty,
+      dimension: kc.dimension,
+      sortOrder: kc.sortOrder,
+    })),
+    usedInKits: p.usedInKits.map((kc) => ({
+      sku:  kc.parent.sku,
+      slug: kc.parent.slug,
+      name: pickTranslation(kc.parent.translations, locale)?.name ?? kc.parent.sku,
+      qty:  kc.qty,
     })),
   };
 }

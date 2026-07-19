@@ -1,0 +1,708 @@
+{
+  "meta": {
+    "brand": "Moniva",
+    "defaultTitle": "Moniva — قطع غيار B2B",
+    "defaultDescription": "كتالوج B2B ونظام طلب عروض أسعار لقطع غيار المقطورات والمركبات الثقيلة.",
+    "notFound": "الصفحة غير موجودة"
+  },
+  "common": {
+    "soon": "قريباً",
+    "close": "إغلاق"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "products": "المنتجات",
+    "catalogs": "الكتالوجات",
+    "quality": "الجودة",
+    "news": "الأخبار",
+    "careers": "الوظائف",
+    "contact": "اتصل بنا"
+  },
+  "header": {
+    "account": {
+      "admin": "الإدارة",
+      "member": "حسابي",
+      "guest": "تسجيل الدخول"
+    },
+    "cart": "قائمة عروض الأسعار",
+    "search": {
+      "placeholder": "ابحث عن قطعة أو ماركة أو OEM…",
+      "ariaLabel": "بحث",
+      "submit": "بحث"
+    },
+    "menu": {
+      "open": "القائمة",
+      "close": "إغلاق القائمة",
+      "langHeading": "اللغة"
+    }
+  },
+  "footer": {
+    "columns": {
+      "products": {
+        "title": "المنتجات",
+        "items": [
+          "أنظمة الفرامل",
+          "التعليق الهوائي",
+          "المحاور والعجلات",
+          "قطع علبة السرعات",
+          "الأنظمة الكهربائية",
+          "المقصورة والهيكل"
+        ]
+      },
+      "corporate": {
+        "title": "الشركة",
+        "items": [
+          "من نحن",
+          "الجودة والشهادات",
+          "الاستدامة",
+          "المعارض",
+          "الأخبار",
+          "الوظائف"
+        ]
+      },
+      "support": {
+        "title": "الدعم",
+        "items": [
+          "الدعم الفني",
+          "تحميل الكتالوج",
+          "المرجع المتقاطع OEM",
+          "سياسة الضمان",
+          "المرتجعات",
+          "الأسئلة الشائعة"
+        ]
+      }
+    },
+    "certsLabel": "الشهادات",
+    "legal": {
+      "copy": "© 2026 MONIVA Otomotiv ve Gıda San. Tic. A.Ş. جميع الحقوق محفوظة.",
+      "fallback": [
+        "بيانات الشركة",
+        "سياسة الخصوصية",
+        "إعدادات ملفات تعريف الارتباط",
+        "خريطة الموقع"
+      ]
+    }
+  },
+  "hero": {
+    "fallback": {
+      "head": "قطع موثوقة. وصول عالمي.",
+      "sub": "قطع غيار متميزة للشاحنات والمقطورات والمركبات التجارية."
+    },
+    "arrow": {
+      "prev": "السابق",
+      "next": "التالي"
+    },
+    "dotAria": "الشريحة {index}"
+  },
+  "crumb": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "careers": "الوظائف"
+  },
+  "product": {
+    "badges": {
+      "featured": "مميز",
+      "oem": "OEM"
+    },
+    "card": {
+      "refLabel": "المرجع:",
+      "oemLabel": "OEM:",
+      "qtyDecrease": "إنقاص",
+      "qty": "الكمية",
+      "qtyIncrease": "زيادة"
+    },
+    "search": {
+      "modes": {
+        "tumu": "الكل",
+        "kategori": "التصنيف",
+        "oem": "OEM"
+      },
+      "placeholders": {
+        "tumu": "ابحث عن قطعة أو رمز مخزون أو OEM…",
+        "kategori": "ابحث باسم التصنيف…",
+        "oem": "OEM / رقم القطعة…"
+      },
+      "scopeAria": "نطاق البحث",
+      "inputAria": "بحث عن منتجات",
+      "submit": "بحث ▶"
+    },
+    "categoryMenu": {
+      "heading": "تصنيفات المنتجات",
+      "expand": "إظهار التصنيفات الفرعية",
+      "collapse": "إخفاء التصنيفات الفرعية"
+    },
+    "filters": {
+      "heading": "المرشحات",
+      "clearAll": "مسح الكل",
+      "brandHeading": "الماركة"
+    },
+    "grid": {
+      "countSuffix": "قطعة",
+      "sortLabel": "ترتيب:",
+      "sorts": {
+        "one-cikan": "المميزة",
+        "yeni": "الأحدث",
+        "ref": "المرجع: أ→ي",
+        "ad": "الاسم: أ→ي"
+      },
+      "viewGrid": "عرض شبكة",
+      "viewList": "عرض قائمة",
+      "emptyWithQuery": "لا توجد منتجات مطابقة لـ \"{query}\". جرّب اسمًا آخر للقطعة أو SKU أو رقم OEM.",
+      "emptyNoQuery": "لا توجد منتجات مطابقة لهذه المرشحات. امسح المرشحات أو اختر تصنيفًا آخر.",
+      "pageInfo": "الصفحة <b>{page}</b> / <b>{total}</b>",
+      "jumpTitle": "الانتقال إلى صفحة",
+      "jumpAria": "أدخل رقم الصفحة واضغط Enter",
+      "jumpPlaceholder": "رقم"
+    },
+    "detail": {
+      "descHeadingFallback": "وصف المنتج",
+      "facts": {
+        "material": "المادة",
+        "category": "التصنيف",
+        "typeLabel": "النوع",
+        "typeOem": "OEM أصلي",
+        "typeAftermarket": "Aftermarket"
+      },
+      "kit": {
+        "heading": "محتويات الطقم",
+        "partNo": "رقم القطعة",
+        "description": "الوصف",
+        "size": "المقاس",
+        "qty": "الكمية"
+      },
+      "usedIn": {
+        "heading": "يُستخدم في الأطقم",
+        "kitNo": "رقم الطقم",
+        "kitName": "اسم الطقم",
+        "qtyFromThis": "الكمية من هذه القطعة"
+      },
+      "partNoLabel": "رقم القطعة:",
+      "cross": {
+        "heading": "المراجع المتقاطعة (OEM)",
+        "anchorLabel": "Cross-References",
+        "oemColumn": "رقم OEM",
+        "manufacturerColumn": "الصانع"
+      },
+      "empty": {
+        "description": "لم يُدخل وصف.",
+        "specs": "لا توجد مواصفات فنية.",
+        "cross": "لا توجد مراجع متقاطعة OEM.",
+        "docs": "لا توجد مستندات لهذا المنتج."
+      },
+      "docs": {
+        "type": "PDF",
+        "download": "↓ تحميل",
+        "labelFmt": "Datasheet · {locale}"
+      }
+    }
+  },
+  "form": {
+    "required": "*",
+    "requiredNote": "الحقول المميزة بـ * إلزامية",
+    "connectionError": "خطأ في الاتصال. حاول مجددًا.",
+    "genericSubmitError": "فشل الإرسال."
+  },
+  "contact": {
+    "form": {
+      "title": "أخبرنا باحتياجك.",
+      "sub": "املأ النموذج وسنوجّه رسالتك إلى الفريق المختص. للاستفسارات العاجلة اتصل مباشرة.",
+      "topicLabel": "ما موضوعك؟",
+      "topics": {
+        "sales": "طلب مبيعات",
+        "support": "الدعم الفني",
+        "distributor": "أصبح موزعًا",
+        "press": "الإعلام / الصحافة",
+        "career": "الوظائف"
+      },
+      "firstName": "الاسم",
+      "lastName": "اسم العائلة",
+      "company": "الشركة",
+      "companyPlaceholder": "اسم الشركة",
+      "country": "الدولة",
+      "email": "البريد الإلكتروني للعمل",
+      "emailPlaceholder": "you@company.com",
+      "phone": "الهاتف",
+      "oemRefs": "أرقام مرجعية OEM (اختياري)",
+      "oemRefsPlaceholder": "مثال 1234567, A1234567890 — افصلها بفواصل",
+      "message": "رسالتك",
+      "messagePlaceholder": "أسطولك، الكمية المطلوبة، الجدول الزمني…",
+      "consent": "أوافق على <b>سياسة الخصوصية</b> لـ Moniva وأوافق على التواصل معي بشأن طلبي.",
+      "submit": "إرسال الرسالة ▶",
+      "submitting": "جارٍ الإرسال…",
+      "response": "متوسط الرد: <b>{hours} ساعات عمل</b>",
+      "sendError": "تعذّر إرسال الرسالة."
+    },
+    "done": {
+      "title": "تم إرسال رسالتك.",
+      "body": "وجّهنا طلبك إلى الفريق المختص. عادةً نرد خلال 4 ساعات عمل."
+    },
+    "mapTitle": "خريطة موقع Moniva",
+    "directions": "الحصول على الاتجاهات ▶",
+    "openMap": "افتح في الخريطة",
+    "lat": "خط العرض",
+    "lng": "خط الطول"
+  },
+  "careers": {
+    "form": {
+      "title": "نموذج التقديم",
+      "code": "FORM · CRR-001",
+      "fullName": "الاسم الكامل",
+      "fullNamePlaceholder": "مثال Ayşe Yıldız",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "you@example.com",
+      "phone": "الهاتف",
+      "location": "الموقع",
+      "locationPlaceholder": "المدينة، الدولة",
+      "position": "الوظيفة المتقدَّم لها",
+      "positionPlaceholder": "— اختر القسم —",
+      "experience": "سنوات الخبرة",
+      "experiencePlaceholder": "— اختر —",
+      "experiences": {
+        "student": "طالب / حديث تخرج",
+        "junior": "0–2 سنوات",
+        "mid": "3–5 سنوات",
+        "senior": "6–10 سنوات",
+        "expert": "10+ سنوات"
+      },
+      "linkedin": "رابط LinkedIn أو معرض الأعمال",
+      "coverNote": "رسالة تعريفية",
+      "coverNotePlaceholder": "ملاحظة قصيرة عن سبب انضمامك إلى Moniva…",
+      "cv": "السيرة الذاتية",
+      "cvSelect": "اضغط لاختيار سيرتك الذاتية",
+      "cvHint": "PDF, DOC, DOCX · حد أقصى 5 ميجابايت",
+      "consent": "أوافق على معالجة بياناتي الشخصية لأغراض التوظيف وفق <b>KVKK / سياسة الخصوصية</b>.",
+      "submit": "إرسال الطلب ▶",
+      "submitting": "جارٍ الإرسال…",
+      "sendError": "تعذّر إرسال الطلب."
+    },
+    "done": {
+      "title": "تم استلام طلبك.",
+      "body": "شكرًا لاهتمامك. نراجع كل طلب ونعود إليك خلال أسبوعين."
+    },
+    "teamAlt": "فريق Moniva"
+  },
+  "auth": {
+    "login": {
+      "pageTitle": "تسجيل الدخول — Moniva",
+      "title": "تسجيل الدخول",
+      "subtitle": "سجّل الدخول بحساب B2B وتابع طلبات عروض الأسعار من لوحتك.",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "you@company.com",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "••••••••",
+      "submit": "تسجيل الدخول",
+      "submitting": "جارٍ تسجيل الدخول…",
+      "noAccount": "ليس لديك حساب؟",
+      "signUp": "أنشئ حسابًا"
+    },
+    "register": {
+      "pageTitle": "إنشاء حساب — Moniva",
+      "title": "أنشئ حساب B2B",
+      "subtitle": "سجّل بمعلومات شركتك وأدر جميع طلبات العروض من لوحة واحدة.",
+      "companyName": "اسم الشركة",
+      "companyNamePlaceholder": "مثال شركة Yılmaz للنقل",
+      "fullName": "الاسم الكامل",
+      "fullNamePlaceholder": "المسؤول المفوّض",
+      "phone": "الهاتف",
+      "phonePlaceholder": "+90 5xx xxx xx xx",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "you@company.com",
+      "address": "عنوان الشركة",
+      "addressPlaceholder": "الشارع، رقم، الحي…",
+      "country": "الدولة",
+      "city": "المدينة",
+      "cityPlaceholder": "مثال قونية",
+      "taxNumber": "الرقم الضريبي",
+      "taxNumberOptional": "(اختياري)",
+      "taxNumberPlaceholder": "10 أرقام",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "8 أحرف على الأقل",
+      "verifyNote": "بعد إنشاء الحساب يتحقق فريقنا من شركتك. تحصل حسابات B2B الموثقة على شروط خاصة.",
+      "kvkkPrefix": "قرأت ",
+      "kvkkLink": "إشعار KVKK",
+      "kvkkSuffix": " وأوافق على معالجة بياناتي الشخصية.",
+      "submit": "أنشئ حسابًا",
+      "submitting": "جارٍ إنشاء الحساب…",
+      "haveAccount": "لديك حساب بالفعل؟",
+      "signIn": "تسجيل الدخول"
+    }
+  },
+  "quote": {
+    "status": {
+      "new": "قيد المراجعة",
+      "quoted": "العرض جاهز",
+      "viewed": "العرض جاهز",
+      "approved": "معتمد",
+      "revisionRequested": "طُلبت مراجعة",
+      "declined": "مغلق",
+      "expired": "منتهي الصلاحية",
+      "closed": "مغلق"
+    },
+    "cart": {
+      "crumb": "قائمة عروض الأسعار",
+      "opError": "تعذّر تنفيذ العملية. حاول مجددًا.",
+      "columns": {
+        "product": "المنتج",
+        "quantity": "الكمية"
+      },
+      "continueShopping": "← متابعة التصفح",
+      "clearList": "مسح القائمة",
+      "row": {
+        "oemLabel": "OEM:",
+        "skuLabel": "SKU:",
+        "typeOem": "OEM أصلي",
+        "typeAftermarket": "Aftermarket",
+        "qtyDecrease": "إنقاص",
+        "qty": "الكمية",
+        "qtyIncrease": "زيادة",
+        "remove": "إزالة من القائمة"
+      },
+      "summary": {
+        "title": "ملخص السلة",
+        "sub": "محتوى القائمة — يُقفل عند إرسال طلب العرض.",
+        "totalItems": "إجمالي المنتجات",
+        "totalItemsUnit": "قطعة",
+        "totalKinds": "عدد الأصناف",
+        "totalKindsUnit": "بند",
+        "oemMix": "OEM / Aftermarket",
+        "cta": "اطلب عرض سعر",
+        "promise": "<b>✓</b> سنعود إليك خلال 24 ساعة.",
+        "trust": {
+          "secure": "آمن",
+          "secureNote": "متوافق مع KVKK",
+          "oem": "OEM",
+          "oemNote": "مضمون",
+          "response": "24س",
+          "responseNote": "الرد"
+        }
+      },
+      "hero": {
+        "title": "قائمة عروض الأسعار",
+        "subLabel": "· My Quote List",
+        "sub": "سيتم تحضير <b>عرض سعر مخصص</b> للمنتجات أدناه. راجع القائمة، اضبط الكميات، وأرسل بضغطة <b>\"اطلب عرض سعر\"</b> — سيرد فريقنا خلال 24 ساعة.",
+        "badgePrice": "سعر مخصص",
+        "badgeTime": "رد خلال 24 ساعة"
+      },
+      "empty": {
+        "title": "قائمة عروض الأسعار فارغة",
+        "body": "تصفح المنتجات وأضفها إلى قائمتك؛ ثم احصل على سعر مخصص بطلب واحد.",
+        "cta": "تصفح المنتجات"
+      },
+      "error": {
+        "title": "حدث خطأ ما",
+        "body": "تعذّر تحميل قائمة العروض. حاول مجددًا؛ إذا استمرت المشكلة تواصل معنا.",
+        "retry": "إعادة المحاولة"
+      },
+      "loading": {
+        "summary": "ملخص السلة",
+        "loadingText": "جارٍ التحميل…"
+      }
+    },
+    "modal": {
+      "kicker": "نظام عروض B2B",
+      "title": "أنشئ طلب عرض سعر.",
+      "sub": "املأ التفاصيل أدناه — سيرد فريقنا خلال 24 ساعة بسعر مخصص وحالة المخزون.",
+      "close": "إغلاق",
+      "steps": {
+        "cart": "السلة",
+        "info": "بياناتك",
+        "confirm": "التأكيد"
+      },
+      "summary": "في قائمتك <b>{qty} قطعة</b> · <b>{lines} بند</b>.",
+      "fields": {
+        "fullName": "الاسم الكامل",
+        "fullNamePlaceholder": "مثال Mehmet Yılmaz",
+        "companyName": "اسم الشركة",
+        "companyNamePlaceholder": "مثال شركة ABC للنقل",
+        "email": "البريد الإلكتروني",
+        "emailPlaceholder": "example@company.com",
+        "phone": "الهاتف",
+        "phonePlaceholder": "5XX XXX XX XX",
+        "country": "الدولة",
+        "city": "المدينة",
+        "cityPlaceholder": "مثال إسطنبول",
+        "taxNumber": "الرقم الضريبي",
+        "taxNumberPlaceholder": "10 أرقام",
+        "taxOffice": "المكتب الضريبي",
+        "taxOfficePlaceholder": "مثال Kadıköy",
+        "address": "عنوان التسليم",
+        "addressPlaceholder": "الشارع، رقم، الحي — للفوترة والشحن.",
+        "notes": "ملاحظات / طلبات خاصة",
+        "notesPlaceholder": "الاستعجال، طريقة الشحن، بدائل OEM، إلخ.",
+        "required": "*",
+        "optional": "(اختياري)"
+      },
+      "consent": {
+        "kvkkLink": "إشعار KVKK",
+        "kvkkSuffix": " — قرأت وأوافق على معالجة بياناتي الشخصية.",
+        "marketing": "أوافق على استلام رسائل Moniva عن <b>المنتجات الجديدة وعروض الجملة</b>. (اختياري)"
+      },
+      "footNote": "بياناتك محمية وفق <b>KVKK</b>.",
+      "cancel": "إلغاء",
+      "submit": "إرسال طلب العرض",
+      "submitting": "جارٍ الإرسال…",
+      "success": {
+        "title": "تم استلام طلبك.",
+        "body": "سيراجع فريقنا طلبك ويرد بسعر مخصص وحالة مخزون <b>خلال 24 ساعة</b>.",
+        "refLabel": "رقم مرجع طلبك:",
+        "ok": "حسنًا"
+      },
+      "countries": {
+        "tr": "تركيا",
+        "de": "ألمانيا",
+        "ro": "رومانيا",
+        "ru": "روسيا",
+        "other": "أخرى"
+      }
+    },
+    "decision": {
+      "prompt": "ماذا تريد أن تفعل بهذا العرض؟",
+      "buttons": {
+        "approve": "موافقة",
+        "revision": "طلب مراجعة",
+        "contact": "التحدث مع ممثل",
+        "decline": "غير مناسب الآن"
+      },
+      "notePlaceholder": {
+        "revision": "ما نوع المراجعة؟ (اختياري)",
+        "decline": "اذكر السبب بإيجاز (اختياري)"
+      },
+      "cancel": "إلغاء",
+      "sendRevision": "إرسال طلب المراجعة",
+      "send": "إرسال",
+      "sending": "جارٍ الإرسال…",
+      "done": {
+        "approve": {
+          "title": "تمت الموافقة على العرض",
+          "body": "شكرًا! سيتواصل فريقنا لبدء إجراءات الطلب."
+        },
+        "revision": {
+          "title": "تم استلام طلب المراجعة",
+          "body": "تمت إحالة ملاحظتك. سيصلك عرض محدّث قريبًا."
+        },
+        "contact": {
+          "title": "تم استلام الطلب",
+          "body": "سيتواصل ممثلنا معك قريبًا."
+        },
+        "decline": {
+          "title": "تم استلام ملاحظاتك",
+          "body": "شكرًا للإخبار. يمكنك التواصل معنا في أي وقت."
+        }
+      }
+    },
+    "public": {
+      "pageTitle": "عرض السعر — Moniva",
+      "title": "عرض سعر",
+      "editedAt": "تُعدِّل في:",
+      "expired": "انتهت صلاحية هذا العرض. تواصل معنا للسعر الحالي.",
+      "decidedLabels": {
+        "approved": "لقد اعتمدت هذا العرض",
+        "revisionRequested": "تم استلام طلب المراجعة",
+        "declined": "هذا العرض مغلق",
+        "closed": "هذا العرض مغلق"
+      },
+      "to": "إلى",
+      "table": {
+        "no": "#",
+        "part": "القطعة",
+        "qty": "الكمية",
+        "unit": "الوحدة ({currency})",
+        "amount": "المبلغ"
+      },
+      "terms": {
+        "heading": "الشروط",
+        "shipping": "طريقة الشحن",
+        "payment": "شروط الدفع",
+        "validity": "الصلاحية",
+        "fineWithoutVat": "الأسعار بـ {currency} وبدون ضريبة القيمة المضافة. تُؤكَّد أوقات التوفر والتسليم عند تأكيد الطلب. هذا عرض سعر وليس فاتورة.",
+        "fineWithVat": "الأسعار بـ {currency}. تُؤكَّد أوقات التوفر والتسليم عند تأكيد الطلب. هذا عرض سعر وليس فاتورة."
+      },
+      "totals": {
+        "subtotal": "المجموع الفرعي",
+        "discount": "الخصم ({pct}%)",
+        "shipping": "الشحن",
+        "vat": "ضريبة القيمة ({pct}%)",
+        "total": "الإجمالي"
+      },
+      "footer": {
+        "tagline": "Moniva · قطع غيار المركبات الثقيلة والمقطورات",
+        "domain": "moniva.com.tr"
+      }
+    }
+  },
+  "account": {
+    "layoutTitle": "حسابي — Moniva",
+    "logout": "تسجيل الخروج",
+    "loggingOut": "جارٍ الخروج…",
+    "dashboard": {
+      "greetingFallback": "مرحبًا",
+      "greeting": "مرحبًا، {name}",
+      "sub": "تابع طلبات عروض الأسعار من هنا.",
+      "verifiedBadge": "✓ حساب B2B موثّق",
+      "pendingBadge": "قيد التحقق",
+      "profileLink": "الملف الشخصي",
+      "pendingNote": "حسابك قيد المراجعة. عند التحقق، ستحصل على شروط B2B خاصة.",
+      "quotesTitle": "عروضي",
+      "newQuoteLink": "+ عرض جديد",
+      "emptyText": "لا توجد لديك طلبات عرض بعد.",
+      "emptyCta": "تصفح المنتجات",
+      "table": {
+        "ref": "المرجع",
+        "date": "التاريخ",
+        "lines": "الأصناف",
+        "status": "الحالة",
+        "amount": "المبلغ",
+        "open": "التفاصيل ▶"
+      }
+    },
+    "profile": {
+      "crumbSelf": "الملف الشخصي",
+      "title": "بيانات الملف الشخصي",
+      "sub": "تُملأ بيانات شركتك تلقائيًا في نماذج العروض.",
+      "section": {
+        "info": "الشركة والاتصال",
+        "password": "تغيير كلمة المرور"
+      },
+      "form": {
+        "companyName": "اسم الشركة",
+        "fullName": "الاسم الكامل",
+        "phone": "الهاتف",
+        "emailReadonly": "البريد الإلكتروني",
+        "emailReadonlyHint": "(غير قابل للتغيير)",
+        "taxNumber": "الرقم الضريبي",
+        "taxNumberOptional": "(اختياري)",
+        "taxOffice": "المكتب الضريبي",
+        "taxOfficeOptional": "(اختياري)",
+        "city": "المدينة",
+        "cityOptional": "(اختياري)",
+        "address": "العنوان",
+        "addressOptional": "(اختياري)",
+        "saved": "تم تحديث بياناتك.",
+        "submit": "حفظ البيانات",
+        "submitting": "جارٍ الحفظ…"
+      },
+      "password": {
+        "current": "كلمة المرور الحالية",
+        "new": "كلمة المرور الجديدة",
+        "confirm": "كلمة المرور الجديدة (مرة أخرى)",
+        "updated": "تم تحديث كلمة مرورك.",
+        "submit": "تغيير كلمة المرور",
+        "submitting": "جارٍ التحديث…"
+      }
+    },
+    "quoteDetail": {
+      "crumbBack": "حسابي",
+      "crumbTitle": "طلب {ref}",
+      "title": "طلب {ref}",
+      "createdInfo": "أُنشئ في {date} · {qty} قطعة",
+      "pendingNote": "طلبك قيد المراجعة. بعد التسعير ستتمكن من عرضه هنا وتنزيله PDF.",
+      "expiredNote": "انتهت صلاحية هذا العرض. تواصل معنا للسعر الحالي.",
+      "sections": {
+        "items": "القطع المطلوبة",
+        "summary": "ملخص العرض",
+        "terms": "الشروط",
+        "shipping": "الشحن"
+      },
+      "items": {
+        "part": "القطعة",
+        "qty": "الكمية",
+        "unit": "الوحدة",
+        "amount": "المبلغ"
+      },
+      "summary": {
+        "subtotal": "المجموع الفرعي",
+        "discount": "الخصم ({pct}%)",
+        "shipping": "الشحن",
+        "vat": "ضريبة القيمة ({pct}%)",
+        "total": "الإجمالي",
+        "pdfDownload": "تحميل PDF ↓"
+      },
+      "terms": {
+        "currency": "العملة",
+        "validity": "الصلاحية",
+        "payment": "الدفع",
+        "quoteDate": "تاريخ العرض"
+      },
+      "decidedHint": {
+        "approved": "سنتواصل معك لبدء إجراءات الطلب.",
+        "revisionRequested": "سيصلك عرض محدّث قريبًا.",
+        "declined": "يمكنك التواصل معنا في أي وقت.",
+        "closed": "هذا العرض مغلق."
+      }
+    }
+  },
+  "news": {
+    "pageTitle": "الأخبار — Moniva",
+    "pageDescription": "بيانات صحفية، إطلاقات منتجات، أخبار المعارض ورؤى قطاعية من Moniva.",
+    "notFoundTitle": "المقال غير موجود — Moniva",
+    "crumbSelf": "الأخبار",
+    "banner": {
+      "eyebrow": "━━ الصحافة والإعلام",
+      "title": "الأخبار.",
+      "sub": "بيانات صحفية، إطلاقات منتجات، أخبار المعارض ورؤى قطاعية من Moniva Otomotiv — القصة وراء كل قطعة نشحنها إلى أكثر من 80 سوقًا.",
+      "statNews": "مقالات",
+      "statLanguage": "لغات",
+      "statMarket": "أسواق"
+    },
+    "empty": {
+      "title": "لا توجد مقالات منشورة بعد.",
+      "body": "قريبًا ستظهر تحديثات Moniva على هذه الصفحة."
+    },
+    "featuredHeading": "المقال المميز.",
+    "featuredBadge": "مميز",
+    "pressReleasePrefix": "بيان صحفي",
+    "featuredCta": "قراءة المقال كاملاً ▶",
+    "allHeading": "جميع المقالات.",
+    "cardCta": "اقرأ ▶",
+    "backLink": "◀ العودة إلى جميع المقالات",
+    "articleEmpty": "هذا المقال لا يحتوي على محتوى بعد."
+  },
+  "page": {
+    "notFoundTitle": "الصفحة غير موجودة",
+    "empty": "هذه الصفحة قيد الإعداد.",
+    "lastUpdated": "آخر تحديث:"
+  },
+  "home": {
+    "featuredCta": "استكشف ▶",
+    "newsEmpty": "الأخبار قريبًا.",
+    "newsEmptySide": "قريبًا."
+  },
+  "about": {
+    "facilityAlt": "منشأة Moniva في قونية"
+  },
+  "quality": {
+    "labAlt": "مختبر جودة Moniva",
+    "docSoon": "قريبًا",
+    "docDownload": "تحميل ↓"
+  },
+  "catalogs": {
+    "pageTitle": "الكتالوجات — Moniva",
+    "pageDescription": "حمّل تشكيلة منتجات Moniva بصيغة PDF جاهزة للطباعة — الكتالوج العام، عائلات المنتجات، المراجع المتقاطعة OEM وأدلة الماركات.",
+    "crumbSelf": "الكتالوجات",
+    "banner": {
+      "eyebrow": "━━ ملفات قابلة للتحميل",
+      "title": "الكتالوجات.",
+      "sub": "حمّل تشكيلة منتجات Moniva بصيغة PDF جاهزة للطباعة — الكتالوج العام، عائلات المنتجات، المراجع المتقاطعة OEM وأدلة الماركات. مُحدَّث لموسم 2026.",
+      "statPdf": "PDF",
+      "statLanguage": "اللغات",
+      "statPages": "صفحة"
+    },
+    "featuredGroup": "الكتالوجات المميزة",
+    "empty": {
+      "title": "لا توجد كتالوجات منشورة بعد.",
+      "body": "عندما تُجهَّز الكتالوجات ستتمكن من تحميلها من هذه الصفحة."
+    },
+    "card": {
+      "featured": "مميز",
+      "download": "تحميل PDF",
+      "preview": "معاينة",
+      "pageSuffix": "ص"
+    },
+    "printCta": {
+      "title": "هل تريد نسخة مطبوعة؟",
+      "body": "يمكننا شحن نسخة مطبوعة من الكتالوج العام إلى عملك — مجانًا للشركاء التجاريين المسجّلين.",
+      "cta": "اطلب نسخة مطبوعة ▶"
+    }
+  }
+}

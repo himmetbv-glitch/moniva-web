@@ -1,19 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
+import { Link } from "@/i18n/navigation";
 import type { HeroData, HeroSlide } from "@/lib/pages/home-sections";
 
-const FALLBACK_SLIDE: HeroSlide = {
-  img: "/home/hero.jpg",
-  head: "Güvenilir Parça. Global Erişim.",
-  sub: "Kamyon, treyler ve ticari araçlar için premium yedek parça.",
-};
-
 export function Hero({ slides, ctaPrimary, ctaSecondary }: HeroData) {
-  const SLIDES = slides.length > 0 ? slides : [FALLBACK_SLIDE];
+  const t = useTranslations();
+  const fallback: HeroSlide = {
+    img: "/home/hero.jpg",
+    head: t("hero.fallback.head"),
+    sub: t("hero.fallback.sub"),
+  };
+  const SLIDES = slides.length > 0 ? slides : [fallback];
   const [slide, setSlide] = useState(0);
   const s = SLIDES[slide] ?? SLIDES[0];
   const prev = () => setSlide((i) => (i - 1 + SLIDES.length) % SLIDES.length);
@@ -34,12 +35,20 @@ export function Hero({ slides, ctaPrimary, ctaSecondary }: HeroData) {
       ))}
       <div className="hh-hero__scrim" />
 
-      <button className="hh-hero__arrow hh-hero__arrow--l" onClick={prev} aria-label="Önceki">
+      <button
+        className="hh-hero__arrow hh-hero__arrow--l"
+        onClick={prev}
+        aria-label={t("hero.arrow.prev")}
+      >
         <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
           <path d="M10 2L2 10L10 18" stroke="#1B1640" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      <button className="hh-hero__arrow hh-hero__arrow--r" onClick={next} aria-label="Sonraki">
+      <button
+        className="hh-hero__arrow hh-hero__arrow--r"
+        onClick={next}
+        aria-label={t("hero.arrow.next")}
+      >
         <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
           <path d="M2 2L10 10L2 18" stroke="#1B1640" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -63,7 +72,7 @@ export function Hero({ slides, ctaPrimary, ctaSecondary }: HeroData) {
           <button
             key={i}
             onClick={() => setSlide(i)}
-            aria-label={`Slayt ${i + 1}`}
+            aria-label={t("hero.dotAria", { index: i + 1 })}
             className={"hh-hero__dot" + (i === slide ? " hh-hero__dot--on" : "")}
           />
         ))}

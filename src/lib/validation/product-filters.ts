@@ -7,18 +7,8 @@ export type SortValue = (typeof SORT_VALUES)[number];
 export const QMODES = ["tumu", "kategori", "oem"] as const;
 export type QMode = (typeof QMODES)[number];
 
-export const QMODE_LABELS: Record<QMode, string> = {
-  tumu: "Tümü",
-  kategori: "Kategori",
-  oem: "OEM",
-};
-
-export const SORT_LABELS: Record<SortValue, string> = {
-  "one-cikan": "Öne Çıkanlar",
-  yeni: "En Yeni",
-  ref: "Referans: A→Z",
-  ad: "Ad: A→Z",
-};
+// UI etiketleri artık messages/*.json'daki `product.search.modes.*` ve
+// `product.grid.sorts.*` altında yönetilir — kod tarafında sadece key kalır.
 
 const toArray = (v: unknown): string[] =>
   v == null ? [] : Array.isArray(v) ? v.map(String) : [String(v)];

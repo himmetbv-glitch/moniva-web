@@ -15,8 +15,8 @@ export const productEditorSchema = z.object({
   sku: z
     .string()
     .trim()
-    .regex(/^MNV-[A-Z0-9]{2}-\d{3,5}$/, {
-      error: "SKU formatı MNV-XX-NNNN olmalı (örn. MNV-AS-3302).",
+    .regex(/^MNV-(?:[A-Z0-9]{2}-)?\d{3,6}$/, {
+      error: "SKU formatı MNV-XX-NNNN veya MNV-NNNN olmalı (örn. MNV-AS-3302, MNV-5588).",
     }),
   slug: z
     .string()

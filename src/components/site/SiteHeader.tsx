@@ -1,19 +1,28 @@
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 import "./header.css";
 import { getCart } from "@/lib/actions/quote";
 import { getOptionalUser } from "@/lib/customer/dal";
+import { Link } from "@/i18n/navigation";
 import { SiteNav } from "./SiteNav";
 import { SiteSearch } from "./SiteSearch";
 import { LangSwitcher } from "./LangSwitcher";
 import { HeaderMenu } from "./HeaderMenu";
 
 export async function SiteHeader() {
-  const [cart, user] = await Promise.all([getCart(), getOptionalUser()]);
+  const [cart, user, t] = await Promise.all([
+    getCart(),
+    getOptionalUser(),
+    getTranslations(),
+  ]);
   const isAdmin = user?.role === "ADMIN";
   const accountHref = isAdmin ? "/admin/dashboard" : "/hesabim";
-  const accountLabel = isAdmin ? "Yönetim" : user ? "Hesabım" : "Giriş";
+  const accountLabel = isAdmin
+    ? t("header.account.admin")
+    : user
+    ? t("header.account.member")
+    : t("header.account.guest");
 
   return (
     <header className="site-header">
@@ -40,7 +49,7 @@ export async function SiteHeader() {
               <circle cx="9" cy="20" r="1.4" fill="currentColor" />
               <circle cx="18" cy="20" r="1.4" fill="currentColor" />
             </svg>
-            <span className="label">Teklif Listem</span>
+            <span className="label">{t("header.cart")}</span>
             <span className="sh-count">{cart.totalQuantity}</span>
           </Link>
 

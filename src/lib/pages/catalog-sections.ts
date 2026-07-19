@@ -48,7 +48,7 @@ export const CATALOG_SECTIONS: SeedSection[] = [
     visible: true,
     data: {
       crumbLabel: "Ürünler",
-      kicker: "Katalog",
+      kicker: "",
       title: "Ürünler.",
       subtitle:
         "Kamyon, treyler ve ticari araçlar için OEM ve aftermarket yedek parçalar. Fiyat gösterilmez — ürünleri teklif listenize ekleyin, uzman ekibimiz 24 saat içinde size özel fiyatla döner.",

@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, pickTranslation } from "@/lib/i18n";
 import { getHomeData, type HomeData } from "@/lib/home/queries";
 import { HOME_PAGE, HOME_SECTIONS } from "./home-sections";
+import { pickLocalized } from "./i18n-picker";
 
 export type CategoryOption = { slug: string; name: string };
 
@@ -56,7 +57,10 @@ export async function getHomeSeo(): Promise<{
 }
 
 // Görünür bölümleri DB'den yükler; satır yoksa seed sabitlerine düşer (site asla boş kalmaz).
-export async function getHomeContent(): Promise<HomeContent> {
+// locale parametresi section.data içindeki _i18n override'ını uygular (TR default).
+export async function getHomeContent(
+  locale: Locale = DEFAULT_LOCALE,
+): Promise<HomeContent> {
   const [page, dynamic, categories] = await Promise.all([
     prisma.managedPage.findUnique({
       where: { key: HOME_PAGE.key },
@@ -69,7 +73,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       },
     }),
     getHomeData(),
-    getCategoryOptions(),
+    getCategoryOptions(locale),
   ]);
 
   if (!page) {
@@ -80,7 +84,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       sections: HOME_SECTIONS.filter((s) => s.visible).map((s) => ({
         key: s.key,
         type: s.type,
-        data: s.data,
+        data: pickLocalized(s.data as Record<string, unknown>, locale),
       })),
       dynamic,
       categories,
@@ -94,7 +98,7 @@ export async function getHomeContent(): Promise<HomeContent> {
     sections: page.sections.map((s) => ({
       key: s.key,
       type: s.type,
-      data: (s.data ?? {}) as Record<string, unknown>,
+      data: pickLocalized((s.data ?? {}) as Record<string, unknown>, locale),
     })),
     dynamic,
     categories,

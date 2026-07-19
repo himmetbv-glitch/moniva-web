@@ -70,7 +70,7 @@ export type ImportLookupMaps = {
   brandByName: Record<string, string>;
 };
 
-const SKU_RE = /^MNV-[A-Z0-9]{2}-\d{3,5}$/;
+const SKU_RE = /^MNV-(?:[A-Z0-9]{2}-)?\d{3,6}$/;
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function slugify(s: string): string {
@@ -104,7 +104,7 @@ export function validateRow(
 
   const sku = g("sku").toUpperCase();
   if (!sku) errors.push("SKU boş");
-  else if (!SKU_RE.test(sku)) errors.push(`Geçersiz SKU: ${sku} (MNV-XX-NNNN)`);
+  else if (!SKU_RE.test(sku)) errors.push(`Geçersiz SKU: ${sku} (MNV-XX-NNNN veya MNV-NNNN)`);
 
   let slug = g("slug").toLowerCase();
   if (!slug) slug = slugify(sku);

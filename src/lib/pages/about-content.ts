@@ -1,9 +1,11 @@
 import "server-only";
 
-import type { NewsStatus, SectionType } from "@prisma/client";
+import type { Locale, NewsStatus, SectionType } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
+import { DEFAULT_LOCALE } from "@/lib/i18n";
 import { ABOUT_PAGE, ABOUT_SECTIONS } from "./about-sections";
+import { pickLocalized } from "./i18n-picker";
 
 export type AboutSection = {
   key: string;
@@ -32,7 +34,9 @@ export async function getAboutSeo(): Promise<{
   };
 }
 
-export async function getAboutContent(): Promise<AboutContent> {
+export async function getAboutContent(
+  locale: Locale = DEFAULT_LOCALE,
+): Promise<AboutContent> {
   const page = await prisma.managedPage.findUnique({
     where: { key: ABOUT_PAGE.key },
     include: {
@@ -50,7 +54,7 @@ export async function getAboutContent(): Promise<AboutContent> {
       sections: ABOUT_SECTIONS.filter((s) => s.visible).map((s) => ({
         key: s.key,
         type: s.type,
-        data: s.data,
+        data: pickLocalized(s.data as Record<string, unknown>, locale),
       })),
     };
   }
@@ -60,7 +64,7 @@ export async function getAboutContent(): Promise<AboutContent> {
     sections: page.sections.map((s) => ({
       key: s.key,
       type: s.type,
-      data: (s.data ?? {}) as Record<string, unknown>,
+      data: pickLocalized((s.data ?? {}) as Record<string, unknown>, locale),
     })),
   };
 }

@@ -1,12 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "next-intl";
 
-import { LANGS, ACTIVE_LANG } from "./lang-items";
+import { Link, usePathname } from "@/i18n/navigation";
+import { LANGS, type LangCode } from "./lang-items";
 
 export function LangSwitcher() {
   const [open, setOpen] = useState(false);
-  const active = ACTIVE_LANG;
+  const locale = useLocale() as LangCode;
+  const pathname = usePathname();
+  const active = LANGS.find((l) => l.code === locale) ?? LANGS[0];
 
   return (
     <div className="sh-lang">
@@ -22,7 +26,7 @@ export function LangSwitcher() {
           <ellipse cx="7" cy="7" rx="2.8" ry="6" stroke="currentColor" strokeWidth="1.3" />
           <line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" strokeWidth="1.3" />
         </svg>
-        <span className="code">{active}</span>
+        <span className="code">{active.code.toUpperCase()}</span>
         <svg
           viewBox="0 0 10 10"
           fill="none"
@@ -33,24 +37,18 @@ export function LangSwitcher() {
       </button>
       {open && (
         <div className="sh-lang-menu" role="listbox">
-          {LANGS.map((l) =>
-            l.ready ? (
-              <button
-                key={l.code}
-                type="button"
-                className={active === l.code ? "active" : ""}
-                onClick={() => setOpen(false)}
-              >
-                <span className="lname">{l.label}</span>
-                <span className="lcode">{l.code}</span>
-              </button>
-            ) : (
-              <span key={l.code} className="lang-soon" title="Yakında">
-                <span className="lname">{l.label}</span>
-                <span className="lcode">Yakında</span>
-              </span>
-            ),
-          )}
+          {LANGS.map((l) => (
+            <Link
+              key={l.code}
+              href={pathname}
+              locale={l.code}
+              className={locale === l.code ? "active" : ""}
+              onClick={() => setOpen(false)}
+            >
+              <span className="lname">{l.label}</span>
+              <span className="lcode">{l.code.toUpperCase()}</span>
+            </Link>
+          ))}
         </div>
       )}
     </div>

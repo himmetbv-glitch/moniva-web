@@ -1,10 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 import { TOPICS, COUNTRIES } from "@/lib/validation/contact-message";
 
+// DB'ye TR string yazılır (mevcut şema/enum). UI'da bu key ile locale-aware label alınır.
+type TopicKey = "sales" | "support" | "distributor" | "press" | "career";
+const TOPIC_KEY: Record<string, TopicKey> = {
+  "Satış talebi": "sales",
+  "Teknik destek": "support",
+  "Distribütör olmak": "distributor",
+  "Basın / Medya": "press",
+  "Kariyer": "career",
+};
+
 export function ContactForm() {
+  const t = useTranslations();
   const [topic, setTopic] = useState<string>(TOPICS[0]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -37,10 +49,10 @@ export function ContactForm() {
         setDone(true);
       } else {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setError(j.error ?? "Mesaj gönderilemedi.");
+        setError(j.error ?? t("contact.form.sendError"));
       }
     } catch {
-      setError("Bağlantı hatası. Tekrar deneyin.");
+      setError(t("form.connectionError"));
     } finally {
       setSubmitting(false);
     }
@@ -50,36 +62,30 @@ export function ContactForm() {
     return (
       <div className="ct-form ct-done">
         <div className="ct-done__check">✓</div>
-        <div className="ct-done__title">Mesajınız iletildi.</div>
-        <p className="ct-done__body">
-          Talebinizi ilgili ekibe yönlendirdik. Çalışma saatleri içinde ortalama 4 saat
-          içinde size dönüş yapacağız.
-        </p>
+        <div className="ct-done__title">{t("contact.done.title")}</div>
+        <p className="ct-done__body">{t("contact.done.body")}</p>
       </div>
     );
   }
 
   return (
     <form className="ct-form" onSubmit={onSubmit}>
-      <h2 className="ct-form__title">Bize ihtiyacınızı anlatın.</h2>
-      <p className="ct-form__sub">
-        Formu doldurun, mesajınızı doğru ekibe yönlendirelim. Acil teklifler için
-        doğrudan arayın.
-      </p>
+      <h2 className="ct-form__title">{t("contact.form.title")}</h2>
+      <p className="ct-form__sub">{t("contact.form.sub")}</p>
 
       <div className="ct-field">
         <span className="ct-label">
-          Konu nedir? <i>*</i>
+          {t("contact.form.topicLabel")} <i>{t("form.required")}</i>
         </span>
         <div className="ct-chips">
-          {TOPICS.map((t) => (
+          {TOPICS.map((tv) => (
             <button
               type="button"
-              key={t}
-              className={"ct-chip" + (topic === t ? " ct-chip--on" : "")}
-              onClick={() => setTopic(t)}
+              key={tv}
+              className={"ct-chip" + (topic === tv ? " ct-chip--on" : "")}
+              onClick={() => setTopic(tv)}
             >
-              {t}
+              {t(`contact.form.topics.${TOPIC_KEY[tv] ?? "sales"}`)}
             </button>
           ))}
         </div>
@@ -87,22 +93,32 @@ export function ContactForm() {
 
       <div className="ct-row">
         <label className="ct-field">
-          <span className="ct-label">Ad <i>*</i></span>
+          <span className="ct-label">
+            {t("contact.form.firstName")} <i>{t("form.required")}</i>
+          </span>
           <input name="firstName" required placeholder="Mehmet" maxLength={80} />
         </label>
         <label className="ct-field">
-          <span className="ct-label">Soyad <i>*</i></span>
+          <span className="ct-label">
+            {t("contact.form.lastName")} <i>{t("form.required")}</i>
+          </span>
           <input name="lastName" required placeholder="Yılmaz" maxLength={80} />
         </label>
       </div>
 
       <div className="ct-row">
         <label className="ct-field">
-          <span className="ct-label">Firma</span>
-          <input name="company" placeholder="Firma adı" maxLength={120} />
+          <span className="ct-label">{t("contact.form.company")}</span>
+          <input
+            name="company"
+            placeholder={t("contact.form.companyPlaceholder")}
+            maxLength={120}
+          />
         </label>
         <label className="ct-field">
-          <span className="ct-label">Ülke <i>*</i></span>
+          <span className="ct-label">
+            {t("contact.form.country")} <i>{t("form.required")}</i>
+          </span>
           <select name="country" defaultValue="Türkiye" className="ct-select">
             {COUNTRIES.map((c) => (
               <option key={c} value={c}>
@@ -115,37 +131,52 @@ export function ContactForm() {
 
       <div className="ct-row">
         <label className="ct-field">
-          <span className="ct-label">İş e-postası <i>*</i></span>
-          <input name="email" type="email" required placeholder="siz@firma.com" maxLength={160} />
+          <span className="ct-label">
+            {t("contact.form.email")} <i>{t("form.required")}</i>
+          </span>
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder={t("contact.form.emailPlaceholder")}
+            maxLength={160}
+          />
         </label>
         <label className="ct-field">
-          <span className="ct-label">Telefon</span>
+          <span className="ct-label">{t("contact.form.phone")}</span>
           <input name="phone" type="tel" placeholder="+90 …" maxLength={40} />
         </label>
       </div>
 
       <label className="ct-field">
-        <span className="ct-label">OEM referans numaraları (opsiyonel)</span>
-        <input name="oemRefs" placeholder="örn. 1234567, A1234567890 — virgülle ayırın" maxLength={400} />
+        <span className="ct-label">{t("contact.form.oemRefs")}</span>
+        <input
+          name="oemRefs"
+          placeholder={t("contact.form.oemRefsPlaceholder")}
+          maxLength={400}
+        />
       </label>
 
       <label className="ct-field">
-        <span className="ct-label">Mesajınız <i>*</i></span>
+        <span className="ct-label">
+          {t("contact.form.message")} <i>{t("form.required")}</i>
+        </span>
         <textarea
           name="message"
           rows={5}
           required
           minLength={10}
           maxLength={4000}
-          placeholder="Filonuz, ihtiyaç duyduğunuz adet, zaman çizelgesi…"
+          placeholder={t("contact.form.messagePlaceholder")}
         />
       </label>
 
       <label className="ct-consent">
         <input type="checkbox" name="kvkkConsent" value="true" required />
         <span>
-          Moniva&apos;nın <b>gizlilik politikası</b>nı kabul ediyor ve talebimle ilgili
-          benimle iletişime geçilmesine onay veriyorum.
+          {t.rich("contact.form.consent", {
+            b: (chunks) => <b>{chunks}</b>,
+          })}
         </span>
       </label>
 
@@ -153,10 +184,13 @@ export function ContactForm() {
 
       <div className="ct-foot">
         <button type="submit" className="ct-submit" disabled={submitting}>
-          {submitting ? "Gönderiliyor…" : "Mesaj gönder ▶"}
+          {submitting ? t("contact.form.submitting") : t("contact.form.submit")}
         </button>
         <span className="ct-resp">
-          Ort. yanıt: <b>4 iş saati</b>
+          {t.rich("contact.form.response", {
+            hours: 4,
+            b: (chunks) => <b>{chunks}</b>,
+          })}
         </span>
       </div>
     </form>

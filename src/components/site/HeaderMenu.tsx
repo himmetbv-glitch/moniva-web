@@ -1,14 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
+import { Link, usePathname } from "@/i18n/navigation";
 import { NAV_ITEMS } from "./nav-items";
-import { LANGS, ACTIVE_LANG } from "./lang-items";
+import { LANGS, type LangCode } from "./lang-items";
 
 export function HeaderMenu() {
   const pathname = usePathname();
+  const locale = useLocale() as LangCode;
+  const t = useTranslations();
   const [open, setOpen] = useState(false);
 
   // Rota değişince menüyü kapat.
@@ -21,7 +23,7 @@ export function HeaderMenu() {
       <button
         type="button"
         className="sh-menu-btn"
-        aria-label="Menü"
+        aria-label={t("header.menu.open")}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
       >
@@ -44,7 +46,7 @@ export function HeaderMenu() {
           <button
             type="button"
             className="sh-menu-overlay"
-            aria-label="Menüyü kapat"
+            aria-label={t("header.menu.close")}
             onClick={() => setOpen(false)}
           />
           <div className="sh-menu-panel">
@@ -56,40 +58,31 @@ export function HeaderMenu() {
                   className={pathname === item.href ? "active" : ""}
                   onClick={() => setOpen(false)}
                 >
-                  {item.label}
+                  {t(`nav.${item.key}`)}
                 </Link>
               ) : (
-                <span key={item.href} className="soon" title="Yakında">
-                  {item.label}
+                <span key={item.href} className="soon" title={t("common.soon")}>
+                  {t(`nav.${item.key}`)}
                 </span>
               ),
             )}
 
             <div className="sh-menu-lang">
-              <span className="sh-menu-lang__hd">DİL</span>
+              <span className="sh-menu-lang__hd">{t("header.menu.langHeading")}</span>
               <div className="sh-menu-lang__opts">
-                {LANGS.map((l) =>
-                  l.ready ? (
-                    <button
-                      key={l.code}
-                      type="button"
-                      className={
-                        "sh-menu-lang__opt" +
-                        (ACTIVE_LANG === l.code ? " active" : "")
-                      }
-                    >
-                      {l.code}
-                    </button>
-                  ) : (
-                    <span
-                      key={l.code}
-                      className="sh-menu-lang__opt soon"
-                      title="Yakında"
-                    >
-                      {l.code}
-                    </span>
-                  ),
-                )}
+                {LANGS.map((l) => (
+                  <Link
+                    key={l.code}
+                    href={pathname}
+                    locale={l.code}
+                    className={
+                      "sh-menu-lang__opt" +
+                      (locale === l.code ? " active" : "")
+                    }
+                  >
+                    {l.code.toUpperCase()}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>

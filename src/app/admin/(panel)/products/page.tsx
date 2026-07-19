@@ -41,6 +41,19 @@ function buildQuery(base: SP, patch: Partial<SP>): string {
   return s ? `/admin/products?${s}` : "/admin/products";
 }
 
+// Pencereli sayfalama: 1 … (page±2) … pageCount — çok sayfada taşmayı önler.
+function pageItems(page: number, pageCount: number): (number | "dots")[] {
+  const delta = 2;
+  const start = Math.max(2, page - delta);
+  const end = Math.min(pageCount - 1, page + delta);
+  const items: (number | "dots")[] = [1];
+  if (start > 2) items.push("dots");
+  for (let i = start; i <= end; i++) items.push(i);
+  if (end < pageCount - 1) items.push("dots");
+  if (pageCount > 1) items.push(pageCount);
+  return items;
+}
+
 export default async function AdminProductsPage({
   searchParams,
 }: {
@@ -308,15 +321,21 @@ export default async function AdminProductsPage({
                 >
                   ‹
                 </Link>
-                {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
-                  <Link
-                    key={n}
-                    className={"pl-pager__btn" + (n === page ? " pl-pager__btn--on" : "")}
-                    href={buildQuery(sp, { sayfa: String(n) })}
-                  >
-                    {n}
-                  </Link>
-                ))}
+                {pageItems(page, pageCount).map((it, idx) =>
+                  it === "dots" ? (
+                    <span key={`d${idx}`} className="pl-pager__dots">
+                      …
+                    </span>
+                  ) : (
+                    <Link
+                      key={it}
+                      className={"pl-pager__btn" + (it === page ? " pl-pager__btn--on" : "")}
+                      href={buildQuery(sp, { sayfa: String(it) })}
+                    >
+                      {it}
+                    </Link>
+                  ),
+                )}
                 <Link
                   className={"pl-pager__btn" + (page >= pageCount ? " pl-pager__btn--off" : "")}
                   href={buildQuery(sp, { sayfa: String(Math.min(pageCount, page + 1)) })}

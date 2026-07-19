@@ -1,0 +1,708 @@
+{
+  "meta": {
+    "brand": "Moniva",
+    "defaultTitle": "Moniva — B2B Yedek Parça",
+    "defaultDescription": "Treyler ve ağır vasıta yedek parça B2B katalog ve teklif sistemi.",
+    "notFound": "Sayfa bulunamadı"
+  },
+  "common": {
+    "soon": "Yakında",
+    "close": "Kapat"
+  },
+  "nav": {
+    "home": "ANA SAYFA",
+    "about": "HAKKIMIZDA",
+    "products": "ÜRÜNLER",
+    "catalogs": "KATALOGLAR",
+    "quality": "KALİTE",
+    "news": "HABERLER",
+    "careers": "KARİYER",
+    "contact": "İLETİŞİM"
+  },
+  "header": {
+    "account": {
+      "admin": "Yönetim",
+      "member": "Hesabım",
+      "guest": "Giriş"
+    },
+    "cart": "Teklif Listem",
+    "search": {
+      "placeholder": "Parça, marka, OEM ara…",
+      "ariaLabel": "Ara",
+      "submit": "Bul"
+    },
+    "menu": {
+      "open": "Menü",
+      "close": "Menüyü kapat",
+      "langHeading": "DİL"
+    }
+  },
+  "footer": {
+    "columns": {
+      "products": {
+        "title": "Ürünler",
+        "items": [
+          "Fren Sistemleri",
+          "Hava Süspansiyon",
+          "Aks ve Tekerlek",
+          "Şanzıman Parçaları",
+          "Elektrik Sistemleri",
+          "Kabin & Gövde"
+        ]
+      },
+      "corporate": {
+        "title": "Kurumsal",
+        "items": [
+          "Hakkımızda",
+          "Kalite & Sertifikalar",
+          "Sürdürülebilirlik",
+          "Fuarlar",
+          "Haberler",
+          "Kariyer"
+        ]
+      },
+      "support": {
+        "title": "Destek",
+        "items": [
+          "Teknik Destek",
+          "Katalog İndir",
+          "OEM Çapraz Referans",
+          "Garanti Politikası",
+          "İadeler",
+          "SSS"
+        ]
+      }
+    },
+    "certsLabel": "Sertifikalar",
+    "legal": {
+      "copy": "© 2026 MONIVA Otomotiv ve Gıda San. Tic. A.Ş. Tüm hakları saklıdır.",
+      "fallback": [
+        "Künye",
+        "Gizlilik Politikası",
+        "Çerez Ayarları",
+        "Site Haritası"
+      ]
+    }
+  },
+  "hero": {
+    "fallback": {
+      "head": "Güvenilir Parça. Global Erişim.",
+      "sub": "Kamyon, treyler ve ticari araçlar için premium yedek parça."
+    },
+    "arrow": {
+      "prev": "Önceki",
+      "next": "Sonraki"
+    },
+    "dotAria": "Slayt {index}"
+  },
+  "crumb": {
+    "home": "Ana Sayfa",
+    "products": "Ürünler",
+    "careers": "Kariyer"
+  },
+  "product": {
+    "badges": {
+      "featured": "ÖNE ÇIKAN",
+      "oem": "OEM"
+    },
+    "card": {
+      "refLabel": "Ref:",
+      "oemLabel": "OEM:",
+      "qtyDecrease": "Azalt",
+      "qty": "Adet",
+      "qtyIncrease": "Artır"
+    },
+    "search": {
+      "modes": {
+        "tumu": "Tümü",
+        "kategori": "Kategori",
+        "oem": "OEM"
+      },
+      "placeholders": {
+        "tumu": "Ürün, stok kodu veya OEM ara…",
+        "kategori": "Kategori adıyla ara…",
+        "oem": "OEM / parça no…"
+      },
+      "scopeAria": "Arama kapsamı",
+      "inputAria": "Ürün ara",
+      "submit": "Bul ▶"
+    },
+    "categoryMenu": {
+      "heading": "Ürün Kategorileri",
+      "expand": "Alt kategorileri göster",
+      "collapse": "Alt kategorileri gizle"
+    },
+    "filters": {
+      "heading": "Filtreler",
+      "clearAll": "Tümünü temizle",
+      "brandHeading": "Marka"
+    },
+    "grid": {
+      "countSuffix": "parça",
+      "sortLabel": "Sırala:",
+      "sorts": {
+        "one-cikan": "Öne Çıkanlar",
+        "yeni": "En Yeni",
+        "ref": "Referans: A→Z",
+        "ad": "Ad: A→Z"
+      },
+      "viewGrid": "Izgara görünüm",
+      "viewList": "Liste görünüm",
+      "emptyWithQuery": "\"{query}\" ile eşleşen ürün bulunamadı. Farklı bir parça adı, SKU veya OEM numarası deneyin.",
+      "emptyNoQuery": "Bu filtrelerle eşleşen ürün yok. Filtreleri temizleyin veya farklı bir kategori seçin.",
+      "pageInfo": "Sayfa <b>{page}</b> / <b>{total}</b>",
+      "jumpTitle": "Sayfaya git",
+      "jumpAria": "Sayfa numarası gir ve Enter'a bas",
+      "jumpPlaceholder": "No"
+    },
+    "detail": {
+      "descHeadingFallback": "Ürün Açıklaması",
+      "facts": {
+        "material": "Malzeme",
+        "category": "Kategori",
+        "typeLabel": "Tip",
+        "typeOem": "OEM Orijinal",
+        "typeAftermarket": "Aftermarket"
+      },
+      "kit": {
+        "heading": "Kit İçeriği",
+        "partNo": "Parça No",
+        "description": "Açıklama",
+        "size": "Ölçü",
+        "qty": "Adet"
+      },
+      "usedIn": {
+        "heading": "Kullanıldığı Kitler",
+        "kitNo": "Kit No",
+        "kitName": "Kit Adı",
+        "qtyFromThis": "Bu üründen adet"
+      },
+      "partNoLabel": "Parça No:",
+      "cross": {
+        "heading": "Cross-References (OEM)",
+        "anchorLabel": "Cross-References",
+        "oemColumn": "OEM Numarası",
+        "manufacturerColumn": "Üretici"
+      },
+      "empty": {
+        "description": "Açıklama girilmemiş.",
+        "specs": "Teknik özellik girilmemiş.",
+        "cross": "OEM çapraz referans yok.",
+        "docs": "Bu ürün için doküman bulunmuyor."
+      },
+      "docs": {
+        "type": "PDF",
+        "download": "↓ İndir",
+        "labelFmt": "Datasheet · {locale}"
+      }
+    }
+  },
+  "form": {
+    "required": "*",
+    "requiredNote": "* ile işaretli alanlar zorunludur",
+    "connectionError": "Bağlantı hatası. Tekrar deneyin.",
+    "genericSubmitError": "Gönderim başarısız."
+  },
+  "contact": {
+    "form": {
+      "title": "Bize ihtiyacınızı anlatın.",
+      "sub": "Formu doldurun, mesajınızı doğru ekibe yönlendirelim. Acil teklifler için doğrudan arayın.",
+      "topicLabel": "Konu nedir?",
+      "topics": {
+        "sales": "Satış talebi",
+        "support": "Teknik destek",
+        "distributor": "Distribütör olmak",
+        "press": "Basın / Medya",
+        "career": "Kariyer"
+      },
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "company": "Firma",
+      "companyPlaceholder": "Firma adı",
+      "country": "Ülke",
+      "email": "İş e-postası",
+      "emailPlaceholder": "siz@firma.com",
+      "phone": "Telefon",
+      "oemRefs": "OEM referans numaraları (opsiyonel)",
+      "oemRefsPlaceholder": "örn. 1234567, A1234567890 — virgülle ayırın",
+      "message": "Mesajınız",
+      "messagePlaceholder": "Filonuz, ihtiyaç duyduğunuz adet, zaman çizelgesi…",
+      "consent": "Moniva'nın <b>gizlilik politikası</b>nı kabul ediyor ve talebimle ilgili benimle iletişime geçilmesine onay veriyorum.",
+      "submit": "Mesaj gönder ▶",
+      "submitting": "Gönderiliyor…",
+      "response": "Ort. yanıt: <b>{hours} iş saati</b>",
+      "sendError": "Mesaj gönderilemedi."
+    },
+    "done": {
+      "title": "Mesajınız iletildi.",
+      "body": "Talebinizi ilgili ekibe yönlendirdik. Çalışma saatleri içinde ortalama 4 saat içinde size dönüş yapacağız."
+    },
+    "mapTitle": "Moniva konum haritası",
+    "directions": "Yol tarifi al ▶",
+    "openMap": "Haritada aç",
+    "lat": "Enlem",
+    "lng": "Boylam"
+  },
+  "careers": {
+    "form": {
+      "title": "Başvuru formu",
+      "code": "FORM · CRR-001",
+      "fullName": "Ad soyad",
+      "fullNamePlaceholder": "örn. Ayşe Yıldız",
+      "email": "E-posta",
+      "emailPlaceholder": "siz@ornek.com",
+      "phone": "Telefon",
+      "location": "Konum",
+      "locationPlaceholder": "Şehir, Ülke",
+      "position": "Başvurulan pozisyon",
+      "positionPlaceholder": "— Departman seçin —",
+      "experience": "Deneyim süresi",
+      "experiencePlaceholder": "— Seçin —",
+      "experiences": {
+        "student": "Öğrenci / Yeni mezun",
+        "junior": "0–2 yıl",
+        "mid": "3–5 yıl",
+        "senior": "6–10 yıl",
+        "expert": "10+ yıl"
+      },
+      "linkedin": "LinkedIn veya portfolyo bağlantısı",
+      "coverNote": "Ön yazı",
+      "coverNotePlaceholder": "Moniva'ya neden katılmak istediğinize dair kısa bir not…",
+      "cv": "CV / Özgeçmiş",
+      "cvSelect": "CV'nizi seçmek için tıklayın",
+      "cvHint": "PDF, DOC, DOCX · Maks. 5 MB",
+      "consent": "Kişisel verilerimin işe alım amacıyla <b>KVKK / gizlilik politikası</b> kapsamında işlenmesini kabul ediyorum.",
+      "submit": "Başvuruyu gönder ▶",
+      "submitting": "Gönderiliyor…",
+      "sendError": "Başvuru gönderilemedi."
+    },
+    "done": {
+      "title": "Başvurunuz alındı.",
+      "body": "İlginiz için teşekkürler. Her başvuruyu değerlendiriyor ve iki hafta içinde size dönüş yapıyoruz."
+    },
+    "teamAlt": "Moniva ekibi"
+  },
+  "auth": {
+    "login": {
+      "pageTitle": "Giriş Yap — Moniva",
+      "title": "Giriş yap",
+      "subtitle": "B2B hesabınızla giriş yapın; tekliflerinizi panelinizden takip edin.",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@firma.com",
+      "password": "Şifre",
+      "passwordPlaceholder": "••••••••",
+      "submit": "Giriş yap",
+      "submitting": "Giriş yapılıyor…",
+      "noAccount": "Hesabınız yok mu?",
+      "signUp": "Üye olun"
+    },
+    "register": {
+      "pageTitle": "Üye Ol — Moniva",
+      "title": "B2B hesabı oluştur",
+      "subtitle": "Firma bilgilerinizle üye olun; tekliflerinizi tek panelden yönetin.",
+      "companyName": "Firma adı",
+      "companyNamePlaceholder": "Örn. Yılmaz Lojistik A.Ş.",
+      "fullName": "Ad soyad",
+      "fullNamePlaceholder": "Yetkili kişi",
+      "phone": "Telefon",
+      "phonePlaceholder": "+90 5xx xxx xx xx",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@firma.com",
+      "address": "Firma adresi",
+      "addressPlaceholder": "Cadde, sokak, no, ilçe…",
+      "country": "Ülke",
+      "city": "İl / Şehir",
+      "cityPlaceholder": "Örn. Konya",
+      "taxNumber": "VKN",
+      "taxNumberOptional": "(opsiyonel)",
+      "taxNumberPlaceholder": "10 haneli",
+      "password": "Şifre",
+      "passwordPlaceholder": "En az 8 karakter",
+      "verifyNote": "Hesabınız oluşturulduktan sonra ekibimiz firmanızı doğrular. Doğrulanmış B2B hesaplar özel koşullardan yararlanır.",
+      "kvkkPrefix": "",
+      "kvkkLink": "KVKK Aydınlatma Metni",
+      "kvkkSuffix": "'ni okudum, kişisel verilerimin işlenmesini onaylıyorum.",
+      "submit": "Üye ol",
+      "submitting": "Hesap oluşturuluyor…",
+      "haveAccount": "Zaten hesabınız var mı?",
+      "signIn": "Giriş yapın"
+    }
+  },
+  "quote": {
+    "status": {
+      "new": "İnceleniyor",
+      "quoted": "Teklif hazır",
+      "viewed": "Teklif hazır",
+      "approved": "Onaylandı",
+      "revisionRequested": "Revizyon istendi",
+      "declined": "Kapandı",
+      "expired": "Süresi doldu",
+      "closed": "Kapandı"
+    },
+    "cart": {
+      "crumb": "Teklif Listem",
+      "opError": "İşlem tamamlanamadı. Lütfen tekrar deneyin.",
+      "columns": {
+        "product": "Ürün",
+        "quantity": "Adet"
+      },
+      "continueShopping": "← Alışverişe Devam Et",
+      "clearList": "Listeyi temizle",
+      "row": {
+        "oemLabel": "OEM:",
+        "skuLabel": "SKU:",
+        "typeOem": "OEM Original",
+        "typeAftermarket": "Aftermarket",
+        "qtyDecrease": "Azalt",
+        "qty": "Adet",
+        "qtyIncrease": "Artır",
+        "remove": "Listeden çıkar"
+      },
+      "summary": {
+        "title": "Sepet Özeti",
+        "sub": "Liste içeriği — teklif gönderildiğinde donar.",
+        "totalItems": "Toplam Ürün",
+        "totalItemsUnit": "adet",
+        "totalKinds": "Toplam Çeşit",
+        "totalKindsUnit": "kalem",
+        "oemMix": "OEM / Aftermarket",
+        "cta": "Teklif Al",
+        "promise": "<b>✓</b> 24 saat içinde size dönüş yapacağız.",
+        "trust": {
+          "secure": "Güvenli",
+          "secureNote": "KVKK uyumlu",
+          "oem": "OEM",
+          "oemNote": "Garantili",
+          "response": "24s",
+          "responseNote": "Dönüş"
+        }
+      },
+      "hero": {
+        "title": "Teklif Listem",
+        "subLabel": "· My Quote List",
+        "sub": "Aşağıdaki ürünler için size özel <b>fiyat teklifi</b> hazırlanacaktır. Listeyi inceleyin, adetleri ayarlayın ve <b>\"Teklif Al\"</b> ile gönderin — uzman ekibimiz 24 saat içinde size dönüş yapacaktır.",
+        "badgePrice": "Kişiye özel fiyat",
+        "badgeTime": "24 saat içinde dönüş"
+      },
+      "empty": {
+        "title": "Teklif listeniz boş",
+        "body": "Ürünleri inceleyip teklif listenize ekleyin; ardından tek talepte size özel fiyat alın.",
+        "cta": "Ürünlere Göz At"
+      },
+      "error": {
+        "title": "Bir şeyler ters gitti",
+        "body": "Teklif listesi yüklenirken bir sorun oluştu. Lütfen tekrar deneyin; sorun sürerse bizimle iletişime geçin.",
+        "retry": "Tekrar Dene"
+      },
+      "loading": {
+        "summary": "Sepet Özeti",
+        "loadingText": "Yükleniyor…"
+      }
+    },
+    "modal": {
+      "kicker": "B2B Teklif Sistemi",
+      "title": "Teklif Talebi Oluştur.",
+      "sub": "Aşağıdaki bilgileri doldurun — uzman satış ekibimiz size özel fiyatlandırma ve stok durumu ile birlikte 24 saat içinde dönüş yapacaktır.",
+      "close": "Kapat",
+      "steps": {
+        "cart": "Sepet",
+        "info": "Bilgileriniz",
+        "confirm": "Onay"
+      },
+      "summary": "Teklif Listenizde <b>{qty} adet ürün</b> · <b>{lines} kalem</b> bulunmaktadır.",
+      "fields": {
+        "fullName": "Ad Soyad",
+        "fullNamePlaceholder": "Ör. Mehmet Yılmaz",
+        "companyName": "Şirket Adı",
+        "companyNamePlaceholder": "Ör. ABC Lojistik A.Ş.",
+        "email": "E-posta",
+        "emailPlaceholder": "ornek@sirket.com",
+        "phone": "Telefon",
+        "phonePlaceholder": "5XX XXX XX XX",
+        "country": "Ülke",
+        "city": "Şehir",
+        "cityPlaceholder": "Ör. İstanbul",
+        "taxNumber": "Vergi Numarası",
+        "taxNumberPlaceholder": "10 haneli VKN",
+        "taxOffice": "Vergi Dairesi",
+        "taxOfficePlaceholder": "Ör. Kadıköy V.D.",
+        "address": "Teslimat Adresi",
+        "addressPlaceholder": "Sokak, no, mahalle, ilçe — fatura ve sevkiyat için kullanılacaktır.",
+        "notes": "Ek Notlar / Özel Talepler",
+        "notesPlaceholder": "Aciliyet durumu, sevkiyat tercihi, alternatif OEM numaraları, vb.",
+        "required": "*",
+        "optional": "(opsiyonel)"
+      },
+      "consent": {
+        "kvkkLink": "KVKK Aydınlatma Metni",
+        "kvkkSuffix": "'ni okudum, kişisel verilerimin işlenmesine onay veriyorum.",
+        "marketing": "Moniva'nın <b>yeni ürün ve toptan kampanya</b> iletilerine açığım. (opsiyonel)"
+      },
+      "footNote": "Verileriniz <b>KVKK</b> kapsamında korunmaktadır.",
+      "cancel": "Vazgeç",
+      "submit": "Teklifi Gönder",
+      "submitting": "Gönderiliyor…",
+      "success": {
+        "title": "Teklif talebiniz alındı.",
+        "body": "Uzman satış ekibimiz, talebinizi inceleyip size özel fiyatlandırma ve stok durumu ile birlikte <b>24 saat içinde</b> dönüş yapacaktır.",
+        "refLabel": "Talep referansınız:",
+        "ok": "Tamam"
+      },
+      "countries": {
+        "tr": "Türkiye",
+        "de": "Almanya",
+        "ro": "Romanya",
+        "ru": "Rusya",
+        "other": "Diğer"
+      }
+    },
+    "decision": {
+      "prompt": "Bu teklif hakkında ne yapmak istersiniz?",
+      "buttons": {
+        "approve": "Onayla",
+        "revision": "Revizyon iste",
+        "contact": "Temsilciyle görüş",
+        "decline": "Şu an uygun değil"
+      },
+      "notePlaceholder": {
+        "revision": "Nasıl bir revizyon istersiniz? (opsiyonel)",
+        "decline": "Kısaca sebebini yazabilirsiniz (opsiyonel)"
+      },
+      "cancel": "Vazgeç",
+      "sendRevision": "Revizyon talebini gönder",
+      "send": "Gönder",
+      "sending": "Gönderiliyor…",
+      "done": {
+        "approve": {
+          "title": "Teklifi onayladınız",
+          "body": "Teşekkürler! Satış ekibimiz sipariş sürecini başlatmak için sizinle iletişime geçecek."
+        },
+        "revision": {
+          "title": "Revizyon talebiniz alındı",
+          "body": "Notunuz iletildi. Güncellenmiş teklif en kısa sürede tarafınıza ulaştırılacak."
+        },
+        "contact": {
+          "title": "Talebiniz alındı",
+          "body": "Satış temsilcimiz en kısa sürede sizinle iletişime geçecek."
+        },
+        "decline": {
+          "title": "Geri bildiriminiz alındı",
+          "body": "Bilgi için teşekkürler. İhtiyaç halinde bize her zaman ulaşabilirsiniz."
+        }
+      }
+    },
+    "public": {
+      "pageTitle": "Fiyat Teklifiniz — Moniva",
+      "title": "FİYAT TEKLİFİ",
+      "editedAt": "Düzenlenme:",
+      "expired": "Bu teklifin geçerlilik süresi doldu. Güncel fiyat için lütfen bizimle iletişime geçin.",
+      "decidedLabels": {
+        "approved": "Teklifi onayladınız",
+        "revisionRequested": "Revizyon talebiniz alındı",
+        "declined": "Bu teklif kapatıldı",
+        "closed": "Bu teklif kapatıldı"
+      },
+      "to": "SAYIN",
+      "table": {
+        "no": "#",
+        "part": "Parça",
+        "qty": "Adet",
+        "unit": "Birim ({currency})",
+        "amount": "Tutar"
+      },
+      "terms": {
+        "heading": "ŞARTLAR",
+        "shipping": "Teslim şekli",
+        "payment": "Ödeme vadesi",
+        "validity": "Geçerlilik",
+        "fineWithoutVat": "Fiyatlar {currency} cinsindendir ve KDV hariçtir. Stok ve teslim süreleri sipariş onayında teyit edilir. Bu belge bir fiyat teklifidir, fatura yerine geçmez.",
+        "fineWithVat": "Fiyatlar {currency} cinsindendir. Stok ve teslim süreleri sipariş onayında teyit edilir. Bu belge bir fiyat teklifidir, fatura yerine geçmez."
+      },
+      "totals": {
+        "subtotal": "Ara toplam",
+        "discount": "İskonto ({pct}%)",
+        "shipping": "Navlun",
+        "vat": "KDV ({pct}%)",
+        "total": "Genel Toplam"
+      },
+      "footer": {
+        "tagline": "Moniva · Ağır Vasıta & Treyler Yedek Parça",
+        "domain": "moniva.com.tr"
+      }
+    }
+  },
+  "account": {
+    "layoutTitle": "Hesabım — Moniva",
+    "logout": "Çıkış yap",
+    "loggingOut": "Çıkılıyor…",
+    "dashboard": {
+      "greetingFallback": "Merhaba",
+      "greeting": "Merhaba, {name}",
+      "sub": "Teklif taleplerinizi buradan takip edin.",
+      "verifiedBadge": "✓ Doğrulanmış B2B hesabı",
+      "pendingBadge": "Doğrulama bekleniyor",
+      "profileLink": "Profil",
+      "pendingNote": "Hesabınız ekibimizce inceleniyor. Doğrulandığında özel B2B koşullarından yararlanmaya başlarsınız.",
+      "quotesTitle": "Tekliflerim",
+      "newQuoteLink": "+ Yeni teklif oluştur",
+      "emptyText": "Henüz teklif talebiniz yok.",
+      "emptyCta": "Ürünlere göz atın",
+      "table": {
+        "ref": "Referans",
+        "date": "Tarih",
+        "lines": "Kalem",
+        "status": "Durum",
+        "amount": "Tutar",
+        "open": "Detay ▶"
+      }
+    },
+    "profile": {
+      "crumbSelf": "Profil",
+      "title": "Profil bilgileri",
+      "sub": "Firma bilgileriniz teklif formlarına otomatik gelir.",
+      "section": {
+        "info": "Firma & iletişim",
+        "password": "Şifre değiştir"
+      },
+      "form": {
+        "companyName": "Firma adı",
+        "fullName": "Ad soyad",
+        "phone": "Telefon",
+        "emailReadonly": "E-posta",
+        "emailReadonlyHint": "(değiştirilemez)",
+        "taxNumber": "VKN",
+        "taxNumberOptional": "(opsiyonel)",
+        "taxOffice": "Vergi dairesi",
+        "taxOfficeOptional": "(opsiyonel)",
+        "city": "Şehir",
+        "cityOptional": "(opsiyonel)",
+        "address": "Adres",
+        "addressOptional": "(opsiyonel)",
+        "saved": "Bilgileriniz güncellendi.",
+        "submit": "Bilgileri kaydet",
+        "submitting": "Kaydediliyor…"
+      },
+      "password": {
+        "current": "Mevcut şifre",
+        "new": "Yeni şifre",
+        "confirm": "Yeni şifre (tekrar)",
+        "updated": "Şifreniz güncellendi.",
+        "submit": "Şifreyi değiştir",
+        "submitting": "Güncelleniyor…"
+      }
+    },
+    "quoteDetail": {
+      "crumbBack": "Hesabım",
+      "crumbTitle": "Teklif {ref}",
+      "title": "Teklif {ref}",
+      "createdInfo": "{date} tarihinde oluşturuldu · {qty} adet",
+      "pendingNote": "Teklifiniz ekibimizce inceleniyor. Fiyatlandırma tamamlandığında bu sayfada görüntüleyebilir ve PDF olarak indirebilirsiniz.",
+      "expiredNote": "Bu teklifin geçerlilik süresi doldu. Güncel fiyat için lütfen bizimle iletişime geçin.",
+      "sections": {
+        "items": "Talep edilen parçalar",
+        "summary": "Teklif özeti",
+        "terms": "Koşullar",
+        "shipping": "Teslimat"
+      },
+      "items": {
+        "part": "Parça",
+        "qty": "Adet",
+        "unit": "Birim",
+        "amount": "Tutar"
+      },
+      "summary": {
+        "subtotal": "Ara toplam",
+        "discount": "İskonto (%{pct})",
+        "shipping": "Navlun",
+        "vat": "KDV (%{pct})",
+        "total": "Genel toplam",
+        "pdfDownload": "Teklifi PDF indir ↓"
+      },
+      "terms": {
+        "currency": "Para birimi",
+        "validity": "Geçerlilik",
+        "payment": "Ödeme",
+        "quoteDate": "Teklif tarihi"
+      },
+      "decidedHint": {
+        "approved": "Sipariş sürecini başlatmak için sizinle iletişime geçeceğiz.",
+        "revisionRequested": "Güncellenmiş teklif en kısa sürede tarafınıza ulaştırılacak.",
+        "declined": "İhtiyaç halinde bize her zaman ulaşabilirsiniz.",
+        "closed": "Bu teklif kapatıldı."
+      }
+    }
+  },
+  "news": {
+    "pageTitle": "Haberler — Moniva",
+    "pageDescription": "Moniva'dan basın bültenleri, ürün lansmanları, fuar haberleri ve sektör içgörüleri.",
+    "notFoundTitle": "Haber bulunamadı — Moniva",
+    "crumbSelf": "Haberler",
+    "banner": {
+      "eyebrow": "━━ Basın & Medya",
+      "title": "Haberler.",
+      "sub": "Moniva Otomotiv'den basın bültenleri, ürün lansmanları, fuar haberleri ve sektör içgörüleri — 80+ pazara sevk ettiğimiz her parçanın arkasındaki hikâye.",
+      "statNews": "Haber",
+      "statLanguage": "Dil",
+      "statMarket": "Pazar"
+    },
+    "empty": {
+      "title": "Henüz yayınlanmış haber yok.",
+      "body": "Yakında bu sayfada Moniva'dan güncellemeleri bulacaksınız."
+    },
+    "featuredHeading": "Öne Çıkan Haber.",
+    "featuredBadge": "ÖNE ÇIKAN",
+    "pressReleasePrefix": "Basın Bülteni",
+    "featuredCta": "Tüm haberi oku ▶",
+    "allHeading": "Tüm Haberler.",
+    "cardCta": "Oku ▶",
+    "backLink": "◀ Tüm haberlere dön",
+    "articleEmpty": "Bu haberin içeriği henüz eklenmemiş."
+  },
+  "page": {
+    "notFoundTitle": "Sayfa bulunamadı",
+    "empty": "Bu sayfanın içeriği henüz hazırlanıyor.",
+    "lastUpdated": "Son güncelleme:"
+  },
+  "home": {
+    "featuredCta": "İncele ▶",
+    "newsEmpty": "Haberler yakında yayımlanacak.",
+    "newsEmptySide": "Yakında."
+  },
+  "about": {
+    "facilityAlt": "Moniva Konya tesisi"
+  },
+  "quality": {
+    "labAlt": "Moniva kalite laboratuvarı",
+    "docSoon": "Yakında",
+    "docDownload": "İndir ↓"
+  },
+  "catalogs": {
+    "pageTitle": "Kataloglar — Moniva",
+    "pageDescription": "Moniva ürün gamını baskıya hazır PDF olarak indirin — genel katalog, ürün aileleri, OEM çapraz referans ve marka kılavuzları.",
+    "crumbSelf": "Kataloglar",
+    "banner": {
+      "eyebrow": "━━ İndirilebilir Dosyalar",
+      "title": "Kataloglar.",
+      "sub": "Moniva ürün gamını baskıya hazır PDF olarak indirin — genel katalog, ürün aileleri, OEM çapraz referans ve marka kılavuzları. 2026 sezonu için güncellendi.",
+      "statPdf": "PDF",
+      "statLanguage": "Dil",
+      "statPages": "Sayfa"
+    },
+    "featuredGroup": "Öne Çıkan Kataloglar",
+    "empty": {
+      "title": "Henüz yayınlanmış katalog yok.",
+      "body": "Kataloglar hazırlandığında bu sayfadan indirebileceksiniz."
+    },
+    "card": {
+      "featured": "ÖNE ÇIKAN",
+      "download": "PDF İndir",
+      "preview": "Önizle",
+      "pageSuffix": "s"
+    },
+    "printCta": {
+      "title": "Basılı katalog ister misiniz?",
+      "body": "Genel kataloğun basılı bir kopyasını iş yerinize gönderelim — kayıtlı ticari iş ortakları için ücretsiz.",
+      "cta": "Basılı kopya isteyin ▶"
+    }
+  }
+}

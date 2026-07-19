@@ -1,0 +1,708 @@
+{
+  "meta": {
+    "brand": "Moniva",
+    "defaultTitle": "Moniva — B2B Spare Parts",
+    "defaultDescription": "B2B catalog and quote system for trailer and heavy vehicle spare parts.",
+    "notFound": "Page not found"
+  },
+  "common": {
+    "soon": "Soon",
+    "close": "Close"
+  },
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT",
+    "products": "PRODUCTS",
+    "catalogs": "CATALOGS",
+    "quality": "QUALITY",
+    "news": "NEWS",
+    "careers": "CAREERS",
+    "contact": "CONTACT"
+  },
+  "header": {
+    "account": {
+      "admin": "Admin",
+      "member": "My Account",
+      "guest": "Sign In"
+    },
+    "cart": "My Quote List",
+    "search": {
+      "placeholder": "Search part, brand, OEM…",
+      "ariaLabel": "Search",
+      "submit": "Search"
+    },
+    "menu": {
+      "open": "Menu",
+      "close": "Close menu",
+      "langHeading": "LANGUAGE"
+    }
+  },
+  "footer": {
+    "columns": {
+      "products": {
+        "title": "Products",
+        "items": [
+          "Brake Systems",
+          "Air Suspension",
+          "Axle & Wheel",
+          "Transmission Parts",
+          "Electrical Systems",
+          "Cabin & Body"
+        ]
+      },
+      "corporate": {
+        "title": "Corporate",
+        "items": [
+          "About Us",
+          "Quality & Certificates",
+          "Sustainability",
+          "Fairs",
+          "News",
+          "Careers"
+        ]
+      },
+      "support": {
+        "title": "Support",
+        "items": [
+          "Technical Support",
+          "Download Catalog",
+          "OEM Cross-Reference",
+          "Warranty Policy",
+          "Returns",
+          "FAQ"
+        ]
+      }
+    },
+    "certsLabel": "Certificates",
+    "legal": {
+      "copy": "© 2026 MONIVA Otomotiv ve Gıda San. Tic. A.Ş. All rights reserved.",
+      "fallback": [
+        "Imprint",
+        "Privacy Policy",
+        "Cookie Settings",
+        "Sitemap"
+      ]
+    }
+  },
+  "hero": {
+    "fallback": {
+      "head": "Reliable Parts. Global Reach.",
+      "sub": "Premium spare parts for trucks, trailers and commercial vehicles."
+    },
+    "arrow": {
+      "prev": "Previous",
+      "next": "Next"
+    },
+    "dotAria": "Slide {index}"
+  },
+  "crumb": {
+    "home": "Home",
+    "products": "Products",
+    "careers": "Careers"
+  },
+  "product": {
+    "badges": {
+      "featured": "FEATURED",
+      "oem": "OEM"
+    },
+    "card": {
+      "refLabel": "Ref:",
+      "oemLabel": "OEM:",
+      "qtyDecrease": "Decrease",
+      "qty": "Quantity",
+      "qtyIncrease": "Increase"
+    },
+    "search": {
+      "modes": {
+        "tumu": "All",
+        "kategori": "Category",
+        "oem": "OEM"
+      },
+      "placeholders": {
+        "tumu": "Search part, SKU or OEM…",
+        "kategori": "Search by category name…",
+        "oem": "OEM / part no…"
+      },
+      "scopeAria": "Search scope",
+      "inputAria": "Search products",
+      "submit": "Search ▶"
+    },
+    "categoryMenu": {
+      "heading": "Product Categories",
+      "expand": "Show subcategories",
+      "collapse": "Hide subcategories"
+    },
+    "filters": {
+      "heading": "Filters",
+      "clearAll": "Clear all",
+      "brandHeading": "Brand"
+    },
+    "grid": {
+      "countSuffix": "parts",
+      "sortLabel": "Sort:",
+      "sorts": {
+        "one-cikan": "Featured",
+        "yeni": "Newest",
+        "ref": "Reference: A→Z",
+        "ad": "Name: A→Z"
+      },
+      "viewGrid": "Grid view",
+      "viewList": "List view",
+      "emptyWithQuery": "No products match \"{query}\". Try a different part name, SKU or OEM number.",
+      "emptyNoQuery": "No products match these filters. Clear filters or pick a different category.",
+      "pageInfo": "Page <b>{page}</b> / <b>{total}</b>",
+      "jumpTitle": "Go to page",
+      "jumpAria": "Enter page number and press Enter",
+      "jumpPlaceholder": "No"
+    },
+    "detail": {
+      "descHeadingFallback": "Product Description",
+      "facts": {
+        "material": "Material",
+        "category": "Category",
+        "typeLabel": "Type",
+        "typeOem": "OEM Original",
+        "typeAftermarket": "Aftermarket"
+      },
+      "kit": {
+        "heading": "Kit Contents",
+        "partNo": "Part No",
+        "description": "Description",
+        "size": "Size",
+        "qty": "Qty"
+      },
+      "usedIn": {
+        "heading": "Used in Kits",
+        "kitNo": "Kit No",
+        "kitName": "Kit Name",
+        "qtyFromThis": "Qty from this part"
+      },
+      "partNoLabel": "Part No:",
+      "cross": {
+        "heading": "Cross-References (OEM)",
+        "anchorLabel": "Cross-References",
+        "oemColumn": "OEM Number",
+        "manufacturerColumn": "Manufacturer"
+      },
+      "empty": {
+        "description": "No description provided.",
+        "specs": "No technical specifications.",
+        "cross": "No OEM cross-references.",
+        "docs": "No documents available for this product."
+      },
+      "docs": {
+        "type": "PDF",
+        "download": "↓ Download",
+        "labelFmt": "Datasheet · {locale}"
+      }
+    }
+  },
+  "form": {
+    "required": "*",
+    "requiredNote": "Fields marked * are required",
+    "connectionError": "Connection error. Please try again.",
+    "genericSubmitError": "Submission failed."
+  },
+  "contact": {
+    "form": {
+      "title": "Tell us what you need.",
+      "sub": "Fill in the form and we'll route your message to the right team. For urgent quotes, call us directly.",
+      "topicLabel": "What is your topic?",
+      "topics": {
+        "sales": "Sales inquiry",
+        "support": "Technical support",
+        "distributor": "Become a distributor",
+        "press": "Press / Media",
+        "career": "Careers"
+      },
+      "firstName": "First name",
+      "lastName": "Last name",
+      "company": "Company",
+      "companyPlaceholder": "Company name",
+      "country": "Country",
+      "email": "Business email",
+      "emailPlaceholder": "you@company.com",
+      "phone": "Phone",
+      "oemRefs": "OEM reference numbers (optional)",
+      "oemRefsPlaceholder": "e.g. 1234567, A1234567890 — comma-separated",
+      "message": "Your message",
+      "messagePlaceholder": "Your fleet, required quantity, timeline…",
+      "consent": "I accept Moniva's <b>privacy policy</b> and consent to being contacted about my request.",
+      "submit": "Send message ▶",
+      "submitting": "Sending…",
+      "response": "Avg. reply: <b>{hours} business hours</b>",
+      "sendError": "Message could not be sent."
+    },
+    "done": {
+      "title": "Your message has been sent.",
+      "body": "We've routed your request to the relevant team. We usually get back to you within 4 hours during business hours."
+    },
+    "mapTitle": "Moniva location map",
+    "directions": "Get directions ▶",
+    "openMap": "Open in map",
+    "lat": "Latitude",
+    "lng": "Longitude"
+  },
+  "careers": {
+    "form": {
+      "title": "Application form",
+      "code": "FORM · CRR-001",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "e.g. Ayşe Yıldız",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "phone": "Phone",
+      "location": "Location",
+      "locationPlaceholder": "City, Country",
+      "position": "Position applying for",
+      "positionPlaceholder": "— Choose department —",
+      "experience": "Experience",
+      "experiencePlaceholder": "— Choose —",
+      "experiences": {
+        "student": "Student / New graduate",
+        "junior": "0–2 years",
+        "mid": "3–5 years",
+        "senior": "6–10 years",
+        "expert": "10+ years"
+      },
+      "linkedin": "LinkedIn or portfolio link",
+      "coverNote": "Cover note",
+      "coverNotePlaceholder": "A short note on why you want to join Moniva…",
+      "cv": "CV / Resume",
+      "cvSelect": "Click to select your CV",
+      "cvHint": "PDF, DOC, DOCX · Max 5 MB",
+      "consent": "I consent to processing of my personal data for recruitment purposes under the <b>KVKK / privacy policy</b>.",
+      "submit": "Submit application ▶",
+      "submitting": "Sending…",
+      "sendError": "Application could not be sent."
+    },
+    "done": {
+      "title": "Your application has been received.",
+      "body": "Thanks for your interest. We evaluate every application and get back within two weeks."
+    },
+    "teamAlt": "Moniva team"
+  },
+  "auth": {
+    "login": {
+      "pageTitle": "Sign In — Moniva",
+      "title": "Sign in",
+      "subtitle": "Sign in with your B2B account to track your quotes from your dashboard.",
+      "email": "Email",
+      "emailPlaceholder": "you@company.com",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up"
+    },
+    "register": {
+      "pageTitle": "Sign Up — Moniva",
+      "title": "Create a B2B account",
+      "subtitle": "Sign up with your company details and manage all your quotes from a single dashboard.",
+      "companyName": "Company name",
+      "companyNamePlaceholder": "e.g. Yılmaz Logistics Ltd.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Authorised contact",
+      "phone": "Phone",
+      "phonePlaceholder": "+90 5xx xxx xx xx",
+      "email": "Email",
+      "emailPlaceholder": "you@company.com",
+      "address": "Company address",
+      "addressPlaceholder": "Street, no, district…",
+      "country": "Country",
+      "city": "City",
+      "cityPlaceholder": "e.g. Konya",
+      "taxNumber": "Tax ID",
+      "taxNumberOptional": "(optional)",
+      "taxNumberPlaceholder": "10 digits",
+      "password": "Password",
+      "passwordPlaceholder": "At least 8 characters",
+      "verifyNote": "After your account is created, our team verifies your company. Verified B2B accounts enjoy special terms.",
+      "kvkkPrefix": "I have read the ",
+      "kvkkLink": "KVKK Privacy Notice",
+      "kvkkSuffix": " and consent to processing of my personal data.",
+      "submit": "Sign up",
+      "submitting": "Creating account…",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    }
+  },
+  "quote": {
+    "status": {
+      "new": "Under review",
+      "quoted": "Quote ready",
+      "viewed": "Quote ready",
+      "approved": "Approved",
+      "revisionRequested": "Revision requested",
+      "declined": "Closed",
+      "expired": "Expired",
+      "closed": "Closed"
+    },
+    "cart": {
+      "crumb": "My Quote List",
+      "opError": "Operation failed. Please try again.",
+      "columns": {
+        "product": "Product",
+        "quantity": "Qty"
+      },
+      "continueShopping": "← Continue browsing",
+      "clearList": "Clear list",
+      "row": {
+        "oemLabel": "OEM:",
+        "skuLabel": "SKU:",
+        "typeOem": "OEM Original",
+        "typeAftermarket": "Aftermarket",
+        "qtyDecrease": "Decrease",
+        "qty": "Quantity",
+        "qtyIncrease": "Increase",
+        "remove": "Remove from list"
+      },
+      "summary": {
+        "title": "Cart summary",
+        "sub": "List contents — locked when the quote is sent.",
+        "totalItems": "Total items",
+        "totalItemsUnit": "pcs",
+        "totalKinds": "Distinct items",
+        "totalKindsUnit": "lines",
+        "oemMix": "OEM / Aftermarket",
+        "cta": "Request quote",
+        "promise": "<b>✓</b> We'll get back to you within 24 hours.",
+        "trust": {
+          "secure": "Secure",
+          "secureNote": "KVKK compliant",
+          "oem": "OEM",
+          "oemNote": "Guaranteed",
+          "response": "24h",
+          "responseNote": "Response"
+        }
+      },
+      "hero": {
+        "title": "My Quote List",
+        "subLabel": "· My Quote List",
+        "sub": "A tailored <b>price quote</b> will be prepared for the products below. Review the list, adjust quantities and send with <b>\"Request quote\"</b> — our team will reply within 24 hours.",
+        "badgePrice": "Personalised pricing",
+        "badgeTime": "Reply within 24 hours"
+      },
+      "empty": {
+        "title": "Your quote list is empty",
+        "body": "Browse products and add them to your list; then request a personalised price in a single submission.",
+        "cta": "Browse products"
+      },
+      "error": {
+        "title": "Something went wrong",
+        "body": "There was a problem loading your quote list. Please try again; if the problem persists, contact us.",
+        "retry": "Try again"
+      },
+      "loading": {
+        "summary": "Cart summary",
+        "loadingText": "Loading…"
+      }
+    },
+    "modal": {
+      "kicker": "B2B Quote System",
+      "title": "Create a quote request.",
+      "sub": "Fill in the details below — our team will get back to you within 24 hours with tailored pricing and stock information.",
+      "close": "Close",
+      "steps": {
+        "cart": "Cart",
+        "info": "Your details",
+        "confirm": "Confirm"
+      },
+      "summary": "Your quote list has <b>{qty} items</b> · <b>{lines} lines</b>.",
+      "fields": {
+        "fullName": "Full name",
+        "fullNamePlaceholder": "e.g. Mehmet Yılmaz",
+        "companyName": "Company name",
+        "companyNamePlaceholder": "e.g. ABC Logistics Ltd.",
+        "email": "Email",
+        "emailPlaceholder": "example@company.com",
+        "phone": "Phone",
+        "phonePlaceholder": "5XX XXX XX XX",
+        "country": "Country",
+        "city": "City",
+        "cityPlaceholder": "e.g. Istanbul",
+        "taxNumber": "Tax number",
+        "taxNumberPlaceholder": "10-digit VKN",
+        "taxOffice": "Tax office",
+        "taxOfficePlaceholder": "e.g. Kadıköy",
+        "address": "Delivery address",
+        "addressPlaceholder": "Street, no, district — used for invoicing and shipping.",
+        "notes": "Additional notes / special requests",
+        "notesPlaceholder": "Urgency, shipping preference, alternative OEM numbers, etc.",
+        "required": "*",
+        "optional": "(optional)"
+      },
+      "consent": {
+        "kvkkLink": "KVKK Privacy Notice",
+        "kvkkSuffix": " — I have read and consent to the processing of my personal data.",
+        "marketing": "I'm open to Moniva's <b>new product and wholesale campaign</b> messages. (optional)"
+      },
+      "footNote": "Your data is protected under <b>KVKK</b>.",
+      "cancel": "Cancel",
+      "submit": "Send quote",
+      "submitting": "Sending…",
+      "success": {
+        "title": "Your quote request has been received.",
+        "body": "Our sales team will review your request and reply with tailored pricing and stock information <b>within 24 hours</b>.",
+        "refLabel": "Your request reference:",
+        "ok": "OK"
+      },
+      "countries": {
+        "tr": "Türkiye",
+        "de": "Germany",
+        "ro": "Romania",
+        "ru": "Russia",
+        "other": "Other"
+      }
+    },
+    "decision": {
+      "prompt": "What would you like to do with this quote?",
+      "buttons": {
+        "approve": "Approve",
+        "revision": "Request revision",
+        "contact": "Talk to rep",
+        "decline": "Not suitable now"
+      },
+      "notePlaceholder": {
+        "revision": "What revision would you like? (optional)",
+        "decline": "Briefly, why? (optional)"
+      },
+      "cancel": "Cancel",
+      "sendRevision": "Send revision request",
+      "send": "Send",
+      "sending": "Sending…",
+      "done": {
+        "approve": {
+          "title": "Quote approved",
+          "body": "Thank you! Our sales team will get in touch to start the order process."
+        },
+        "revision": {
+          "title": "Revision request received",
+          "body": "Your note has been forwarded. An updated quote will reach you shortly."
+        },
+        "contact": {
+          "title": "Request received",
+          "body": "Our sales representative will get in touch shortly."
+        },
+        "decline": {
+          "title": "Feedback received",
+          "body": "Thanks for letting us know. You can always reach us when you need us."
+        }
+      }
+    },
+    "public": {
+      "pageTitle": "Your Price Quote — Moniva",
+      "title": "PRICE QUOTE",
+      "editedAt": "Edited:",
+      "expired": "This quote's validity has expired. Please contact us for an updated price.",
+      "decidedLabels": {
+        "approved": "You have approved this quote",
+        "revisionRequested": "Revision request received",
+        "declined": "This quote has been closed",
+        "closed": "This quote has been closed"
+      },
+      "to": "TO",
+      "table": {
+        "no": "#",
+        "part": "Part",
+        "qty": "Qty",
+        "unit": "Unit ({currency})",
+        "amount": "Amount"
+      },
+      "terms": {
+        "heading": "TERMS",
+        "shipping": "Shipping",
+        "payment": "Payment terms",
+        "validity": "Validity",
+        "fineWithoutVat": "Prices are in {currency} and VAT-exclusive. Stock and delivery times are confirmed upon order. This is a price quote, not an invoice.",
+        "fineWithVat": "Prices are in {currency}. Stock and delivery times are confirmed upon order. This is a price quote, not an invoice."
+      },
+      "totals": {
+        "subtotal": "Subtotal",
+        "discount": "Discount ({pct}%)",
+        "shipping": "Shipping",
+        "vat": "VAT ({pct}%)",
+        "total": "Grand total"
+      },
+      "footer": {
+        "tagline": "Moniva · Heavy Vehicle & Trailer Spare Parts",
+        "domain": "moniva.com.tr"
+      }
+    }
+  },
+  "account": {
+    "layoutTitle": "My Account — Moniva",
+    "logout": "Sign out",
+    "loggingOut": "Signing out…",
+    "dashboard": {
+      "greetingFallback": "Hi",
+      "greeting": "Hi, {name}",
+      "sub": "Track your quote requests here.",
+      "verifiedBadge": "✓ Verified B2B account",
+      "pendingBadge": "Verification pending",
+      "profileLink": "Profile",
+      "pendingNote": "Your account is under review. Once verified, you'll enjoy special B2B terms.",
+      "quotesTitle": "My quotes",
+      "newQuoteLink": "+ New quote",
+      "emptyText": "You don't have any quote requests yet.",
+      "emptyCta": "Browse products",
+      "table": {
+        "ref": "Reference",
+        "date": "Date",
+        "lines": "Lines",
+        "status": "Status",
+        "amount": "Amount",
+        "open": "Details ▶"
+      }
+    },
+    "profile": {
+      "crumbSelf": "Profile",
+      "title": "Profile information",
+      "sub": "Your company details are auto-filled into quote forms.",
+      "section": {
+        "info": "Company & contact",
+        "password": "Change password"
+      },
+      "form": {
+        "companyName": "Company name",
+        "fullName": "Full name",
+        "phone": "Phone",
+        "emailReadonly": "Email",
+        "emailReadonlyHint": "(cannot be changed)",
+        "taxNumber": "Tax ID",
+        "taxNumberOptional": "(optional)",
+        "taxOffice": "Tax office",
+        "taxOfficeOptional": "(optional)",
+        "city": "City",
+        "cityOptional": "(optional)",
+        "address": "Address",
+        "addressOptional": "(optional)",
+        "saved": "Your details have been updated.",
+        "submit": "Save details",
+        "submitting": "Saving…"
+      },
+      "password": {
+        "current": "Current password",
+        "new": "New password",
+        "confirm": "New password (again)",
+        "updated": "Your password has been updated.",
+        "submit": "Change password",
+        "submitting": "Updating…"
+      }
+    },
+    "quoteDetail": {
+      "crumbBack": "My Account",
+      "crumbTitle": "Quote {ref}",
+      "title": "Quote {ref}",
+      "createdInfo": "Created on {date} · {qty} pcs",
+      "pendingNote": "Your quote is under review. Once priced you'll be able to view it here and download the PDF.",
+      "expiredNote": "This quote's validity has expired. Please contact us for an updated price.",
+      "sections": {
+        "items": "Requested parts",
+        "summary": "Quote summary",
+        "terms": "Terms",
+        "shipping": "Shipping"
+      },
+      "items": {
+        "part": "Part",
+        "qty": "Qty",
+        "unit": "Unit",
+        "amount": "Amount"
+      },
+      "summary": {
+        "subtotal": "Subtotal",
+        "discount": "Discount ({pct}%)",
+        "shipping": "Shipping",
+        "vat": "VAT ({pct}%)",
+        "total": "Grand total",
+        "pdfDownload": "Download PDF ↓"
+      },
+      "terms": {
+        "currency": "Currency",
+        "validity": "Validity",
+        "payment": "Payment",
+        "quoteDate": "Quote date"
+      },
+      "decidedHint": {
+        "approved": "We'll be in touch to start the order process.",
+        "revisionRequested": "An updated quote will reach you shortly.",
+        "declined": "You can always reach us when you need us.",
+        "closed": "This quote has been closed."
+      }
+    }
+  },
+  "news": {
+    "pageTitle": "News — Moniva",
+    "pageDescription": "Press releases, product launches, fair news and industry insights from Moniva.",
+    "notFoundTitle": "Article not found — Moniva",
+    "crumbSelf": "News",
+    "banner": {
+      "eyebrow": "━━ Press & Media",
+      "title": "News.",
+      "sub": "Press releases, product launches, fair news and industry insights from Moniva Otomotiv — the story behind every part we ship to 80+ markets.",
+      "statNews": "Articles",
+      "statLanguage": "Languages",
+      "statMarket": "Markets"
+    },
+    "empty": {
+      "title": "No articles published yet.",
+      "body": "Updates from Moniva will appear on this page soon."
+    },
+    "featuredHeading": "Featured Article.",
+    "featuredBadge": "FEATURED",
+    "pressReleasePrefix": "Press Release",
+    "featuredCta": "Read full article ▶",
+    "allHeading": "All Articles.",
+    "cardCta": "Read ▶",
+    "backLink": "◀ Back to all articles",
+    "articleEmpty": "This article has no content yet."
+  },
+  "page": {
+    "notFoundTitle": "Page not found",
+    "empty": "This page is still being prepared.",
+    "lastUpdated": "Last updated:"
+  },
+  "home": {
+    "featuredCta": "Explore ▶",
+    "newsEmpty": "News coming soon.",
+    "newsEmptySide": "Coming soon."
+  },
+  "about": {
+    "facilityAlt": "Moniva Konya facility"
+  },
+  "quality": {
+    "labAlt": "Moniva quality lab",
+    "docSoon": "Soon",
+    "docDownload": "Download ↓"
+  },
+  "catalogs": {
+    "pageTitle": "Catalogs — Moniva",
+    "pageDescription": "Download the Moniva product range as print-ready PDF — general catalog, product families, OEM cross-reference and brand guides.",
+    "crumbSelf": "Catalogs",
+    "banner": {
+      "eyebrow": "━━ Downloadable Files",
+      "title": "Catalogs.",
+      "sub": "Download the Moniva product range as print-ready PDF — general catalog, product families, OEM cross-reference and brand guides. Updated for the 2026 season.",
+      "statPdf": "PDF",
+      "statLanguage": "Languages",
+      "statPages": "Pages"
+    },
+    "featuredGroup": "Featured Catalogs",
+    "empty": {
+      "title": "No catalogs published yet.",
+      "body": "When catalogs are ready you'll be able to download them from this page."
+    },
+    "card": {
+      "featured": "FEATURED",
+      "download": "Download PDF",
+      "preview": "Preview",
+      "pageSuffix": "p"
+    },
+    "printCta": {
+      "title": "Would you like a printed catalog?",
+      "body": "We can ship a printed copy of the general catalog to your business — free of charge for registered trade partners.",
+      "cta": "Request printed copy ▶"
+    }
+  }
+}

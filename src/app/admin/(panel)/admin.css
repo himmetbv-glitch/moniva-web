@@ -1914,7 +1914,20 @@
 }
 .pl-pager__nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
+}
+.pl-pager__dots {
+  min-width: 22px;
+  height: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--txt-dim);
+  user-select: none;
 }
 .pl-pager__btn {
   min-width: 30px;

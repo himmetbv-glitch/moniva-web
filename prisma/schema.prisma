@@ -264,6 +264,10 @@ model Product {
   quoteItems      QuoteItem[]
   quoteRequestItems QuoteRequestItem[]
 
+  // Kit / set ilişkileri (kaliper katalog vs.)
+  kitComponents KitComponent[] @relation("KitParent")     // Bu ürün kit ise: içindeki bileşenler
+  usedInKits    KitComponent[] @relation("KitMember")     // Bu ürün başka kitlerde bileşen olarak
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -273,6 +277,26 @@ model Product {
   @@index([brandId])
   @@index([isActive, isFeatured])
   @@index([sortOrder])
+}
+
+// Kit / set kompozisyon ilişkisi. Bir Product diğerlerinin "kit'i" olabilir;
+// aynı bileşen birden çok kitte geçebilir. Çift yönlü sorgu için @relation isimlendirmesi.
+model KitComponent {
+  id                 String  @id @default(cuid())
+  parentProductId    String  // Kit / set ana kaydı
+  componentProductId String  // İçindeki bileşen (kendi Product sayfası olan)
+  qty                Int     @default(1)
+  dimension          String? // Katalogtaki "DIMENSION" sütunu — örn. "Ø30 x 4 mm"
+  sortOrder          Int     @default(0) // Katalogtaki "NO" sırası
+
+  parent    Product @relation("KitParent", fields: [parentProductId], references: [id], onDelete: Cascade)
+  component Product @relation("KitMember", fields: [componentProductId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+
+  @@unique([parentProductId, componentProductId])
+  @@index([parentProductId])
+  @@index([componentProductId])
 }
 
 model ProductTranslation {

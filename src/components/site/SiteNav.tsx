@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
+import { Link, usePathname } from "@/i18n/navigation";
 import { NAV_ITEMS } from "./nav-items";
 
 export function SiteNav() {
   const pathname = usePathname();
+  const t = useTranslations();
 
   return (
     <nav className="sh-nav">
@@ -17,11 +18,11 @@ export function SiteNav() {
             href={item.href}
             className={pathname === item.href ? "active" : ""}
           >
-            {item.label}
+            {t(`nav.${item.key}`)}
           </Link>
         ) : (
-          <span key={item.href} className="soon" title="Yakında">
-            {item.label}
+          <span key={item.href} className="soon" title={t("common.soon")}>
+            {t(`nav.${item.key}`)}
           </span>
         ),
       )}
