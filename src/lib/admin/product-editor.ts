@@ -4,6 +4,7 @@ import { Locale } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE } from "@/lib/i18n";
+import { buildCategoryTreeOptions } from "./category-tree-options";
 import type {
   EditorOptions,
   EditorProduct,
@@ -37,6 +38,7 @@ export async function getEditorOptions(
         id: true,
         slug: true,
         parentId: true,
+        order: true,
         translations: { select: { locale: true, name: true } },
         specAttributes: {
           orderBy: { order: "asc" },
@@ -54,8 +56,6 @@ export async function getEditorOptions(
     c.translations.find((t) => t.locale === locale)?.name ??
     c.translations[0]?.name ??
     c.slug;
-  const byId = new Map(categories.map((c) => [c.id, c]));
-
   const schemas: EditorOptions["schemas"] = {};
   for (const c of categories) {
     schemas[c.id] = c.specAttributes.map((a) => ({
@@ -67,11 +67,15 @@ export async function getEditorOptions(
   }
 
   return {
-    categories: categories.map((c) => {
-      const parent = c.parentId ? byId.get(c.parentId) : null;
-      const label = parent ? `${nameOf(parent)} › ${nameOf(c)}` : nameOf(c);
-      return { id: c.id, label };
-    }),
+    categories: buildCategoryTreeOptions(
+      categories.map((c) => ({
+        id: c.id,
+        slug: c.slug,
+        name: nameOf(c),
+        parentId: c.parentId,
+        order: c.order,
+      })),
+    ).map((c) => ({ id: c.id, label: c.label })),
     brands: brands.map((b) => ({ id: b.id, name: b.name })),
     schemas,
   };

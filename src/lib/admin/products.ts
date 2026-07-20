@@ -4,6 +4,7 @@ import { type Locale, type Prisma } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, pickTranslation } from "@/lib/i18n";
+import { buildCategoryTreeOptions } from "./category-tree-options";
 
 export const ADMIN_PER_PAGE = 20;
 
@@ -115,8 +116,13 @@ export async function getAdminProducts(
     prisma.brand.count(),
     prisma.quoteRequest.count({ where: { createdAt: { gte: monthAgo } } }),
     prisma.category.findMany({
-      orderBy: { order: "asc" },
-      select: { slug: true, translations: { select: { locale: true, name: true } } },
+      select: {
+        id: true,
+        slug: true,
+        parentId: true,
+        order: true,
+        translations: { select: { locale: true, name: true } },
+      },
     }),
   ]);
 
@@ -139,9 +145,14 @@ export async function getAdminProducts(
     page,
     pageCount: Math.max(1, Math.ceil(total / ADMIN_PER_PAGE)),
     counts: { products, categories, brands, rfq30d },
-    categoryOptions: categoryRows.map((c) => ({
-      slug: c.slug,
-      name: pickTranslation(c.translations, locale)?.name ?? c.slug,
-    })),
+    categoryOptions: buildCategoryTreeOptions(
+      categoryRows.map((c) => ({
+        id: c.id,
+        slug: c.slug,
+        name: pickTranslation(c.translations, locale)?.name ?? c.slug,
+        parentId: c.parentId,
+        order: c.order,
+      })),
+    ).map((c) => ({ slug: c.slug, name: c.label })),
   };
 }
