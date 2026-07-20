@@ -47,7 +47,7 @@
 /* top block */
 .pdet .pd-top {
   display: grid;
-  grid-template-columns: 360px 1fr 240px;
+  grid-template-columns: 403px 1fr 240px;
   gap: 32px;
   padding: 32px 40px 36px;
   background: #fff;
@@ -56,8 +56,8 @@
 /* gallery */
 .pdet .pd-gallery .pd-main {
   border: 1px solid var(--line);
-  background: var(--gray-bg);
-  height: 360px;
+  background: #fff;
+  height: 293px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,7 +67,7 @@
 .pdet .pd-gallery .pd-main img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .pdet .pd-gallery .pd-main img.pd-zoomable {
   cursor: zoom-in;
