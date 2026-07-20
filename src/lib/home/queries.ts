@@ -1,10 +1,36 @@
 import "server-only";
 
-import { NewsStatus, type Locale } from "@prisma/client";
+import { NewsStatus, Prisma, type Locale } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, pickTranslation } from "@/lib/i18n";
 import { getCategoryTree, type CategoryNode } from "@/lib/products/queries";
+import { HOME_PAGE } from "@/lib/pages/home-sections";
+
+// Öne çıkan ürün kartı için ortak select (otomatik + elle seçim aynı şekli döner).
+const featuredSelect = {
+  id: true,
+  slug: true,
+  sku: true,
+  translations: { select: { locale: true, name: true } },
+  category: { select: { translations: { select: { locale: true, name: true } }, slug: true } },
+  brand: { select: { name: true } },
+  oemReferences: { select: { manufacturer: true }, take: 5 },
+  images: { where: { isMain: true }, take: 1, select: { url: true } },
+} satisfies Prisma.ProductSelect;
+
+type FeaturedRow = Prisma.ProductGetPayload<{ select: typeof featuredSelect }>;
+
+/** Anasayfa "featured" bölümünde elle seçilmiş ürün id'leri (yoksa boş). */
+async function getManualFeaturedIds(): Promise<string[]> {
+  const page = await prisma.managedPage.findUnique({
+    where: { key: HOME_PAGE.key },
+    select: { sections: { where: { key: "featured" }, select: { data: true } } },
+  });
+  const data = page?.sections[0]?.data as { productIds?: unknown } | undefined;
+  const ids = data?.productIds;
+  return Array.isArray(ids) ? ids.filter((x): x is string => typeof x === "string") : [];
+}
 
 export type HomeFeatured = {
   slug: string;
@@ -38,22 +64,9 @@ const dateFmt = new Intl.DateTimeFormat("tr-TR", {
 export async function getHomeData(
   locale: Locale = DEFAULT_LOCALE,
 ): Promise<HomeData> {
-  const [tree, featuredRows, newsRows] = await Promise.all([
+  const [tree, manualIds, newsRows] = await Promise.all([
     getCategoryTree(locale),
-    prisma.product.findMany({
-      where: { isActive: true, isFeatured: true },
-      take: 6,
-      orderBy: { updatedAt: "desc" },
-      select: {
-        slug: true,
-        sku: true,
-        translations: { select: { locale: true, name: true } },
-        category: { select: { translations: { select: { locale: true, name: true } }, slug: true } },
-        brand: { select: { name: true } },
-        oemReferences: { select: { manufacturer: true }, take: 5 },
-        images: { where: { isMain: true }, take: 1, select: { url: true } },
-      },
-    }),
+    getManualFeaturedIds(),
     prisma.newsPost.findMany({
       where: { status: NewsStatus.PUBLISHED },
       take: 5,
@@ -67,23 +80,35 @@ export async function getHomeData(
     }),
   ]);
 
-  // Fallback to featured-less when too few featured products exist.
-  let featuredSource = featuredRows;
-  if (featuredSource.length < 3) {
+  // 1) Elle seçim varsa: tam olarak o ürünler, seçilen sırayla (pasif/silinmiş atlanır).
+  let featuredSource: FeaturedRow[] = [];
+  if (manualIds.length > 0) {
+    const picked = await prisma.product.findMany({
+      where: { id: { in: manualIds }, isActive: true },
+      select: featuredSelect,
+    });
+    const byId = new Map(picked.map((p) => [p.id, p]));
+    featuredSource = manualIds
+      .map((id) => byId.get(id))
+      .filter((p): p is FeaturedRow => Boolean(p));
+  }
+
+  // 2) Elle seçim yoksa (veya hiç çözülmediyse): otomatik — önce isFeatured, azsa en yeni.
+  if (featuredSource.length === 0) {
     featuredSource = await prisma.product.findMany({
-      where: { isActive: true },
+      where: { isActive: true, isFeatured: true },
       take: 6,
       orderBy: { updatedAt: "desc" },
-      select: {
-        slug: true,
-        sku: true,
-        translations: { select: { locale: true, name: true } },
-        category: { select: { translations: { select: { locale: true, name: true } }, slug: true } },
-        brand: { select: { name: true } },
-        oemReferences: { select: { manufacturer: true }, take: 5 },
-        images: { where: { isMain: true }, take: 1, select: { url: true } },
-      },
+      select: featuredSelect,
     });
+    if (featuredSource.length < 3) {
+      featuredSource = await prisma.product.findMany({
+        where: { isActive: true },
+        take: 6,
+        orderBy: { updatedAt: "desc" },
+        select: featuredSelect,
+      });
+    }
   }
 
   const featured: HomeFeatured[] = featuredSource.map((p) => {

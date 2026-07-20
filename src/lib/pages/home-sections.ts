@@ -46,6 +46,8 @@ export type FeaturedProductsData = {
   ruleWidth: number;
   ctaLabel: string;
   ctaHref: string;
+  // Elle seçilen öne çıkan ürünler (Product.id, sırayla). Boşsa otomatik (isFeatured).
+  productIds: string[];
 };
 
 export type NewsroomData = {
@@ -225,6 +227,7 @@ export const HOME_SECTIONS: SeedSection[] = [
       ruleWidth: 220,
       ctaLabel: "Tüm katalog ▶",
       ctaHref: "/urunler",
+      productIds: [],
     } satisfies FeaturedProductsData,
   },
   {

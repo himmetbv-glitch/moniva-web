@@ -1,10 +1,15 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import type { NewsStatus } from "@prisma/client";
 
 import { saveManagedPage } from "@/lib/actions/admin-managed-page";
+import {
+  getFeaturedProductsByIds,
+  searchFeaturedProducts,
+  type PickerProduct,
+} from "@/lib/actions/admin-featured-picker";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
 import { DocUploadField } from "@/components/admin/DocUploadField";
 import { isDynamicSection } from "@/lib/pages/home-sections";
@@ -263,6 +268,147 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
   );
 }
 
+/* ── Öne çıkan ürün seçici (arama + seçili liste + sırala) ── */
+const MAX_FEATURED = 12;
+
+function FeaturedProductPicker({
+  productIds,
+  onChange,
+}: {
+  productIds: string[];
+  onChange: (ids: string[]) => void;
+}) {
+  const [selected, setSelected] = useState<PickerProduct[]>([]);
+  const [q, setQ] = useState("");
+  const [results, setResults] = useState<PickerProduct[]>([]);
+  const [loading, setLoading] = useState(false);
+  const loadedKey = useRef<string>("__init__");
+
+  // Seçili id'leri gösterim bilgisiyle doldur (yalnız dışarıdan değişince).
+  useEffect(() => {
+    const key = productIds.join(",");
+    if (key === loadedKey.current) return;
+    loadedKey.current = key;
+    if (productIds.length === 0) {
+      setSelected([]);
+      return;
+    }
+    let alive = true;
+    getFeaturedProductsByIds(productIds).then((rows) => {
+      if (alive) setSelected(rows);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [productIds]);
+
+  // Debounce'lu arama.
+  useEffect(() => {
+    const term = q.trim();
+    if (term.length < 2) {
+      setResults([]);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    const t = setTimeout(async () => {
+      const rows = await searchFeaturedProducts(term);
+      setResults(rows);
+      setLoading(false);
+    }, 250);
+    return () => clearTimeout(t);
+  }, [q]);
+
+  const commit = (next: PickerProduct[]) => {
+    const ids = next.map((s) => s.id);
+    loadedKey.current = ids.join(","); // dış prop döndüğünde yeniden yükleme yapma
+    setSelected(next);
+    onChange(ids);
+  };
+
+  const selectedIds = new Set(selected.map((s) => s.id));
+  const add = (p: PickerProduct) => {
+    if (selectedIds.has(p.id) || selected.length >= MAX_FEATURED) return;
+    commit([...selected, p]);
+    setQ("");
+    setResults([]);
+  };
+  const remove = (id: string) => commit(selected.filter((s) => s.id !== id));
+  const move = (i: number, dir: -1 | 1) => {
+    const j = i + dir;
+    if (j < 0 || j >= selected.length) return;
+    const next = [...selected];
+    [next[i], next[j]] = [next[j], next[i]];
+    commit(next);
+  };
+
+  return (
+    <div className="fp-picker">
+      <div className="fp-search">
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Ürün ara (ad, SKU veya OEM)…"
+          disabled={selected.length >= MAX_FEATURED}
+        />
+        {q.trim().length >= 2 && (
+          <div className="fp-results">
+            {loading && <div className="fp-empty">Aranıyor…</div>}
+            {!loading && results.length === 0 && <div className="fp-empty">Sonuç yok.</div>}
+            {!loading &&
+              results.map((p) => {
+                const already = selectedIds.has(p.id);
+                return (
+                  <button
+                    type="button"
+                    key={p.id}
+                    className="fp-result"
+                    disabled={already}
+                    onClick={() => add(p)}
+                  >
+                    <span className="fp-thumb">
+                      {p.imageUrl ? <img src={p.imageUrl} alt="" /> : <span className="fp-ph" />}
+                    </span>
+                    <span className="fp-info">
+                      <span className="fp-name">{p.name}</span>
+                      <span className="fp-sku">{p.sku}</span>
+                    </span>
+                    <span className="fp-add">{already ? "Eklendi" : "+ Ekle"}</span>
+                  </button>
+                );
+              })}
+          </div>
+        )}
+      </div>
+
+      {selected.length === 0 ? (
+        <div className="fp-none">Seçili ürün yok — otomatik gösterilecek.</div>
+      ) : (
+        <ol className="fp-selected">
+          {selected.map((p, i) => (
+            <li key={p.id} className="fp-item">
+              <span className="fp-rank">{i === 0 ? "★" : i + 1}</span>
+              <span className="fp-thumb">
+                {p.imageUrl ? <img src={p.imageUrl} alt="" /> : <span className="fp-ph" />}
+              </span>
+              <span className="fp-info">
+                <span className="fp-name">{p.name}</span>
+                <span className="fp-sku">{p.sku}</span>
+              </span>
+              <span className="fp-actions">
+                <button type="button" onClick={() => move(i, -1)} disabled={i === 0} aria-label="Yukarı">↑</button>
+                <button type="button" onClick={() => move(i, 1)} disabled={i === selected.length - 1} aria-label="Aşağı">↓</button>
+                <button type="button" className="fp-del" onClick={() => remove(p.id)} aria-label="Kaldır">✕</button>
+              </span>
+            </li>
+          ))}
+        </ol>
+      )}
+      <div className="fp-count">{selected.length}/{MAX_FEATURED} seçili{selected.length > 0 && " — ★ = büyük kart"}</div>
+    </div>
+  );
+}
+
 /* ── Tip-bazlı içerik alanları ────────────────────────────── */
 function SectionFields({
   section,
@@ -292,6 +438,16 @@ function SectionFields({
             <Field label="Bağlantı yolu"><input value={str(d.ctaHref)} onChange={(e) => set({ ctaHref: e.target.value })} /></Field>
           </div>
           <Field label="Çizgi genişliği (px)"><input type="number" value={num(d.ruleWidth)} onChange={(e) => set({ ruleWidth: Number(e.target.value) })} /></Field>
+          <div className="pe-field">
+            <span className="pe-label">
+              Öne çıkan ürünler
+              <em>Elle ürün seçin (ilk sıradaki büyük kart olur). Boş bırakılırsa otomatik: “Öne çıkan” işaretli ürünler gösterilir.</em>
+            </span>
+            <FeaturedProductPicker
+              productIds={Array.isArray(d.productIds) ? (d.productIds as string[]) : []}
+              onChange={(ids) => set({ productIds: ids })}
+            />
+          </div>
         </>
       );
     case "FEATURE_COLUMNS":

@@ -80,6 +80,7 @@ export const featuredProductsData = z.object({
   ruleWidth,
   ctaLabel: z.string().trim().max(120),
   ctaHref: z.string().trim().max(300),
+  productIds: z.array(z.string().min(1).max(40)).max(12).default([]),
 });
 
 export const newsroomData = z.object({
@@ -367,7 +368,16 @@ const SECTION_SCHEMAS: Record<SectionType, z.ZodTypeAny> = {
 
 // Tip DB'den gelir (client değiştiremez); veri o tipin şemasına göre doğrulanır.
 export function parseSectionData(type: SectionType, data: unknown) {
-  return SECTION_SCHEMAS[type].parse(data);
+  const parsed = SECTION_SCHEMAS[type].parse(data) as Record<string, unknown>;
+  // `_i18n` (EN/RU/AR locale override'ları) şema dışıdır; z.object onu siler.
+  // Kaydederken çevirilerin kaybolmaması için orijinalden geri taşı.
+  if (data && typeof data === "object" && "_i18n" in data) {
+    const i18n = (data as Record<string, unknown>)._i18n;
+    if (i18n && typeof i18n === "object" && !Array.isArray(i18n)) {
+      return { ...parsed, _i18n: i18n };
+    }
+  }
+  return parsed;
 }
 
 // ── Kaydetme yükü ─────────────────────────────────────────────
