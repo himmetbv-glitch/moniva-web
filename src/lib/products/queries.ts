@@ -148,14 +148,32 @@ export async function getBrands(): Promise<BrandFilter[]> {
 // Ürün listesi (filtre + sıralama + sayfalama)
 // ---------------------------------------------------------------------------
 
-/** Seçilen kategori slug'ı + (varsa) alt kategorilerinin id'lerini döndürür. */
+/**
+ * Seçilen kategori slug'ı + TÜM alt kategorilerinin (özyinelemeli, her seviye)
+ * id'lerini döndürür. Ağaç 3+ seviye olabildiği için doğrudan çocuklar yetmez;
+ * ana kategoriye basınca torun kategorilerin ürünleri de gelmeli.
+ */
 async function resolveCategoryIds(slug: string): Promise<string[]> {
-  const category = await prisma.category.findUnique({
-    where: { slug },
-    select: { id: true, children: { select: { id: true } } },
-  });
-  if (!category) return [];
-  return [category.id, ...category.children.map((c) => c.id)];
+  const root = await prisma.category.findUnique({ where: { slug }, select: { id: true } });
+  if (!root) return [];
+
+  const all = await prisma.category.findMany({ select: { id: true, parentId: true } });
+  const childrenOf = new Map<string, string[]>();
+  for (const c of all) {
+    if (!c.parentId) continue;
+    const arr = childrenOf.get(c.parentId);
+    if (arr) arr.push(c.id);
+    else childrenOf.set(c.parentId, [c.id]);
+  }
+
+  const ids: string[] = [];
+  const stack = [root.id];
+  while (stack.length > 0) {
+    const id = stack.pop()!;
+    ids.push(id);
+    for (const child of childrenOf.get(id) ?? []) stack.push(child);
+  }
+  return ids;
 }
 
 export async function getProducts(
