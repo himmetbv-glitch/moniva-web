@@ -33,7 +33,6 @@ export async function updateSettings(
     metaTitleBase: d.metaTitleBase,
     metaDescBase: d.metaDescBase || null,
     notifyEmail: d.notifyEmail || null,
-    catalogShowcase: d.catalogShowcase,
     careerPositions: d.careerPositions,
   };
 

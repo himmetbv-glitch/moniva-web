@@ -11,7 +11,6 @@ export type SiteSettings = {
   metaTitleBase: string;
   metaDescBase: string;
   notifyEmail: string;
-  catalogShowcase: boolean;
   careerPositions: string[];
 };
 
@@ -38,6 +37,5 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   metaTitleBase: "Moniva",
   metaDescBase: "",
   notifyEmail: "",
-  catalogShowcase: true,
   careerPositions: DEFAULT_CAREER_POSITIONS,
 };

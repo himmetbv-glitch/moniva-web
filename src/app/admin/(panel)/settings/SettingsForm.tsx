@@ -5,11 +5,6 @@ import { useState, useTransition } from "react";
 import { updateSettings } from "@/lib/actions/admin-settings";
 import type { SiteSettings } from "@/lib/admin/settings-types";
 
-// Sadece string değerli ayar anahtarları (metin input'ları için)
-type StringSettingKey = {
-  [K in keyof SiteSettings]: SiteSettings[K] extends string ? K : never;
-}[keyof SiteSettings];
-
 export function SettingsForm({ initial }: { initial: SiteSettings }) {
   const [s, setS] = useState<SiteSettings>(initial);
   const [pending, start] = useTransition();
@@ -28,7 +23,7 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
 
   const field = (
     label: string,
-    key: StringSettingKey,
+    key: keyof SiteSettings,
     opts?: { placeholder?: string; full?: boolean },
   ) => (
     <label className={"pe-field" + (opts?.full ? " st-full" : "")}>
@@ -94,28 +89,6 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
                 placeholder="Arama motorları için varsayılan açıklama…"
               />
             </label>
-          </div>
-        </div>
-
-        <div className="mv-card iq-pad">
-          <div className="pe-sectitle">Ürünler Sayfası</div>
-          <div className="st-fields">
-            <div className="pe-statusrow">
-              <span>Kategori vitrini</span>
-              <button
-                type="button"
-                className={"pe-toggle" + (s.catalogShowcase ? " pe-toggle--on" : "")}
-                onClick={() => f("catalogShowcase", !s.catalogShowcase)}
-                aria-pressed={s.catalogShowcase}
-              >
-                <span className="pe-toggle__knob" />
-              </button>
-            </div>
-            <div className="cse-hint">
-              Açıkken <b>/urunler</b> açılışında (filtre/arama yokken) tüm ürünler yerine ana
-              kategori kartları ve “Tüm Ürünler” kartı gösterilir. Kapalıyken doğrudan ürün
-              listesi açılır.
-            </div>
           </div>
         </div>
 

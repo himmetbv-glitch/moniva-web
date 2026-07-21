@@ -10,7 +10,6 @@ import {
 } from "@/lib/products/queries";
 import { parseProductFilters } from "@/lib/validation/product-filters";
 import { getCatalogLabels } from "@/lib/pages/catalog-content";
-import { getSettings } from "@/lib/settings";
 import { toDbLocale } from "@/lib/i18n-runtime";
 import { PageBanner } from "./PageBanner";
 import { Sidebar } from "./Sidebar";
@@ -28,20 +27,12 @@ export default async function ProductsPage({
 }) {
   const sp = await searchParams;
   const filters = parseProductFilters(sp);
-  const [locale, settings] = await Promise.all([
-    getLocale().then(toDbLocale),
-    getSettings(),
-  ]);
+  const locale = toDbLocale(await getLocale());
 
   // "Tüm Ürünler" kartı vitrini atlar; filtre/arama yokken kategori vitrini göster.
-  // Panelden (Ayarlar → Ürünler Sayfası) tamamen kapatılabilir.
   const showAll = sp.tum === "1";
   const showShowcase =
-    settings.catalogShowcase &&
-    !showAll &&
-    !filters.kategori &&
-    filters.marka.length === 0 &&
-    !filters.q;
+    !showAll && !filters.kategori && filters.marka.length === 0 && !filters.q;
 
   const [result, tree, brands, labels, showcaseCats] = await Promise.all([
     showShowcase ? Promise.resolve(null) : getProducts(filters, locale),
