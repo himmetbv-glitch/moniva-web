@@ -5,7 +5,11 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import type { Locale } from "@prisma/client";
 
-import { upsertCategory, copyCategorySchema } from "@/lib/actions/admin-category";
+import {
+  upsertCategory,
+  copyCategorySchema,
+  getCategoryProductImages,
+} from "@/lib/actions/admin-category";
 import { suggestCategoryCode } from "@/lib/admin/category-code";
 import { EDITOR_LOCALES } from "@/lib/admin/product-editor-types";
 import {
@@ -51,6 +55,9 @@ export function CategoryEditor({
   const [slugTouched, setSlugTouched] = useState(mode === "edit");
   const [codeTouched, setCodeTouched] = useState(mode === "edit");
   const [copyFrom, setCopyFrom] = useState("");
+  const [imgOpen, setImgOpen] = useState(false);
+  const [imgCands, setImgCands] = useState<string[] | null>(null);
+  const [imgLoading, startImgLoad] = useTransition();
 
   const cur = c.translations[lang];
   const rtl = EDITOR_LOCALES.find((l) => l.code === lang)?.rtl;
@@ -87,6 +94,15 @@ export function CategoryEditor({
     setAttrs(next);
   };
 
+  const toggleImgPicker = () => {
+    setImgOpen((o) => !o);
+    if (imgCands === null && c.id) {
+      startImgLoad(async () => {
+        setImgCands(await getCategoryProductImages(c.id));
+      });
+    }
+  };
+
   const copySchema = () => {
     if (!copyFrom) return;
     startCopy(async () => {
@@ -117,6 +133,7 @@ export function CategoryEditor({
         slug: c.slug,
         parentId: c.parentId,
         order: c.order,
+        image: c.image,
         isActive: c.isActive,
         showInMenu: c.showInMenu,
         isFeatured: c.isFeatured,
@@ -327,6 +344,72 @@ export function CategoryEditor({
         </div>
 
         <div className="pe-side">
+          {/* Kategori görseli (vitrin kartı) */}
+          <div className="mv-card iq-pad">
+            <div className="iq-cardhead__ttl iq-side__ttl">Kategori görseli</div>
+            <div className="cimg-note" style={{ marginBottom: 10 }}>
+              Ürünler sayfasındaki kategori vitrin kartında görünür.
+            </div>
+            <div className="cimg-preview">
+              {c.image ? (
+                <img src={c.image} alt="" />
+              ) : (
+                <span className="cimg-empty">Görsel seçilmedi</span>
+              )}
+            </div>
+            <div className="cimg-actions">
+              {mode === "edit" && c.id ? (
+                <button
+                  type="button"
+                  className="mv-btn mv-btn--ghost mv-btn--sm"
+                  onClick={toggleImgPicker}
+                >
+                  {imgOpen ? "Kapat" : "Ürün görsellerinden seç"}
+                </button>
+              ) : (
+                <span className="cimg-note">
+                  Kategoriyi oluşturduktan sonra ürün görselleri arasından seçebilirsiniz.
+                </span>
+              )}
+              {c.image && (
+                <button
+                  type="button"
+                  className="mv-btn mv-btn--ghost mv-btn--sm"
+                  onClick={() => setField("image", "")}
+                >
+                  Kaldır
+                </button>
+              )}
+            </div>
+
+            {imgOpen && (
+              <div className="cimg-picker">
+                {imgLoading && imgCands === null ? (
+                  <div className="cimg-note">Görseller yükleniyor…</div>
+                ) : imgCands && imgCands.length > 0 ? (
+                  <div className="cimg-grid">
+                    {imgCands.map((url) => (
+                      <button
+                        key={url}
+                        type="button"
+                        className={"cimg-thumb" + (c.image === url ? " cimg-thumb--on" : "")}
+                        onClick={() => {
+                          setField("image", url);
+                          setImgOpen(false);
+                        }}
+                        aria-label="Bu görseli seç"
+                      >
+                        <img src={url} alt="" />
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="cimg-note">Bu kategoride görselli ürün yok.</div>
+                )}
+              </div>
+            )}
+          </div>
+
           {/* Ayarlar */}
           <div className="mv-card iq-pad">
             <div className="iq-cardhead__ttl iq-side__ttl">Ayarlar</div>

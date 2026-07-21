@@ -952,3 +952,126 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ───────────── KATEGORİ VİTRİNİ (ürünler açılışı) ───────────── */
+.pcat .cat-showcase {
+  min-width: 0;
+}
+.pcat .csc-head {
+  margin-bottom: 20px;
+}
+.pcat .csc-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+}
+.pcat .csc-sub {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--gray-txt);
+}
+.pcat .csc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+.pcat .csc-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  background: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.pcat .csc-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 28px rgba(79, 61, 140, 0.14);
+  transform: translateY(-3px);
+}
+.pcat .csc-thumb {
+  aspect-ratio: 4 / 3;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.pcat .csc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.pcat .csc-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-txt);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--gray-bg),
+    var(--gray-bg) 10px,
+    #eceaf3 10px,
+    #eceaf3 20px
+  );
+}
+.pcat .csc-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pcat .csc-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3;
+}
+.pcat .csc-card:hover .csc-name {
+  color: var(--primary);
+}
+.pcat .csc-count {
+  font-size: 12px;
+  color: var(--gray-txt);
+  font-variant-numeric: tabular-nums;
+}
+
+/* "Tüm Ürünler" kartı — vitrini atlayıp tüm kataloğu açar */
+.pcat .csc-all .csc-thumb {
+  background: linear-gradient(135deg, var(--light, #efedf7), #f6f2fb);
+}
+.pcat .csc-all-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--primary);
+  box-shadow: 0 6px 16px rgba(79, 61, 140, 0.16);
+  transition: transform 0.15s;
+}
+.pcat .csc-all-icon svg {
+  width: 26px;
+  height: 26px;
+}
+.pcat .csc-all:hover .csc-all-icon {
+  transform: scale(1.06);
+}
+@media (max-width: 640px) {
+  .pcat .csc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}

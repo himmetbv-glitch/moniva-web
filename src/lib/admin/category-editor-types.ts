@@ -16,6 +16,7 @@ export type EditorCategory = {
   slug: string;
   parentId: string;
   order: number;
+  image: string; // R2 URL (vitrin kartı görseli), boş olabilir
   isActive: boolean;
   showInMenu: boolean;
   isFeatured: boolean;
@@ -55,6 +56,7 @@ export function blankEditorCategory(): EditorCategory {
     slug: "",
     parentId: "",
     order: 0,
+    image: "",
     isActive: true,
     showInMenu: true,
     isFeatured: false,

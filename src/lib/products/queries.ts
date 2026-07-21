@@ -127,6 +127,84 @@ export async function getCategoryTree(
 }
 
 // ---------------------------------------------------------------------------
+// Kategori vitrini (ürünler sayfası açılışı — kök kategori kartları)
+// ---------------------------------------------------------------------------
+
+export type ShowcaseCategory = {
+  slug: string;
+  name: string;
+  count: number;
+  image: string | null;
+};
+
+/**
+ * Vitrin kartları: KÖK kategoriler (Kategorisiz/UNCAT hariç, ürünü olanlar),
+ * ürün sayısına göre çoktan aza. Görsel önceliği: elle seçilen category.image;
+ * yoksa o kategorideki (alt kategoriler dahil) bir ürünün ana görseline düşer.
+ */
+export async function getShowcaseCategories(
+  locale: Locale = DEFAULT_LOCALE,
+): Promise<ShowcaseCategory[]> {
+  const categories = await prisma.category.findMany({
+    where: { isActive: true },
+    select: {
+      id: true,
+      slug: true,
+      code: true,
+      parentId: true,
+      image: true,
+      translations: { select: { locale: true, name: true } },
+      _count: { select: { products: { where: { isActive: true } } } },
+    },
+  });
+
+  const byId = new Map(categories.map((c) => [c.id, c]));
+  const childrenOf = new Map<string, typeof categories>();
+  for (const c of categories) {
+    if (!c.parentId) continue;
+    const arr = childrenOf.get(c.parentId);
+    if (arr) arr.push(c);
+    else childrenOf.set(c.parentId, [c]);
+  }
+  const countOf = (c: (typeof categories)[number]): number =>
+    c._count.products +
+    (childrenOf.get(c.id) ?? []).reduce((s, ch) => s + countOf(ch), 0);
+  const descendantIds = (c: (typeof categories)[number]): string[] => {
+    const out = [c.id];
+    for (const ch of childrenOf.get(c.id) ?? []) out.push(...descendantIds(ch));
+    return out;
+  };
+
+  const roots = categories
+    .filter((c) => (!c.parentId || !byId.has(c.parentId)) && c.code !== "UNCAT")
+    .map((c) => ({ c, count: countOf(c) }))
+    .filter((x) => x.count > 0)
+    .sort((a, b) => b.count - a.count);
+
+  return Promise.all(
+    roots.map(async ({ c, count }) => {
+      let image = c.image;
+      if (!image) {
+        const pi = await prisma.productImage.findFirst({
+          where: {
+            isMain: true,
+            product: { isActive: true, categoryId: { in: descendantIds(c) } },
+          },
+          select: { url: true },
+        });
+        image = pi?.url ?? null;
+      }
+      return {
+        slug: c.slug,
+        name: pickTranslation(c.translations, locale)?.name ?? c.slug,
+        count,
+        image,
+      };
+    }),
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Markalar (aktif ürünü olan, ürün sayısıyla)
 // ---------------------------------------------------------------------------
 

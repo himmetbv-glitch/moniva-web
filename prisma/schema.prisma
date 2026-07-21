@@ -723,6 +723,9 @@ model SiteSetting {
   // Bildirim (teklif/form e-postaları buraya gider)
   notifyEmail String?
 
+  // Katalog: /urunler açılışında kategori vitrini (kartları) göster
+  catalogShowcase Boolean @default(true)
+
   // Kariyer başvuru formundaki pozisyon/departman seçenekleri (yönetilebilir)
   careerPositions String[] @default(["Satış & İhracat", "Operasyon & Depo", "Mühendislik & Ar-Ge", "BT & Dijital", "Finans & İdari", "Açık başvuru"])
 

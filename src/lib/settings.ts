@@ -25,6 +25,7 @@ export const getSettings = cache(async (): Promise<SiteSettings> => {
     metaTitleBase: s.metaTitleBase,
     metaDescBase: s.metaDescBase ?? "",
     notifyEmail: s.notifyEmail ?? "",
+    catalogShowcase: s.catalogShowcase,
     careerPositions:
       s.careerPositions.length > 0 ? s.careerPositions : DEFAULT_SETTINGS.careerPositions,
   };

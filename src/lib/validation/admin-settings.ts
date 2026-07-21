@@ -27,6 +27,7 @@ export const settingsSchema = z.object({
   metaTitleBase: z.string().trim().min(1, { error: "Başlık tabanı gerekli." }).max(80),
   metaDescBase: z.string().trim().max(320).default(""),
   notifyEmail: optEmail,
+  catalogShowcase: z.boolean().default(true),
   careerPositions: z.preprocess(
     (v) => (Array.isArray(v) ? v.map((x) => String(x).trim()).filter(Boolean) : []),
     z.array(z.string().max(80)).min(1, { error: "En az bir pozisyon gerekli." }),

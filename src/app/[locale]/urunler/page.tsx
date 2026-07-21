@@ -6,13 +6,16 @@ import {
   getBrands,
   getCategoryTree,
   getProducts,
+  getShowcaseCategories,
 } from "@/lib/products/queries";
 import { parseProductFilters } from "@/lib/validation/product-filters";
 import { getCatalogLabels } from "@/lib/pages/catalog-content";
+import { getSettings } from "@/lib/settings";
 import { toDbLocale } from "@/lib/i18n-runtime";
 import { PageBanner } from "./PageBanner";
 import { Sidebar } from "./Sidebar";
 import { ProductGrid } from "./ProductGrid";
+import { CategoryShowcase } from "./CategoryShowcase";
 
 export const dynamic = "force-dynamic";
 
@@ -23,14 +26,29 @@ export default async function ProductsPage({
 }: {
   searchParams: Promise<SP>;
 }) {
-  const filters = parseProductFilters(await searchParams);
-  const locale = toDbLocale(await getLocale());
+  const sp = await searchParams;
+  const filters = parseProductFilters(sp);
+  const [locale, settings] = await Promise.all([
+    getLocale().then(toDbLocale),
+    getSettings(),
+  ]);
 
-  const [result, tree, brands, labels] = await Promise.all([
-    getProducts(filters, locale),
+  // "Tüm Ürünler" kartı vitrini atlar; filtre/arama yokken kategori vitrini göster.
+  // Panelden (Ayarlar → Ürünler Sayfası) tamamen kapatılabilir.
+  const showAll = sp.tum === "1";
+  const showShowcase =
+    settings.catalogShowcase &&
+    !showAll &&
+    !filters.kategori &&
+    filters.marka.length === 0 &&
+    !filters.q;
+
+  const [result, tree, brands, labels, showcaseCats] = await Promise.all([
+    showShowcase ? Promise.resolve(null) : getProducts(filters, locale),
     getCategoryTree(locale),
     getBrands(),
     getCatalogLabels(locale),
+    showShowcase ? getShowcaseCategories(locale) : Promise.resolve([]),
   ]);
 
   const totalProducts = tree.reduce((sum, r) => sum + r.count, 0);
@@ -65,13 +83,17 @@ export default async function ProductsPage({
           activeCategory={filters.kategori}
           activeBrands={filters.marka}
         />
-        <ProductGrid
-          result={result}
-          filters={filters}
-          categoryLabel={categoryLabel}
-          brandLabels={brandLabels}
-          card={labels.card}
-        />
+        {showShowcase ? (
+          <CategoryShowcase categories={showcaseCats} total={totalProducts} />
+        ) : (
+          <ProductGrid
+            result={result!}
+            filters={filters}
+            categoryLabel={categoryLabel}
+            brandLabels={brandLabels}
+            card={labels.card}
+          />
+        )}
       </div>
       <SiteFooter />
     </>

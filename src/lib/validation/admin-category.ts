@@ -27,6 +27,7 @@ export const categoryEditorSchema = z.object({
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, { error: "Geçersiz slug." }),
   parentId: z.string().default(""),
   order: z.coerce.number().int().min(0).max(9999).default(0),
+  image: z.string().trim().max(500).default(""),
   isActive: z.boolean().default(true),
   showInMenu: z.boolean().default(true),
   isFeatured: z.boolean().default(false),

@@ -99,6 +99,7 @@ export async function upsertCategory(
     slug,
     parentId: d.parentId || null,
     order: d.order,
+    image: d.image.trim() || null,
     isActive: d.isActive,
     showInMenu: d.showInMenu,
     isFeatured: d.isFeatured,
@@ -260,6 +261,60 @@ export async function copyCategorySchema(
     unit: a.unit,
     required: a.required,
   }));
+}
+
+/** Bir kategorinin kendisi + tüm alt ağacının kategori id'lerini döndürür. */
+async function descendantCategoryIds(rootId: string): Promise<string[]> {
+  const all = await prisma.category.findMany({
+    select: { id: true, parentId: true },
+  });
+  const childrenOf = new Map<string, string[]>();
+  for (const c of all) {
+    if (!c.parentId) continue;
+    const arr = childrenOf.get(c.parentId);
+    if (arr) arr.push(c.id);
+    else childrenOf.set(c.parentId, [c.id]);
+  }
+  const ids: string[] = [];
+  const stack = [rootId];
+  while (stack.length > 0) {
+    const id = stack.pop()!;
+    ids.push(id);
+    for (const child of childrenOf.get(id) ?? []) stack.push(child);
+  }
+  return ids;
+}
+
+/**
+ * Kategori görsel seçici için: bu kategorideki (alt kategoriler dahil) ürünlerin
+ * görsellerini döndürür. Ana görsel (isMain) önce, ürün başına en fazla bir görsel.
+ */
+export async function getCategoryProductImages(
+  categoryId: string,
+): Promise<string[]> {
+  await verifyAdmin();
+  if (!categoryId) return [];
+
+  const catIds = await descendantCategoryIds(categoryId);
+  const images = await prisma.productImage.findMany({
+    where: { product: { categoryId: { in: catIds }, isActive: true } },
+    orderBy: [{ isMain: "desc" }, { order: "asc" }],
+    select: { url: true, productId: true },
+    take: 400,
+  });
+
+  // Ürün başına ilk (ana) görseli seç, tekrarları ele.
+  const seenProduct = new Set<string>();
+  const seenUrl = new Set<string>();
+  const out: string[] = [];
+  for (const img of images) {
+    if (seenProduct.has(img.productId) || seenUrl.has(img.url)) continue;
+    seenProduct.add(img.productId);
+    seenUrl.add(img.url);
+    out.push(img.url);
+    if (out.length >= 60) break;
+  }
+  return out;
 }
 
 export async function toggleCategoryActive(formData: FormData): Promise<void> {
