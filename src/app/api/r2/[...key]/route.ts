@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // Yalnızca herkese açık varlık önekleri proxy'lenir.
-const PUBLIC_PREFIXES = ["products/", "datasheets/", "news/", "pages/", "catalogues/"];
+const PUBLIC_PREFIXES = ["products/", "product-images/", "datasheets/", "news/", "pages/", "catalogues/"];
 
 export async function GET(
   _req: NextRequest,
