@@ -1,4 +1,5 @@
 import Image from "next/image";
+import NextLink from "next/link";
 import { getTranslations } from "next-intl/server";
 
 import "./header.css";
@@ -17,12 +18,21 @@ export async function SiteHeader() {
     getTranslations(),
   ]);
   const isAdmin = user?.role === "ADMIN";
-  const accountHref = isAdmin ? "/admin/dashboard" : "/hesabim";
   const accountLabel = isAdmin
     ? t("header.account.admin")
     : user
     ? t("header.account.member")
     : t("header.account.guest");
+
+  const accountInner = (
+    <>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="8" r="3.4" />
+        <path d="M5 20c0-3.6 3-6 7-6s7 2.4 7 6" />
+      </svg>
+      <span className="label">{accountLabel}</span>
+    </>
+  );
 
   return (
     <header className="site-header">
@@ -55,13 +65,17 @@ export async function SiteHeader() {
 
           <div className="sh-div" />
 
-          <Link className="sh-account" href={user ? accountHref : "/giris"}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="8" r="3.4" />
-              <path d="M5 20c0-3.6 3-6 7-6s7 2.4 7 6" />
-            </svg>
-            <span className="label">{accountLabel}</span>
-          </Link>
+          {isAdmin ? (
+            // Admin paneli locale-agnostic (/admin, [locale] altında değil) →
+            // i18n Link locale eklemesin diye düz next/link kullan.
+            <NextLink className="sh-account" href="/admin/dashboard">
+              {accountInner}
+            </NextLink>
+          ) : (
+            <Link className="sh-account" href={user ? "/hesabim" : "/giris"}>
+              {accountInner}
+            </Link>
+          )}
 
           <div className="sh-div" />
 
