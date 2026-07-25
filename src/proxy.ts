@@ -27,6 +27,8 @@ export default function proxy(request: NextRequest, event: NextFetchEvent) {
 
 export const config = {
   // Cover /admin/* (auth) plus every public site path. Excluded: /api/*,
-  // Next internals, and static asset requests (any URL with a file extension).
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // Next internals, static asset requests (any URL with a file extension), and
+  // /prism-core (standalone WebGL demo with its own root layout — it must not
+  // be rewritten to a locale prefix).
+  matcher: ["/((?!api|_next|_vercel|prism-core|.*\\..*).*)"],
 };

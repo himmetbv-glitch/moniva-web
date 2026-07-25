@@ -1,0 +1,72 @@
+/* PRISM CORE — yalnızca bu rotada kullanılan yardımcılar. */
+
+.prism-body {
+  background: #03030a;
+  color: #ffffff;
+  overscroll-behavior: none;
+}
+
+/* Ölçü çubukları: koyu HUD'a uygun ince ray + parlayan başlık. */
+.prism-range {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 18px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.prism-range::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.prism-range::-moz-range-track {
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.prism-range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  height: 12px;
+  width: 12px;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 3px rgba(129, 140, 248, 0.25),
+    0 0 12px rgba(167, 139, 250, 0.9);
+  transition: box-shadow 150ms ease;
+}
+
+.prism-range::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  border: none;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 3px rgba(129, 140, 248, 0.25),
+    0 0 12px rgba(167, 139, 250, 0.9);
+}
+
+.prism-range:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 4px rgba(129, 140, 248, 0.55),
+    0 0 16px rgba(167, 139, 250, 1);
+}
+
+.prism-range:focus {
+  outline: none;
+}
+
+/* Panelin kaydırma çubuğu HUD'un içinde kaybolsun. */
+.prism-body ::-webkit-scrollbar {
+  width: 6px;
+}
+.prism-body ::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+}
