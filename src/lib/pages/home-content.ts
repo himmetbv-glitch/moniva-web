@@ -4,25 +4,41 @@ import type { Locale, NewsStatus, SectionType } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE, pickTranslation } from "@/lib/i18n";
+import { buildCategoryTreeOptions } from "@/lib/admin/category-tree-options";
 import { getHomeData, type HomeData } from "@/lib/home/queries";
 import { HOME_PAGE, HOME_SECTIONS } from "./home-sections";
 import { pickLocalized } from "./i18n-picker";
 
-export type CategoryOption = { slug: string; name: string };
+// `name` düz addır (public kartlarda başlık olarak basılır); `label` ise ağaç
+// sırasına göre girintili etikettir ve yalnızca admin dropdown'larında kullanılır.
+export type CategoryOption = { slug: string; name: string; label: string };
 
 // Aktif kategoriler (slug + yerelleştirilmiş ad) — küratörlü kart seçimi + render çözümü.
+// Sıra hiyerarşiktir (ebeveyn → çocukları) ki panelde aynı adlı alt kategoriler
+// (UZUN, KISA, DİSK…) hangi ana kategoriye ait olduğu görünsün.
 export async function getCategoryOptions(
   locale: Locale = DEFAULT_LOCALE,
 ): Promise<CategoryOption[]> {
   const cats = await prisma.category.findMany({
     where: { isActive: true },
     orderBy: { order: "asc" },
-    select: { slug: true, translations: { select: { locale: true, name: true } } },
+    select: {
+      id: true,
+      slug: true,
+      parentId: true,
+      order: true,
+      translations: { select: { locale: true, name: true } },
+    },
   });
-  return cats.map((c) => ({
-    slug: c.slug,
-    name: pickTranslation(c.translations, locale)?.name ?? c.slug,
-  }));
+  return buildCategoryTreeOptions(
+    cats.map((c) => ({
+      id: c.id,
+      slug: c.slug,
+      name: pickTranslation(c.translations, locale)?.name ?? c.slug,
+      parentId: c.parentId,
+      order: c.order,
+    })),
+  ).map((c) => ({ slug: c.slug, name: c.name, label: c.label }));
 }
 
 export type RenderedSection = {

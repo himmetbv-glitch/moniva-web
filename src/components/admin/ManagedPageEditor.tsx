@@ -20,7 +20,7 @@ import {
 } from "@/lib/admin/managed-page-editor-types";
 
 type AnyData = Record<string, unknown>;
-type CategoryOption = { slug: string; name: string };
+type CategoryOption = { slug: string; name: string; label: string };
 
 export function ManagedPageEditor({
   initial,
@@ -1114,7 +1114,7 @@ function CategoryGridFields({
             <select value={str(t.categorySlug)} onChange={(e) => setTile(i, { categorySlug: e.target.value })}>
               <option value="">— Kategori seçin —</option>
               {categoryOptions.map((c) => (
-                <option key={c.slug} value={c.slug}>{c.name}</option>
+                <option key={c.slug} value={c.slug}>{c.label || c.name}</option>
               ))}
             </select>
           </Field>
