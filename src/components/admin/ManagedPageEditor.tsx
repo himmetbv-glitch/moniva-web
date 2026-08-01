@@ -690,13 +690,17 @@ function ContactLocFields({ d, set, onChange }: FieldsProps) {
 function ContactDeptsFields({ d, set, onChange }: FieldsProps) {
   const depts = arr(d.depts);
   const setDept = (i: number, patch: AnyData) => onChange({ ...d, depts: depts.map((c, j) => (j === i ? { ...c, ...patch } : c)) });
-  const add = () => onChange({ ...d, depts: [...depts, { name: "", contact: "", hours: "" }] });
+  const add = () =>
+    onChange({ ...d, depts: [...depts, { name: "", contact: "", hours: "", email: "", phone: "" }] });
   const del = (i: number) => onChange({ ...d, depts: depts.filter((_, j) => j !== i) });
   return (
     <>
       <Field label="Üst etiket (eyebrow)"><input value={str(d.eyebrow)} onChange={(e) => set({ eyebrow: e.target.value })} /></Field>
       <Field label="Başlık"><input value={str(d.title)} onChange={(e) => set({ title: e.target.value })} /></Field>
-      <div className="mp-note">Her departmanda telefon ve e-posta Ayarlar&apos;dan gösterilir.</div>
+      <div className="mp-note">
+        Departmanın kendi e-posta/telefonu boş bırakılırsa Ayarlar&apos;daki genel iletişim
+        bilgisi gösterilir.
+      </div>
       {depts.map((c, i) => (
         <div className="mp-group" key={i}>
           <div className="mp-group__ttl">
@@ -707,6 +711,23 @@ function ContactDeptsFields({ d, set, onChange }: FieldsProps) {
           <div className="mp-2col">
             <Field label="İlgili ekip"><input value={str(c.contact)} onChange={(e) => setDept(i, { contact: e.target.value })} /></Field>
             <Field label="Saatler"><input value={str(c.hours)} onChange={(e) => setDept(i, { hours: e.target.value })} /></Field>
+          </div>
+          <div className="mp-2col">
+            <Field label="E-posta (boşsa Ayarlar'dan)">
+              <input
+                type="email"
+                value={str(c.email)}
+                placeholder="ornek@moniva.com.tr"
+                onChange={(e) => setDept(i, { email: e.target.value })}
+              />
+            </Field>
+            <Field label="Telefon (boşsa Ayarlar'dan)">
+              <input
+                value={str(c.phone)}
+                placeholder="+90 332 239 03 05"
+                onChange={(e) => setDept(i, { phone: e.target.value })}
+              />
+            </Field>
           </div>
         </div>
       ))}

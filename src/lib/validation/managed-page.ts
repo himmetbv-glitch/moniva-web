@@ -297,6 +297,16 @@ export const contactDeptsData = z.object({
         name: z.string().trim().max(120),
         contact: z.string().trim().max(120),
         hours: z.string().trim().max(120),
+        // Boş bırakılırsa Ayarlar'daki genel e-posta/telefon gösterilir.
+        email: z
+          .string()
+          .trim()
+          .max(160)
+          .refine((v) => v === "" || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v), {
+            error: "Geçersiz e-posta.",
+          })
+          .default(""),
+        phone: z.string().trim().max(40).default(""),
       }),
     )
     .max(12),

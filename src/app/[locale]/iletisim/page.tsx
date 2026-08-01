@@ -294,8 +294,8 @@ function DeptsSection({ d, c }: { d: ContactDeptsData; c: Contacts }) {
             <div className="ct-dept__name">{dept.name}</div>
             <div className="ct-dept__contact">{dept.contact}</div>
             <div className="ct-dept__rows">
-              <div><span>✉</span> {c.email}</div>
-              <div><span>✆</span> {c.phone}</div>
+              <div><span>✉</span> {dept.email || c.email}</div>
+              <div><span>✆</span> {dept.phone || c.phone}</div>
               <div className="ct-dept__hours"><span>◴</span> {dept.hours}</div>
             </div>
           </div>

@@ -45,7 +45,14 @@ export type ContactLocData = {
   coordLng: string;
 };
 
-export type Dept = { name: string; contact: string; hours: string };
+// email/phone boş bırakılırsa Ayarlar'daki genel iletişim bilgisi gösterilir.
+export type Dept = {
+  name: string;
+  contact: string;
+  hours: string;
+  email?: string;
+  phone?: string;
+};
 export type ContactDeptsData = {
   eyebrow: string;
   title: string;
