@@ -424,18 +424,36 @@ a.ct-social__i:hover {
 }
 
 /* ── Konum / harita ── */
-.ct-loc {
-  background: var(--tint);
+/* Konumlar yan yana; tek konumda tam genişlik. 1px gap + kap arka planı
+   sütunlar arasında (ve dar ekranda alt alta düşünce satırlar arasında)
+   doğal ayraç oluşturur. */
+.ct-locs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: 1px;
+  background: var(--brd);
   border-bottom: 1px solid var(--brd);
 }
-.ct-loc__head {
-  padding: 48px clamp(20px, 5vw, 80px) 32px;
+.ct-loc {
+  background: var(--tint);
+  display: flex;
+  flex-direction: column;
 }
+.ct-loc__head {
+  padding: 36px clamp(20px, 3vw, 44px) 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+/* Dar sütuna sığması için başlık ile butonlar alt alta; butonlar alta
+   yaslanır ki yan yana duran konumların butonları aynı hizada olsun. */
 .ct-loc__row {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 32px;
+  gap: 18px;
+  flex: 1;
 }
 .ct-loc__row h2 {
   font-size: clamp(24px, 3vw, 32px);
@@ -477,7 +495,7 @@ a.ct-social__i:hover {
 }
 .ct-map {
   position: relative;
-  height: 460px;
+  height: 400px;
   background: var(--dark);
 }
 .ct-map iframe {
@@ -489,13 +507,13 @@ a.ct-social__i:hover {
 }
 .ct-mapcard {
   position: absolute;
-  top: 28px;
-  left: 28px;
+  top: 20px;
+  left: 20px;
   background: #fff;
   border: 1px solid var(--brd);
-  padding: 20px 22px;
-  width: 320px;
-  max-width: calc(100% - 56px);
+  padding: 18px 20px;
+  width: 300px;
+  max-width: calc(100% - 40px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 .ct-mapcard__head {
@@ -624,11 +642,6 @@ a.ct-social__i:hover {
   }
   .ct-depts__grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .ct-loc__row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
   }
 }
 @media (max-width: 640px) {

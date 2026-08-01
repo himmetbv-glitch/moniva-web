@@ -246,13 +246,14 @@ function LocSection({
   d: ContactLocData;
   labels: ContactLabels;
 }) {
+  // Tek konumda tam genişlik, birden fazlasında yan yana (CSS auto-fit).
   return (
-    <>
+    <div className="ct-locs">
       <LocBlock d={d} labels={labels} />
       {(d.extra ?? []).map((e, i) => (
         <LocBlock key={`${e.cardTitle}-${i}`} d={e} labels={labels} />
       ))}
-    </>
+    </div>
   );
 }
 
