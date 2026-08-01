@@ -31,7 +31,9 @@ export type QuickTile = {
 };
 export type ContactQuickData = { tiles: QuickTile[] };
 
-export type ContactLocData = {
+// Bir konum bloğu: başlık + harita + adres kartı. Genel merkez bölümün kendi
+// alanlarında tutulur; ek konumlar (yurt dışı temsilcilikler) `extra` dizisinde.
+export type LocEntry = {
   eyebrow: string;
   title: string;
   body: string;
@@ -43,6 +45,10 @@ export type ContactLocData = {
   cardAddressLines: string[];
   coordLat: string;
   coordLng: string;
+};
+
+export type ContactLocData = LocEntry & {
+  extra?: LocEntry[];
 };
 
 // email/phone boş bırakılırsa Ayarlar'daki genel iletişim bilgisi gösterilir.

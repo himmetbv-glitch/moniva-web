@@ -683,6 +683,71 @@ function ContactLocFields({ d, set, onChange }: FieldsProps) {
         <Field label="Enlem"><input value={str(d.coordLat)} onChange={(e) => set({ coordLat: e.target.value })} /></Field>
         <Field label="Boylam"><input value={str(d.coordLng)} onChange={(e) => set({ coordLng: e.target.value })} /></Field>
       </div>
+
+      <div className="mp-group__ttl mp-sub">Ek konumlar</div>
+      <div className="mp-note">
+        Genel merkezin altında ayrı harita + adres kartı olarak gösterilir (ör. yurt dışı
+        temsilcilikler).
+      </div>
+      <ExtraLocations d={d} onChange={onChange} />
+    </>
+  );
+}
+
+const EMPTY_LOC = {
+  eyebrow: "",
+  title: "",
+  body: "",
+  directionsHref: "",
+  mapHref: "",
+  mapSrc: "",
+  cardTitle: "",
+  cardLocation: "",
+  cardAddressLines: [] as string[],
+  coordLat: "",
+  coordLng: "",
+};
+
+function ExtraLocations({ d, onChange }: { d: AnyData; onChange: (v: AnyData) => void }) {
+  const extra = arr(d.extra);
+  const setE = (i: number, patch: AnyData) =>
+    onChange({ ...d, extra: extra.map((e, j) => (j === i ? { ...e, ...patch } : e)) });
+  const add = () => onChange({ ...d, extra: [...extra, { ...EMPTY_LOC }] });
+  const del = (i: number) => onChange({ ...d, extra: extra.filter((_, j) => j !== i) });
+  return (
+    <>
+      {extra.map((e, i) => (
+        <div className="mp-group" key={i}>
+          <div className="mp-group__ttl">
+            <span>Konum {i + 1}</span>
+            <button type="button" className="mp-del" onClick={() => del(i)}>Sil</button>
+          </div>
+          <div className="mp-2col">
+            <Field label="Üst etiket (eyebrow)"><input value={str(e.eyebrow)} onChange={(ev) => setE(i, { eyebrow: ev.target.value })} /></Field>
+            <Field label="Başlık"><input value={str(e.title)} onChange={(ev) => setE(i, { title: ev.target.value })} /></Field>
+          </div>
+          <Field label="Metin"><textarea rows={2} value={str(e.body)} onChange={(ev) => setE(i, { body: ev.target.value })} /></Field>
+          <Field label="Yol tarifi bağlantısı"><input value={str(e.directionsHref)} onChange={(ev) => setE(i, { directionsHref: ev.target.value })} /></Field>
+          <Field label="Harita bağlantısı"><input value={str(e.mapHref)} onChange={(ev) => setE(i, { mapHref: ev.target.value })} /></Field>
+          <Field label="Harita gömme (iframe src)"><input value={str(e.mapSrc)} onChange={(ev) => setE(i, { mapSrc: ev.target.value })} /></Field>
+          <div className="mp-2col">
+            <Field label="Kart başlığı"><input value={str(e.cardTitle)} onChange={(ev) => setE(i, { cardTitle: ev.target.value })} /></Field>
+            <Field label="Kart konumu"><input value={str(e.cardLocation)} onChange={(ev) => setE(i, { cardLocation: ev.target.value })} /></Field>
+          </div>
+          <LineListField
+            label="Kart adres satırları"
+            value={arr(e.cardAddressLines).map(String)}
+            onChange={(v) => setE(i, { cardAddressLines: v })}
+          />
+          <div className="mp-2col">
+            <Field label="Enlem"><input value={str(e.coordLat)} onChange={(ev) => setE(i, { coordLat: ev.target.value })} /></Field>
+            <Field label="Boylam"><input value={str(e.coordLng)} onChange={(ev) => setE(i, { coordLng: ev.target.value })} /></Field>
+          </div>
+        </div>
+      ))}
+      <button type="button" className="mp-add" onClick={add} disabled={extra.length >= 6}>
+        + Konum ekle
+      </button>
     </>
   );
 }

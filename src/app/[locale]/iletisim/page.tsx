@@ -15,6 +15,7 @@ import type {
   ContactQuickData,
   ContactLocData,
   ContactDeptsData,
+  LocEntry,
 } from "@/lib/pages/contact-sections";
 import "./iletisim.css";
 
@@ -245,6 +246,17 @@ function LocSection({
   d: ContactLocData;
   labels: ContactLabels;
 }) {
+  return (
+    <>
+      <LocBlock d={d} labels={labels} />
+      {(d.extra ?? []).map((e, i) => (
+        <LocBlock key={`${e.cardTitle}-${i}`} d={e} labels={labels} />
+      ))}
+    </>
+  );
+}
+
+function LocBlock({ d, labels }: { d: LocEntry; labels: ContactLabels }) {
   return (
     <section className="ct-loc">
       <div className="ct-loc__head">

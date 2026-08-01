@@ -274,7 +274,7 @@ export const contactQuickData = z.object({
     .max(8),
 });
 
-export const contactLocData = z.object({
+const locEntry = z.object({
   eyebrow: z.string().trim().max(120),
   title: z.string().trim().max(200),
   body: z.string().trim().max(800),
@@ -286,6 +286,12 @@ export const contactLocData = z.object({
   cardAddressLines: lineList,
   coordLat: z.string().trim().max(40),
   coordLng: z.string().trim().max(40),
+});
+
+// Genel merkez bölümün kendi alanlarında; ek konumlar (yurt dışı temsilcilikler)
+// `extra` dizisinde — mevcut veride bu alan yoksa boş kabul edilir.
+export const contactLocData = locEntry.extend({
+  extra: z.array(locEntry).max(6).default([]),
 });
 
 export const contactDeptsData = z.object({
