@@ -29,7 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type Contacts = { phone: string; email: string };
+type Social = { label: string; href: string };
+type Contacts = { phone: string; email: string; socials: Social[] };
 type ContactLabels = {
   home: string;
   mapTitle: string;
@@ -46,7 +47,17 @@ export default async function IletisimPage() {
     getSettings(),
     getTranslations(),
   ]);
-  const c: Contacts = { phone: settings.phone, email: settings.email };
+  // Ayarlar'da girilmemiş sosyal ağlar hiç gösterilmez (footer ile aynı davranış).
+  const c: Contacts = {
+    phone: settings.phone,
+    email: settings.email,
+    socials: [
+      { label: "in", href: settings.linkedinUrl },
+      { label: "tw", href: settings.xUrl },
+      { label: "yt", href: settings.youtubeUrl },
+      { label: "ig", href: settings.instagramUrl },
+    ].filter((s) => s.href),
+  };
   const labels: ContactLabels = {
     home: t("crumb.home"),
     mapTitle: t("contact.mapTitle"),
@@ -184,11 +195,23 @@ function InfoSection({ d, c }: { d: ContactInfoData; c: Contacts }) {
         <div className="ct-info__follow">
           <div className="ct-info__label">Bizi takip edin</div>
           <div className="ct-social">
-            {["in", "tw", "yt", "ig"].map((s) => (
-              <span key={s} className="ct-social__i">
-                {s}
-              </span>
-            ))}
+            {c.socials.length > 0
+              ? c.socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ct-social__i"
+                  >
+                    {s.label}
+                  </a>
+                ))
+              : ["in", "tw", "yt", "ig"].map((s) => (
+                  <span key={s} className="ct-social__i">
+                    {s}
+                  </span>
+                ))}
           </div>
         </div>
       </aside>
