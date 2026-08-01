@@ -424,14 +424,14 @@ a.ct-social__i:hover {
 }
 
 /* ── Konum / harita ── */
-/* Konumlar yan yana; tek konumda tam genişlik. 1px gap + kap arka planı
-   sütunlar arasında (ve dar ekranda alt alta düşünce satırlar arasında)
-   doğal ayraç oluşturur. */
+/* Konumlar yan yana; tek konumda tam genişlik. Kap arka planı beyaz olduğu
+   için gap, sütunlar arasında (dar ekranda satırlar arasında) temiz bir
+   boşluk olarak görünür. */
 .ct-locs {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
-  gap: 1px;
-  background: var(--brd);
+  gap: 10px;
+  background: #fff;
   border-bottom: 1px solid var(--brd);
 }
 .ct-loc {
