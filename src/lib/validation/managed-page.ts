@@ -115,7 +115,7 @@ export const aboutFacilityData = z.object({
   caption: z.string().trim().max(200),
   eyebrow: z.string().trim().max(120),
   title: z.string().trim().max(200),
-  body: z.string().trim().max(1000),
+  body: z.string().trim().max(3000),
   stats: z.array(stat).max(6),
 });
 
