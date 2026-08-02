@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 
 import { Link, useRouter } from "@/i18n/navigation";
 import { addToCart } from "@/lib/actions/quote";
+import { isSyntheticSku } from "@/lib/products/sku";
 import type { ProductCardView } from "@/lib/products/queries";
 import type { CatalogCardData } from "@/lib/pages/catalog-sections";
 
@@ -54,9 +55,11 @@ export function ProductCard({ p, labels }: { p: ProductCardView; labels: Catalog
           <Link className="pc-name" href={`/urunler/${p.slug}`}>
             {p.name}
           </Link>
-          <div className="pc-ref">
-            <b>{t("product.card.refLabel")}</b> {p.sku}
-          </div>
+          {!isSyntheticSku(p.sku) && (
+            <div className="pc-ref">
+              <b>{t("product.card.refLabel")}</b> {p.sku}
+            </div>
+          )}
           {p.oemNumbers.length > 0 && (
             <div className="pc-oem">
               {t("product.card.oemLabel")} {p.oemNumbers.slice(0, 3).join(" · ")}

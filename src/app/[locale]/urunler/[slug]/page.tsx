@@ -10,6 +10,7 @@ import {
   getRelatedProducts,
 } from "@/lib/products/queries";
 import { getCatalogLabels } from "@/lib/pages/catalog-content";
+import { isSyntheticSku } from "@/lib/products/sku";
 import { toDbLocale } from "@/lib/i18n-runtime";
 import { ProductCard } from "../ProductCard";
 import { DetailGallery } from "./DetailGallery";
@@ -115,10 +116,12 @@ export default async function ProductDetailPage({
               ) : null}
             </div>
 
-            <div className="pd-partno">
-              <span className="lbl">{t("product.detail.partNoLabel")}</span>
-              <span className="val">{product.sku}</span>
-            </div>
+            {!isSyntheticSku(product.sku) && (
+              <div className="pd-partno">
+                <span className="lbl">{t("product.detail.partNoLabel")}</span>
+                <span className="val">{product.sku}</span>
+              </div>
+            )}
 
             {product.shortDesc && <p className="pd-desc">{product.shortDesc}</p>}
 

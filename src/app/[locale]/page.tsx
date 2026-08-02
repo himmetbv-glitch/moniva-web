@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { Hero } from "@/components/home/Hero";
 import { Link } from "@/i18n/navigation";
 import { toDbLocale } from "@/lib/i18n-runtime";
+import { isSyntheticSku } from "@/lib/products/sku";
 import type { Metadata } from "next";
 
 import {
@@ -285,7 +286,9 @@ function FeaturedSection({
               <div className="hh-feat__big-cat">{heroFeatured.category}</div>
               <div className="hh-feat__big-name">{heroFeatured.name} ▶</div>
               <div className="hh-feat__big-ref">
-                Ref: {heroFeatured.sku} · {heroFeatured.compat}
+                {isSyntheticSku(heroFeatured.sku)
+                  ? heroFeatured.compat
+                  : `Ref: ${heroFeatured.sku} · ${heroFeatured.compat}`}
               </div>
             </div>
           </Link>
@@ -304,7 +307,9 @@ function FeaturedSection({
                 <div>
                   <div className="hh-feat__item-cat">{p.category}</div>
                   <div className="hh-feat__item-name">{p.name}</div>
-                  <div className="hh-feat__item-ref">Ref: {p.sku} · {p.compat}</div>
+                  <div className="hh-feat__item-ref">
+                    {isSyntheticSku(p.sku) ? p.compat : `Ref: ${p.sku} · ${p.compat}`}
+                  </div>
                 </div>
                 <span className="hh-feat__item-detail">{labels.featuredCta}</span>
               </div>

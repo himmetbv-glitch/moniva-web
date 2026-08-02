@@ -12,11 +12,12 @@ const translationSchema = z.object({
 
 export const productEditorSchema = z.object({
   id: z.string().optional(),
+  // Gerçek Moniva stok kodları (örn. 97.1350.200.51) veya eski MNV-* biçimi.
   sku: z
     .string()
     .trim()
-    .regex(/^MNV-(?:[A-Z0-9]{2}-)?\d{3,6}$/, {
-      error: "SKU formatı MNV-XX-NNNN veya MNV-NNNN olmalı (örn. MNV-AS-3302, MNV-5588).",
+    .regex(/^[A-Za-z0-9][A-Za-z0-9 ./-]{1,39}$/, {
+      error: "SKU 2-40 karakter olmalı; harf, rakam, nokta, tire ve / kullanılabilir.",
     }),
   slug: z
     .string()
