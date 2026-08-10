@@ -18,11 +18,24 @@ const authProxy = auth as unknown as (
   ev: NextFetchEvent,
 ) => ReturnType<typeof auth>;
 
-export default function proxy(request: NextRequest, event: NextFetchEvent) {
-  if (request.nextUrl.pathname.startsWith("/admin")) {
-    return authProxy(request, event);
+// Gerçek domain dışındaki her host (vercel.app demo, preview'lar) arama
+// motorlarına kapalı: robots.txt (route handler) taramayı, bu başlık ise
+// indekslemeyi engeller. moniva.com.tr bağlandığında kendiliğinden açılır.
+const PROD_HOSTS = new Set(["moniva.com.tr", "www.moniva.com.tr"]);
+
+function withRobotsHeader(request: NextRequest, res: Response): Response {
+  const host = (request.headers.get("host") ?? "").toLowerCase().split(":")[0];
+  if (!PROD_HOSTS.has(host)) {
+    res.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
-  return intlMiddleware(request);
+  return res;
+}
+
+export default async function proxy(request: NextRequest, event: NextFetchEvent) {
+  const res = request.nextUrl.pathname.startsWith("/admin")
+    ? await authProxy(request, event)
+    : intlMiddleware(request);
+  return withRobotsHeader(request, res as Response);
 }
 
 export const config = {
