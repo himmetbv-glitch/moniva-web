@@ -312,15 +312,26 @@
   letter-spacing: -0.2px;
   margin-bottom: 24px;
 }
-/* İkinci ofis (ör. Rusya): üstten çizgiyle ayrılır, başlığı biraz daha küçük. */
-.ct-info__office2 {
-  margin-top: 26px;
-  padding-top: 26px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+/* İkinci ofis (ör. Rusya) varken: panel genişler, TR/RU yan yana iki sütun.
+   Saatler + sosyal ikonlar tam genişlikte altta kalır. */
+.ct-formsec--two {
+  grid-template-columns: 1fr 640px;
 }
-.ct-info__office2 .ct-info__co {
+.ct-info--two .ct-info__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.ct-info--two .ct-info__grid .ct-info__co {
   font-size: 17px;
-  margin-bottom: 18px;
+}
+.ct-info--two .ct-info__office2 {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  padding-left: 28px;
+}
+.ct-info--two .ct-info__grid + .ct-info__block {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 22px;
 }
 .ct-info__block {
   display: flex;
@@ -643,7 +654,8 @@ a.ct-social__i:hover {
 
 /* ── Responsive ── */
 @media (max-width: 1000px) {
-  .ct-formsec {
+  .ct-formsec,
+  .ct-formsec--two {
     grid-template-columns: 1fr;
     gap: 32px;
   }
@@ -670,5 +682,15 @@ a.ct-social__i:hover {
   .ct-quick,
   .ct-depts__grid {
     grid-template-columns: 1fr;
+  }
+  /* Dar ekranda TR/RU sütunları alt alta; ayraç sola değil üste döner. */
+  .ct-info--two .ct-info__grid {
+    grid-template-columns: 1fr;
+  }
+  .ct-info--two .ct-info__office2 {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 22px;
   }
 }
