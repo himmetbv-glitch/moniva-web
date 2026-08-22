@@ -51,7 +51,7 @@ export const ABOUT_PAGE = {
   path: "/hakkinda",
   seoTitle: "Hakkımızda — Moniva",
   seoDesc:
-    "1999'dan bu yana Moniva, ağır vasıta ve treyler sektöründe OEM kalitesinde yedek parçayı Konya'daki merkezinden 80+ pazara tedarik ediyor.",
+    "1999'dan bu yana Moniva, ağır vasıta ve treyler sektöründe OEM kalitesinde yedek parçayı Konya'daki merkezinden 50+ pazara tedarik ediyor.",
 } as const;
 
 const _typeCheck: SectionType[] = [
@@ -138,7 +138,7 @@ export const ABOUT_SECTIONS: SeedSection[] = [
         { year: "2012", title: "Depo genişlemesi", body: "Tam otomatik toplama hatlarına sahip 12.000 m² tesise taşındı." },
         { year: "2018", title: "ISO 9001:2015", body: "Kalite sistemleri yeniden sertifikalandı. Tüm ürünlerde tam izlenebilirlik." },
         { year: "2021", title: "50.000 ürüne ulaştı", body: "Hava süspansiyon ve elektrik grupları eklendi — tüm büyük kamyon OEM'leri kapsandı." },
-        { year: "2026", title: "80+ pazarda", body: "Yetkili distribütör ağı artık üç kıtaya yayıldı." },
+        { year: "2026", title: "50+ pazarda", body: "Yetkili distribütör ağı artık üç kıtaya yayıldı." },
       ],
     } satisfies AboutTimelineData,
   },
@@ -155,9 +155,7 @@ export const ABOUT_SECTIONS: SeedSection[] = [
       title: "Uluslararası standartlarda sertifikalı.",
       certs: [
         { code: "ISO 9001:2015", body: "Tedarik, depolama ve sevkiyat operasyonlarında sertifikalı kalite yönetim sistemi." },
-        { code: "ECE R90", body: "Tüm fren komponentleri, yedek fren parçaları için UN/ECE Regülasyon 90'a uygundur." },
-        { code: "TS EN ISO 14001", body: "Çevre yönetim sistemi — atık azaltma, geri dönüşüm ve enerji verimliliği." },
-        { code: "AEO-S", body: "AB genelinde hızlandırılmış gümrük işlemleri için Yetkilendirilmiş Yükümlü statüsü." },
+        { code: "EAC", body: "Avrasya Gümrük Birliği (Rusya, Belarus, Kazakistan) uygunluk sertifikası." },
       ],
     } satisfies AboutCertsData,
   },
@@ -176,9 +174,9 @@ export const ABOUT_SECTIONS: SeedSection[] = [
       primaryLabel: "Ürünleri Keşfet ▶",
       primaryHref: "/urunler",
       secondaryLabel: "İhracat Ekibine Yazın",
-      secondaryHref: "mailto:export@moniva.com.tr",
+      secondaryHref: "mailto:info@moniva.com.tr",
       contacts: [
-        { icon: "✉", label: "E-posta", value: "export@moniva.com.tr" },
+        { icon: "✉", label: "E-posta", value: "info@moniva.com.tr" },
         { icon: "✆", label: "Telefon", value: "+90 332 239 03 05" },
         { icon: "◎", label: "Konum", value: "Konya, Türkiye" },
       ],

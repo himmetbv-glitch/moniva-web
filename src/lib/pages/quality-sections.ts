@@ -47,7 +47,7 @@ export const QUALITY_PAGE = {
   path: "/kalite",
   seoTitle: "Kalite & Sertifikalar — Moniva",
   seoDesc:
-    "Her Moniva komponenti test edilmiş, denetlenmiş ve izlenebilir olarak sevk edilir. ISO 9001, IATF 16949, ECE R90 ve daha fazlası — küresel otomotiv standartlarında sertifikalı.",
+    "Her Moniva komponenti test edilmiş, denetlenmiş ve izlenebilir olarak sevk edilir. ISO 9001 ve EAC sertifikalı — küresel otomotiv standartlarında kalite.",
 } as const;
 
 export const QUALITY_SECTIONS: SeedSection[] = [
@@ -63,10 +63,10 @@ export const QUALITY_SECTIONS: SeedSection[] = [
       crumbLabel: "Kalite",
       eyebrow: "Kalite Güvencesi",
       title: "Kalite.",
-      sub: "Her komponent tesisimizden test edilmiş, denetlenmiş ve izlenebilir olarak çıkar. 80+ pazarda güvenilirlik için tasarlanmış, küresel otomotiv standartlarında sertifikalı.",
+      sub: "Her komponent tesisimizden test edilmiş, denetlenmiş ve izlenebilir olarak çıkar. 50+ pazarda güvenilirlik için tasarlanmış, küresel otomotiv standartlarında sertifikalı.",
       stats: [
         { v: "7", l: "Lab İstasyonu" },
-        { v: "8", l: "Sertifika" },
+        { v: "2", l: "Sertifika" },
         { v: "%100", l: "Test edildi" },
       ],
     } satisfies QualityBannerData,
@@ -98,14 +98,10 @@ export const QUALITY_SECTIONS: SeedSection[] = [
     data: {
       title: "Uluslararası Standartlar.",
       ruleWidth: 220,
-      sub: "Otomotiv kalitesi, çevre ve bölgesel pazar girişini düzenleyen altı temel standartta bağımsız denetim ve sertifikasyon.",
+      sub: "Kalite yönetimi ve bölgesel pazar girişini düzenleyen temel standartlarda bağımsız denetim ve sertifikasyon.",
       standards: [
         { code: "ISO 9001", year: "2015", org: "Uluslararası Standardizasyon Örgütü", scope: "Kalite Yönetim Sistemleri" },
-        { code: "IATF 16949", year: "2016", org: "Uluslararası Otomotiv Görev Gücü", scope: "Otomotiv KYS — en üst kademe" },
-        { code: "ECE R90", year: "Rev. 02", org: "BM Avrupa Ekonomik Komisyonu", scope: "Yedek Fren Balata Takımları" },
-        { code: "CE İşareti", year: "AB 2024", org: "Avrupa Uygunluğu", scope: "AB direktiflerine uygunluk" },
         { code: "EAC", year: "TR-CU", org: "Avrasya Uygunluğu (RU/BY/KZ)", scope: "Gümrük Birliği onayı" },
-        { code: "ISO 14001", year: "2015", org: "ISO Çevre", scope: "Çevre Yönetim Sistemi" },
       ],
     } satisfies QualityStandardsData,
   },
@@ -120,16 +116,11 @@ export const QUALITY_SECTIONS: SeedSection[] = [
     data: {
       title: "Belgeler.",
       ruleWidth: 130,
-      sub: "İndirilebilir sertifikalar ve kurumsal Kalite Politikası — bölgesel satın alma ekipleri için çeşitli dillerde.",
+      sub: "İndirilebilir sertifikalar — bölgesel satın alma ekipleri için.",
       docs: [
-        { name: "EAC Sertifikası — Bölüm 1", lang: "Avrasya Uygunluğu", type: "pdf", size: "1,4 MB", flag: "🇷🇺" },
-        { name: "EAC Sertifikası — Bölüm 2", lang: "Avrasya Uygunluğu", type: "pdf", size: "1,2 MB", flag: "🇷🇺" },
-        { name: "Kalite Politikası", lang: "Kurumsal Beyan", type: "pdf", size: "320 KB", flag: "🌐" },
-        { name: "Sertifika — Almanya", lang: "TÜV / DAkkS kapsamı", type: "img", size: "640 KB", flag: "🇩🇪" },
-        { name: "Sertifika — Arapça", lang: "Orta Doğu pazarı", type: "img", size: "580 KB", flag: "🇸🇦" },
-        { name: "Sertifika — Türkçe", lang: "TSE belgesi", type: "img", size: "620 KB", flag: "🇹🇷" },
-        { name: "Sertifika — İngilizce", lang: "Uluslararası baskı", type: "img", size: "590 KB", flag: "🇬🇧" },
-        { name: "Sertifika — Rusça", lang: "BDT dağıtımı", type: "img", size: "560 KB", flag: "🇷🇺" },
+        { name: "ISO 9001:2015 Sertifikası", lang: "Kalite Yönetim Sistemi", type: "pdf", size: "—", flag: "🌐" },
+        { name: "EAC Sertifikası — Bölüm 1", lang: "Avrasya Uygunluğu", type: "pdf", size: "—", flag: "🇷🇺" },
+        { name: "EAC Sertifikası — Bölüm 2", lang: "Avrasya Uygunluğu", type: "pdf", size: "—", flag: "🇷🇺" },
       ],
     } satisfies QualityDocsData,
   },

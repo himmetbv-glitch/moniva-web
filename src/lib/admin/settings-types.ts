@@ -28,7 +28,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   companyName: "MONIVA Otomotiv ve Gıda San. Tic. A.Ş.",
   addressLine: "Selçuklu / Konya, Türkiye",
   phone: "+90 332 239 03 05",
-  email: "export@moniva.com.tr",
+  email: "info@moniva.com.tr",
   whatsapp: "",
   linkedinUrl: "",
   xUrl: "",

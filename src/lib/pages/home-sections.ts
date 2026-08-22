@@ -98,7 +98,7 @@ export const HOME_PAGE = {
   path: "/",
   seoTitle: "Moniva — Kamyon ve Treyler Yedek Parça",
   seoDesc:
-    "Kamyon, treyler ve ticari araçlar için premium yedek parça. OEM kalitesinde, 50.000+ SKU, 80+ ülkeye hızlı sevkiyat.",
+    "Kamyon, treyler ve ticari araçlar için premium yedek parça. OEM kalitesinde, 50.000+ SKU, 50+ ülkeye hızlı sevkiyat.",
 } as const;
 
 export const HOME_SECTIONS: SeedSection[] = [
@@ -203,7 +203,7 @@ export const HOME_SECTIONS: SeedSection[] = [
         { region: "Diğer Pazarlar", countries: "UK · İskandinavya · Baltıklar", count: 9 },
       ],
       stats: [
-        { v: "80+", l: "İhracat Ülkesi" },
+        { v: "50+", l: "İhracat Ülkesi" },
         { v: "50.000+", l: "Aktif SKU" },
         { v: "3", l: "Kıta" },
         { v: "24sa", l: "Ort. Sevkiyat" },

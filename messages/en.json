@@ -55,8 +55,6 @@
         "items": [
           "About Us",
           "Quality & Certificates",
-          "Sustainability",
-          "Fairs",
           "News",
           "Careers"
         ]
@@ -66,10 +64,7 @@
         "items": [
           "Technical Support",
           "Download Catalog",
-          "OEM Cross-Reference",
-          "Warranty Policy",
-          "Returns",
-          "FAQ"
+          "OEM Cross-Reference"
         ]
       }
     },
@@ -640,7 +635,7 @@
     "banner": {
       "eyebrow": "━━ Press & Media",
       "title": "News.",
-      "sub": "Press releases, product launches, fair news and industry insights from Moniva Otomotiv — the story behind every part we ship to 80+ markets.",
+      "sub": "Press releases, product launches, fair news and industry insights from Moniva Otomotiv — the story behind every part we ship to 50+ markets.",
       "statNews": "Articles",
       "statLanguage": "Languages",
       "statMarket": "Markets"

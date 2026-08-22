@@ -19,6 +19,14 @@ export type ContactInfoData = {
   emailLabel: string;
   hoursLabel: string;
   hoursLines: string[];
+  // Opsiyonel ikinci ofis (ör. Rusya temsilciliği): kendi adres/telefon/e-postası
+  // vardır, Ayarlar'daki genel bilgilere DÜŞMEZ. Boşsa blok hiç gösterilmez.
+  office2?: {
+    title: string;
+    addressLines: string[];
+    phone: string;
+    email: string;
+  };
 };
 
 // valueType: "email" | "phone" | "custom" (email/phone Ayarlar'dan gelir)
@@ -110,7 +118,7 @@ export const CONTACT_SECTIONS: SeedSection[] = [
       phoneLabel: "Telefon",
       emailLabel: "E-posta",
       hoursLabel: "Çalışma saatleri",
-      hoursLines: ["Pazartesi – Cuma: 08:00 – 18:00", "Cumartesi: 09:00 – 14:00", "Pazar: Kapalı"],
+      hoursLines: ["Pazartesi – Cuma: 08:00 – 18:20", "Cumartesi: Kapalı", "Pazar: Kapalı"],
     } satisfies ContactInfoData,
   },
   {
@@ -124,7 +132,7 @@ export const CONTACT_SECTIONS: SeedSection[] = [
     data: {
       tiles: [
         { icon: "✉", label: "E-posta", valueType: "email", valueCustom: "", sub: "Teklif & sipariş için" },
-        { icon: "✆", label: "Bizi arayın", valueType: "phone", valueCustom: "", sub: "Pzt–Cum 08:00–18:00" },
+        { icon: "✆", label: "Bizi arayın", valueType: "phone", valueCustom: "", sub: "Pzt–Cum 08:00–18:20" },
         { icon: "◎", label: "Ziyaret edin", valueType: "custom", valueCustom: "Konya, Türkiye", sub: "Randevu ile" },
         { icon: "⚙", label: "Teknik destek", valueType: "email", valueCustom: "", sub: "OEM çapraz referans" },
       ],
@@ -141,7 +149,7 @@ export const CONTACT_SECTIONS: SeedSection[] = [
     data: {
       eyebrow: "Bizi Bulun",
       title: "Konya Organize Sanayi Bölgesi",
-      body: "Konya Havalimanı'na 45 dakika · O-21 otoyolu üzerinden doğrudan lojistik erişim · Orta Anadolu'nun en büyük organize sanayi bölgesi.",
+      body: "Konya Havalimanı'na 5 dakika · O-21 otoyolu üzerinden doğrudan lojistik erişim · Orta Anadolu'nun en büyük organize sanayi bölgesi.",
       directionsHref: "https://www.google.com/maps/dir/?api=1&destination=37.986767,32.598997",
       mapHref: "https://www.openstreetmap.org/?mlat=37.986767&mlon=32.598997#map=16/37.986767/32.598997",
       mapSrc: "https://www.openstreetmap.org/export/embed.html?bbox=32.584%2C37.9788%2C32.614%2C37.9948&layer=mapnik&marker=37.986767%2C32.598997",

@@ -16,15 +16,15 @@ const COLS: readonly { key: ColKey; hrefs: readonly string[] }[] = [
   },
   {
     key: "corporate",
-    hrefs: ["#", "#", "#", "#", "#", "#"],
+    hrefs: ["/hakkinda", "/kalite", "/haberler", "/kariyer"],
   },
   {
     key: "support",
-    hrefs: ["#", "/kataloglar", "/urunler", "#", "#", "#"],
+    hrefs: ["/iletisim", "/kataloglar", "/urunler"],
   },
 ];
 
-const CERTS = ["ISO 9001:2015", "ECE R90", "CE Marked", "TS EN ISO 9001"];
+const CERTS = ["ISO 9001:2015", "EAC"];
 
 export async function SiteFooter() {
   const [footerPages, settings, t] = await Promise.all([

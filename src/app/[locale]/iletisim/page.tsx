@@ -193,6 +193,20 @@ function InfoSection({ d, c }: { d: ContactInfoData; c: Contacts }) {
         <InfoBlock ico="✆" label={d.phoneLabel} lines={[c.phone]} />
         <InfoBlock ico="✉" label={d.emailLabel} lines={[c.email]} />
         <InfoBlock ico="◴" label={d.hoursLabel} lines={d.hoursLines} />
+        {d.office2?.title && (
+          <div className="ct-info__office2">
+            <div className="ct-info__co">{d.office2.title}</div>
+            {d.office2.addressLines.length > 0 && (
+              <InfoBlock ico="◎" label={d.addressLabel} lines={d.office2.addressLines} />
+            )}
+            {d.office2.phone && (
+              <InfoBlock ico="✆" label={d.phoneLabel} lines={[d.office2.phone]} />
+            )}
+            {d.office2.email && (
+              <InfoBlock ico="✉" label={d.emailLabel} lines={[d.office2.email]} />
+            )}
+          </div>
+        )}
         <div className="ct-info__follow">
           <div className="ct-info__label">Bizi takip edin</div>
           <div className="ct-social">

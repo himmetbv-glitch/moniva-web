@@ -623,7 +623,33 @@ function ContactInfoFields({ d, set, onChange }: FieldsProps) {
       </div>
       <Field label="Çalışma saatleri etiketi"><input value={str(d.hoursLabel)} onChange={(e) => set({ hoursLabel: e.target.value })} /></Field>
       <LineListField label="Çalışma saatleri satırları" value={arr(d.hoursLines).map(String)} onChange={(v) => onChange({ ...d, hoursLines: v })} />
+
+      <div className="mp-group__ttl mp-sub">İkinci ofis (ör. Rusya)</div>
+      <div className="mp-note">
+        Başlık boş bırakılırsa bu blok sitede hiç görünmez. Telefon/e-posta buradaki
+        değerlerdir; Ayarlar&apos;daki genel bilgilere düşmez.
+      </div>
+      <Office2Fields d={d} onChange={onChange} />
     </>
+  );
+}
+
+function Office2Fields({ d, onChange }: { d: AnyData; onChange: (v: AnyData) => void }) {
+  const o = (d.office2 ?? {}) as AnyData;
+  const setO = (patch: AnyData) => onChange({ ...d, office2: { ...o, ...patch } });
+  return (
+    <div className="mp-group">
+      <Field label="Ofis başlığı"><input value={str(o.title)} placeholder="Rusya Ofisi" onChange={(e) => setO({ title: e.target.value })} /></Field>
+      <LineListField
+        label="Adres satırları"
+        value={arr(o.addressLines).map(String)}
+        onChange={(v) => setO({ addressLines: v })}
+      />
+      <div className="mp-2col">
+        <Field label="Telefon"><input value={str(o.phone)} placeholder="+7 ..." onChange={(e) => setO({ phone: e.target.value })} /></Field>
+        <Field label="E-posta"><input type="email" value={str(o.email)} placeholder="sales@moniva.ru" onChange={(e) => setO({ email: e.target.value })} /></Field>
+      </div>
+    </div>
   );
 }
 

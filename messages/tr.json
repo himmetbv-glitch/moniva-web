@@ -55,8 +55,6 @@
         "items": [
           "Hakkımızda",
           "Kalite & Sertifikalar",
-          "Sürdürülebilirlik",
-          "Fuarlar",
           "Haberler",
           "Kariyer"
         ]
@@ -66,10 +64,7 @@
         "items": [
           "Teknik Destek",
           "Katalog İndir",
-          "OEM Çapraz Referans",
-          "Garanti Politikası",
-          "İadeler",
-          "SSS"
+          "OEM Çapraz Referans"
         ]
       }
     },
@@ -640,7 +635,7 @@
     "banner": {
       "eyebrow": "━━ Basın & Medya",
       "title": "Haberler.",
-      "sub": "Moniva Otomotiv'den basın bültenleri, ürün lansmanları, fuar haberleri ve sektör içgörüleri — 80+ pazara sevk ettiğimiz her parçanın arkasındaki hikâye.",
+      "sub": "Moniva Otomotiv'den basın bültenleri, ürün lansmanları, fuar haberleri ve sektör içgörüleri — 50+ pazara sevk ettiğimiz her parçanın arkasındaki hikâye.",
       "statNews": "Haber",
       "statLanguage": "Dil",
       "statMarket": "Pazar"

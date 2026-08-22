@@ -258,6 +258,21 @@ export const contactInfoData = z.object({
   emailLabel: z.string().trim().max(80),
   hoursLabel: z.string().trim().max(80),
   hoursLines: lineList,
+  // İkinci ofis (ör. Rusya) — mevcut veride alan yok, opsiyonel → geriye uyumlu.
+  office2: z
+    .object({
+      title: z.string().trim().max(120),
+      addressLines: lineList,
+      phone: z.string().trim().max(40),
+      email: z
+        .string()
+        .trim()
+        .max(160)
+        .refine((v) => v === "" || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v), {
+          error: "Geçersiz e-posta.",
+        }),
+    })
+    .optional(),
 });
 
 export const contactQuickData = z.object({
