@@ -201,16 +201,6 @@ export default async function CataloguesPage() {
             {byType.map(({ name, items }) => (
               <Group key={name} title={name} items={items} labels={cardLabels} />
             ))}
-
-            <div className="cat-printcta">
-              <div>
-                <div className="cat-printcta__t">{t("catalogs.printCta.title")}</div>
-                <p>{t("catalogs.printCta.body")}</p>
-              </div>
-              <Link href="/iletisim" className="cat-printcta__btn">
-                {t("catalogs.printCta.cta")}
-              </Link>
-            </div>
           </div>
         )}
       </main>

@@ -693,11 +693,6 @@
       "download": "PDF İndir",
       "preview": "Önizle",
       "pageSuffix": "s"
-    },
-    "printCta": {
-      "title": "Basılı katalog ister misiniz?",
-      "body": "Genel kataloğun basılı bir kopyasını iş yerinize gönderelim — kayıtlı ticari iş ortakları için ücretsiz.",
-      "cta": "Basılı kopya isteyin ▶"
     }
   }
 }

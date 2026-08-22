@@ -693,11 +693,6 @@
       "download": "Download PDF",
       "preview": "Preview",
       "pageSuffix": "p"
-    },
-    "printCta": {
-      "title": "Would you like a printed catalog?",
-      "body": "We can ship a printed copy of the general catalog to your business — free of charge for registered trade partners.",
-      "cta": "Request printed copy ▶"
     }
   }
 }
