@@ -171,18 +171,21 @@
 }
 
 /* ── CATEGORIES ── */
+/* 6 kart = 2 satır × 3 sütun. Görseller beyaz zeminli ürün fotoğrafları
+   olduğundan başlık koyu, alt şerit açık degrade. */
 .hh-cats__grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 .hh-catcard {
   position: relative;
-  flex: 1;
   height: 280px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  background-color: #1a1a1a;
+  background-color: #fff;
+  border: 1px solid #e3e0ee;
   text-decoration: none;
   display: block;
 }
@@ -190,7 +193,7 @@
   position: absolute;
   inset: auto 0 0 0;
   height: 110px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.92) 0%, transparent 100%);
 }
 .hh-catcard__label {
   position: absolute;
@@ -198,8 +201,8 @@
   left: 16px;
   right: 16px;
   font-size: 28px;
-  font-weight: 200;
-  color: #fff;
+  font-weight: 300;
+  color: #1b1640;
   line-height: 1.1;
   letter-spacing: -0.4px;
   display: flex;
@@ -209,11 +212,11 @@
 .hh-catcard__label i {
   font-style: normal;
   font-size: 20px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(27, 22, 64, 0.55);
   transition: color 0.15s;
 }
 .hh-catcard:hover .hh-catcard__label i {
-  color: #fff;
+  color: #1b1640;
 }
 
 /* ── WHY ── */
@@ -673,6 +676,12 @@
   }
   .hh-why__grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .hh-cats__grid {
+    grid-template-columns: 1fr;
+  }
+  .hh-catcard {
+    height: 220px;
   }
   .hh-global__regions {
     grid-template-columns: 1fr 1fr;
