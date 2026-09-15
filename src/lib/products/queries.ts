@@ -153,6 +153,7 @@ export async function getShowcaseCategories(
       code: true,
       parentId: true,
       image: true,
+      order: true,
       translations: { select: { locale: true, name: true } },
       _count: { select: { products: { where: { isActive: true } } } },
     },
@@ -175,11 +176,13 @@ export async function getShowcaseCategories(
     return out;
   };
 
+  // Kenar çubuğuyla (getCategoryTree, orderBy order asc) AYNI sıra; eşitlikte
+  // ürün sayısı çoktan aza.
   const roots = categories
     .filter((c) => (!c.parentId || !byId.has(c.parentId)) && c.code !== "UNCAT")
     .map((c) => ({ c, count: countOf(c) }))
     .filter((x) => x.count > 0)
-    .sort((a, b) => b.count - a.count);
+    .sort((a, b) => a.c.order - b.c.order || b.count - a.count);
 
   return Promise.all(
     roots.map(async ({ c, count }) => {
