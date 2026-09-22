@@ -14,7 +14,15 @@ export function GET(request: NextRequest): Response {
   const isProd = PROD_HOSTS.has(host);
 
   const body = isProd
-    ? ["User-agent: *", "Allow: /", "Disallow: /admin/", "Disallow: /api/", ""].join("\n")
+    ? [
+        "User-agent: *",
+        "Allow: /",
+        "Disallow: /admin/",
+        "Disallow: /api/",
+        "",
+        "Sitemap: https://moniva.com.tr/sitemap.xml",
+        "",
+      ].join("\n")
     : ["User-agent: *", "Disallow: /", ""].join("\n");
 
   return new Response(body, {
