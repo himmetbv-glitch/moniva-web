@@ -20,7 +20,7 @@ export function GET(request: NextRequest): Response {
         "Disallow: /admin/",
         "Disallow: /api/",
         "",
-        "Sitemap: https://moniva.com.tr/sitemap.xml",
+        "Sitemap: https://www.moniva.com.tr/sitemap.xml",
         "",
       ].join("\n")
     : ["User-agent: *", "Disallow: /", ""].join("\n");

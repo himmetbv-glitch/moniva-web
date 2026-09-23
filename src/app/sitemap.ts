@@ -3,10 +3,10 @@ import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { routing } from "@/i18n/routing";
 
-// Sitemap her zaman kanonik prod domain'i listeler (env'e bağlı değil):
+// Sitemap her zaman kanonik prod domain'i (www — Vercel apex'i www'ye 308 eder) listeler:
 // vercel.app demosu robots ile zaten tamamen kapalı, oradan sitemap sunulsa
 // bile içeriği prod URL'leri gösterir — yanlış host'un dizinlenme riski yok.
-const BASE = "https://moniva.com.tr";
+const BASE = "https://www.moniva.com.tr";
 
 export const revalidate = 3600;
 
