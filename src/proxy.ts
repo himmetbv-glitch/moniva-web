@@ -1,4 +1,4 @@
-import type { NextFetchEvent, NextRequest } from "next/server";
+import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server";
 import NextAuth from "next-auth";
 import createIntlMiddleware from "next-intl/middleware";
 
@@ -31,7 +31,18 @@ function withRobotsHeader(request: NextRequest, res: Response): Response {
   return res;
 }
 
+// Eski demo adresi kalıcı olarak gerçek domain'e taşınır. Yalnız bu sabit
+// alias; deploy'a özel preview URL'leri (moniva-web-git-*.vercel.app) açık kalır.
+const LEGACY_HOSTS = new Set(["moniva-web.vercel.app"]);
+const CANONICAL_ORIGIN = "https://www.moniva.com.tr";
+
 export default async function proxy(request: NextRequest, event: NextFetchEvent) {
+  const host = (request.headers.get("host") ?? "").toLowerCase().split(":")[0];
+  if (LEGACY_HOSTS.has(host)) {
+    const { pathname, search } = request.nextUrl;
+    return NextResponse.redirect(new URL(pathname + search, CANONICAL_ORIGIN), 308);
+  }
+
   const res = request.nextUrl.pathname.startsWith("/admin")
     ? await authProxy(request, event)
     : intlMiddleware(request);
