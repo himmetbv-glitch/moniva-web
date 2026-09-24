@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HYS Hasta Yakalama Paneli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#eef2f1;
+  --surface:#ffffff;
+  --surface-2:#f5f8f7;
+  --line:#dce4e2;
+  --line-2:#e9eeed;
+  --ink:#0f1f1c;
+  --ink-2:#465753;
+  --ink-3:#6f807c;
+  --accent:#0b6e62;
+  --accent-hover:#095c52;
+  --accent-soft:#dbeeea;
+  --accent-ink:#ffffff;
+  --good:#1d7f47;
+  --good-soft:#dcf0e3;
+  --warn:#a15f00;
+  --warn-soft:#fbeccf;
+  --crit:#c2362f;
+  --crit-soft:#f9dfdc;
+  --bar-neutral:#8a9b97;
+  --side:#0f2421;
+  --side-ink:#d6e5e2;
+  --side-muted:#86a19c;
+  --side-active:#7fd6c7;
+  --side-hover:rgba(255,255,255,.06);
+  --shadow:0 1px 2px rgba(15,31,28,.04),0 8px 24px -12px rgba(15,31,28,.12);
+  --overlay:rgba(8,20,18,.38);
+  --font:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0b1312;--surface:#121c1a;--surface-2:#172321;--line:#233331;--line-2:#1c2a28;
+    --ink:#e7f0ee;--ink-2:#a8b9b5;--ink-3:#7d8f8b;
+    --accent:#3fb3a1;--accent-hover:#5cc4b3;--accent-soft:#163a34;--accent-ink:#04201b;
+    --good:#51c47f;--good-soft:#153524;--warn:#e7a642;--warn-soft:#382a11;--crit:#f06a61;--crit-soft:#3d1c1a;
+    --bar-neutral:#6e817d;
+    --side:#08100f;--side-ink:#d6e5e2;--side-muted:#7b938e;--side-active:#6fd0c0;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.5);
+    --overlay:rgba(0,0,0,.55);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0b1312;--surface:#121c1a;--surface-2:#172321;--line:#233331;--line-2:#1c2a28;
+  --ink:#e7f0ee;--ink-2:#a8b9b5;--ink-3:#7d8f8b;
+  --accent:#3fb3a1;--accent-hover:#5cc4b3;--accent-soft:#163a34;--accent-ink:#04201b;
+  --good:#51c47f;--good-soft:#153524;--warn:#e7a642;--warn-soft:#382a11;--crit:#f06a61;--crit-soft:#3d1c1a;
+  --bar-neutral:#6e817d;
+  --side:#08100f;--side-ink:#d6e5e2;--side-muted:#7b938e;--side-active:#6fd0c0;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.5);
+  --overlay:rgba(0,0,0,.55);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.num{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+
+/* ---------- Shell ---------- */
+.app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+.side{background:var(--side);color:var(--side-ink);position:sticky;top:env(safe-area-inset-top,0px);height:100vh;padding:20px 14px;display:flex;flex-direction:column;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;padding:0 6px}
+.brand svg{flex:none}
+.brand b{display:block;font-size:17px;letter-spacing:.02em}
+.brand small{display:block;font-size:11.5px;color:var(--side-muted);line-height:1.2}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--side-muted);padding:0 10px 6px}
+.nav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:7px;color:var(--side-ink);text-decoration:none;font-weight:500;white-space:nowrap}
+.nav a:hover{background:var(--side-hover)}
+.nav a.on{background:rgba(127,214,199,.1);color:var(--side-active)}
+.nav a svg{flex:none;opacity:.85}
+.nav a .count{margin-left:auto;font-size:11px;font-family:var(--mono);background:rgba(240,106,97,.18);color:#ffb3ad;padding:1px 7px;border-radius:999px}
+.side-foot{margin-top:auto;display:flex;align-items:center;gap:10px;padding:10px;border-top:1px solid rgba(255,255,255,.08)}
+.avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:11.5px;font-weight:600;background:var(--accent-soft);color:var(--accent);flex:none}
+.side-foot .avatar{background:rgba(127,214,199,.16);color:var(--side-active)}
+.side-foot b{display:block;font-size:13px;font-weight:600}
+.side-foot small{color:var(--side-muted);font-size:11.5px}
+
+.main{padding-block:22px 56px;padding-inline:clamp(16px,2.6vw,32px);display:flex;flex-direction:column;gap:18px;min-width:0}
+
+/* ---------- Header ---------- */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px}
+.top h1{margin:0;font-size:26px;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.top .sub{margin-top:4px;color:var(--ink-3);display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.live{display:inline-flex;align-items:center;gap:6px;color:var(--good);font-weight:500}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 var(--good);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.sample{font-size:11.5px;padding:2px 8px;border-radius:999px;border:1px dashed var(--line);color:var(--ink-3)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:3px}
+.seg button{border:0;background:transparent;padding:6px 12px;border-radius:6px;font-weight:500;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.seg button:not([aria-pressed="true"]):hover{background:var(--surface-2)}
+.btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:8px;font-weight:500}
+.btn:hover{background:var(--surface-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn.danger{color:var(--crit)}
+.btn.sm{padding:4px 9px;font-size:12.5px}
+
+/* ---------- KPI strip ---------- */
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.kpi{padding:16px 18px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.kpi+.kpi{border-left:1px solid var(--line-2)}
+.kpi-label{font-size:12.5px;color:var(--ink-2);font-weight:500;display:flex;align-items:center;gap:6px}
+.kpi-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.kpi-value{font-size:30px;font-weight:600;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi-value small{font-size:15px;font-weight:500;color:var(--ink-3);margin-left:2px;letter-spacing:0}
+.kpi-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12px;color:var(--ink-3)}
+.delta{display:inline-flex;align-items:center;gap:3px;font-weight:600;font-size:12px;padding:1px 6px;border-radius:5px;font-variant-numeric:tabular-nums}
+.delta.up{background:var(--good-soft);color:var(--good)}
+.delta.down{background:var(--crit-soft);color:var(--crit)}
+.spark{width:84px;height:32px;flex:none;overflow:visible}
+
+/* ---------- Cards / grid ---------- */
+.row{display:grid;gap:16px;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr)}
+.stack{display:flex;flex-direction:column;gap:16px;min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;scroll-margin-top:16px}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:16px 18px 12px}
+.card-head h2{margin:0;font-size:15.5px;font-weight:600;letter-spacing:-.005em}
+.card-head p{margin:2px 0 0;color:var(--ink-3);font-size:12.5px}
+.card-body{padding:4px 18px 18px}
+.card-foot{margin-top:auto;padding:12px 18px;border-top:1px solid var(--line-2);display:flex;flex-wrap:wrap;gap:6px 20px;color:var(--ink-2);font-size:13px}
+.card-foot b{color:var(--ink);font-weight:600}
+
+/* ---------- Queue ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fchip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:500;color:var(--ink-2);display:inline-flex;gap:6px;align-items:center}
+.fchip span{font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.fchip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.fchip[aria-pressed="true"] span{color:var(--accent)}
+.search{position:relative}
+.search input{width:190px;max-width:100%;border:1px solid var(--line);background:var(--surface-2);border-radius:8px;padding:6px 10px 6px 30px;font-size:13px}
+.search svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+.scroll-x{overflow-x:auto}
+table.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600;text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--surface-2)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line-2);vertical-align:middle;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .r{text-align:right}
+.tbl td.r{font-variant-numeric:tabular-nums}
+.queue tbody tr{cursor:pointer}
+.queue tbody tr:hover td{background:var(--surface-2)}
+.queue tbody tr:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.queue td:first-child{box-shadow:inset 3px 0 0 var(--stripe,transparent)}
+.queue tr.fresh td{animation:fresh 2.4s ease-out}
+@keyframes fresh{from{background:var(--accent-soft)}to{background:transparent}}
+.who b{display:block;font-weight:600}
+.who small{color:var(--ink-3);font-family:var(--mono);font-size:11.5px}
+.src b{display:block;font-weight:500}
+.src small{color:var(--ink-3);font-size:11.5px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.chip.new{background:var(--accent-soft);color:var(--accent)}
+.chip.contacted{background:var(--surface-2);color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line)}
+.chip.appt{background:var(--good-soft);color:var(--good)}
+.chip.lost{background:var(--surface-2);color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line)}
+.wait{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:13px;font-weight:500}
+.wait .tag{font-family:var(--font);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:1px 6px;border-radius:4px}
+.wait.ok{color:var(--good)}
+.wait.warn{color:var(--warn)}
+.wait.crit{color:var(--crit)}
+.wait.crit .tag{background:var(--crit-soft)}
+.wait.done{color:var(--ink-3);font-weight:400}
+.score{display:inline-flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.score i{display:block;width:40px;height:5px;border-radius:3px;background:var(--line-2);position:relative;overflow:hidden}
+.score i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--c,var(--ink-3));border-radius:3px}
+.score.hot{font-weight:600}
+.agent{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);font-size:10.5px;font-weight:600;color:var(--ink-2)}
+.empty{padding:28px 18px;text-align:center;color:var(--ink-3)}
+
+/* ---------- Funnel & bars ---------- */
+.funnel{display:flex;flex-direction:column;gap:4px}
+.fstep{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:baseline}
+.fstep .lbl{font-weight:500;color:var(--ink-2)}
+.fstep .val{font-weight:600;font-variant-numeric:tabular-nums;font-size:15px}
+.fstep .track{grid-column:1/-1;height:12px;border-radius:0 4px 4px 0;background:var(--line-2);overflow:hidden}
+.fstep .fill{height:100%;background:var(--accent);border-radius:0 4px 4px 0;transition:width .5s ease}
+.fconv{font-size:11.5px;color:var(--ink-3);padding:2px 0 4px;display:flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums}
+.fconv b{color:var(--ink-2);font-weight:600}
+.hbars{display:flex;flex-direction:column;gap:11px}
+.hbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 12px;font-size:13px}
+.hbar .lbl{color:var(--ink-2);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar .val{font-variant-numeric:tabular-nums;color:var(--ink-3)}
+.hbar .val b{color:var(--ink);font-weight:600;margin-right:6px}
+.hbar .track{grid-column:1/-1;height:8px;background:var(--line-2);border-radius:0 4px 4px 0;overflow:hidden}
+.hbar .fill{height:100%;background:var(--accent);border-radius:0 4px 4px 0;transition:width .5s ease}
+.hbars.neutral .fill{background:var(--bar-neutral)}
+.inline-bar{display:inline-flex;align-items:center;gap:8px}
+.inline-bar i{display:block;width:64px;height:6px;background:var(--line-2);border-radius:0 3px 3px 0;overflow:hidden}
+.inline-bar i::after{content:"";display:block;height:100%;width:var(--w);background:var(--accent);border-radius:0 3px 3px 0}
+
+/* ---------- Chart ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--ink-2);align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw-bar{width:10px;height:10px;border-radius:2px;background:var(--accent)}
+.sw-line{width:14px;height:2px;background:var(--ink-2);border-radius:1px}
+.chart-wrap{position:relative;min-height:240px}
+.chart-wrap svg{display:block;width:100%}
+.chart-wrap text{font-family:var(--font);font-size:11px;fill:var(--ink-3);font-variant-numeric:tabular-nums}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--surface);padding:7px 10px;border-radius:7px;font-size:12px;line-height:1.35;white-space:nowrap;transform:translate(-50%,calc(-100% - 10px));box-shadow:var(--shadow);z-index:2}
+.tip b{font-weight:600}
+.tip .muted{opacity:.7}
+.linkish{border:0;background:none;color:var(--accent);font-weight:500;padding:0;font-size:12.5px}
+.linkish:hover{text-decoration:underline}
+
+.agent-status{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-2)}
+.agent-status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+
+/* ---------- Drawer ---------- */
+.scrim{position:fixed;inset:0;background:var(--overlay);z-index:20;opacity:0;transition:opacity .2s}
+.scrim.show{opacity:1}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100vw);background:var(--surface);border-left:1px solid var(--line);z-index:21;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .25s ease;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.show{transform:none}
+.d-head{padding:18px 20px 14px;border-bottom:1px solid var(--line-2);display:flex;gap:12px;align-items:flex-start}
+.d-head h3{margin:0;font-size:19px;letter-spacing:-.01em}
+.d-head .meta{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.x{margin-left:auto;border:1px solid var(--line);background:var(--surface);width:32px;height:32px;border-radius:8px;display:grid;place-items:center;flex:none}
+.d-body{flex:1;overflow-y:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:18px}
+.d-sec h4{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);font-weight:600}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:7px 16px;margin:0;font-size:13px}
+.facts dt{color:var(--ink-3)}
+.facts dd{margin:0;font-weight:500;overflow-wrap:anywhere}
+.phone{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.phone .mono{user-select:all;font-size:14px}
+.quote{margin:0;padding:10px 12px;background:var(--surface-2);border-radius:8px;border:1px solid var(--line-2);color:var(--ink-2);font-size:13px}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.timeline li{display:grid;grid-template-columns:44px 14px minmax(0,1fr);gap:8px;font-size:13px;padding-bottom:12px;position:relative}
+.timeline time{font-family:var(--mono);font-size:12px;color:var(--ink-3);padding-top:1px}
+.timeline .dot{width:9px;height:9px;border-radius:50%;background:var(--surface);border:2px solid var(--accent);margin-top:5px}
+.timeline li:not(:last-child)::after{content:"";position:absolute;left:56px;top:16px;bottom:0;width:1px;background:var(--line)}
+.actions{display:flex;flex-direction:column;gap:10px}
+.act-row{display:flex;flex-wrap:wrap;gap:8px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.form-grid label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink-3);font-weight:500}
+.form-grid label.full{grid-column:1/-1}
+.form-grid input,.form-grid select{border:1px solid var(--line);background:var(--surface-2);border-radius:7px;padding:7px 9px;font-size:13px;color:var(--ink);min-width:0}
+.panel{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:10px}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--surface);padding:10px 16px;border-radius:9px;font-size:13px;font-weight:500;box-shadow:var(--shadow);opacity:0;transition:opacity .2s,transform .2s;z-index:30;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1240px){
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kpi:nth-child(4){border-left:0}
+  .kpi:nth-child(n+4){border-top:1px solid var(--line-2)}
+}
+@media (max-width:1100px){.row{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;height:auto;flex-direction:row;align-items:center;gap:14px;padding:12px 16px;overflow:hidden}
+  .brand small,.nav-label,.side-foot{display:none}
+  .nav{flex-direction:row;overflow-x:auto;min-width:0;flex:1;scrollbar-width:none}
+  .nav a{padding:7px 10px}
+}
+@media (max-width:640px){
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi:nth-child(n){border-left:0;border-top:0}
+  .kpi:nth-child(even){border-left:1px solid var(--line-2)}
+  .kpi:nth-child(n+3){border-top:1px solid var(--line-2)}
+  .kpi:last-child{grid-column:1/-1}
+  .kpi-value{font-size:25px}
+  .spark{width:64px}
+  .top h1{font-size:22px}
+  .search input{width:100%}
+  .search{flex:1}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+        <circle cx="15" cy="15" r="12.5" fill="none" stroke="#7fd6c7" stroke-width="2"/>
+        <circle cx="15" cy="15" r="6.5" fill="none" stroke="#7fd6c7" stroke-width="2" opacity=".55"/>
+        <path d="M15 11.5v7M11.5 15h7" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <div><b>HYS</b><small>Hasta Yakalama Sistemi</small></div>
+    </div>
+    <nav class="nav" aria-label="Panel bölümleri">
+      <div class="nav-label">Panel</div>
+      <a href="#ozet" class="on"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>Genel bakış</a>
+      <a href="#kuyruk"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h12M2 8h12M2 12h7"/></svg>Lead kuyruğu<span class="count" id="navSla">0</span></a>
+      <a href="#huni"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 3h12l-4.5 5.5V13l-3 1V8.5z"/></svg>Dönüşüm</a>
+      <a href="#kaynaklar"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 14V9M6 14V5M10 14V7M14 14V2"/></svg>Kaynaklar</a>
+      <a href="#ekip"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="5.5" r="2.5"/><path d="M1.5 13.5c.6-2.4 2.3-3.6 4.5-3.6s3.9 1.2 4.5 3.6"/><path d="M10.5 3.2a2.4 2.4 0 0 1 0 4.6M12.2 10.2c1.1.5 1.9 1.6 2.3 3.3"/></svg>Ekip</a>
+    </nav>
+    <div class="side-foot">
+      <div class="avatar">DA</div>
+      <div><b>Deniz Aydın</b><small>Hasta ilişkileri müdürü</small></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top" id="ozet">
+      <div>
+        <h1>Genel bakış</h1>
+        <div class="sub">
+          <span id="today"></span>
+          <span class="live"><i></i>Canlı</span>
+          <span class="sample">Örnek veri</span>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Zaman aralığı">
+          <button type="button" data-range="today" aria-pressed="true">Bugün</button>
+          <button type="button" data-range="d7" aria-pressed="false">7 gün</button>
+          <button type="button" data-range="d30" aria-pressed="false">30 gün</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="kpis" id="kpis" aria-label="Özet göstergeler"></section>
+
+    <section class="card" id="kuyruk">
+        <div class="card-head">
+          <div>
+            <h2>Lead kuyruğu</h2>
+            <p>İlk yanıt hedefi 5 dakika. Satıra tıklayıp hastayı açın.</p>
+          </div>
+          <div class="search">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="4.8"/><path d="m10.6 10.6 3.4 3.4"/></svg>
+            <input id="q" type="search" placeholder="İsim, telefon, tedavi" aria-label="Kuyrukta ara">
+          </div>
+        </div>
+        <div class="filters" style="padding:0 18px 12px" id="filters" role="group" aria-label="Kuyruk filtresi"></div>
+        <div class="scroll-x">
+          <table class="tbl queue">
+            <thead><tr><th>Hasta</th><th>Kaynak</th><th>İlgilendiği tedavi</th><th>Skor</th><th>Bekleme</th><th>Durum</th><th>Atanan</th></tr></thead>
+            <tbody id="queue"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="queueEmpty" hidden>Bu filtreye uyan lead yok.</div>
+      </section>
+
+    <div class="row">
+      <div class="stack">
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <h2 id="flowTitle">Saatlik lead akışı</h2>
+            <p id="flowSub">Tüm kaynaklardan gelen yeni lead sayısı</p>
+          </div>
+          <div class="legend">
+            <span><i class="sw-bar"></i><span id="lgA">Bugün</span></span>
+            <span><i class="sw-line"></i><span id="lgB">Son 7 gün ortalaması</span></span>
+            <button class="linkish" type="button" id="tblToggle" aria-expanded="false">Tablo olarak gör</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrap" id="flow"><div class="tip" id="tip" hidden></div></div>
+          <div class="scroll-x" id="flowTable" hidden></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <h2>Tedavi ilgisi</h2>
+            <p>Lead formundaki ilk tercih</p>
+          </div>
+        </div>
+        <div class="card-body"><div class="hbars" id="interest"></div></div>
+      </section>
+      </div>
+
+      <section class="card" id="huni">
+        <div class="card-head">
+          <div>
+            <h2>Dönüşüm hunisi</h2>
+            <p id="funnelSub">Bugün gelen lead'ler</p>
+          </div>
+        </div>
+        <div class="card-body"><div class="funnel" id="funnel"></div></div>
+        <div class="card-foot" id="funnelFoot"></div>
+      </section>
+    </div>
+
+    <section class="card" id="kaynaklar">
+      <div class="card-head">
+        <div>
+          <h2>Kaynak performansı</h2>
+          <p>Reklam harcaması, randevu oranı ve kliniğe gelen hasta başına maliyet</p>
+        </div>
+      </div>
+      <div class="scroll-x">
+        <table class="tbl">
+          <thead><tr><th>Kaynak</th><th class="r">Lead</th><th class="r">Harcama</th><th class="r">Lead başı maliyet</th><th>Randevu oranı</th><th class="r">Gelen hasta</th><th class="r">Hasta başı maliyet</th></tr></thead>
+          <tbody id="sources"></tbody>
+          <tfoot id="sourcesFoot"></tfoot>
+        </table>
+      </div>
+    </section>
+
+    <div class="row" id="ekip">
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <h2>Hasta danışmanları</h2>
+            <p>Arama, ilk yanıt süresi ve randevuya dönüşüm</p>
+          </div>
+        </div>
+        <div class="scroll-x">
+          <table class="tbl">
+            <thead><tr><th>Danışman</th><th>Durum</th><th class="r">Arama</th><th class="r">Ort. ilk yanıt</th><th class="r">Randevu</th><th>Dönüşüm</th></tr></thead>
+            <tbody id="agents"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <h2>Kayıp nedenleri</h2>
+            <p id="lostSub">Randevuya dönmeyen lead'ler</p>
+          </div>
+        </div>
+        <div class="card-body"><div class="hbars neutral" id="lost"></div></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="dName" role="dialog" aria-modal="true"></aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const nf = new Intl.NumberFormat('tr-TR');
+  const pf = new Intl.NumberFormat('tr-TR', { style: 'percent', maximumFractionDigits: 0 });
+  const money = v => '₺' + nf.format(Math.round(v));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const mmss = s => { s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+  const dkSn = s => `${Math.floor(s / 60)} dk ${String(Math.round(s % 60)).padStart(2, '0')} sn`;
+  const hhmm = d => d.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+  const SLA = 300;
+  const now = new Date();
+  $('#today').textContent = now.toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) + ' · Tüm şubeler';
+
+  function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function walk(seed, n, from, to, jitter) {
+    const r = rng(seed), out = [];
+    for (let i = 0; i < n; i++) { const base = from + (to - from) * (i / (n - 1)); out.push(i === n - 1 ? to : base + (r() - .5) * jitter); }
+    return out;
+  }
+
+  /* ---------- Data ---------- */
+  const dayLabel = (offset, opts) => { const d = new Date(now); d.setDate(d.getDate() - offset); return d.toLocaleDateString('tr-TR', opts); };
+  const last7 = [71, 54, 48, 78, 82, 69, 86];
+  const prev7 = [66, 51, 44, 70, 75, 64, 74];
+  const d30 = (() => {
+    const r = rng(11), cur = [], prev = [];
+    for (let i = 29; i >= 0; i--) {
+      const d = new Date(now); d.setDate(d.getDate() - i);
+      const wk = d.getDay() === 0 || d.getDay() === 6 ? .68 : 1;
+      cur.push(Math.round((58 + (29 - i) * .55 + r() * 16) * wk));
+      prev.push(Math.round((55 + r() * 13) * wk));
+    }
+    cur.splice(23, 7, ...last7);
+    return { cur, prev };
+  })();
+
+  const RANGES = {
+    today: {
+      period: 'Bugün', prev: 'dün', funnelSub: "Bugün gelen lead'ler",
+      flowTitle: 'Saatlik lead akışı', lgA: 'Bugün', lgB: 'Son 7 gün ortalaması',
+      labels: Array.from({ length: 15 }, (_, i) => String(8 + i).padStart(2, '0') + ':00'),
+      flow: [2, 3, 5, 8, 9, 7, 5, 6, 8, 9, 7, 6, 5, 4, 2],
+      flowPrev: [1.6, 2.9, 4.4, 6.8, 7.9, 6.2, 4.8, 5.1, 6.9, 7.4, 6.1, 5.2, 4.0, 2.9, 1.8],
+      prevLeads: 74, resp: 222, prevResp: 268, sla: .87, prevSla: .81, tickEvery: 2
+    },
+    d7: {
+      period: 'Son 7 gün', prev: 'önceki 7 gün', funnelSub: "Son 7 günde gelen lead'ler",
+      flowTitle: 'Günlük lead akışı', lgA: 'Son 7 gün', lgB: 'Önceki 7 gün',
+      labels: Array.from({ length: 7 }, (_, i) => dayLabel(6 - i, { weekday: 'short', day: 'numeric' })),
+      flow: last7, flowPrev: prev7,
+      prevLeads: 444, resp: 251, prevResp: 290, sla: .83, prevSla: .79, tickEvery: 1
+    },
+    d30: {
+      period: 'Son 30 gün', prev: 'önceki 30 gün', funnelSub: "Son 30 günde gelen lead'ler",
+      flowTitle: 'Günlük lead akışı', lgA: 'Son 30 gün', lgB: 'Önceki 30 gün',
+      labels: Array.from({ length: 30 }, (_, i) => dayLabel(29 - i, { day: 'numeric', month: 'short' })),
+      flow: d30.cur, flowPrev: d30.prev,
+      prevLeads: d30.prev.reduce((a, b) => a + b, 0), resp: 264, prevResp: 301, sla: .81, prevSla: .76, tickEvery: 5
+    }
+  };
+
+  const SOURCES = [
+    { name: 'Meta reklamları', note: 'Facebook + Instagram form', share: .34, spend30: 148000, appt: .28, show: .66 },
+    { name: 'Google Ads', note: 'Arama + Performance Max', share: .22, spend30: 121000, appt: .41, show: .74 },
+    { name: 'Instagram DM', note: 'Organik mesaj', share: .14, spend30: 0, appt: .33, show: .69 },
+    { name: 'WhatsApp', note: 'Tıkla-mesaj reklamları', share: .12, spend30: 38000, appt: .38, show: .71 },
+    { name: 'Web sitesi formu', note: 'SEO + blog', share: .09, spend30: 0, appt: .44, show: .77 },
+    { name: 'Telefon', note: 'Santral + cevapsız arama', share: .06, spend30: 0, appt: .52, show: .80 },
+    { name: 'Hasta referansı', note: 'Tavsiye programı', share: .03, spend30: 0, appt: .61, show: .86 }
+  ];
+  const INTEREST = [['İmplant', .31], ['Zirkonyum kaplama', .24], ['Şeffaf plak', .13], ['Gülüş tasarımı', .12], ['Diş beyazlatma', .09], ['Kanal tedavisi', .06], ['Diğer', .05]];
+  const LOST = [['Ulaşılamadı (3 deneme)', .34], ['Fiyatı yüksek buldu', .27], ['Başka kliniği seçti', .16], ['Sadece bilgi istedi', .13], ['Zamanlama / uzaklık', .10]];
+  const AGENTS = [
+    { name: 'Elif Yıldız', init: 'EY', status: 'online', share: .24, resp: 148, conv: .41 },
+    { name: 'Mert Kaya', init: 'MK', status: 'call', share: .22, resp: 196, conv: .36 },
+    { name: 'Zeynep Aksoy', init: 'ZA', status: 'online', share: .21, resp: 173, conv: .38 },
+    { name: 'Selin Doğan', init: 'SD', status: 'call', share: .17, resp: 221, conv: .34 },
+    { name: 'Burak Tan', init: 'BT', status: 'break', share: .16, resp: 305, conv: .29 }
+  ];
+  const AGENT_STATUS = { online: ['Müsait', 'var(--good)'], call: ['Görüşmede', 'var(--warn)'], break: ['Molada', 'var(--ink-3)'] };
+  const SPEND_SCALE_BASE = d30.cur.reduce((a, b) => a + b, 0);
+  const AVG_TREATMENT = 42500;
+
+  function split(total, shares) {
+    const raw = shares.map(s => total * s), out = raw.map(Math.floor);
+    let rest = total - out.reduce((a, b) => a + b, 0);
+    raw.map((v, i) => [v - Math.floor(v), i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rest > 0) { out[i]++; rest--; } });
+    return out;
+  }
+
+  function compute(key) {
+    const R = RANGES[key];
+    const leads = R.flow.reduce((a, b) => a + b, 0);
+    const counts = split(leads, SOURCES.map(s => s.share));
+    const sources = SOURCES.map((s, i) => {
+      const l = counts[i], appt = Math.round(l * s.appt), came = Math.round(appt * s.show);
+      return { ...s, leads: l, spend: s.spend30 * leads / SPEND_SCALE_BASE, appt, came };
+    });
+    const appt = sources.reduce((a, s) => a + s.appt, 0);
+    const came = sources.reduce((a, s) => a + s.came, 0);
+    const prevAppt = Math.round(R.prevLeads * appt / leads * .93);
+    const prevCame = Math.round(prevAppt * came / appt * .96);
+    const treated = Math.round(came * .62);
+    const funnel = [
+      ['Yeni lead', leads], ['Ulaşıldı', Math.round(leads * .83)], ['Nitelikli', Math.round(leads * .6)],
+      ['Randevu verildi', appt], ['Kliniğe geldi', came], ['Tedaviye başladı', treated]
+    ];
+    return { R, leads, sources, appt, came, prevAppt, prevCame, treated, funnel };
+  }
+
+  /* ---------- Queue data ---------- */
+  const t0 = Date.now();
+  const LEADS = [
+    { id: 1, name: 'Olivia Brown', phone: '+44 7700 900 418', cc: 'GB', lang: 'İngilizce', src: 'Meta reklamları', camp: 'İmplant · Birleşik Krallık · Eylül', interest: 'İmplant', score: 82, status: 'new', wait: 734, agent: 'MK', msg: 'Hi, I need 4 implants on the lower jaw. Can you send me a price and how many days I need to stay in Istanbul?' },
+    { id: 2, name: 'Thomas Becker', phone: '+49 151 2233 0718', cc: 'DE', lang: 'Almanca', src: 'Google Ads', camp: 'Zirkon Kronen Istanbul', interest: 'Zirkonyum kaplama', score: 77, status: 'new', wait: 372, agent: 'SD', msg: 'Guten Tag, ich interessiere mich für 10 Zirkonkronen. Wann wäre ein Termin im Oktober möglich?' },
+    { id: 3, name: 'Fatma Kaya', phone: '+90 532 418 27 60', cc: 'TR', lang: 'Türkçe', src: 'WhatsApp', camp: 'Şeffaf plak · Tıkla-mesaj', interest: 'Şeffaf plak', score: 64, status: 'new', wait: 231, agent: 'ZA', msg: 'Merhaba, şeffaf plak tedavisi kaç ay sürüyor, taksit imkanı var mı?' },
+    { id: 4, name: 'Hasan Çelik', phone: '+90 505 771 09 34', cc: 'TR', lang: 'Türkçe', src: 'Telefon', camp: 'Santral · cevapsız arama', interest: 'Kanal tedavisi', score: 58, status: 'new', wait: 128, agent: 'EY', msg: 'Santralde 38 sn bekledi, çağrı düştü. Otomatik geri arama listesine alındı.' },
+    { id: 5, name: 'Ayşe Demir', phone: '+90 533 602 41 18', cc: 'TR', lang: 'Türkçe', src: 'Meta reklamları', camp: 'İmplant · İstanbul · Eylül', interest: 'İmplant', score: 88, status: 'new', wait: 94, agent: 'EY', msg: 'Form cevapları: Tedaviye başlama: 1 ay içinde · Eksik diş: 3 · Bütçe: 60.000 ₺ üzeri' },
+    { id: 6, name: 'Mehmet Arslan', phone: '+90 542 390 55 21', cc: 'TR', lang: 'Türkçe', src: 'Web sitesi formu', camp: 'Blog · İmplant fiyatları 2026', interest: 'İmplant', score: 71, status: 'new', wait: 35, agent: 'ZA', msg: 'Ön muayene ücretli mi? Cumartesi günü açık mısınız?' },
+    { id: 7, name: 'Emma de Vries', phone: '+31 6 1234 5870', cc: 'NL', lang: 'İngilizce', src: 'Instagram DM', camp: 'Organik · Gülüş tasarımı reels', interest: 'Gülüş tasarımı', score: 74, status: 'contacted', wait: 0, doneAt: 41, agent: 'MK', msg: 'Saw your smile makeover video. Is a 5-day trip enough for veneers?' },
+    { id: 8, name: 'Leyla Hüseynova', phone: '+994 50 318 44 27', cc: 'AZ', lang: 'Türkçe', src: 'Instagram DM', camp: 'Organik · Zirkonyum öncesi/sonrası', interest: 'Zirkonyum kaplama', score: 80, status: 'appt', wait: 0, doneAt: 96, appt: '26 Eylül 11:30 · Dr. Kaan Er', agent: 'SD', msg: 'Salam, 20 zirkonyum için fiyat ve süre bilgisi alabilir miyim?' },
+    { id: 9, name: 'Can Öztürk', phone: '+90 555 203 18 49', cc: 'TR', lang: 'Türkçe', src: 'Hasta referansı', camp: 'Tavsiye · Selin Öztürk', interest: 'Diş beyazlatma', score: 69, status: 'contacted', wait: 0, doneAt: 152, agent: 'EY', msg: 'Kardeşim sizde tedavi oldu, beyazlatma için bilgi almak istiyorum.' }
+  ].map(l => ({ ...l, createdAt: t0 - (l.wait || (l.doneAt * 60 + 200)) * 1000, log: [] }));
+  const POOL = [
+    { name: 'Sophie Martin', phone: '+33 6 12 48 90 37', cc: 'FR', lang: 'Fransızca', src: 'Google Ads', camp: 'Implants dentaires Turquie', interest: 'İmplant', score: 79, agent: 'MK', msg: 'Bonjour, combien coûte un implant complet (All-on-4) ?' },
+    { name: 'Burcu Şahin', phone: '+90 530 744 12 06', cc: 'TR', lang: 'Türkçe', src: 'Meta reklamları', camp: 'Zirkonyum · İstanbul · Eylül', interest: 'Zirkonyum kaplama', score: 73, agent: 'ZA', msg: 'Form cevapları: Tedaviye başlama: 3 ay içinde · Diş sayısı: 8' },
+    { name: 'James Wilson', phone: '+44 7911 123 406', cc: 'GB', lang: 'İngilizce', src: 'WhatsApp', camp: 'Veneers UK · Tıkla-mesaj', interest: 'Gülüş tasarımı', score: 84, agent: 'SD', msg: 'Can I get a quote for 16 veneers? Flying in November.' }
+  ];
+  const AGENT_NAME = Object.fromEntries(AGENTS.map(a => [a.init, a.name]));
+  let nextId = 100;
+
+  /* ---------- State ---------- */
+  const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
+  const state = { range: RANGES[store.get('hys-range')] ? store.get('hys-range') : 'today', filter: 'all', q: '', open: null };
+
+  const waitOf = l => (Date.now() - l.createdAt) / 1000;
+  const sev = s => s >= SLA ? 'crit' : s >= 180 ? 'warn' : 'ok';
+
+  /* ---------- KPIs ---------- */
+  function spark(vals, invert) {
+    const w = 84, h = 32, p = 3, mn = Math.min(...vals), mx = Math.max(...vals), span = mx - mn || 1;
+    const pts = vals.map((v, i) => [p + i * (w - 2 * p) / (vals.length - 1), p + (h - 2 * p) * (invert ? (v - mn) / span : 1 - (v - mn) / span)]);
+    const line = pts.map((q, i) => (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1)).join('');
+    const last = pts[pts.length - 1];
+    return `<svg class="spark" viewBox="0 0 ${w} ${h}" aria-hidden="true"><path d="${line}L${last[0].toFixed(1)} ${h}L${p} ${h}Z" fill="var(--accent)" opacity=".1"/><path d="${line}" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${last[0]}" cy="${last[1]}" r="2.6" fill="var(--accent)" stroke="var(--surface)" stroke-width="1.5"/></svg>`;
+  }
+  function delta(cur, prev, lowerIsBetter, isPct) {
+    const diff = isPct ? (cur - prev) * 100 : (cur - prev) / prev * 100;
+    const good = lowerIsBetter ? diff < 0 : diff > 0;
+    const arrow = diff >= 0 ? '▲' : '▼';
+    const txt = isPct ? `${Math.abs(diff).toFixed(0)} puan` : `%${Math.abs(diff).toFixed(0)}`;
+    return `<span class="delta ${good ? 'up' : 'down'}" title="${good ? 'İyileşme' : 'Kötüleşme'}"><span aria-hidden="true">${arrow}</span>${txt}</span>`;
+  }
+  function renderKpis(c) {
+    const R = c.R, n = Math.min(R.flow.length, 14);
+    const k = [
+      { label: 'Yeni lead', value: nf.format(c.leads), d: delta(c.leads, R.prevLeads), sp: spark(R.flow.slice(-n)) },
+      { label: 'İlk yanıt (medyan)', value: `${Math.floor(R.resp / 60)}<small>dk</small> ${String(R.resp % 60).padStart(2, '0')}<small>sn</small>`, d: delta(R.resp, R.prevResp, true), sp: spark(walk(R.resp, 14, R.prevResp, R.resp, 50), true) },
+      { label: '5 dk içinde yanıt', value: `%${Math.round(R.sla * 100)}`, d: delta(R.sla, R.prevSla, false, true), sp: spark(walk(R.resp + 3, 14, R.prevSla, R.sla, .05)) },
+      { label: 'Randevu', value: `${nf.format(c.appt)}<small>${pf.format(c.appt / c.leads)}</small>`, d: delta(c.appt, c.prevAppt), sp: spark(walk(c.appt, 14, c.prevAppt, c.appt, c.appt * .18)) },
+      { label: 'Kliniğe gelen hasta', value: nf.format(c.came), d: delta(c.came, c.prevCame), sp: spark(walk(c.came + 7, 14, c.prevCame, c.came, c.came * .2)) }
+    ];
+    $('#kpis').innerHTML = k.map(x => `<div class="kpi"><div class="kpi-label">${x.label}</div><div class="kpi-row"><div class="kpi-value">${x.value}</div>${x.sp}</div><div class="kpi-foot">${x.d}<span>${R.prev} ile kıyasla</span></div></div>`).join('');
+  }
+
+  /* ---------- Funnel ---------- */
+  function renderFunnel(c) {
+    const top = c.funnel[0][1];
+    $('#funnelSub').textContent = c.R.funnelSub;
+    $('#funnel').innerHTML = c.funnel.map(([lbl, v], i) => {
+      const conv = i ? `<div class="fconv"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1v7M2 5.5 5 8.5 8 5.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg><b>${pf.format(v / c.funnel[i - 1][1])}</b> bir önceki adımdan</div>` : '';
+      return `${conv}<div class="fstep"><span class="lbl">${lbl}</span><span class="val">${nf.format(v)}</span><div class="track"><div class="fill" style="width:${(v / top * 100).toFixed(1)}%"></div></div></div>`;
+    }).join('');
+    $('#funnelFoot').innerHTML = `<span>Lead → hasta: <b>${pf.format(c.treated / c.leads)}</b></span><span>Tahmini ciro: <b>${money(c.treated * AVG_TREATMENT)}</b></span><span>Ort. tedavi: <b>${money(AVG_TREATMENT)}</b></span>`;
+  }
+
+  /* ---------- Flow chart ---------- */
+  function niceStep(raw) { const p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+  function renderFlow() {
+    const R = RANGES[state.range], el = $('#flow'), tip = $('#tip');
+    $('#flowTitle').textContent = R.flowTitle; $('#lgA').textContent = R.lgA; $('#lgB').textContent = R.lgB;
+    const W = Math.max(280, el.clientWidth), H = 240, m = { l: 34, r: 8, t: 12, b: 26 };
+    const n = R.flow.length, pw = W - m.l - m.r, ph = H - m.t - m.b;
+    const step = niceStep(Math.max(...R.flow, ...R.flowPrev) / 4), max = Math.ceil(Math.max(...R.flow, ...R.flowPrev) / step) * step;
+    const y = v => m.t + ph * (1 - v / max), band = pw / n, bw = Math.max(3, Math.min(band - 3, band * .64));
+    const cx = i => m.l + band * i + band / 2;
+    let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="${R.flowTitle}: ${R.lgA} ve ${R.lgB}">`;
+    for (let v = 0; v <= max + 1e-9; v += step) {
+      s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line${v ? '-2' : ''})" stroke-width="1"/>`;
+      s += `<text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${nf.format(v)}</text>`;
+    }
+    s += `<rect id="hl" x="0" y="${m.t}" width="${band}" height="${ph}" fill="var(--ink)" opacity="0" rx="4"/>`;
+    R.flow.forEach((v, i) => {
+      const x = cx(i) - bw / 2, top = y(v), h = m.t + ph - top, r = Math.min(4, bw / 2, h);
+      s += `<path d="M${x} ${m.t + ph}V${top + r}Q${x} ${top} ${x + r} ${top}H${x + bw - r}Q${x + bw} ${top} ${x + bw} ${top + r}V${m.t + ph}Z" fill="var(--accent)"/>`;
+    });
+    s += `<path d="${R.flowPrev.map((v, i) => (i ? 'L' : 'M') + cx(i).toFixed(1) + ' ' + y(v).toFixed(1)).join('')}" fill="none" stroke="var(--ink-2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    s += `<circle id="hp" r="4" fill="var(--ink-2)" stroke="var(--surface)" stroke-width="2" cx="-10" cy="-10"/>`;
+    const every = Math.ceil(n / Math.max(1, Math.floor(pw / 54)));
+    R.labels.forEach((l, i) => { if ((n - 1 - i) % every === 0) s += `<text x="${cx(i)}" y="${H - 6}" text-anchor="middle">${esc(l)}</text>`; });
+    R.flow.forEach((_, i) => { s += `<rect class="hit" data-i="${i}" x="${m.l + band * i}" y="${m.t}" width="${band}" height="${ph}" fill="transparent"/>`; });
+    s += '</svg>';
+    [...el.querySelectorAll('svg')].forEach(x => x.remove());
+    el.insertAdjacentHTML('afterbegin', s);
+    const hl = el.querySelector('#hl'), hp = el.querySelector('#hp');
+    const show = i => {
+      hl.setAttribute('x', m.l + band * i); hl.setAttribute('opacity', '.05');
+      hp.setAttribute('cx', cx(i)); hp.setAttribute('cy', y(R.flowPrev[i]));
+      tip.innerHTML = `<b>${esc(R.labels[i])}</b><br>${R.lgA}: <b>${nf.format(R.flow[i])}</b> lead<br><span class="muted">${R.lgB}: ${nf.format(Math.round(R.flowPrev[i] * 10) / 10)}</span>`;
+      tip.hidden = false;
+      const tw = tip.offsetWidth, left = Math.min(Math.max(cx(i), tw / 2 + 4), W - tw / 2 - 4);
+      tip.style.left = left + 'px'; tip.style.top = Math.min(y(R.flow[i]), y(R.flowPrev[i])) + 'px';
+    };
+    const hide = () => { tip.hidden = true; hl.setAttribute('opacity', '0'); hp.setAttribute('cx', -10); };
+    el.querySelectorAll('.hit').forEach(r => { r.addEventListener('mouseenter', () => show(+r.dataset.i)); r.addEventListener('click', () => show(+r.dataset.i)); });
+    el.querySelector('svg').addEventListener('mouseleave', hide);
+    $('#flowTable').innerHTML = `<table class="tbl"><thead><tr><th>${state.range === 'today' ? 'Saat' : 'Gün'}</th><th class="r">${R.lgA}</th><th class="r">${R.lgB}</th></tr></thead><tbody>${R.flow.map((v, i) => `<tr><td>${esc(R.labels[i])}</td><td class="r">${nf.format(v)}</td><td class="r">${nf.format(Math.round(R.flowPrev[i] * 10) / 10)}</td></tr>`).join('')}</tbody></table>`;
+  }
+
+  /* ---------- Bars, sources, agents ---------- */
+  function hbars(rows, total) {
+    const mx = Math.max(...rows.map(r => r[1]));
+    return rows.map(([l, v]) => `<div class="hbar"><span class="lbl">${esc(l)}</span><span class="val"><b>${nf.format(v)}</b>${pf.format(v / total)}</span><div class="track"><div class="fill" style="width:${(v / mx * 100).toFixed(1)}%"></div></div></div>`).join('');
+  }
+  function renderBars(c) {
+    const ic = split(c.leads, INTEREST.map(x => x[1]));
+    $('#interest').innerHTML = hbars(INTEREST.map((x, i) => [x[0], ic[i]]), c.leads);
+    const lostTotal = Math.round((c.leads - c.appt) * .72);
+    const lc = split(lostTotal, LOST.map(x => x[1]));
+    $('#lostSub').textContent = `${c.R.period}: ${nf.format(lostTotal)} lead kapatıldı`;
+    $('#lost').innerHTML = hbars(LOST.map((x, i) => [x[0], lc[i]]), lostTotal);
+  }
+  function renderSources(c) {
+    $('#sources').innerHTML = c.sources.map(s => {
+      const rate = s.appt / (s.leads || 1);
+      return `<tr><td class="src"><b>${s.name}</b><small>${s.note}</small></td><td class="r">${nf.format(s.leads)}</td><td class="r">${s.spend ? money(s.spend) : '<span style="color:var(--ink-3)">—</span>'}</td><td class="r">${s.spend ? money(s.spend / s.leads) : '<span style="color:var(--ink-3)">Organik</span>'}</td><td><span class="inline-bar"><i style="--w:${(rate / .65 * 100).toFixed(0)}%"></i><span class="num">${pf.format(rate)}</span></span></td><td class="r">${nf.format(s.came)}</td><td class="r">${s.spend ? money(s.spend / Math.max(1, s.came)) : '<span style="color:var(--ink-3)">—</span>'}</td></tr>`;
+    }).join('');
+    const spend = c.sources.reduce((a, s) => a + s.spend, 0);
+    const paid = c.sources.filter(s => s.spend), paidCame = paid.reduce((a, s) => a + s.came, 0), paidLeads = paid.reduce((a, s) => a + s.leads, 0);
+    $('#sourcesFoot').innerHTML = `<tr><td><b>Toplam</b></td><td class="r"><b>${nf.format(c.leads)}</b></td><td class="r"><b>${money(spend)}</b></td><td class="r">${money(spend / paidLeads)}<br><small style="color:var(--ink-3)">ücretli ort.</small></td><td><span class="num"><b>${pf.format(c.appt / c.leads)}</b></span></td><td class="r"><b>${nf.format(c.came)}</b></td><td class="r">${money(spend / Math.max(1, paidCame))}<br><small style="color:var(--ink-3)">ücretli ort.</small></td></tr>`;
+  }
+  function renderAgents(c) {
+    const calls = split(Math.round(c.leads * 1.7), AGENTS.map(a => a.share));
+    const weights = AGENTS.map(a => a.share * a.conv), wsum = weights.reduce((a, b) => a + b, 0);
+    const appts = split(c.appt, weights.map(w => w / wsum));
+    $('#agents').innerHTML = AGENTS.map((a, i) => {
+      const [st, col] = AGENT_STATUS[a.status], rs = sev(a.resp);
+      return `<tr><td><span style="display:inline-flex;align-items:center;gap:9px"><span class="avatar">${a.init}</span><b style="font-weight:600">${a.name}</b></span></td><td><span class="agent-status" style="--c:${col}">${st}</span></td><td class="r">${nf.format(calls[i])}</td><td class="r"><span class="wait ${rs}" style="justify-content:flex-end">${mmss(a.resp)}</span></td><td class="r">${nf.format(appts[i])}</td><td><span class="inline-bar"><i style="--w:${(a.conv / .5 * 100).toFixed(0)}%"></i><span class="num">${pf.format(a.conv)}</span></span></td></tr>`;
+    }).join('');
+  }
+
+  /* ---------- Queue ---------- */
+  const FILTERS = [['all', 'Tümü'], ['waiting', 'Yanıt bekleyen'], ['late', 'Süre aşıldı'], ['hot', 'Sıcak (75+)']];
+  const matches = (l, f) => f === 'all' || (f === 'waiting' && l.status === 'new') || (f === 'late' && l.status === 'new' && waitOf(l) >= SLA) || (f === 'hot' && l.score >= 75 && l.status !== 'lost');
+  const STATUS = { new: 'Yeni', contacted: 'Ulaşıldı', appt: 'Randevu verildi', lost: 'Kayıp' };
+  function renderFilters() {
+    $('#filters').innerHTML = FILTERS.map(([k, l]) => `<button type="button" class="fchip" data-f="${k}" aria-pressed="${state.filter === k}">${l}<span>${LEADS.filter(x => matches(x, k)).length}</span></button>`).join('');
+    const late = LEADS.filter(x => matches(x, 'late')).length;
+    $('#navSla').textContent = late; $('#navSla').hidden = !late;
+    $('#navSla').title = `${late} lead 5 dakikadır yanıt bekliyor`;
+  }
+  function waitCell(l) {
+    if (l.status !== 'new') return `<span class="wait done">${hhmm(new Date(l.handledAt || (t0 - l.doneAt * 60000)))}</span>`;
+    const w = waitOf(l), s = sev(w);
+    return `<span class="wait ${s}">${mmss(w)}${s === 'crit' ? '<span class="tag">Süre aştı</span>' : ''}</span>`;
+  }
+  function stripe(l) { if (l.status !== 'new') return 'transparent'; const s = sev(waitOf(l)); return s === 'crit' ? 'var(--crit)' : s === 'warn' ? 'var(--warn)' : 'var(--good)'; }
+  function renderQueue(freshId) {
+    const q = state.q.trim().toLocaleLowerCase('tr-TR');
+    const order = { new: 0, contacted: 1, appt: 2, lost: 3 };
+    const rows = LEADS.filter(l => matches(l, state.filter))
+      .filter(l => !q || (l.name + ' ' + l.phone + ' ' + l.interest + ' ' + l.src).toLocaleLowerCase('tr-TR').includes(q))
+      .sort((a, b) => order[a.status] - order[b.status] || (a.status === 'new' ? a.createdAt - b.createdAt : b.createdAt - a.createdAt));
+    $('#queue').innerHTML = rows.map(l => {
+      const hot = l.score >= 75, col = hot ? 'var(--accent)' : 'var(--ink-3)';
+      return `<tr tabindex="0" data-id="${l.id}" class="${l.id === freshId ? 'fresh' : ''}" style="--stripe:${stripe(l)}" aria-label="${esc(l.name)}, ${STATUS[l.status]}">
+        <td class="who"><b>${esc(l.name)}</b><small>${esc(l.cc)} · ${esc(l.phone)}</small></td>
+        <td class="src"><b>${esc(l.src)}</b><small>${esc(l.lang)}</small></td>
+        <td>${esc(l.interest)}</td>
+        <td><span class="score${hot ? ' hot' : ''}"><i style="--w:${l.score}%;--c:${col}"></i>${l.score}</span></td>
+        <td data-wait="${l.id}">${waitCell(l)}</td>
+        <td><span class="chip ${l.status}">${STATUS[l.status]}</span></td>
+        <td><span class="agent" title="${esc(AGENT_NAME[l.agent])}">${l.agent}</span></td></tr>`;
+    }).join('');
+    $('#queueEmpty').hidden = rows.length > 0;
+    renderFilters();
+  }
+  function tick() {
+    let crossed = false;
+    LEADS.forEach(l => {
+      if (l.status !== 'new') return;
+      const cell = document.querySelector(`[data-wait="${l.id}"]`);
+      const before = cell && cell.querySelector('.wait')?.classList.contains('crit');
+      if (cell) { cell.innerHTML = waitCell(l); cell.parentElement.style.setProperty('--stripe', stripe(l)); }
+      if (!before && sev(waitOf(l)) === 'crit') crossed = true;
+    });
+    if (crossed) renderFilters();
+    if (state.open) { const l = LEADS.find(x => x.id === state.open); const w = $('#dWait'); if (l && w) w.innerHTML = waitCell(l); }
+  }
+
+  /* ---------- Drawer ---------- */
+  function timeline(l) {
+    const c = new Date(l.createdAt), items = [[hhmm(c), `${l.src} üzerinden lead oluştu`], [hhmm(new Date(l.createdAt + 20000)), `Otomatik ${l.lang === 'Türkçe' ? 'Türkçe' : l.lang} karşılama mesajı gönderildi`], [hhmm(new Date(l.createdAt + 25000)), `${AGENT_NAME[l.agent]} danışmanına atandı`]];
+    if (l.status !== 'new' && !l.log.length) {
+      const d = new Date(t0 - l.doneAt * 60000);
+      items.push([hhmm(d), `${AGENT_NAME[l.agent]} aradı · görüşme 3 dk 12 sn`]);
+      if (l.status === 'appt') items.push([hhmm(new Date(d.getTime() + 240000)), `Randevu: ${l.appt}`]);
+    }
+    return items.concat(l.log).map(([t, x]) => `<li><time>${t}</time><span class="dot"></span><span>${esc(x)}</span></li>`).join('');
+  }
+  function renderDrawer() {
+    const l = LEADS.find(x => x.id === state.open); if (!l) return;
+    const d = new Date(now); d.setDate(d.getDate() + 2);
+    const dateVal = d.toISOString().slice(0, 10);
+    $('#drawer').innerHTML = `
+      <div class="d-head">
+        <div><h3 id="dName">${esc(l.name)}</h3>
+          <div class="meta"><span class="chip ${l.status}">${STATUS[l.status]}</span><span id="dWait">${waitCell(l)}</span></div></div>
+        <button class="x" type="button" id="dClose" aria-label="Kapat"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      </div>
+      <div class="d-body">
+        <div class="d-sec"><h4>İletişim</h4>
+          <div class="phone"><span class="mono">${esc(l.phone)}</span><button class="btn sm" type="button" id="dCopy">Numarayı kopyala</button></div>
+        </div>
+        <div class="d-sec"><h4>Lead bilgisi</h4>
+          <dl class="facts">
+            <dt>Kaynak</dt><dd>${esc(l.src)}</dd>
+            <dt>Kampanya</dt><dd>${esc(l.camp)}</dd>
+            <dt>Tedavi</dt><dd>${esc(l.interest)}</dd>
+            <dt>Ülke / dil</dt><dd>${esc(l.cc)} · ${esc(l.lang)}</dd>
+            <dt>Lead skoru</dt><dd>${l.score} / 100 ${l.score >= 75 ? '· <span style="color:var(--accent)">Sıcak</span>' : ''}</dd>
+            <dt>Danışman</dt><dd>${esc(AGENT_NAME[l.agent])}</dd>
+          </dl>
+        </div>
+        <div class="d-sec"><h4>İlk mesaj</h4><p class="quote">${esc(l.msg)}</p></div>
+        <div class="d-sec"><h4>Geçmiş</h4><ol class="timeline">${timeline(l)}</ol></div>
+        ${l.status === 'lost' || l.status === 'appt' ? '' : `
+        <div class="d-sec actions"><h4>İşlem</h4>
+          ${l.status === 'new' ? `<div class="act-row"><button class="btn primary" type="button" data-act="contacted">Ulaşıldı olarak işaretle</button></div>` : ''}
+          <form class="panel" id="apptForm">
+            <b style="font-weight:600">Randevu oluştur</b>
+            <div class="form-grid">
+              <label>Tarih<input type="date" id="apDate" value="${dateVal}" required></label>
+              <label>Saat<select id="apTime">${['09:30', '10:30', '11:30', '13:30', '14:30', '15:30', '16:30'].map(t => `<option>${t}</option>`).join('')}</select></label>
+              <label class="full">Hekim<select id="apDoc"><option>Dr. Kaan Er · İmplantoloji</option><option>Dr. Nazlı Ceylan · Estetik diş hekimliği</option><option>Dr. Ozan Gür · Ortodonti</option></select></label>
+            </div>
+            <div class="act-row"><button class="btn primary" type="submit">Randevuyu kaydet</button></div>
+          </form>
+          <form class="panel" id="lostForm">
+            <b style="font-weight:600">Kayıp olarak kapat</b>
+            <div class="form-grid"><label class="full">Neden<select id="lostReason">${LOST.map(x => `<option>${x[0]}</option>`).join('')}</select></label></div>
+            <div class="act-row"><button class="btn danger" type="submit">Lead'i kapat</button></div>
+          </form>
+        </div>`}
+      </div>`;
+    $('#dClose').onclick = closeDrawer;
+    $('#dCopy').onclick = e => {
+      const btn = e.currentTarget;
+      if (!navigator.clipboard) { selectPhone(); return; }
+      navigator.clipboard.writeText(l.phone).then(() => { btn.textContent = 'Kopyalandı'; }, selectPhone);
+    };
+    const act = $('[data-act="contacted"]');
+    if (act) act.onclick = () => update(l, 'contacted', `${AGENT_NAME[l.agent]} ulaştı · ilk yanıt ${dkSn(waitOf(l))}`, `${l.name} ulaşıldı olarak işaretlendi`);
+    const af = $('#apptForm');
+    if (af) af.onsubmit = e => {
+      e.preventDefault();
+      const dt = new Date($('#apDate').value + 'T00:00:00');
+      const txt = `${dt.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })} ${$('#apTime').value} · ${$('#apDoc').value.split(' · ')[0]}`;
+      l.appt = txt;
+      update(l, 'appt', `Randevu: ${txt}`, `Randevu kaydedildi: ${l.name}, ${txt}`);
+    };
+    const lf = $('#lostForm');
+    if (lf) lf.onsubmit = e => { e.preventDefault(); update(l, 'lost', `Kayıp olarak kapatıldı: ${$('#lostReason').value}`, `${l.name} kapatıldı`); };
+  }
+  function selectPhone() { const r = document.createRange(), el = $('.phone .mono'); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('Numara seçildi, kopyalamak için Ctrl+C'); }
+  function update(l, status, logText, msg) {
+    if (l.status === 'new') l.handledAt = Date.now();
+    if (!l.log.length && l.status !== 'new') {
+      const d = new Date(t0 - l.doneAt * 60000);
+      l.log.push([hhmm(d), `${AGENT_NAME[l.agent]} aradı · görüşme 3 dk 12 sn`]);
+      if (l.status === 'appt') l.log.push([hhmm(new Date(d.getTime() + 240000)), `Randevu: ${l.appt}`]);
+    }
+    l.log.push([hhmm(new Date()), logText]);
+    l.status = status;
+    renderQueue(); renderDrawer(); toast(msg);
+  }
+  let lastFocus = null;
+  function openDrawer(id) {
+    lastFocus = document.activeElement; state.open = id; renderDrawer();
+    const sc = $('#scrim'), dr = $('#drawer');
+    sc.hidden = false; dr.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => { sc.classList.add('show'); dr.classList.add('show'); $('#dClose').focus(); });
+  }
+  function closeDrawer() {
+    state.open = null; const sc = $('#scrim'), dr = $('#drawer');
+    sc.classList.remove('show'); dr.classList.remove('show'); dr.setAttribute('aria-hidden', 'true');
+    setTimeout(() => { if (!state.open) sc.hidden = true; }, 220);
+    lastFocus?.focus?.();
+  }
+  let tt;
+  function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2800); }
+
+  /* ---------- Wire up ---------- */
+  function renderRange() {
+    document.querySelectorAll('[data-range]').forEach(b => b.setAttribute('aria-pressed', b.dataset.range === state.range));
+    const c = compute(state.range);
+    renderKpis(c); renderFunnel(c); renderBars(c); renderSources(c); renderAgents(c); renderFlow();
+  }
+  document.querySelectorAll('[data-range]').forEach(b => b.addEventListener('click', () => { state.range = b.dataset.range; store.set('hys-range', state.range); renderRange(); }));
+  $('#filters').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; state.filter = b.dataset.f; renderQueue(); });
+  $('#q').addEventListener('input', e => { state.q = e.target.value; renderQueue(); });
+  $('#queue').addEventListener('click', e => { const tr = e.target.closest('tr[data-id]'); if (tr) openDrawer(+tr.dataset.id); });
+  $('#queue').addEventListener('keydown', e => { const tr = e.target.closest('tr[data-id]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openDrawer(+tr.dataset.id); } });
+  $('#scrim').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && state.open) closeDrawer(); });
+  $('#tblToggle').addEventListener('click', e => {
+    const t = $('#flowTable'), open = t.hidden;
+    t.hidden = !open; $('#flow').hidden = open;
+    e.currentTarget.textContent = open ? 'Grafik olarak gör' : 'Tablo olarak gör';
+    e.currentTarget.setAttribute('aria-expanded', open);
+    if (!open) renderFlow();
+  });
+  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => { document.querySelectorAll('.nav a').forEach(x => x.classList.toggle('on', x === a)); }));
+  let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(renderFlow, 60); }).observe($('#flow'));
+
+  renderRange(); renderQueue();
+  setInterval(tick, 1000);
+  setInterval(() => {
+    const p = POOL.shift(); if (!p) return;
+    const l = { ...p, id: nextId++, status: 'new', createdAt: Date.now(), log: [] };
+    LEADS.push(l); renderQueue(l.id);
+    toast(`Yeni lead: ${l.name} · ${l.src}`);
+  }, 45000);
+})();
+</script>
+</body>
+</html>
