@@ -1,0 +1,2879 @@
+[
+ {
+  "sku": "MNV-A-1101",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 198,
+  "nameTr": "Komple Fren Kaliperi ST7 Sağ",
+  "nameEn": "Complete Brake Caliper ST7 RIGHT",
+  "type": "ST7 RIGHT",
+  "carrier": "MNV-1248",
+  "repairSets": [
+   "MON-1022"
+  ],
+  "oem": [
+   {
+    "number": "K090766N64",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1227596",
+    "manufacturer": "SCHMITZ CARGOBULL"
+   },
+   {
+    "number": "ST7002",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1101.jpg",
+   "MNV-A-1101-2.jpg",
+   "MNV-A-1101-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1102",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 199,
+  "nameTr": "Komple Fren Kaliperi ST7 Sol",
+  "nameEn": "Complete Brake Caliper ST7 LEFT",
+  "type": "ST7 LEFT",
+  "carrier": "MNV-1248",
+  "repairSets": [
+   "MON-1022"
+  ],
+  "oem": [
+   {
+    "number": "K090767N64",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "12278597",
+    "manufacturer": "SCHMITZ CARGOBULL"
+   },
+   {
+    "number": "ST0712",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1102.jpg",
+   "MNV-A-1102-2.jpg",
+   "MNV-A-1102-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1103",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 200,
+  "nameTr": "Komple Fren Kaliperi ST7 Sağ",
+  "nameEn": "Complete Brake Caliper ST7 RIGHT",
+  "type": "ST7 RIGHT",
+  "carrier": "MNV-1238",
+  "repairSets": [
+   "MON-1133",
+   "MON-1021",
+   "MON-1132"
+  ],
+  "oem": [
+   {
+    "number": "K003805",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1449167",
+    "manufacturer": "DAF"
+   },
+   {
+    "number": "K000003",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1612741",
+    "manufacturer": "DAF"
+   },
+   {
+    "number": "SN7177",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1103.jpg",
+   "MNV-A-1103-2.jpg",
+   "MNV-A-1103-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1104",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 201,
+  "nameTr": "Komple Fren Kaliperi SN7 Sol",
+  "nameEn": "Complete Brake Caliper SN7 LEFT",
+  "type": "SN7 LEFT",
+  "carrier": "MNV-1238",
+  "repairSets": [
+   "MON-1133",
+   "MON-1021",
+   "MON-1132"
+  ],
+  "oem": [
+   {
+    "number": "K003806",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1449168",
+    "manufacturer": "DAF"
+   },
+   {
+    "number": "K000002",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1612740",
+    "manufacturer": "DAF"
+   },
+   {
+    "number": "SN7167",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1104.jpg",
+   "MNV-A-1104-2.jpg",
+   "MNV-A-1104-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1105",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 202,
+  "nameTr": "Komple Fren Kaliperi SN6 Sağ",
+  "nameEn": "Complete Brake Caliper SN6 RIGHT",
+  "type": "SN6 RIGHT",
+  "carrier": "MNV-1232",
+  "repairSets": [
+   "MON-1023",
+   "MON-1137",
+   "MON-1138"
+  ],
+  "oem": [
+   {
+    "number": "K013173",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "3080000623",
+    "manufacturer": "SAF"
+   },
+   {
+    "number": "K001443",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K001445",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1105.jpg",
+   "MNV-A-1105-2.jpg",
+   "MNV-A-1105-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1106",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 203,
+  "nameTr": "Komple Fren Kaliperi SN6 Sol",
+  "nameEn": "Complete Brake Caliper SN6 LEFT",
+  "type": "SN6 LEFT",
+  "carrier": "MNV-1232",
+  "repairSets": [
+   "MON-1023",
+   "MON-1137"
+  ],
+  "oem": [
+   {
+    "number": "K013174",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "3080000723",
+    "manufacturer": "SCHMITZ CARGOBULL"
+   },
+   {
+    "number": "K001442",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K001444",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1106.jpg",
+   "MNV-A-1106-2.jpg",
+   "MNV-A-1106-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1107",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 204,
+  "nameTr": "Komple Fren Kaliperi SN6 Sağ",
+  "nameEn": "Complete Brake Caliper SN6 RIGHT",
+  "type": "SN6 RIGHT",
+  "carrier": "MNV-1232",
+  "repairSets": [
+   "MON-1023"
+  ],
+  "oem": [
+   {
+    "number": "K013173",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270371",
+    "manufacturer": "BPW"
+   },
+   {
+    "number": "SN6539",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1107.jpg",
+   "MNV-A-1107-2.jpg",
+   "MNV-A-1107-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1108",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 205,
+  "nameTr": "Komple Fren Kaliperi SN6 Sol",
+  "nameEn": "Complete Brake Caliper SN6 LEFT",
+  "type": "SN6 LEFT",
+  "carrier": "MNV-1212",
+  "repairSets": [
+   "MON-1023",
+   "MON-1137",
+   "MON-1138"
+  ],
+  "oem": [
+   {
+    "number": "K013174",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270361",
+    "manufacturer": "BPW"
+   },
+   {
+    "number": "SN6529",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1108.jpg",
+   "MNV-A-1108-2.jpg",
+   "MNV-A-1108-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1109",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 206,
+  "nameTr": "Komple Fren Kaliperi SN7 Sağ",
+  "nameEn": "Complete Brake Caliper SN7 RIGHT",
+  "type": "SN7 RIGHT",
+  "carrier": "MNV-1232",
+  "repairSets": [
+   "MON-1006",
+   "MON-1014",
+   "MON-1133"
+  ],
+  "oem": [
+   {
+    "number": "K002247",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "536270640",
+    "manufacturer": "SCANIA"
+   },
+   {
+    "number": "K103453",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SN7174",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1109.jpg",
+   "MNV-A-1109-2.jpg",
+   "MNV-A-1109-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1110",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 207,
+  "nameTr": "Komple Fren Kaliperi SN7 Sol",
+  "nameEn": "Complete Brake Caliper SN7 LEFT",
+  "type": "SN7 LEFT",
+  "carrier": "MNV-1229",
+  "repairSets": [
+   "MON-1006",
+   "MON-1014",
+   "MON-1133"
+  ],
+  "oem": [
+   {
+    "number": "K002246",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "536270650",
+    "manufacturer": "SCANIA"
+   },
+   {
+    "number": "K103454",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SN7164",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1110.jpg",
+   "MNV-A-1110-2.jpg",
+   "MNV-A-1110-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1112",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 208,
+  "nameTr": "Komple Fren Kaliperi SK7 Sağ",
+  "nameEn": "Complete Brake Caliper SK7 RIGHT",
+  "type": "SK7 RIGHT",
+  "carrier": "MNV-1220",
+  "repairSets": [
+   "MON-1031"
+  ],
+  "oem": [
+   {
+    "number": "KK012634",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "3080005420",
+    "manufacturer": "SAF"
+   },
+   {
+    "number": "K003401",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K013874",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SK7012",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SK7052RC",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1112.jpg",
+   "MNV-A-1112-2.jpg",
+   "MNV-A-1112-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1113",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 209,
+  "nameTr": "Komple Fren Kaliperi SK7 Sol",
+  "nameEn": "Complete Brake Caliper SK7 LEFT",
+  "type": "SK7 LEFT",
+  "carrier": "MNV-1229",
+  "repairSets": [
+   "MON-1031"
+  ],
+  "oem": [
+   {
+    "number": "K012633",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "3080005520",
+    "manufacturer": "SCHMITZ CARGOBULL"
+   },
+   {
+    "number": "K003400",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K013873",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SK7002",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SK7042RC",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1113.jpg",
+   "MNV-A-1113-2.jpg",
+   "MNV-A-1113-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1115",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 210,
+  "nameTr": "Komple Fren Kaliperi SL7 Sağ",
+  "nameEn": "Complete Brake Caliper SL7 RIGHT",
+  "type": "SL7 RIGHT",
+  "carrier": "MNV-1220",
+  "repairSets": [
+   "MON-1009",
+   "MON-1136"
+  ],
+  "oem": [
+   {
+    "number": "K023249",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A9604200202",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "K052381K50",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A9444201302",
+    "manufacturer": "MERCEDES-BENZ"
+   }
+  ],
+  "images": [
+   "MNV-A-1115.jpg",
+   "MNV-A-1115-2.jpg",
+   "MNV-A-1115-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1117",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 211,
+  "nameTr": "Komple Fren Kaliperi SL7 Sol",
+  "nameEn": "Complete Brake Caliper SL7 LEFT",
+  "type": "SL7 LEFT",
+  "carrier": "MNV-1229",
+  "repairSets": [
+   "MON-1009",
+   "MON-1136"
+  ],
+  "oem": [
+   {
+    "number": "K023248",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A9604200102",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "K052380K50",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A9444201002",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "A9444201202",
+    "manufacturer": "MERCEDES-BENZ"
+   }
+  ],
+  "images": [
+   "MNV-A-1117.jpg",
+   "MNV-A-1117-2.jpg",
+   "MNV-A-1117-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1118",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 212,
+  "nameTr": "Komple Fren Kaliperi SL7 Sağ",
+  "nameEn": "Complete Brake Caliper SL7 RIGHT",
+  "type": "SL7 RIGHT",
+  "carrier": "MNV-1230",
+  "repairSets": [
+   "MON-1031"
+  ],
+  "oem": [
+   {
+    "number": "K012634",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270620",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "K001909",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270621",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "SK7052RC",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SK7011",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1118.jpg",
+   "MNV-A-1118-2.jpg",
+   "MNV-A-1118-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1119",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 213,
+  "nameTr": "Komple Fren Kaliperi SK7 Sol",
+  "nameEn": "Complete Brake Caliper SK7 LEFT",
+  "type": "SK7 LEFT",
+  "carrier": "MNV-1230",
+  "repairSets": [
+   "MON-1031"
+  ],
+  "oem": [
+   {
+    "number": "K012633",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270630",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "K001908",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270631",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "SK042RC",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SK7001",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1119.jpg",
+   "MNV-A-1119-2.jpg",
+   "MNV-A-1119-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1120",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 214,
+  "nameTr": "Komple Fren Kaliperi SL7 Sağ",
+  "nameEn": "Complete Brake Caliper SL7 RIGHT",
+  "type": "SL7 RIGHT",
+  "carrier": "MNV-1214",
+  "repairSets": [
+   "MON-1031"
+  ],
+  "oem": [
+   {
+    "number": "K01634",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270620",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "K001909",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270621",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "SK7052RC",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SK7011",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1120.jpg",
+   "MNV-A-1120-2.jpg",
+   "MNV-A-1120-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1121",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 215,
+  "nameTr": "Komple Fren Kaliperi SK7 Sol",
+  "nameEn": "Complete Brake Caliper SK7 LEFT",
+  "type": "SK7 LEFT",
+  "carrier": "MNV-1214",
+  "repairSets": [
+   "MON-1031"
+  ],
+  "oem": [
+   {
+    "number": "K012633",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270630",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "K001908",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "0536270631",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "SK7042RC",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SK70011",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1121.jpg",
+   "MNV-A-1121-2.jpg",
+   "MNV-A-1121-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1122",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 216,
+  "nameTr": "Komple Fren Kaliperi SL7 Sağ",
+  "nameEn": "Complete Brake Caliper SL7 RIGHT",
+  "type": "SL7 RIGHT",
+  "carrier": "MNV-1228",
+  "repairSets": [
+   "MON-1006",
+   "MON-1014"
+  ],
+  "oem": [
+   {
+    "number": "K003799",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A0014205301",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "A9424202801",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "II366901",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A9424201701",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "A9424202201",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "A9424201501",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "A9424203401",
+    "manufacturer": "MERCEDES-BENZ"
+   }
+  ],
+  "images": [
+   "MNV-A-1122.jpg",
+   "MNV-A-1122-2.jpg",
+   "MNV-A-1122-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1123",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 217,
+  "nameTr": "Komple Fren Kaliperi SN7 Sol",
+  "nameEn": "Complete Brake Caliper SN7 LEFT",
+  "type": "SN7 LEFT",
+  "carrier": "MNV-1228",
+  "repairSets": [
+   "MON-1006",
+   "MON-1014"
+  ],
+  "oem": [
+   {
+    "number": "K090767N64",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A0014205201",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "ST0712",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A9424202701",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "A9424200701",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "A9424202101",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "A9424203301",
+    "manufacturer": "MERCEDES-BENZ"
+   }
+  ],
+  "images": [
+   "MNV-A-1123.jpg",
+   "MNV-A-1123-2.jpg",
+   "MNV-A-1123-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1124",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 218,
+  "nameTr": "Komple Fren Kaliperi SL7 Sağ",
+  "nameEn": "Complete Brake Caliper SL7 RIGHT",
+  "type": "SL7 RIGHT",
+  "carrier": "MNV-1213",
+  "repairSets": [
+   "MON-1025",
+   "MON-1028"
+  ],
+  "oem": [
+   {
+    "number": "K002962",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "81508046490",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "SB7456RC",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K147310X50",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A6274300290",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "K017385",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K118607K55",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1731223",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "K064514",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1124.jpg",
+   "MNV-A-1124-2.jpg",
+   "MNV-A-1124-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1125",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 219,
+  "nameTr": "Komple Fren Kaliperi SB7 RADIAL Sol",
+  "nameEn": "Complete Brake Caliper SB7 RADIAL LEFT",
+  "type": "SB7 RADIAL LEFT",
+  "carrier": "MNV-1213",
+  "repairSets": [
+   "MON-1028",
+   "MON-1025"
+  ],
+  "oem": [
+   {
+    "number": "K002967",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "AR2.01.07.015",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "K002969",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "MXC9103015",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "K001591SC",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SB7463RC",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1745466",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "SB7462",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1756396",
+    "manufacturer": "MERCEDES-BENZ"
+   },
+   {
+    "number": "SB7189",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1921152",
+    "manufacturer": "MERCEDES-BENZ"
+   }
+  ],
+  "images": [
+   "MNV-A-1125.jpg",
+   "MNV-A-1125-2.jpg",
+   "MNV-A-1125-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1126",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 220,
+  "nameTr": "Komple Fren Kaliperi SYT7000/SYT7001 ( NEW SCHMITZ Sağ )",
+  "nameEn": "Complete Brake Caliper SYT7000/SYT7001 ( NEW SCHMITZ RIGHT )",
+  "type": "SYT7000/SYT7001 ( NEW SCHMITZ RIGHT )",
+  "carrier": "MNV-1259",
+  "repairSets": [
+   "MON-1024"
+  ],
+  "oem": [
+   {
+    "number": "SYT7001",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K227567K50",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "1475269",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1439902",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "1439904",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K202082",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "K227568K50",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "1475276",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1126.jpg",
+   "MNV-A-1126-2.jpg",
+   "MNV-A-1126-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1127",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 221,
+  "nameTr": "Komple Fren Kaliperi SYT7000/SYT7001 ( NEW SCHMITZ Sol )",
+  "nameEn": "Complete Brake Caliper SYT7000/SYT7001 ( NEW SCHMITZ LEFT )",
+  "type": "SYT7000/SYT7001 ( NEW SCHMITZ LEFT )",
+  "carrier": "MNV-1259",
+  "repairSets": [
+   "MON-1024"
+  ],
+  "oem": [
+   {
+    "number": "SYT7001",
+    "manufacturer": null
+   },
+   {
+    "number": "K227567K50",
+    "manufacturer": null
+   },
+   {
+    "number": "1475269",
+    "manufacturer": null
+   },
+   {
+    "number": "1439902",
+    "manufacturer": null
+   },
+   {
+    "number": "1439904",
+    "manufacturer": null
+   },
+   {
+    "number": "K202082",
+    "manufacturer": null
+   },
+   {
+    "number": "K227568K50",
+    "manufacturer": null
+   },
+   {
+    "number": "1475276SB7189",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-1127.jpg",
+   "MNV-A-1127-2.jpg",
+   "MNV-A-1127-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1128",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 222,
+  "nameTr": "Komple Fren Kaliperi 22.5 INCH DAF SN7 Sağ",
+  "nameEn": "Complete Brake Caliper 22.5 INCH DAF SN7 RIGHT",
+  "type": "22.5 INCH DAF SN7 RIGHT",
+  "carrier": "MNV-1215",
+  "repairSets": [
+   "MON-1006",
+   "MON-1014",
+   "MON-1133"
+  ],
+  "oem": [
+   {
+    "number": "K003781",
+    "manufacturer": null
+   },
+   {
+    "number": "K049586",
+    "manufacturer": null
+   },
+   {
+    "number": "Z002168",
+    "manufacturer": null
+   },
+   {
+    "number": "K110290",
+    "manufacturer": null
+   },
+   {
+    "number": "K013892",
+    "manufacturer": null
+   },
+   {
+    "number": "M200164-21",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-1128.jpg",
+   "MNV-A-1128-2.jpg",
+   "MNV-A-1128-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1129",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 223,
+  "nameTr": "Komple Fren Kaliperi 22.5 INCH DAF SN7 Sol",
+  "nameEn": "Complete Brake Caliper 22.5 INCH DAF SN7 LEFT",
+  "type": "22.5 INCH DAF SN7 LEFT",
+  "carrier": "MNV-1215",
+  "repairSets": [
+   "MON-1006",
+   "MON-1014",
+   "MON-1133"
+  ],
+  "oem": [
+   {
+    "number": "K003782",
+    "manufacturer": null
+   },
+   {
+    "number": "K049585",
+    "manufacturer": null
+   },
+   {
+    "number": "Z002167",
+    "manufacturer": null
+   },
+   {
+    "number": "K110289",
+    "manufacturer": null
+   },
+   {
+    "number": "K013891",
+    "manufacturer": null
+   },
+   {
+    "number": "M200164-22",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-1129.jpg",
+   "MNV-A-1129-2.jpg",
+   "MNV-A-1129-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1130",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 224,
+  "nameTr": "Komple Fren Kaliperi 17.5 INC MERCEDES SN5 Sağ",
+  "nameEn": "Complete Brake Caliper 17.5 INC MERCEDES SN5 RIGHT",
+  "type": "17.5 INC MERCEDES SN5 RIGHT",
+  "carrier": "MNV-1215",
+  "repairSets": [
+   "MON-1002",
+   "MON-1012"
+  ],
+  "oem": [
+   {
+    "number": "K016627",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K015973",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SN5011",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K011179",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SN5050",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K102549",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K011181",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K001945",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K011238",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K001943",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K100198",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K016619",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1130.jpg",
+   "MNV-A-1130-2.jpg",
+   "MNV-A-1130-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1131",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 225,
+  "nameTr": "Komple Fren Kaliperi 17.5 INC MERCEDES SN5 Sol",
+  "nameEn": "Complete Brake Caliper 17.5 INC MERCEDES SN5 LEFT",
+  "type": "17.5 INC MERCEDES SN5 LEFT",
+  "carrier": "MNV-1215",
+  "repairSets": [
+   "MON-1002",
+   "MON-1012"
+  ],
+  "oem": [
+   {
+    "number": "SN5040",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K100197",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SN5001",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K016626",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SN5041",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K016618",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K102548",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K015972",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K016621",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K011237",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K011180",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K001944",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K100201",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K001942",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1131.jpg",
+   "MNV-A-1131-2.jpg",
+   "MNV-A-1131-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1132",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 226,
+  "nameTr": "Komple Fren Kaliperi 22.5 INCH MERCEDES SN7 Sağ",
+  "nameEn": "Complete Brake Caliper 22.5 INCH MERCEDES SN7 RIGHT",
+  "type": "22.5 INCH MERCEDES SN7 RIGHT",
+  "carrier": "MNV-1231",
+  "repairSets": [
+   "MON-1006",
+   "MON-1014",
+   "MON-1133"
+  ],
+  "oem": [
+   {
+    "number": "K003800",
+    "manufacturer": null
+   },
+   {
+    "number": "SN7211RC",
+    "manufacturer": null
+   },
+   {
+    "number": "K031679",
+    "manufacturer": null
+   },
+   {
+    "number": "A0014202301",
+    "manufacturer": null
+   },
+   {
+    "number": "SN7038",
+    "manufacturer": null
+   },
+   {
+    "number": "0501006293",
+    "manufacturer": null
+   },
+   {
+    "number": "Z0010912",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-1132.jpg",
+   "MNV-A-1132-2.jpg",
+   "MNV-A-1132-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1133",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 227,
+  "nameTr": "Komple Fren Kaliperi 17.5 INC MERCEDES SN5 Sol",
+  "nameEn": "Complete Brake Caliper 17.5 INC MERCEDES SN5 LEFT",
+  "type": "17.5 INC MERCEDES SN5 LEFT",
+  "carrier": "MNV-1231",
+  "repairSets": [
+   "MON-1006",
+   "MON-1014",
+   "MON-1133"
+  ],
+  "oem": [
+   {
+    "number": "K093103K51",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A0014202301",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "A0044208783 A0024201483",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "SN7211RC",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "41033392",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K003800",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1133.jpg",
+   "MNV-A-1133-2.jpg",
+   "MNV-A-1133-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1134",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 228,
+  "nameTr": "Komple Fren Kaliperi 22.5 INCH MERCEDES SN7 Sağ",
+  "nameEn": "Complete Brake Caliper 22.5 INCH MERCEDES SN7 RIGHT",
+  "type": "22.5 INCH MERCEDES SN7 RIGHT",
+  "carrier": "MNV-1221",
+  "repairSets": [
+   "MON-1002",
+   "MON-1012"
+  ],
+  "oem": [
+   {
+    "number": "81.50804.6488",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "SN5038",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "81.50804.6330",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "SN5011",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "81.50804.6334",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "SN5001",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K000281",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K003302",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K011240",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K082552",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1134.jpg",
+   "MNV-A-1134-2.jpg",
+   "MNV-A-1134-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-1135",
+  "category": "CK-KNORR",
+  "pdf": "1-Moniva - Knorr.pdf",
+  "page": 229,
+  "nameTr": "Komple Fren Kaliperi 17.5 INC MERCEDES SN5 Sol",
+  "nameEn": "Complete Brake Caliper 17.5 INC MERCEDES SN5 LEFT",
+  "type": "17.5 INC MERCEDES SN5 LEFT",
+  "carrier": "MNV-1221",
+  "repairSets": [
+   "MON-1002",
+   "MON-1012"
+  ],
+  "oem": [
+   {
+    "number": "81.50804.6333",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "SN5028",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "81.50804.6329",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "K000282",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "81.50804.6487",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "K003301",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K082551",
+    "manufacturer": "KNORR-BREMSE"
+   },
+   {
+    "number": "K011239",
+    "manufacturer": "KNORR-BREMSE"
+   }
+  ],
+  "images": [
+   "MNV-A-1135.jpg",
+   "MNV-A-1135-2.jpg",
+   "MNV-A-1135-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2360",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 224,
+  "nameTr": "Komple Fren Kaliperi ELSA 195 - Sağ",
+  "nameEn": "Complete Brake Caliper ELSA 195 - RIGHT",
+  "type": "ELSA 195 - RIGHT",
+  "carrier": "MNV-2325",
+  "repairSets": [
+   "MON-2057"
+  ],
+  "oem": [
+   {
+    "number": "LRG731",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20498845",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20527039",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20780785",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20898083",
+    "manufacturer": "VOLVO"
+   }
+  ],
+  "images": [
+   "MNV-A-2360.jpg",
+   "MNV-A-2360-2.jpg",
+   "MNV-A-2360-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2361",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 225,
+  "nameTr": "Komple Fren Kaliperi ELSA 195 - Sol",
+  "nameEn": "Complete Brake Caliper ELSA 195 - LEFT",
+  "type": "ELSA 195 - LEFT",
+  "carrier": "MNV-2325",
+  "repairSets": [
+   "MON-2057"
+  ],
+  "oem": [
+   {
+    "number": "LRG730",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20498844",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20527038",
+    "manufacturer": "VOLVO"
+   }
+  ],
+  "images": [
+   "MNV-A-2361.jpg",
+   "MNV-A-2361-2.jpg",
+   "MNV-A-2361-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2364",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 226,
+  "nameTr": "Komple Fren Kaliperi ELSA 225 - Sağ",
+  "nameEn": "Complete Brake Caliper ELSA 225 - RIGHT",
+  "type": "ELSA 225 - RIGHT",
+  "carrier": "MNV-2319",
+  "repairSets": [
+   "MON-2058"
+  ],
+  "oem": [
+   {
+    "number": "LGR729",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20526991",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20523648",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "21024419",
+    "manufacturer": "VOLVO"
+   }
+  ],
+  "images": [
+   "MNV-A-2364.jpg",
+   "MNV-A-2364-2.jpg",
+   "MNV-A-2364-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2365",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 227,
+  "nameTr": "Komple Fren Kaliperi ELSA 225 - Sol",
+  "nameEn": "Complete Brake Caliper ELSA 225 - LEFT",
+  "type": "ELSA 225 - LEFT",
+  "carrier": "MNV-2319",
+  "repairSets": [
+   "MON-2058"
+  ],
+  "oem": [
+   {
+    "number": "LGR728",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20526990",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20523553",
+    "manufacturer": "VOLVO"
+   }
+  ],
+  "images": [
+   "MNV-A-2365.jpg",
+   "MNV-A-2365-2.jpg",
+   "MNV-A-2365-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2372",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 228,
+  "nameTr": "Komple Fren Kaliperi LE-DUCO - Sağ",
+  "nameEn": "Complete Brake Caliper LE-DUCO - RIGHT",
+  "type": "LE-DUCO - RIGHT",
+  "carrier": "MNV-2315",
+  "repairSets": [
+   "MON-2033"
+  ],
+  "oem": [
+   {
+    "number": "LRG651",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20852506",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20442331",
+    "manufacturer": "VOLVO"
+   }
+  ],
+  "images": [
+   "MNV-A-2372.jpg",
+   "MNV-A-2372-2.jpg",
+   "MNV-A-2372-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2373",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 229,
+  "nameTr": "Komple Fren Kaliperi LE-DUCO - Sol",
+  "nameEn": "Complete Brake Caliper LE-DUCO - LEFT",
+  "type": "LE-DUCO - LEFT",
+  "carrier": "MNV-2315",
+  "repairSets": [
+   "MON-2032"
+  ],
+  "oem": [
+   {
+    "number": "LRG650",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20852499",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20442330",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20785385",
+    "manufacturer": "VOLVO"
+   }
+  ],
+  "images": [
+   "MNV-A-2373.jpg",
+   "MNV-A-2373-2.jpg",
+   "MNV-A-2373-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2382",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 230,
+  "nameTr": "Komple Fren Kaliperi ELSA 225 RADIAL - Sağ",
+  "nameEn": "Complete Brake Caliper ELSA 225 RADIAL - RIGHT",
+  "type": "ELSA 225 RADIAL - RIGHT",
+  "carrier": "MNV-2319",
+  "repairSets": [
+   "MON-2056"
+  ],
+  "oem": [
+   {
+    "number": "MXC9309030",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20523651",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "LRG726",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20527036",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "20982090",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "1527545R",
+    "manufacturer": "VOLVO"
+   }
+  ],
+  "images": [
+   "MNV-A-2382.jpg",
+   "MNV-A-2382-2.jpg",
+   "MNV-A-2382-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2383",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 231,
+  "nameTr": "Komple Fren Kaliperi ELSA 225 RADIAL - Sol",
+  "nameEn": "Complete Brake Caliper ELSA 225 RADIAL - LEFT",
+  "type": "ELSA 225 RADIAL - LEFT",
+  "carrier": "MNV-2319",
+  "repairSets": [
+   "MON-2056"
+  ],
+  "oem": [
+   {
+    "number": "LRG650",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20852499",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "MXC9309031",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20442330",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "LRG727",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "20785385",
+    "manufacturer": "VOLVO"
+   },
+   {
+    "number": "1527545R",
+    "manufacturer": "VOLVO"
+   }
+  ],
+  "images": [
+   "MNV-A-2383.jpg",
+   "MNV-A-2383-2.jpg",
+   "MNV-A-2383-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-2385",
+  "category": "CK-MERITOR",
+  "pdf": "2-Moniva - Meritor.pdf",
+  "page": 232,
+  "nameTr": "Komple Fren Kaliperi ELSA 225 RADIAL - Sağ",
+  "nameEn": "Complete Brake Caliper ELSA 225 RADIAL - RIGHT",
+  "type": "ELSA 225 RADIAL - RIGHT",
+  "carrier": "MNV-2335",
+  "repairSets": [
+   "MON-2061"
+  ],
+  "oem": [
+   {
+    "number": "EX225L206BF000",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "EX225H202000XX",
+    "manufacturer": "MERITOR"
+   },
+   {
+    "number": "EX225L275XX000",
+    "manufacturer": "MERITOR"
+   }
+  ],
+  "images": [
+   "MNV-A-2385.jpg",
+   "MNV-A-2385-2.jpg",
+   "MNV-A-2385-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3303",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 132,
+  "nameTr": "Komple Fren Kaliperi PAN 22/1 Sağ",
+  "nameEn": "Complete Brake Caliper PAN 22/1 RIGHT",
+  "type": "PAN 22/1 RIGHT",
+  "carrier": "MNV-3269",
+  "repairSets": [
+   "MON-3017"
+  ],
+  "oem": [
+   {
+    "number": "4022516",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "2093077",
+    "manufacturer": "SCANIA"
+   },
+   {
+    "number": "40225008",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "3080005020",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "877934",
+    "manufacturer": "SCANIA"
+   }
+  ],
+  "images": [
+   "MNV-A-3303.jpg",
+   "MNV-A-3303-2.jpg",
+   "MNV-A-3303-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3304",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 133,
+  "nameTr": "Komple Fren Kaliperi PAN 22/1 Sol",
+  "nameEn": "Complete Brake Caliper PAN 22/1 LEFT",
+  "type": "PAN 22/1 LEFT",
+  "carrier": "MNV-3270",
+  "repairSets": [
+   "MON-3018"
+  ],
+  "oem": [
+   {
+    "number": "40225015",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "2093076",
+    "manufacturer": "SCANIA"
+   },
+   {
+    "number": "40225007",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "3080005120",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "877933",
+    "manufacturer": "SCANIA"
+   },
+   {
+    "number": "3080005100",
+    "manufacturer": "WABCO"
+   }
+  ],
+  "images": [
+   "MNV-A-3304.jpg",
+   "MNV-A-3304-2.jpg",
+   "MNV-A-3304-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3305",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 134,
+  "nameTr": "Komple Fren Kaliperi SAF / PAN 19-1 Sağ",
+  "nameEn": "Complete Brake Caliper SAF / PAN 19-1 RIGHT",
+  "type": "SAF / PAN 19-1 RIGHT",
+  "carrier": "MNV-3265",
+  "repairSets": [
+   "MON-3003"
+  ],
+  "oem": [
+   {
+    "number": "6401950160",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "40165016",
+    "manufacturer": "SCANIA"
+   }
+  ],
+  "images": [
+   "MNV-A-3305.jpg",
+   "MNV-A-3305-2.jpg",
+   "MNV-A-3305-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3306",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 135,
+  "nameTr": "Komple Fren Kaliperi SAF / PAN 19-1 Sol",
+  "nameEn": "Complete Brake Caliper SAF / PAN 19-1 LEFT",
+  "type": "SAF / PAN 19-1 LEFT",
+  "carrier": "MNV-3266",
+  "repairSets": [
+   "MON-3004"
+  ],
+  "oem": [
+   {
+    "number": "6401950150",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "40195015",
+    "manufacturer": "SAF"
+   }
+  ],
+  "images": [
+   "MNV-A-3306.jpg",
+   "MNV-A-3306-2.jpg",
+   "MNV-A-3306-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3307",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 136,
+  "nameTr": "Komple Fren Kaliperi SAF / PAN 19-1 Sağ",
+  "nameEn": "Complete Brake Caliper SAF / PAN 19-1 RIGHT",
+  "type": "SAF / PAN 19-1 RIGHT",
+  "carrier": "MNV-3259",
+  "repairSets": [
+   "MON-3001"
+  ],
+  "oem": [
+   {
+    "number": "81.50804.6354",
+    "manufacturer": "WABCO"
+   }
+  ],
+  "images": [
+   "MNV-A-3307.jpg",
+   "MNV-A-3307-2.jpg",
+   "MNV-A-3307-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3308",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 137,
+  "nameTr": "Komple Fren Kaliperi PAN 17 Sol",
+  "nameEn": "Complete Brake Caliper PAN 17 LEFT",
+  "type": "PAN 17 LEFT",
+  "carrier": "MNV-3260",
+  "repairSets": [
+   "MON-3002"
+  ],
+  "oem": [
+   {
+    "number": "81.50804.6354",
+    "manufacturer": "WABCO"
+   }
+  ],
+  "images": [
+   "MNV-A-3308.jpg",
+   "MNV-A-3308-2.jpg",
+   "MNV-A-3308-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3309",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 138,
+  "nameTr": "Komple Fren Kaliperi PAN 19-2 Sağ",
+  "nameEn": "Complete Brake Caliper PAN 19-2 RIGHT",
+  "type": "PAN 19-2 RIGHT",
+  "carrier": "MNV-3289",
+  "repairSets": [
+   "MON-3006"
+  ],
+  "oem": [
+   {
+    "number": "40165012",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1440503",
+    "manufacturer": "DAF"
+   },
+   {
+    "number": "40195008",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1400067",
+    "manufacturer": "DAF"
+   }
+  ],
+  "images": [
+   "MNV-A-3309.jpg",
+   "MNV-A-3309-2.jpg",
+   "MNV-A-3309-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3310",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 139,
+  "nameTr": "Komple Fren Kaliperi PAN 19-2 Sol",
+  "nameEn": "Complete Brake Caliper PAN 19-2 LEFT",
+  "type": "PAN 19-2 LEFT",
+  "carrier": "MNV-3289",
+  "repairSets": [
+   "MON-3006"
+  ],
+  "oem": [
+   {
+    "number": "40195011",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1440502",
+    "manufacturer": null
+   },
+   {
+    "number": "40195007",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1400072",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-3310.jpg",
+   "MNV-A-3310-2.jpg",
+   "MNV-A-3310-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3311",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 140,
+  "nameTr": "Komple Fren Kaliperi WABCO MAXX 22 T SCHMITZ TRAILER Sağ",
+  "nameEn": "Complete Brake Caliper WABCO MAXX 22 T SCHMITZ TRAILER RIGHT",
+  "type": "WABCO MAXX 22 T SCHMITZ TRAILER RIGHT",
+  "carrier": "MNV-3277",
+  "repairSets": [
+   "MON-3009"
+  ],
+  "oem": [
+   {
+    "number": "6402220040",
+    "manufacturer": null
+   },
+   {
+    "number": "6402220012",
+    "manufacturer": null
+   },
+   {
+    "number": "6402220020",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-3311.jpg",
+   "MNV-A-3311-2.jpg",
+   "MNV-A-3311-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3312",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 141,
+  "nameTr": "Komple Fren Kaliperi WABCO MAXX 22 T SCHMITZ TRAILER Sol",
+  "nameEn": "Complete Brake Caliper WABCO MAXX 22 T SCHMITZ TRAILER LEFT",
+  "type": "WABCO MAXX 22 T SCHMITZ TRAILER LEFT",
+  "carrier": "MNV-3278",
+  "repairSets": [
+   "MON-3010"
+  ],
+  "oem": [
+   {
+    "number": "6402220002",
+    "manufacturer": null
+   },
+   {
+    "number": "6402220010",
+    "manufacturer": null
+   },
+   {
+    "number": "6402220030",
+    "manufacturer": null
+   },
+   {
+    "number": "1156800",
+    "manufacturer": null
+   },
+   {
+    "number": "1199856",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-3312.jpg",
+   "MNV-A-3312-2.jpg",
+   "MNV-A-3312-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3315",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 142,
+  "nameTr": "Komple Fren Kaliperi SF / PAN 22-1 - Sağ",
+  "nameEn": "Complete Brake Caliper SF / PAN 22-1 - RIGHT",
+  "type": "SF / PAN 22-1 - RIGHT",
+  "carrier": "MNV-3261",
+  "repairSets": [
+   "MON-3017"
+  ],
+  "oem": [
+   {
+    "number": "6402250230",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "30800006800",
+    "manufacturer": "SAF"
+   },
+   {
+    "number": "6402250260",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "30800006820",
+    "manufacturer": "SAF"
+   },
+   {
+    "number": "6402250490",
+    "manufacturer": "WABCO"
+   }
+  ],
+  "images": [
+   "MNV-A-3315.jpg",
+   "MNV-A-3315-2.jpg",
+   "MNV-A-3315-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3316",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 143,
+  "nameTr": "Komple Fren Kaliperi SF / PAN 22-1 - Sol",
+  "nameEn": "Complete Brake Caliper SF / PAN 22-1 - LEFT",
+  "type": "SF / PAN 22-1 - LEFT",
+  "carrier": "MNV-3262",
+  "repairSets": [
+   "MON-3018"
+  ],
+  "oem": [
+   {
+    "number": "6402250220",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "3080006700",
+    "manufacturer": "SAF"
+   },
+   {
+    "number": "6402250250",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "30800006720",
+    "manufacturer": "SAF"
+   },
+   {
+    "number": "6402250480",
+    "manufacturer": "WABCO"
+   }
+  ],
+  "images": [
+   "MNV-A-3316.jpg",
+   "MNV-A-3316-2.jpg",
+   "MNV-A-3316-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3319",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 144,
+  "nameTr": "Komple Fren Kaliperi PAN 22-1 / SCHMITZ TRAILER - Sağ",
+  "nameEn": "Complete Brake Caliper PAN 22-1 / SCHMITZ TRAILER - RIGHT",
+  "type": "PAN 22-1 / SCHMITZ TRAILER - RIGHT",
+  "carrier": "MNV-3275",
+  "repairSets": [
+   "MON-3017"
+  ],
+  "oem": [
+   {
+    "number": "640 225 001 2",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1063037",
+    "manufacturer": "SCHMITZ"
+   },
+   {
+    "number": "640 225 031 0",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1068162",
+    "manufacturer": "SCHMITZ"
+   },
+   {
+    "number": "640 225 041 0",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1110436",
+    "manufacturer": "SCHMITZ"
+   },
+   {
+    "number": "SCB1035095",
+    "manufacturer": "SCHMITZ"
+   },
+   {
+    "number": "SCB1068162",
+    "manufacturer": "SCHMITZ"
+   }
+  ],
+  "images": [
+   "MNV-A-3319.jpg",
+   "MNV-A-3319-2.jpg",
+   "MNV-A-3319-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3320",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 145,
+  "nameTr": "Komple Fren Kaliperi PAN 22-1 / SCHMITZ TRAILER - Sol",
+  "nameEn": "Complete Brake Caliper PAN 22-1 / SCHMITZ TRAILER - LEFT",
+  "type": "PAN 22-1 / SCHMITZ TRAILER - LEFT",
+  "carrier": "MNV-3276",
+  "repairSets": [
+   "MON-3018"
+  ],
+  "oem": [
+   {
+    "number": "640 225 040 0",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1063036",
+    "manufacturer": "SCHMITZ"
+   },
+   {
+    "number": "640 225 030 0",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1110435",
+    "manufacturer": "SCHMITZ"
+   },
+   {
+    "number": "640 225 000 2",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "1068161",
+    "manufacturer": "SCHMITZ"
+   },
+   {
+    "number": "SCB1035094",
+    "manufacturer": "SCHMITZ"
+   },
+   {
+    "number": "SCB1068161",
+    "manufacturer": "SCHMITZ"
+   }
+  ],
+  "images": [
+   "MNV-A-3320.jpg",
+   "MNV-A-3320-2.jpg",
+   "MNV-A-3320-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3322",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 146,
+  "nameTr": "Komple Fren Kaliperi WABCO MAXX 22L AROCS Arka Sağ",
+  "nameEn": "Complete Brake Caliper WABCO MAXX 22L AROCS REAR RIGHT",
+  "type": "WABCO MAXX 22L AROCS REAR RIGHT",
+  "carrier": "MNV-3281",
+  "repairSets": [
+   "MON-3013"
+  ],
+  "oem": [
+   {
+    "number": "6409098326",
+    "manufacturer": null
+   },
+   {
+    "number": "A0054201683",
+    "manufacturer": null
+   },
+   {
+    "number": "6403220760",
+    "manufacturer": null
+   },
+   {
+    "number": "A9604201402",
+    "manufacturer": null
+   },
+   {
+    "number": "6409157424",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-3322.jpg",
+   "MNV-A-3322-2.jpg",
+   "MNV-A-3322-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3324",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 147,
+  "nameTr": "Komple Fren Kaliperi WABCO MAXX 22L AROCS Arka Sol",
+  "nameEn": "Complete Brake Caliper WABCO MAXX 22L AROCS REAR LEFT",
+  "type": "WABCO MAXX 22L AROCS REAR LEFT",
+  "carrier": "MNV-3276",
+  "repairSets": [
+   "MON-3014"
+  ],
+  "oem": [
+   {
+    "number": "6409098336",
+    "manufacturer": null
+   },
+   {
+    "number": "A0054201583",
+    "manufacturer": null
+   },
+   {
+    "number": "6403220750",
+    "manufacturer": null
+   },
+   {
+    "number": "A9604201302",
+    "manufacturer": null
+   },
+   {
+    "number": "6409157424",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-3324.jpg",
+   "MNV-A-3324-2.jpg",
+   "MNV-A-3324-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3325",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 148,
+  "nameTr": "Komple Fren Kaliperi WABCO MAXX 22L AROCS Arka Sağ",
+  "nameEn": "Complete Brake Caliper WABCO MAXX 22L AROCS REAR RIGHT",
+  "type": "WABCO MAXX 22L AROCS REAR RIGHT",
+  "carrier": "MNV-3263",
+  "repairSets": [
+   "MON-3005"
+  ],
+  "oem": [
+   {
+    "number": "6409078316",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "81508046645",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "6403220690",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "81508046577",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "6403220890",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "81508046635",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "81508046579",
+    "manufacturer": "MAN"
+   }
+  ],
+  "images": [
+   "MNV-A-3325.jpg",
+   "MNV-A-3325-2.jpg",
+   "MNV-A-3325-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-3326",
+  "category": "CK-WABCO",
+  "pdf": "3-Moniva - Wabco.pdf",
+  "page": 149,
+  "nameTr": "Komple Fren Kaliperi MAXX 22 TGX TGS Ön - Sol",
+  "nameEn": "Complete Brake Caliper MAXX 22 TGX TGS FRONT - LEFT",
+  "type": "MAXX 22 TGX TGS FRONT - LEFT",
+  "carrier": "MNV-3264",
+  "repairSets": [
+   "MON-3008"
+  ],
+  "oem": [
+   {
+    "number": "6409078326",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "81508046646",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "6403220700",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "84508046578",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "6403220900",
+    "manufacturer": "WABCO"
+   },
+   {
+    "number": "81508046576",
+    "manufacturer": "MAN"
+   },
+   {
+    "number": "81508046636",
+    "manufacturer": "MAN"
+   }
+  ],
+  "images": [
+   "MNV-A-3326.jpg",
+   "MNV-A-3326-2.jpg",
+   "MNV-A-3326-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-4302",
+  "category": "CK-HALDEX",
+  "pdf": "4-Moniva - Haldex.pdf",
+  "page": 58,
+  "nameTr": "Komple Fren Kaliperi HALDEX MODUL-X DB22",
+  "nameEn": "Complete Brake Caliper HALDEX MODUL-X DB22",
+  "type": "HALDEX MODUL-X DB22",
+  "carrier": "MNV-4101",
+  "repairSets": [
+   "MON-4001"
+  ],
+  "oem": [
+   {
+    "number": "92502",
+    "manufacturer": null
+   },
+   {
+    "number": "91964",
+    "manufacturer": null
+   },
+   {
+    "number": "S-30560-10",
+    "manufacturer": null
+   },
+   {
+    "number": "ZZ79094025",
+    "manufacturer": null
+   },
+   {
+    "number": "3080005601",
+    "manufacturer": null
+   },
+   {
+    "number": "790-94027",
+    "manufacturer": null
+   },
+   {
+    "number": "92200",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-4302.jpg",
+   "MNV-A-4302-2.jpg",
+   "MNV-A-4302-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-4306",
+  "category": "CK-HALDEX",
+  "pdf": "4-Moniva - Haldex.pdf",
+  "page": 59,
+  "nameTr": "Komple Fren Kaliperi HALDEX",
+  "nameEn": "Complete Brake Caliper HALDEX",
+  "type": "HALDEX",
+  "carrier": "MNV-4104",
+  "repairSets": [
+   "MON-4001"
+  ],
+  "oem": [],
+  "images": [
+   "MNV-A-4306.jpg",
+   "MNV-A-4306-2.jpg",
+   "MNV-A-4306-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-5083",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 80,
+  "nameTr": "Komple Fren Kaliperi B.V 22 - TSB 4309 - Sağ",
+  "nameEn": "Complete Brake Caliper B.V 22 - TSB 4309 - RIGHT",
+  "type": "B.V 22 - TSB 4309 - RIGHT",
+  "carrier": null,
+  "repairSets": [
+   "MON-5015",
+   "MON-5018",
+   "MON-5016",
+   "MON-5017"
+  ],
+  "oem": [
+   {
+    "number": "0936272120",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272020",
+    "manufacturer": null
+   },
+   {
+    "number": "0536272020",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272121",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272021",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-5083.jpg",
+   "MNV-A-5083-2.jpg",
+   "MNV-A-5083-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-5087",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 82,
+  "nameTr": "Komple Fren Kaliperi B.V 19,5 - TSB 3709 - Sağ",
+  "nameEn": "Complete Brake Caliper B.V 19,5 - TSB 3709 - RIGHT",
+  "type": "B.V 19,5 - TSB 3709 - RIGHT",
+  "carrier": null,
+  "repairSets": [
+   "MON-5015",
+   "MON-5018",
+   "MON-5016",
+   "MON-5017"
+  ],
+  "oem": [
+   {
+    "number": "0536272060",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272141",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272060",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272040",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272160",
+    "manufacturer": null
+   },
+   {
+    "number": "0536272040",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272140",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272041",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-5087.jpg",
+   "MNV-A-5087-2.jpg",
+   "MNV-A-5087-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-5088",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 83,
+  "nameTr": "Komple Fren Kaliperi B.V 19,5 - TSB 3709 - Sol",
+  "nameEn": "Complete Brake Caliper B.V 19,5 - TSB 3709 - LEFT",
+  "type": "B.V 19,5 - TSB 3709 - LEFT",
+  "carrier": null,
+  "repairSets": [
+   "MON-5015",
+   "MON-5018",
+   "MON-5016",
+   "MON-5017"
+  ],
+  "oem": [
+   {
+    "number": "3709",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272111",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272011",
+    "manufacturer": null
+   },
+   {
+    "number": "0936272130",
+    "manufacturer": null
+   },
+   {
+    "number": "0536272030",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-5088.jpg",
+   "MNV-A-5088-2.jpg",
+   "MNV-A-5088-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-5091",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 84,
+  "nameTr": "Komple Fren Kaliperi B.V 22 - BRAKE PAD NUMBER TS2 4309 - Sağ",
+  "nameEn": "Complete Brake Caliper B.V 22 - BRAKE PAD NUMBER TS2 4309 - RIGHT",
+  "type": "B.V 22 - BRAKE PAD NUMBER TS2 4309 - RIGHT",
+  "carrier": null,
+  "repairSets": [
+   "MON-5005"
+  ],
+  "oem": [
+   {
+    "number": "05.362.72.22.0",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-5091.jpg",
+   "MNV-A-5091-2.jpg",
+   "MNV-A-5091-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-5092",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 85,
+  "nameTr": "Komple Fren Kaliperi B.V 22 BRAKE PAD NUMBER TS2 4309 - Sol",
+  "nameEn": "Complete Brake Caliper B.V 22 BRAKE PAD NUMBER TS2 4309 - LEFT",
+  "type": "B.V 22 BRAKE PAD NUMBER TS2 4309 - LEFT",
+  "carrier": null,
+  "repairSets": [
+   "MON-5006"
+  ],
+  "oem": [
+   {
+    "number": "05.362.72.22.0",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-5092.jpg",
+   "MNV-A-5092-2.jpg",
+   "MNV-A-5092-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-5093",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 86,
+  "nameTr": "Komple Fren Kaliperi B.V 22 - BRAKE PAD NUMBER TS2 3709 - Sağ",
+  "nameEn": "Complete Brake Caliper B.V 22 - BRAKE PAD NUMBER TS2 3709 - RIGHT",
+  "type": "B.V 22 - BRAKE PAD NUMBER TS2 3709 - RIGHT",
+  "carrier": null,
+  "repairSets": [
+   "MON-5007"
+  ],
+  "oem": [],
+  "images": [
+   "MNV-A-5093.jpg",
+   "MNV-A-5093-2.jpg",
+   "MNV-A-5093-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-5094",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 87,
+  "nameTr": "Komple Fren Kaliperi B.V 22 BRAKE PAD NUMBER TS2 3709 - Sol",
+  "nameEn": "Complete Brake Caliper B.V 22 BRAKE PAD NUMBER TS2 3709 - LEFT",
+  "type": "B.V 22 BRAKE PAD NUMBER TS2 3709 - LEFT",
+  "carrier": null,
+  "repairSets": [
+   "MON-5008"
+  ],
+  "oem": [],
+  "images": [
+   "MNV-A-5094.jpg",
+   "MNV-A-5094-2.jpg",
+   "MNV-A-5094-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-6302",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 132,
+  "nameTr": "Komple Fren Kaliperi SAF MODUL T - HALDEX 96546/1816200028(Sağ)",
+  "nameEn": "Complete Brake Caliper SAF MODUL T - HALDEX 96546/1816200028(RIGHT)",
+  "type": "SAF MODUL T - HALDEX 96546/1816200028(RIGHT)",
+  "carrier": "MNV-6022",
+  "repairSets": [
+   "MON-6001"
+  ],
+  "oem": [
+   {
+    "number": "96546",
+    "manufacturer": "HALDEX"
+   },
+   {
+    "number": "95621",
+    "manufacturer": null
+   },
+   {
+    "number": "95621C",
+    "manufacturer": null
+   },
+   {
+    "number": "3080008200",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-6302.jpg",
+   "MNV-A-6302-2.jpg",
+   "MNV-A-6302-3.jpg"
+  ]
+ },
+ {
+  "sku": "MNV-A-6304",
+  "category": "CK-OTHER",
+  "pdf": "5-Moniva - Other.pdf",
+  "page": 133,
+  "nameTr": "Komple Fren Kaliperi SAF MODUL T - HALDEX 96546/1816200028(Sol)",
+  "nameEn": "Complete Brake Caliper SAF MODUL T - HALDEX 96546/1816200028(LEFT)",
+  "type": "SAF MODUL T - HALDEX 96546/1816200028(LEFT)",
+  "carrier": "MNV-6022",
+  "repairSets": [
+   "MON-6001"
+  ],
+  "oem": [
+   {
+    "number": "96546",
+    "manufacturer": "HALDEX"
+   },
+   {
+    "number": "9562",
+    "manufacturer": null
+   },
+   {
+    "number": "95620C",
+    "manufacturer": null
+   },
+   {
+    "number": "3080008100",
+    "manufacturer": null
+   },
+   {
+    "number": "3080008101",
+    "manufacturer": null
+   }
+  ],
+  "images": [
+   "MNV-A-6304.jpg",
+   "MNV-A-6304-2.jpg",
+   "MNV-A-6304-3.jpg"
+  ]
+ }
+]
