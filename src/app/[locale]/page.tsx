@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Roboto } from "next/font/google";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -27,6 +28,12 @@ import type {
   ContactCtaData,
 } from "@/lib/pages/home-sections";
 import "@/components/home/home.css";
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  weight: ["300"],
+});
 
 export const dynamic = "force-dynamic";
 
@@ -156,7 +163,7 @@ function CategorySection({
         }));
 
   return (
-    <section className="hh-sec hh-cats">
+    <section className={`hh-sec hh-cats ${roboto.variable}`}>
       <div className="hh-sec__head">
         <div className="hh-title">
           {data.title}

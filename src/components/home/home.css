@@ -200,11 +200,12 @@
   bottom: 16px;
   left: 16px;
   right: 16px;
-  font-size: 28px;
+  font-family: var(--font-roboto), "Roboto", sans-serif;
+  font-size: 18px;
   font-weight: 300;
   color: #1b1640;
   line-height: 1.1;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.2px;
   display: flex;
   align-items: center;
   justify-content: space-between;
