@@ -24,7 +24,7 @@ const COLS: readonly { key: ColKey; hrefs: readonly string[] }[] = [
   },
 ];
 
-const CERTS = ["ISO 9001:2015", "EAC"];
+const CERTS = ["ISO 9001:2015", "EAC", "ECE R-13"];
 
 export async function SiteFooter() {
   const [footerPages, settings, t] = await Promise.all([
