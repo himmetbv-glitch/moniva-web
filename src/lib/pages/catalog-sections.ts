@@ -43,7 +43,7 @@ export const CATALOG_SECTIONS: SeedSection[] = [
     type: "CATALOG_BANNER",
     name: "Katalog Banner",
     kind: "Ürünler sayfası başlığı",
-    sub: "Başlık + alt metin + istatistik etiketleri (sayılar otomatik)",
+    sub: "Başlık + alt metin + ürün sayısı etiketi (sayı otomatik)",
     order: 1,
     visible: true,
     data: {
@@ -51,7 +51,7 @@ export const CATALOG_SECTIONS: SeedSection[] = [
       kicker: "",
       title: "Ürünler.",
       subtitle:
-        "Kamyon, treyler ve ticari araçlar için OEM ve aftermarket yedek parçalar. Fiyat gösterilmez — ürünleri teklif listenize ekleyin, uzman ekibimiz 24 saat içinde size özel fiyatla döner.",
+        "Kamyon, treyler ve ticari araçlar için OEM ve aftermarket yedek parçalar. Fiyat gösterilmez - ürünleri teklif listenize ekleyin. En kısa sürede dönüş sağlanır.",
       statProduct: "Ürün",
       statFamily: "Aile",
       statBrand: "Marka",

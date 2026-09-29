@@ -5,21 +5,13 @@ import type { CatalogBannerData } from "@/lib/pages/catalog-sections";
 
 export async function PageBanner({
   total,
-  families,
-  brands,
   banner,
 }: {
   total: number;
-  families: number;
-  brands: number;
   banner: CatalogBannerData;
 }) {
   const t = await getTranslations();
-  const stats: [string, string][] = [
-    [total.toLocaleString("tr-TR"), banner.statProduct],
-    [String(families), banner.statFamily],
-    [String(brands), banner.statBrand],
-  ];
+  const stats: [string, string][] = [[total.toLocaleString("tr-TR"), banner.statProduct]];
 
   return (
     <div className="banner">

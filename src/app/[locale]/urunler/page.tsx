@@ -61,12 +61,7 @@ export default async function ProductsPage({
   return (
     <>
       <SiteHeader />
-      <PageBanner
-        total={totalProducts}
-        families={tree.length}
-        brands={brands.length}
-        banner={labels.banner}
-      />
+      <PageBanner total={totalProducts} banner={labels.banner} />
       <div className="catalog">
         <Sidebar
           tree={tree}

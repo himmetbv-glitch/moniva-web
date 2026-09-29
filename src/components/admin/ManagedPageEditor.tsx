@@ -518,18 +518,14 @@ function SectionFields({
 function CatalogBannerFields({ d, set }: FieldsProps) {
   return (
     <>
-      <div className="mp-note">İstatistik <b>sayıları</b> otomatik (ürün/aile/marka adedi); burada yalnızca etiketler.</div>
+      <div className="mp-note">Ürün <b>sayısı</b> otomatik hesaplanır; burada yalnızca etiketi düzenlenir.</div>
       <div className="mp-2col">
         <Field label="Breadcrumb etiketi"><input value={str(d.crumbLabel)} onChange={(e) => set({ crumbLabel: e.target.value })} /></Field>
         <Field label="Üst etiket (kicker)"><input value={str(d.kicker)} onChange={(e) => set({ kicker: e.target.value })} /></Field>
       </div>
       <Field label="Başlık"><input value={str(d.title)} onChange={(e) => set({ title: e.target.value })} /></Field>
       <Field label="Alt metin"><textarea rows={3} value={str(d.subtitle)} onChange={(e) => set({ subtitle: e.target.value })} /></Field>
-      <div className="mp-3col">
-        <Field label="İstatistik 1 etiketi"><input value={str(d.statProduct)} onChange={(e) => set({ statProduct: e.target.value })} /></Field>
-        <Field label="İstatistik 2 etiketi"><input value={str(d.statFamily)} onChange={(e) => set({ statFamily: e.target.value })} /></Field>
-        <Field label="İstatistik 3 etiketi"><input value={str(d.statBrand)} onChange={(e) => set({ statBrand: e.target.value })} /></Field>
-      </div>
+      <Field label="Ürün sayısı etiketi"><input value={str(d.statProduct)} onChange={(e) => set({ statProduct: e.target.value })} /></Field>
     </>
   );
 }
