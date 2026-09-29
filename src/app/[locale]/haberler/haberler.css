@@ -102,30 +102,6 @@
   line-height: 1.6;
   max-width: 620px;
 }
-.nw-banner__stats {
-  display: flex;
-  gap: 32px;
-  align-items: flex-end;
-  flex-shrink: 0;
-}
-.nw-bstat {
-  text-align: right;
-}
-.nw-bstat__v {
-  font-size: 32px;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.nw-bstat__l {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 6px;
-}
-
 /* Kapaksız görsel placeholder */
 .nw-noimg {
   position: absolute;

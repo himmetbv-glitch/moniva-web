@@ -70,20 +70,6 @@ export default async function HaberlerPage() {
                 <h1 className="nw-banner__title">{t("news.banner.title")}</h1>
                 <p className="nw-banner__sub">{t("news.banner.sub")}</p>
               </div>
-              <div className="nw-banner__stats">
-                {(
-                  [
-                    [String(posts.length), t("news.banner.statNews")],
-                    ["4", t("news.banner.statLanguage")],
-                    ["80+", t("news.banner.statMarket")],
-                  ] as [string, string][]
-                ).map(([v, l]) => (
-                  <div key={l} className="nw-bstat">
-                    <div className="nw-bstat__v">{v}</div>
-                    <div className="nw-bstat__l">{l}</div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
