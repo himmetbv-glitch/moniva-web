@@ -26,7 +26,7 @@ export const DEFAULT_CAREER_POSITIONS = [
 // DB'de satır yoksa kullanılan varsayılanlar (şema @default ile aynı).
 export const DEFAULT_SETTINGS: SiteSettings = {
   companyName: "MONIVA Otomotiv ve Gıda San. Tic. A.Ş.",
-  addressLine: "Selçuklu / Konya, Türkiye",
+  addressLine: "Selçuklu / Konya / Türkiye",
   phone: "+90 332 239 03 05",
   email: "info@moniva.com.tr",
   whatsapp: "",

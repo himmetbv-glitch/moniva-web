@@ -59,7 +59,7 @@ export function SettingsForm({ initial }: { initial: SiteSettings }) {
           <div className="pe-sectitle">Firma & İletişim</div>
           <div className="st-fields">
             {field("Firma adı", "companyName", { full: true })}
-            {field("Adres satırı", "addressLine", { full: true, placeholder: "Selçuklu / Konya, Türkiye" })}
+            {field("Adres satırı", "addressLine", { full: true, placeholder: "Selçuklu / Konya / Türkiye" })}
             {field("Telefon", "phone", { placeholder: "+90 332 ..." })}
             {field("E-posta", "email", { placeholder: "export@moniva.com.tr" })}
             {field("WhatsApp", "whatsapp", { placeholder: "+90 5xx ... (opsiyonel)" })}
