@@ -4,7 +4,7 @@ export default function Loading() {
       <div className="banner">
         <div className="banner-row">
           <div>
-            <div className="banner-kicker">━━ Katalog</div>
+            <div className="banner-kicker">Katalog</div>
             <h1 className="banner-title">Ürünler.</h1>
             <div
               className="skel"

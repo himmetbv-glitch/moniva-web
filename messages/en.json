@@ -40,15 +40,7 @@
   "footer": {
     "columns": {
       "products": {
-        "title": "Products",
-        "items": [
-          "Brake Systems",
-          "Air Suspension",
-          "Axle & Wheel",
-          "Transmission Parts",
-          "Electrical Systems",
-          "Cabin & Body"
-        ]
+        "title": "Products"
       },
       "corporate": {
         "title": "Corporate",
@@ -633,7 +625,7 @@
     "notFoundTitle": "Article not found — Moniva",
     "crumbSelf": "News",
     "banner": {
-      "eyebrow": "━━ Press & Media",
+      "eyebrow": "Press & Media",
       "title": "News.",
       "sub": "Press releases, product launches, fair news and industry insights from Moniva Otomotiv — the story behind every part we ship to 50+ markets.",
       "statNews": "Articles",
@@ -676,7 +668,7 @@
     "pageDescription": "Download the Moniva product range as print-ready PDF — general catalog, product families, OEM cross-reference and brand guides.",
     "crumbSelf": "Catalogs",
     "banner": {
-      "eyebrow": "━━ Downloadable Files",
+      "eyebrow": "Downloadable Files",
       "title": "Catalogs.",
       "sub": "Download the Moniva product range as print-ready PDF — general catalog, product families, OEM cross-reference and brand guides. Updated for the 2026 season.",
       "statPdf": "PDF",

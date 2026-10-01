@@ -146,7 +146,7 @@ function HeroSection({
           <span>›</span>
           <span className="ct-crumb__cur">{d.crumbLabel}</span>
         </nav>
-        <div className="ct-eyebrow">━━ {d.eyebrow}</div>
+        <div className="ct-eyebrow">{d.eyebrow}</div>
         <div className="ct-hero__row">
           <div className="ct-hero__lead">
             <h1>{d.title}</h1>
@@ -190,7 +190,7 @@ function InfoSection({ d, c }: { d: ContactInfoData; c: Contacts }) {
     <section className={"ct-formsec" + (two ? " ct-formsec--two" : "")}>
       <ContactForm />
       <aside className={"ct-info" + (two ? " ct-info--two" : "")}>
-        <div className="ct-eyebrow ct-eyebrow--accent">━━ {d.eyebrow}</div>
+        <div className="ct-eyebrow ct-eyebrow--accent">{d.eyebrow}</div>
         <div className="ct-info__grid">
           <div>
             <div className="ct-info__co">{multiline(d.companyName)}</div>
@@ -282,7 +282,7 @@ function LocBlock({ d, labels }: { d: LocEntry; labels: ContactLabels }) {
   return (
     <section className="ct-loc">
       <div className="ct-loc__head">
-        <div className="ct-eyebrow">━━ {d.eyebrow}</div>
+        <div className="ct-eyebrow">{d.eyebrow}</div>
         <div className="ct-loc__row">
           <div>
             <h2>{d.title}</h2>
@@ -341,19 +341,18 @@ function DeptsSection({ d, c }: { d: ContactDeptsData; c: Contacts }) {
   return (
     <section className="ct-depts">
       <div className="ct-sechead">
-        <div className="ct-eyebrow">━━ {d.eyebrow}</div>
+        <div className="ct-eyebrow">{d.eyebrow}</div>
         <h2>{d.title}</h2>
       </div>
       <div className="ct-depts__grid">
         {d.depts.map((dept) => (
           <div key={dept.name} className="ct-dept">
-            <div className="ct-dept__rule" />
             <div className="ct-dept__name">{dept.name}</div>
             <div className="ct-dept__contact">{dept.contact}</div>
             <div className="ct-dept__rows">
               <div><span>✉</span> {dept.email || c.email}</div>
               <div><span>✆</span> {dept.phone || c.phone}</div>
-              <div className="ct-dept__hours"><span>◴</span> {dept.hours}</div>
+              <div className="ct-dept__hours">{dept.hours}</div>
             </div>
           </div>
         ))}

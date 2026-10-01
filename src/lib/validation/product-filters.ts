@@ -28,7 +28,7 @@ export const productFiltersSchema = z.object({
     .optional()
     .transform((v) => (v && v.length > 0 ? v : undefined)),
   qmod: z.enum(QMODES).catch("tumu"),
-  sirala: z.enum(SORT_VALUES).catch("one-cikan"),
+  sirala: z.enum(SORT_VALUES).catch("ref"),
   sayfa: z.coerce.number().int().min(1).catch(1),
 });
 

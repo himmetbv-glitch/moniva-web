@@ -1125,6 +1125,20 @@ function HeroFields({ d, set, onChange, pageKey }: FieldsProps) {
 
   return (
     <>
+      <div className="mp-group">
+        <div className="mp-group__ttl">Arka plan videosu</div>
+        <Field label="YouTube linki">
+          <input
+            value={str(d.videoUrl)}
+            placeholder="https://www.youtube.com/watch?v=..."
+            onChange={(e) => set({ videoUrl: e.target.value })}
+          />
+        </Field>
+        <div className="mp-note">
+          Doluysa slider yerine sessiz, döngüde oynayan video gösterilir. Başlık, alt metin ve
+          video yüklenirken görünen görsel <b>Slayt 1</b>&apos;den alınır. Boşaltırsanız slider geri gelir.
+        </div>
+      </div>
       {slides.map((s, i) => (
         <div className="mp-group" key={i}>
           <div className="mp-group__ttl">Slayt {i + 1}</div>

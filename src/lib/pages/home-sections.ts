@@ -10,7 +10,17 @@ export type HeroData = {
   slides: HeroSlide[];
   ctaPrimary: CtaLink;
   ctaSecondary: CtaLink;
+  // Doluysa slider yerine sessiz/döngülü YouTube arka plan videosu oynar;
+  // ilk slaytın görseli poster, başlığı ve alt metni overlay olarak kalır.
+  videoUrl?: string;
 };
+
+export function youtubeId(url: string | undefined): string | null {
+  if (!url) return null;
+  const m = url.trim().match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+  if (m) return m[1];
+  return /^[A-Za-z0-9_-]{11}$/.test(url.trim()) ? url.trim() : null;
+}
 
 export type CategoryTile = { categorySlug: string; image: string };
 export type CategoryGridData = {

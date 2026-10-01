@@ -203,7 +203,6 @@ function WhySection({ data }: { data: FeatureColumnsData }) {
         {data.pillars.map((p) => (
           <div className="hh-pillar" key={p.num}>
             <div className="hh-pillar__num">{p.num}</div>
-            <span className="hh-pillar__tick" />
             <div className="hh-pillar__title">{p.title}</div>
             <div className="hh-pillar__body">{p.body}</div>
           </div>

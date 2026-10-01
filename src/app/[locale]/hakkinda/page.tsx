@@ -127,7 +127,7 @@ function FacilitySection({
         </div>
       </div>
       <div className="ab-facility__text">
-        <div className="ab-eyebrow">━━ {d.eyebrow}</div>
+        <div className="ab-eyebrow">{d.eyebrow}</div>
         <h2>{d.title}</h2>
         <p>{d.body}</p>
         <div className="ab-facility__stats">
@@ -148,7 +148,7 @@ function MvSection({ d }: { d: AboutMvData }) {
     <section className="ab-mv">
       {d.columns.map((b) => (
         <div key={b.tag} className="ab-mv__col">
-          <div className="ab-eyebrow">━━ {b.tag}</div>
+          <div className="ab-eyebrow">{b.tag}</div>
           <h3>{b.title}</h3>
           <p>{b.body}</p>
         </div>
@@ -161,7 +161,7 @@ function TimelineSection({ d }: { d: AboutTimelineData }) {
   return (
     <section className="ab-timeline">
       <div className="ab-sechead">
-        <div className="ab-eyebrow">━━ {d.eyebrow}</div>
+        <div className="ab-eyebrow">{d.eyebrow}</div>
         <h2>{d.title}</h2>
       </div>
       <div className="ab-timeline__track">
@@ -183,7 +183,7 @@ function CertsSection({ d }: { d: AboutCertsData }) {
   return (
     <section className="ab-certs">
       <div className="ab-sechead">
-        <div className="ab-eyebrow">━━ {d.eyebrow}</div>
+        <div className="ab-eyebrow">{d.eyebrow}</div>
         <h2>{d.title}</h2>
       </div>
       <div className="ab-certs__grid">
@@ -205,7 +205,7 @@ function CtaSection({ d }: { d: AboutCtaData }) {
   return (
     <section className="ab-cta">
       <div className="ab-cta__lead">
-        <div className="ab-eyebrow ab-eyebrow--accent">━━ {d.eyebrow}</div>
+        <div className="ab-eyebrow ab-eyebrow--accent">{d.eyebrow}</div>
         <h2>{d.title}</h2>
         <p>{d.body}</p>
         <div className="ab-cta__btns">

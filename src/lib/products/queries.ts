@@ -22,6 +22,7 @@ export type ProductCardView = {
 
 export type CategoryNode = {
   id: string;
+  code: string;
   slug: string;
   name: string;
   count: number;
@@ -114,6 +115,7 @@ export async function getCategoryTree(
       .map(toNode);
     return {
       id: c.id,
+      code: c.code,
       slug: c.slug,
       name: pickTranslation(c.translations, locale)?.name ?? c.slug,
       count:

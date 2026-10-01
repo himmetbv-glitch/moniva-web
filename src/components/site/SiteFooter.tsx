@@ -1,19 +1,18 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { getFooterPages } from "@/lib/pages/queries";
+import { getCategoryTree } from "@/lib/products/queries";
+import { toDbLocale } from "@/lib/i18n-runtime";
 import { getSettings } from "@/lib/settings";
 import { Link } from "@/i18n/navigation";
 import "./footer.css";
 
-// Sütun yapısı: label metinleri messages/*.json'da; href'ler kod tabanında sabit
-// (çünkü hepsi aynı rotalara işaret ediyor — kategori dallanma yok).
-type ColKey = "products" | "corporate" | "support";
+// "Ürünler" sütunu kök kategorilerden üretilir (panel sırası, boş ve
+// "kategorisiz" hariç). Diğer sütunların etiketleri messages/*.json'da,
+// href'leri burada sabit.
+type ColKey = "corporate" | "support";
 const COLS: readonly { key: ColKey; hrefs: readonly string[] }[] = [
-  {
-    key: "products",
-    hrefs: ["/urunler", "/urunler", "/urunler", "/urunler", "/urunler", "/urunler"],
-  },
   {
     key: "corporate",
     hrefs: ["/hakkinda", "/kalite", "/haberler", "/kariyer"],
@@ -24,14 +23,25 @@ const COLS: readonly { key: ColKey; hrefs: readonly string[] }[] = [
   },
 ];
 
+// Kategori adları DB'de BÜYÜK HARF; footer'daki diğer linklerle uyumlu olsun diye
+// dile duyarlı baş harf büyütme (Türkçe İ/ı doğru dönsün).
+function titleCase(name: string, locale: string): string {
+  const lower = name.toLocaleLowerCase(locale);
+  const word = locale === "ru" ? /^()(\p{L})/u : /(^|[\s(/-])(\p{L})/gu;
+  return lower.replace(word, (_, sep: string, ch: string) => sep + ch.toLocaleUpperCase(locale));
+}
+
 const CERTS = ["ISO 9001:2015", "EAC", "ECE R-13"];
 
 export async function SiteFooter() {
-  const [footerPages, settings, t] = await Promise.all([
+  const locale = await getLocale();
+  const [footerPages, settings, t, tree] = await Promise.all([
     getFooterPages(),
     getSettings(),
     getTranslations(),
+    getCategoryTree(toDbLocale(locale)),
   ]);
+  const productCats = tree.filter((c) => c.code !== "UNCAT" && c.count > 0);
 
   const socials = [
     { label: "in", href: settings.linkedinUrl },
@@ -84,6 +94,16 @@ export async function SiteFooter() {
                   ))}
             </div>
           </div>
+
+          <nav className="sf-col">
+            <div className="sf-col__title">{t("footer.columns.products.title")}</div>
+            <div className="sf-col__rule" />
+            {productCats.map((c) => (
+              <Link key={c.slug} href={`/urunler?kategori=${c.slug}`} className="sf-col__link">
+                {titleCase(c.name, locale)}
+              </Link>
+            ))}
+          </nav>
 
           {COLS.map((col) => {
             const items = t.raw(`footer.columns.${col.key}.items`) as string[];

@@ -90,6 +90,29 @@
 .hh-hero__img--on {
   opacity: 1;
 }
+.hh-hero__video {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: size;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.hh-hero__video--on {
+  opacity: 1;
+}
+/* 16:9 iframe'i kutuyu tamamen kaplayacak şekilde büyütür (object-fit: cover
+   eşdeğeri); hafif ölçek YouTube'un kenar arayüzünü kadraj dışında bırakır. */
+.hh-hero__video iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, 177.78cqh);
+  height: max(100cqh, 56.25cqw);
+  transform: translate(-50%, -50%) scale(1.18);
+  border: 0;
+}
 .hh-hero__scrim {
   position: absolute;
   inset: auto 0 0 0;
@@ -201,7 +224,7 @@
   left: 16px;
   right: 16px;
   font-family: var(--font-roboto), "Roboto", sans-serif;
-  font-size: 18px;
+  font-size: 27px;
   font-weight: 300;
   color: #1b1640;
   line-height: 1.1;
@@ -212,7 +235,7 @@
 }
 .hh-catcard__label i {
   font-style: normal;
-  font-size: 20px;
+  font-size: 24px;
   color: rgba(27, 22, 64, 0.55);
   transition: color 0.15s;
 }
@@ -241,13 +264,6 @@
   line-height: 1;
   margin-bottom: 16px;
   font-variant-numeric: tabular-nums;
-}
-.hh-pillar__tick {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--blue);
-  margin-bottom: 12px;
 }
 .hh-pillar__title {
   font-size: 15px;

@@ -23,7 +23,7 @@ export async function PageBanner({
       <div className="banner-row">
         <div>
           {banner.kicker && (
-            <div className="banner-kicker">━━ {banner.kicker}</div>
+            <div className="banner-kicker">{banner.kicker}</div>
           )}
           <h1 className="banner-title">{banner.title}</h1>
           <p className="banner-sub">{banner.subtitle}</p>

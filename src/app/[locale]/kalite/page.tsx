@@ -116,7 +116,7 @@ function BannerSection({
         </nav>
         <div className="ql-banner__row">
           <div>
-            <div className="ql-eyebrow ql-eyebrow--accent">━━ {d.eyebrow}</div>
+            <div className="ql-eyebrow ql-eyebrow--accent">{d.eyebrow}</div>
             <h1 className="ql-banner__title">{d.title}</h1>
             <p className="ql-banner__sub">{d.sub}</p>
           </div>

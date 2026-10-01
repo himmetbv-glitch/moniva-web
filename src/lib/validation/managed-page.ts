@@ -43,6 +43,7 @@ export const heroData = z.object({
   slides: z.array(heroSlide).min(1).max(8),
   ctaPrimary: ctaLink,
   ctaSecondary: ctaLink,
+  videoUrl: z.string().trim().max(300).default(""),
 });
 
 const categoryTile = z.object({

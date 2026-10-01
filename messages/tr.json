@@ -40,15 +40,7 @@
   "footer": {
     "columns": {
       "products": {
-        "title": "Ürünler",
-        "items": [
-          "Fren Sistemleri",
-          "Hava Süspansiyon",
-          "Aks ve Tekerlek",
-          "Şanzıman Parçaları",
-          "Elektrik Sistemleri",
-          "Kabin & Gövde"
-        ]
+        "title": "Ürünler"
       },
       "corporate": {
         "title": "Kurumsal",
@@ -633,7 +625,7 @@
     "notFoundTitle": "Haber bulunamadı — Moniva",
     "crumbSelf": "Haberler",
     "banner": {
-      "eyebrow": "━━ Basın & Medya",
+      "eyebrow": "Basın & Medya",
       "title": "Haberler.",
       "sub": "Moniva Otomotiv'den basın bültenleri, ürün lansmanları, fuar haberleri ve sektör içgörüleri — 50+ pazara sevk ettiğimiz her parçanın arkasındaki hikâye.",
       "statNews": "Haber",
@@ -676,7 +668,7 @@
     "pageDescription": "Moniva ürün gamını baskıya hazır PDF olarak indirin — genel katalog, ürün aileleri, OEM çapraz referans ve marka kılavuzları.",
     "crumbSelf": "Kataloglar",
     "banner": {
-      "eyebrow": "━━ İndirilebilir Dosyalar",
+      "eyebrow": "İndirilebilir Dosyalar",
       "title": "Kataloglar.",
       "sub": "Moniva ürün gamını baskıya hazır PDF olarak indirin — genel katalog, ürün aileleri, OEM çapraz referans ve marka kılavuzları. 2026 sezonu için güncellendi.",
       "statPdf": "PDF",
