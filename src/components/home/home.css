@@ -22,6 +22,7 @@
 }
 .hh-title__rule {
   display: block;
+  max-width: 100%;
   height: 2px;
   background: var(--blue);
   margin-top: 6px;
@@ -29,9 +30,15 @@
 }
 .hh-sec__head {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 8px 16px;
   margin-bottom: 20px;
+}
+.hh-sec__head > .hh-title {
+  min-width: 0;
+  max-width: 100%;
 }
 .hh-seelink {
   font-size: 13px;
