@@ -32,7 +32,7 @@ import "@/components/home/home.css";
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["300"],
+  weight: ["700"],
 });
 
 export const dynamic = "force-dynamic";

@@ -231,8 +231,8 @@
   left: 16px;
   right: 16px;
   font-family: var(--font-roboto), "Roboto", sans-serif;
-  font-size: 27px;
-  font-weight: 300;
+  font-size: 22px;
+  font-weight: 700;
   color: #1b1640;
   line-height: 1.1;
   letter-spacing: -0.2px;
@@ -242,7 +242,7 @@
 }
 .hh-catcard__label i {
   font-style: normal;
-  font-size: 24px;
+  font-size: 20px;
   color: rgba(27, 22, 64, 0.55);
   transition: color 0.15s;
 }
