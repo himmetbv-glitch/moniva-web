@@ -1,4 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "regions": ["fra1"]
+  "regions": ["fra1"],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(meta-externalagent|GPTBot|SERankingBacklinksBot|Bytespider|CCBot|Amazonbot|PetalBot).*"
+        }
+      ],
+      "mitigate": { "action": "deny" }
+    }
+  ]
 }

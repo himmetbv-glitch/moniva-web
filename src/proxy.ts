@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import createIntlMiddleware from "next-intl/middleware";
 
 import { authConfig } from "@/auth.config";
+import { isBlockedBot } from "@/lib/bot-block";
 import { routing } from "@/i18n/routing";
 
 // Next 16 renamed Middleware to Proxy. Two responsibilities compose here:
@@ -37,6 +38,16 @@ const LEGACY_HOSTS = new Set(["moniva-web.vercel.app"]);
 const CANONICAL_ORIGIN = "https://www.moniva.com.tr";
 
 export default async function proxy(request: NextRequest, event: NextFetchEvent) {
+  // First of all: in production vercel.json already denies these at the edge,
+  // so this only fires if that rule is bypassed (and locally, where vercel.json
+  // does not apply). The header tells the two layers apart in a 403.
+  if (isBlockedBot(request.headers.get("user-agent"))) {
+    return new NextResponse("Forbidden", {
+      status: 403,
+      headers: { "x-blocked-by": "proxy-ua", "Cache-Control": "no-store" },
+    });
+  }
+
   const host = (request.headers.get("host") ?? "").toLowerCase().split(":")[0];
   if (LEGACY_HOSTS.has(host)) {
     const { pathname, search } = request.nextUrl;
