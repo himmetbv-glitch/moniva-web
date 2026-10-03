@@ -1,9 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
 
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 
@@ -48,6 +49,7 @@ export async function upsertBrand(raw: BrandPayload): Promise<BrandUpsertResult>
       const created = await prisma.brand.create({ data, select: { id: true } });
       id = created.id;
     }
+    updateTag(CATALOG_TAG);
     revalidatePath("/admin/brands");
     revalidatePath("/urunler");
     return { ok: true, id };
@@ -72,6 +74,7 @@ export async function deleteBrand(formData: FormData): Promise<BrandDeleteResult
   if (count > 0) return { ok: false, reason: "has-products" };
 
   await prisma.brand.delete({ where: { id: parsed.data.id } });
+  updateTag(CATALOG_TAG);
   revalidatePath("/admin/brands");
   return { ok: true };
 }

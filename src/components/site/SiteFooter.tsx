@@ -99,7 +99,12 @@ export async function SiteFooter() {
             <div className="sf-col__title">{t("footer.columns.products.title")}</div>
             <div className="sf-col__rule" />
             {productCats.map((c) => (
-              <Link key={c.slug} href={`/urunler?kategori=${c.slug}`} className="sf-col__link">
+              <Link
+                key={c.slug}
+                href={`/urunler?kategori=${c.slug}`}
+                rel="nofollow"
+                className="sf-col__link"
+              >
                 {titleCase(c.name, locale)}
               </Link>
             ))}

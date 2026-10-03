@@ -1,7 +1,8 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { deleteObject, keyFromAssetUrl } from "@/lib/r2/client";
@@ -26,6 +27,8 @@ export async function deleteDatasheet(id: string): Promise<DatasheetActionResult
       /* yetim obje — sessiz geç */
     }
   }
+
+  updateTag(CATALOG_TAG);
 
   revalidatePath(`/admin/products/${ds.productId}`);
   revalidatePath("/urunler", "layout");

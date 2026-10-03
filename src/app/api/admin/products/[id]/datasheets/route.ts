@@ -1,10 +1,11 @@
 import { randomUUID } from "node:crypto";
 
 import type { NextRequest } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { Locale } from "@prisma/client";
 
 import { auth } from "@/auth";
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import {
   assetUrl,
@@ -91,6 +92,8 @@ export async function POST(
       }
     }
   }
+
+  revalidateTag(CATALOG_TAG, { expire: 0 });
 
   revalidatePath(`/admin/products/${productId}`);
   revalidatePath("/urunler", "layout");

@@ -21,6 +21,7 @@ export function CategoryShowcase({
           <Link
             key={c.slug}
             href={`?kategori=${encodeURIComponent(c.slug)}`}
+            rel="nofollow"
             className="csc-card"
           >
             <div className="csc-thumb">
@@ -39,7 +40,7 @@ export function CategoryShowcase({
           </Link>
         ))}
 
-        <Link href="?tum=1" className="csc-card csc-all">
+        <Link href="?tum=1" rel="nofollow" className="csc-card csc-all">
           <div className="csc-thumb">
             <span className="csc-all-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">

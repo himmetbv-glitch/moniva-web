@@ -178,6 +178,7 @@ function CategorySection({
           <Link
             key={c.slug}
             href={`/urunler?kategori=${c.slug}`}
+            rel="nofollow"
             className="hh-catcard"
             style={{ backgroundImage: `url(${c.image})` }}
           >

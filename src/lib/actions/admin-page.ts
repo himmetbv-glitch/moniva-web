@@ -1,9 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { Prisma, type Locale } from "@prisma/client";
 import { z } from "zod";
 
+import { SETTINGS_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { pageEditorSchema, type PageEditorPayload } from "@/lib/validation/admin-page";
@@ -12,6 +13,7 @@ export type PageUpsertResult = { ok: true; id: string } | { ok: false; error: st
 export type PageActionResult = { ok: boolean; error?: string };
 
 function revalidate(slug?: string, id?: string) {
+  updateTag(SETTINGS_TAG);
   revalidatePath("/admin/pages");
   if (id) revalidatePath(`/admin/pages/${id}`);
   if (slug) revalidatePath(`/sayfa/${slug}`);

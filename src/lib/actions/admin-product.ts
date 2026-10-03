@@ -1,9 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
 
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { buildProductWhere } from "@/lib/admin/products";
@@ -74,6 +75,8 @@ export async function moveProductOrder(formData: FormData): Promise<void> {
 
   await prisma.$transaction(updates);
 
+  updateTag(CATALOG_TAG);
+
   revalidatePath("/admin/products");
   revalidatePath("/urunler");
 }
@@ -93,6 +96,7 @@ export async function toggleProductActive(formData: FormData): Promise<void> {
     where: { id: parsed.data.id },
     data: { isActive: !current.isActive },
   });
+  updateTag(CATALOG_TAG);
   revalidatePath("/admin/products");
 }
 
@@ -111,6 +115,7 @@ export async function toggleProductFeatured(formData: FormData): Promise<void> {
     where: { id: parsed.data.id },
     data: { isFeatured: !current.isFeatured },
   });
+  updateTag(CATALOG_TAG);
   revalidatePath("/admin/products");
 }
 
@@ -129,6 +134,7 @@ export async function deleteProduct(formData: FormData): Promise<DeleteResult> {
   if (refCount > 0) return { ok: false, reason: "referenced" };
 
   await prisma.product.delete({ where: { id: parsed.data.id } });
+  updateTag(CATALOG_TAG);
   revalidatePath("/admin/products");
   return { ok: true };
 }

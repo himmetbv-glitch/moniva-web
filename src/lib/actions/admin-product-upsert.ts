@@ -1,8 +1,9 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { Prisma, type Locale } from "@prisma/client";
 
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { normalizeOem } from "@/lib/products/normalize-oem";
@@ -136,6 +137,8 @@ export async function upsertProduct(
       });
       productId = created.id;
     }
+
+    updateTag(CATALOG_TAG);
 
     revalidatePath("/admin/products");
     revalidatePath(`/admin/products/${productId}`);

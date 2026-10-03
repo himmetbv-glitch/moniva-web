@@ -1,9 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
-
+import { CATALOG_PAGE } from "@/lib/pages/catalog-sections";
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { savePageSchema, parseSectionData } from "@/lib/validation/managed-page";
@@ -11,6 +12,8 @@ import { savePageSchema, parseSectionData } from "@/lib/validation/managed-page"
 export type ManagedPageResult = { ok: true } | { ok: false; error: string };
 
 function revalidate(path: string, key: string) {
+  // Ürün listesi/detayı katalog etiketlerini veri önbelleğinden okur.
+  if (key === CATALOG_PAGE.key) updateTag(CATALOG_TAG);
   revalidatePath("/admin/pages");
   revalidatePath(`/admin/pages/site/${key}`);
   if (path === "/") revalidatePath("/", "layout");

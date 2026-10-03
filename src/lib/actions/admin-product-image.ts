@@ -1,7 +1,8 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { deleteObject, keyFromAssetUrl } from "@/lib/r2/client";
@@ -9,6 +10,7 @@ import { deleteObject, keyFromAssetUrl } from "@/lib/r2/client";
 export type ImageActionResult = { ok: true } | { ok: false; error: string };
 
 function revalidate(productId: string) {
+  updateTag(CATALOG_TAG);
   revalidatePath(`/admin/products/${productId}`);
   revalidatePath("/urunler");
 }

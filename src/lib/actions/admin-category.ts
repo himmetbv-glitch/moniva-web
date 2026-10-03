@@ -1,9 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { Prisma, type Locale } from "@prisma/client";
 import { z } from "zod";
 
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { getCategoryAttributes } from "@/lib/admin/categories";
@@ -175,6 +176,7 @@ export async function upsertCategory(
       });
       id = created.id;
     }
+    updateTag(CATALOG_TAG);
     revalidatePath("/admin/categories");
     revalidatePath(`/admin/categories/${id}`);
     revalidatePath("/urunler");
@@ -241,6 +243,8 @@ export async function moveCategoryOrder(formData: FormData): Promise<void> {
   if (updates.length === 0) return;
 
   await prisma.$transaction(updates);
+
+  updateTag(CATALOG_TAG);
 
   revalidatePath("/admin/categories");
   revalidatePath("/urunler");
@@ -330,6 +334,7 @@ export async function toggleCategoryActive(formData: FormData): Promise<void> {
     where: { id: parsed.data.id },
     data: { isActive: !cur.isActive },
   });
+  updateTag(CATALOG_TAG);
   revalidatePath("/admin/categories");
 }
 
@@ -347,6 +352,7 @@ export async function deleteCategory(formData: FormData): Promise<CatDeleteResul
   if (counts._count.products > 0) return { ok: false, reason: "has-products" };
 
   await prisma.category.delete({ where: { id: parsed.data.id } });
+  updateTag(CATALOG_TAG);
   revalidatePath("/admin/categories");
   return { ok: true };
 }

@@ -1,7 +1,9 @@
 import "server-only";
 
 import { type Locale } from "@prisma/client";
+import { unstable_cache } from "next/cache";
 
+import { CACHE_SCOPE, CACHE_SECONDS, SETTINGS_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE } from "@/lib/i18n";
 
@@ -67,7 +69,14 @@ export async function getPageBySlug(slug: string): Promise<PublicPage | null> {
   };
 }
 
-export async function getFooterPages(): Promise<FooterPageLink[]> {
+// Her sayfanın footer'ı okur → veri önbelleğinde ("settings" etiketi; sayfa
+// action'ları `updateTag(SETTINGS_TAG)` çağırır).
+export const getFooterPages = unstable_cache(loadFooterPages, ["footer-pages", CACHE_SCOPE], {
+  revalidate: CACHE_SECONDS,
+  tags: [SETTINGS_TAG],
+});
+
+async function loadFooterPages(): Promise<FooterPageLink[]> {
   const pages = await prisma.page.findMany({
     where: { status: "PUBLISHED", showInFooter: true },
     orderBy: [{ order: "asc" }, { updatedAt: "desc" }],

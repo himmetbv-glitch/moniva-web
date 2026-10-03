@@ -1,9 +1,10 @@
 import { randomUUID } from "node:crypto";
 
 import type { NextRequest } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 import { auth } from "@/auth";
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { assetUrl, isR2Configured, putObject } from "@/lib/r2/client";
 
@@ -76,6 +77,8 @@ export async function POST(
     data: { productId, url: assetUrl(key), alt, order, isMain },
     select: { id: true, url: true, alt: true, order: true, isMain: true },
   });
+
+  revalidateTag(CATALOG_TAG, { expire: 0 });
 
   revalidatePath(`/admin/products/${productId}`);
   revalidatePath("/urunler");

@@ -16,11 +16,14 @@ const Check = () => (
 );
 
 export function Sidebar({
+  query,
   tree,
   brands,
   activeCategory,
   activeBrands,
 }: {
+  /** Canonical query from the server — links never carry junk parameters. */
+  query: string;
   tree: CategoryNode[];
   brands: BrandFilter[];
   activeCategory?: string;
@@ -29,7 +32,7 @@ export function Sidebar({
   const router = useRouter();
   const pathname = usePathname();
   const sp = useSearchParams();
-  const qs = sp.toString();
+  const qs = query;
   const t = useTranslations();
 
   const initialOpen =
@@ -158,7 +161,7 @@ export function Sidebar({
                     </span>
                   </div>
                 ) : (
-                  <Link className="cat-row-head" href={catHref(root.slug)}>
+                  <Link className="cat-row-head" href={catHref(root.slug)} rel="nofollow">
                     <span className="cat-label">{root.name}</span>
                     <span className="cat-count">{root.count}</span>
                     <span className="cat-toggle">›</span>
@@ -171,6 +174,7 @@ export function Sidebar({
                       <Link
                         key={child.id}
                         href={catHref(child.slug)}
+                        rel="nofollow"
                         className={`cat-child${activeCategory === child.slug ? " active" : ""}`}
                       >
                         <span className="branch" />

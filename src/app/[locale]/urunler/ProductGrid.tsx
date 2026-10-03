@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
@@ -15,12 +14,15 @@ import { patchQuery } from "@/lib/products/filter-url";
 import { ProductCard } from "./ProductCard";
 
 export function ProductGrid({
+  query,
   result,
   filters,
   categoryLabel,
   brandLabels,
   card,
 }: {
+  /** Canonical query from the server — links never carry junk parameters. */
+  query: string;
   result: ProductListResult;
   filters: ProductFilters;
   categoryLabel?: string;
@@ -29,8 +31,7 @@ export function ProductGrid({
 }) {
   const router = useRouter();
   const pathname = usePathname();
-  const sp = useSearchParams();
-  const qs = sp.toString();
+  const qs = query;
   const t = useTranslations();
 
   const [view, setView] = useState<"grid" | "list">("grid");
@@ -64,13 +65,14 @@ export function ProductGrid({
               {filters.q && (
                 <Link
                   className="chip"
-                  href={pathname + patchQuery(qs, { q: null, sayfa: null })}
+                  rel="nofollow"
+                  href={pathname + patchQuery(qs, { q: null, qmod: null, sayfa: null })}
                 >
                   “{filters.q}”<span className="x">×</span>
                 </Link>
               )}
               {categoryLabel && (
-                <Link className="chip" href={pathname + patchQuery(qs, { kategori: null, sayfa: null })}>
+                <Link className="chip" rel="nofollow" href={pathname + patchQuery(qs, { kategori: null, sayfa: null })}>
                   {categoryLabel}
                   <span className="x">×</span>
                 </Link>
@@ -79,6 +81,7 @@ export function ProductGrid({
                 <Link
                   key={slug}
                   className="chip"
+                  rel="nofollow"
                   href={pathname + patchQuery(qs, { marka: removeBrand(slug), sayfa: null })}
                 >
                   {brandLabels[slug] ?? slug}
@@ -165,7 +168,7 @@ export function ProductGrid({
           </div>
           <div className="pg-btns">
             {page > 1 ? (
-              <Link href={pathname + patchQuery(qs, { sayfa: String(page - 1) })}>‹</Link>
+              <Link rel="nofollow" href={pathname + patchQuery(qs, { sayfa: String(page - 1) })}>‹</Link>
             ) : (
               <span className="disabled">‹</span>
             )}
@@ -219,6 +222,7 @@ export function ProductGrid({
               ) : (
                 <Link
                   key={n}
+                  rel="nofollow"
                   href={pathname + patchQuery(qs, { sayfa: String(n) })}
                   className={n === page ? "active" : ""}
                 >
@@ -227,7 +231,7 @@ export function ProductGrid({
               ),
             )}
             {page < totalPages ? (
-              <Link href={pathname + patchQuery(qs, { sayfa: String(page + 1) })}>›</Link>
+              <Link rel="nofollow" href={pathname + patchQuery(qs, { sayfa: String(page + 1) })}>›</Link>
             ) : (
               <span className="disabled">›</span>
             )}

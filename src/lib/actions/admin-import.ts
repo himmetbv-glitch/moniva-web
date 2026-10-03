@@ -1,8 +1,9 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { Prisma, type Locale } from "@prisma/client";
 
+import { CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { getImportLookups } from "@/lib/admin/import-options";
@@ -150,6 +151,8 @@ export async function importProducts(
       result.errors.push({ row: i + 2, sku: n.sku, message: msg });
     }
   }
+
+  updateTag(CATALOG_TAG);
 
   revalidatePath("/admin/products");
   revalidatePath("/urunler");

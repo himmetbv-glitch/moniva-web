@@ -1,7 +1,8 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
+import { SETTINGS_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { verifyAdmin } from "@/lib/admin/dal";
 import { SETTINGS_ID } from "@/lib/settings";
@@ -41,6 +42,8 @@ export async function updateSettings(
     create: { id: SETTINGS_ID, ...data },
     update: data,
   });
+
+  updateTag(SETTINGS_TAG);
 
   revalidatePath("/admin/settings");
   revalidatePath("/", "layout"); // footer + iletişim

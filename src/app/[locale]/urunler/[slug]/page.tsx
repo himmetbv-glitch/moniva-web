@@ -87,7 +87,7 @@ export default async function ProductDetailPage({
           {product.category && product.categorySlug && (
             <>
               <span className="sep">›</span>
-              <Link href={`/urunler?kategori=${product.categorySlug}`}>
+              <Link href={`/urunler?kategori=${product.categorySlug}`} rel="nofollow">
                 {product.category}
               </Link>
             </>

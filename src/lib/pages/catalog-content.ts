@@ -1,8 +1,10 @@
 import "server-only";
 
+import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import type { Locale } from "@prisma/client";
 
+import { CACHE_SCOPE, CACHE_SECONDS, CATALOG_TAG } from "@/lib/cache-tags";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_LOCALE } from "@/lib/i18n";
 import {
@@ -24,7 +26,27 @@ function seedData<T>(key: string): T {
   return CATALOG_SECTIONS.find((s) => s.key === key)!.data as T;
 }
 
-// Tek sorgu; React cache ile aynı render'da tekrarlanmaz (liste + detay aynı isteği paylaşabilir).
+// Ürün listesi ve detayı her istekte okur → bölümler veri önbelleğinde (1 sa,
+// "catalog" etiketi; yönetilen sayfa kaydı `updateTag(CATALOG_TAG)` çağırır).
+// Dil seçimi önbellek dışında yapılır: 4 dil tek girdiyi paylaşır.
+const loadCatalogSections = unstable_cache(
+  async () => {
+    const page = await prisma.managedPage.findUnique({
+      where: { key: CATALOG_PAGE.key },
+      select: {
+        sections: {
+          where: { visible: true },
+          select: { key: true, data: true },
+        },
+      },
+    });
+    return page?.sections ?? null;
+  },
+  ["catalog:labels", CACHE_SCOPE],
+  { revalidate: CACHE_SECONDS, tags: [CATALOG_TAG] },
+);
+
+// React cache ile aynı render'da tekrarlanmaz.
 export const getCatalogLabels = cache(
   async (locale: Locale = DEFAULT_LOCALE): Promise<CatalogLabels> => {
     const bannerSeed = seedData<CatalogBannerData>("banner");
@@ -36,18 +58,10 @@ export const getCatalogLabels = cache(
       detail: pickLocalized(detailSeed as Record<string, unknown>, locale) as ProductDetailData,
     };
 
-    const page = await prisma.managedPage.findUnique({
-      where: { key: CATALOG_PAGE.key },
-      select: {
-        sections: {
-          where: { visible: true },
-          select: { key: true, data: true },
-        },
-      },
-    });
-    if (!page) return fallback;
+    const sections = await loadCatalogSections();
+    if (!sections) return fallback;
 
-    const byKey = new Map(page.sections.map((s) => [s.key, s.data as Record<string, unknown>]));
+    const byKey = new Map(sections.map((s) => [s.key, s.data as Record<string, unknown>]));
     const banner = byKey.get("banner");
     const card = byKey.get("card");
     const detail = byKey.get("detail");
